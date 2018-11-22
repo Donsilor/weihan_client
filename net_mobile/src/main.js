@@ -3,10 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Vuelidate from 'vuelidate'
 
 Vue.config.productionTip = false
-
+// 实例化表单验证插件
+Vue.use(Vuelidate)
 /* eslint-disable no-new */
+// 页面入口
 new Vue({
   el: '#app',
   router,
