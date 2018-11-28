@@ -1,0 +1,48 @@
+body{padding-top:5rem;}
+.logo{width:40%;height:auto;margin:0 auto 3rem; }
+.logo img{width:100%;}
+.title{text-align:center;color:#37a4df;font-size:1.4rem;font-family:ltx;}
+form{padding-top:1rem;}
+form > .box{display:block;width:90%;height:2.5rem;margin:1.5rem auto 0;border:1px solid #b5b5b5;border-radius:.2rem;line-height:2.5rem;}
+form > .box span{display:block;float:left;width:25px;height:25px;background-image:url(../images/icon_sprite.png);margin-top:.3rem; }
+form > .box:nth-of-type(1) span{background-position:0 0 ;}
+form > .box:nth-of-type(2) span{background-position:-25px 0;}
+form > .box input{font-size:.8rem;color:#010101;padding-left:2%;display:block;width:calc(100% - 25px);height:2.5rem;background:transparent;float:left;}
+form > .operating{width:90%;margin:1rem auto 0;}
+form > .operating label{float:left;font-size:.9rem;}
+form > .operating label input{width:.9rem;height:.9rem;appearance:none;-moz-appearance:none; -webkit-appearance:none;border:1px solid #3b3b3b;border-radius:.2rem;vertical-align:bottom;margin-right:.2rem;}
+form > .operating label input[type=checkbox]:checked{background:url(../images/icon_checken.png)no-repeat center/100% 100%;border:none;}
+form > .operating a{float:right;font-size:.9rem;color:#37a4df;}
+form > .submit{width:90%;height:2.5rem;margin:auto;display:block;border-radius:.2rem;text-align:center;line-height:2.5rem;color:#fff;font-size:1rem;background:#c9c9c9;margin-top:1.8rem;}
+.copyright{position:fixed;width:100%;text-align:center;font-size:.9rem;color:#333;bottom:1rem;left:50%;transform:translateX(-50%);}
+form > .info{display: block;font-size:.8rem;padding-left:10%;padding-top:10px;color:#f00; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

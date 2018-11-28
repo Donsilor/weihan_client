@@ -3,11 +3,17 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Vuelidate from 'vuelidate'
+import axios from 'axios'
+// 导入需要验证项目类型
+import '@/common/validate'
+import api from '@/common/md_axios'
+import interfaces from '@/common/interfaces'
+import global from '@/common/global'
 
-Vue.config.productionTip = false
-// 实例化表单验证插件
-Vue.use(Vuelidate)
+Vue.prototype.$api = api;
+Vue.prototype.$infs = interfaces;
+Vue.prototype.$glb = global;
+Vue.config.productionTip = false;
 /* eslint-disable no-new */
 // 页面入口
 new Vue({

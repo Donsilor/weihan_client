@@ -1,0 +1,8 @@
+.header .message{
+	display: none;
+}
+.banner{
+	width: 100%;
+	height: 4.2rem;
+	background: url(../images/my_icon2.png)center/100% 100%;
+}

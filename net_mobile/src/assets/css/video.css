@@ -1,0 +1,32 @@
+.content_list .kind>div{
+	display: inline-block;
+}
+.content_list .video_box{
+	height: 4rem;
+	width: 6rem;
+	background-color: #ccc;
+	margin: 3% 5%;
+}
+.kind .video_title{
+	height: 4rem;
+	width: auto;
+	vertical-align: top;
+	margin-top: 3%;
+	/*border: 1px solid red;*/
+	/*display: flex;*/
+	/*flex-direction: row;*/
+	/*justify-content: space-between;*/
+}
+.kind .video_title div:first-child{
+	font-size: 1rem;
+	padding-bottom: .5rem;
+}
+.kind .video_title div:nth-child(2){
+	font-size: .9rem;
+	padding-bottom: .5rem;
+}
+.kind .video_title div:nth-child(2) span,
+.kind .video_title div:last-child{
+	font-size: .8rem;
+}
+

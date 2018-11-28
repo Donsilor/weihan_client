@@ -1,0 +1,56 @@
+.mine{
+	margin-top: 3.2rem;
+}
+.kind{
+	width: 100%;
+	padding-top: .5rem;
+}
+.kind>div{
+	height: 3rem;
+	padding: 0 !important;
+	margin-left: 3% !important;
+}
+.kind>div:first-child{
+	margin-left: 5% !important;
+}
+.kind_child1{
+	width: 38% !important;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.kind_child1 .name{
+	font-size: .9rem;
+}
+.kind_child1 .class_hour span:last-child{
+	margin-left: 5%;
+}
+.kind_child2{
+	width: 20% !important;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.kind_child2 div:last-child{
+	margin-top: .6rem;
+}
+.kind_child3{
+	width: 15% !important;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.kind_child3 span{
+	margin-top: 1.5rem;
+	display: inline-block;
+}
+.kind_child4{
+	height: 1.8rem !important;
+	width: 1.8rem !important;
+	margin-top: .4rem;
+	margin-right: 2%;
+	background: url(../images/test_paper.png) no-repeat center/70%;
+}
+.red{
+	color: #f00;
+}

@@ -1,0 +1,165 @@
+@charset "utf-8";
+/* 深圳市静江网络科技有限公司 */
+*,*:before,*:after {-webkit-box-sizing:border-box; box-sizing:border-box;margin:0; padding:0;}
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust: 100%;height:100%;}
+body{position:relative;color:#333;max-width:650px;height:100%;margin:auto; box-shadow:0 0 5px #ccc;background:#fff;}
+input{border:none;}
+input,select,option,textarea{outline: none;}
+input[type="button"],button,select{cursor: pointer;border: none;outline: none;}
+textarea{outline: none;}
+ul,li,h1,h2,h3,h4,h5,h6{list-style-type:none;}
+img{border:none;}
+a{text-decoration:none; color:#666;}
+a:hover{text-decoration:none;}
+.clf{zoom:1}
+.clf:before,.clf:after,.w:before,.w:after{content:"";display:block;height:0;clear:both;visibility:hidden;}
+.fl{float: left;}
+.fr{float: right;}
+@font-face {font-family:ltx;src:url('../font/ltx_5.ttf');}
+/* 初始化样式结束 */
+.header {
+	width: 100%;
+	height: .6rem;
+	background: #37a4df;
+	position: fixed;
+	top: 0;
+	left: 0;
+	line-height: .6rem;
+	padding: 0;
+}
+.box{
+	padding-top: .6rem;
+	padding-bottom: 1.08rem;
+}
+.header .title {
+	text-align: center;
+	color: #fff;
+	font-size: .36rem;
+	font-weight: 300;
+	font-family: ltx;
+}
+
+.header .message {
+	display: block;
+	width: .38rem;
+	height: .38rem;
+	position: absolute;
+	right: 2%;
+	top: 50%;
+	transform: translateY(-50%);
+	background: url(../images/icon_message.png)no-repeat center/100% 100%;
+}
+.header .arrow {
+	display: block;
+	width: .38rem;
+	height: .38rem;
+	position: absolute;
+	left: 2%;
+	top: 50%;
+	transform: translateY(-50%);
+	background: url(../images/right_arrow.png)no-repeat center/100% 100%;
+}
+.footer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	background: #fff;
+	border-top: 1px solid #dbdbdb;
+	height: 1.08rem;
+	padding-top: .15rem;
+}
+
+.footer ul li {
+	float: left;
+	width: calc(100% / 5);
+	text-align: center;
+	padding: .03rem 0;
+}
+
+.footer ul li>a span {
+	display: block;
+	font-size: .24rem;
+}
+
+.footer ul li>a .icon {
+	width: .4rem;
+	height: .4rem;
+	margin: 0 auto .02rem;
+	background-image: url(../images/navbar_icon.png);
+}
+
+.footer ul li:nth-child(1)>a .icon {
+	background-position: 0 0;
+	background-size: 500% 200%;
+}
+
+.footer ul li:nth-child(2)>a .icon {
+	background-position: -.4rem 0;
+	background-size: 500% 200%;
+}
+
+.footer ul li:nth-child(3)>a .icon {
+	background-position: -.8rem 0;
+	background-size: 500% 200%;
+}
+
+.footer ul li:nth-child(4)>a .icon {
+	background-position: -1.2rem 0;
+	background-size: 500% 200%;
+}
+
+.footer ul li:nth-child(5)>a .icon {
+	background-position: -1.6rem 0;
+	background-size: 500% 200%;
+}
+
+.footer ul li.current:nth-child(1)>a .icon {
+	background-position: 0 -.4rem;
+	background-size: 500% 200%;
+}
+
+.footer ul li.current:nth-child(2)>a .icon {
+	background-position: -.4rem -.4rem;
+	background-size: 500% 200%;
+}
+
+.footer ul li.current:nth-child(3)>a .icon {
+	background-position: -.8rem -.4rem;
+	background-size: 500% 200%;
+}
+
+.footer ul li.current:nth-child(4)>a .icon {
+	background-position: -1.2rem -.4rem;
+	background-size: 500% 200%;
+}
+
+.footer ul li.current:nth-child(5)>a .icon {
+	background-position: -1.6rem -.4rem;
+	background-size: 500% 200%;
+}
+.introduction{
+	width: 100%;
+	overflow: hidden;
+	padding-top: .3rem;
+	position: relative;
+	background: #fff;
+	margin-bottom: .2rem;
+}
+.box .title{
+	width:auto;
+	padding-left: .1rem;
+	margin-bottom: .3rem;
+	margin-left: .2rem;
+	border-left: .06rem solid #37a4df;
+	color: #37a4df;
+	font-size: .3rem;
+	display: block;
+}
+.introduction span{
+	width: 100%;
+	margin-bottom: .3rem;
+	padding-left: .3rem;
+	font-size: .24rem;
+	display: block;
+}
