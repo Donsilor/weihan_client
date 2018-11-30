@@ -1,0 +1,254 @@
+.app{
+	font-size: 0.3rem;
+	background-color: #f4f5f6;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	box-shadow: none;
+}
+.question{
+	width: 100%;
+	padding-left: 4%;
+	margin-top: 0.3rem;
+}
+.question span{
+	color: #37a4df;
+}
+ul{
+	width: 100%;
+	margin-top: .5rem;
+}
+li{
+	width: 100%;
+	height: 1rem;
+	padding-left: 4%;
+	line-height: 1rem;
+}
+li span{
+	display: inline-block;
+	height: .6rem;
+	width: .6rem;
+	border: 1px solid #aaa;
+	border-radius: 50%;
+	text-align: center;
+	line-height: .56rem;
+	margin-right: .2rem;
+}
+li.wrong,
+li.right{
+	background-color: #fff;
+}
+li.right span{
+	background-color: #37a4df;
+	border-color: #37a4df;
+	color: #fff;
+}
+li.wrong span{
+	background-color: #EE383B;
+	border-color: #EE383B;
+	color: #fff;
+}
+.answer{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 7;
+	width: 100%;
+	height: 1rem;
+	background-color: #fff;
+	border-top: 1px solid #ccc;
+	line-height: 1rem;
+	color: #37a4df;
+}
+.answer div{
+	line-height: 1rem;
+	
+}
+.answer i{
+	display: inline-block;
+	vertical-align: top;
+	height: .5rem;
+	width: .5rem;
+	line-height: .5rem;
+	clear: both;
+	margin-top: .25rem;
+	/*margin-right: 1%;*/
+}
+.answer .fl{
+	padding-left: 3%;
+}
+.answer .fl i{
+	/* background: url(../images/answer.png) no-repeat center/100%; */
+}
+.answer .fr{
+	margin-right: 3%;
+}
+.answer .fr i{
+	/* background: url(../images/answer_sheet.png) no-repeat center/100%; */
+}
+.answer_pop{
+	position: absolute;
+	left: 0;
+	bottom: 1rem;
+	width: 100%;
+	padding: 0 4%;
+	background-color: #fff;
+}
+.answer_pop div:first-child{
+	height: 1rem;
+	line-height: 1rem;
+	border-bottom: 1px solid #eee;
+	color: #37a4df;
+}
+.answer_pop div:last-child{
+	padding-top: .3rem;
+	padding-bottom: .7rem;
+}
+.answer_pop div:last-child span{
+	color: #37a4df;
+}
+.pop{
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 6;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.7);
+}
+.answer_sheet{
+	position: absolute;
+	left: 0;
+	bottom: 1rem;
+	width: 100%;
+	background-color: #fff;
+}
+.answer_sheet .title{
+	height: 1rem;
+	line-height: 1rem;
+	border-bottom: 1px solid #eee;
+}
+.answer_sheet .title h4,
+.answer_sheet .title span{
+	display: inline-block;
+}
+.answer_sheet .title h4{
+	font-weight: normal;
+	margin-left: 4%;
+	font-size: .34rem;
+}
+.answer_sheet .title span i{
+	display: inline-block;
+	height: .25rem;
+	width: .5rem;
+	background-color: #37a4df;
+}
+.answer_sheet .title span.red{
+	padding-left: 3%;
+	padding-right: 2%;
+}
+.answer_sheet .title span.red i{
+	background-color: #f00;
+}
+.answer_content{
+	padding-bottom: 2.6rem;
+}
+.answer_content li .red{
+	background-color: #f00;
+	border-color: #f00;
+	color: #fff;
+}
+.answer_content li .blue{
+	background-color: #37a4df;
+	border-color: #37a4df;
+	color: #fff;
+}
+
+
+.btn{
+	width: 100%;
+	margin-top: 2rem;
+	padding: 5%;
+}
+.btn span{
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	border-radius: 50%;
+	background-color: #C9C9C9;
+}
+.btn span.on{
+	background-color: #37A4DF;
+}
+.submit{
+	width: 55%;
+	height: .8rem;
+	border: 1px solid #37A4DF;
+	margin-left: 8%;
+	font-size: 0;
+	text-align: center;
+	border-radius: 1rem;
+	/*padding: 0 !important;*/
+	margin-top: 0.1rem;
+	line-height: .8rem;
+}
+.submit span{
+	display: inline-block;
+	width: 50%;
+	font-size: .32rem;
+	height: .8rem;
+	line-height: .8rem;
+	color: #37A4DF;
+}
+.submit span:first-child{
+	padding-left: 6%;
+	/* background: url(../images/answer.png) no-repeat left/26%; */
+	border-right: 1px solid #37A4DF;
+}
+.pop2{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 8;
+	background: rgba(0,0,0,.7);
+	display: none;
+}
+.pop_box{
+	position: absolute;
+	left: 20%;
+	top: 42%;
+	width: 70%;
+	background-color: #fff;
+	border-radius: 6px;
+	font-size: .32rem;
+}
+.pop_box div{
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+}
+.pop_box div:first-child{
+	text-align: center;
+	padding: .7rem 5%;
+}
+.pop_box div:last-child{
+	font-size: 0;
+	border-radius: 4px;
+}
+.pop_box div span{
+	display: inline-block;
+	width: 50%;
+	font-size: .25rem;
+	text-align: center;
+	line-height: 1rem;
+	font-size: .34rem;
+}
+.pop_box div span:last-child{
+	color: #37A4DF;
+	border-left: 1px solid #ccc;
+}
+.pop_box em{
+	font-style: normal;
+}
+

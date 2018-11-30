@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="app">
         <div class="clf">
             <h2>忘记密码</h2>
             <router-link to="/"><span>取消</span></router-link>
@@ -22,7 +22,7 @@
                         <input type="text" name="answer" v-model="answer" />
                     </span>
                 </div>
-                <input name="sub1" class="submit" type="button" value="修改密码" @click="changePass1"/>
+                <input name="sub1" class="submit" :class="{'color':answer}" type="button" value="修改密码" @click="changePass1"/>
             </form>
         </div>
         <div class="step_box">
@@ -40,7 +40,7 @@
                         <input name="account" type="text" placeholder="请输入账号" v-model="account" />
                     </span>
                 </div>
-                <input name="sub2" class="submit" type="button" value="修改密码" @click="changePass2"/>
+                <input name="sub2" class="submit" :class="{'color':myname && account}" type="button" value="修改密码" @click="changePass2"/>
             </form>
         </div>
         <div class="hint">
@@ -86,4 +86,7 @@ export default {
 <style scoped>
 @import "../assets/css/account_activate.css";
 .submit{width:90%;height:2.5rem;margin:auto;display:block;border-radius:.2rem;text-align:center;line-height:2.5rem;color:#fff;font-size:1rem;background:#c9c9c9;margin-top:1.8rem;}
+.color{
+    background-color: #37A4DF !important;
+}
 </style>

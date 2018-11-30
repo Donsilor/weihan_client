@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="app">
         <h2>账号激活</h2>
         <div class="step_box">
             <h3>第一步：修改初始密码</h3>

@@ -1,0 +1,139 @@
+body{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	font-size: .3rem;
+}
+.header{
+	position: relative;
+}
+.header a{
+	position: absolute;
+	width: .5rem;
+	height: .5rem;
+	top: .15rem;
+	left: 5%;
+	/* background: url(../images/back_l.png) no-repeat center/40%; */
+}
+.score{
+	width: 100%;
+	padding-top: .3rem;
+	padding-bottom: .8rem;
+	background: url(../images/bg.png) no-repeat top/100% 94%;
+}
+.score_num{
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	border: 3px solid #fff;
+	margin: 0 auto;
+	color: #fff;
+	text-align: center;
+}
+.score_num p{
+	margin: .6rem 0 .2rem;
+	font-size: .34rem;
+}
+.score_num span{
+	font-size: .76rem;
+}
+.statistics{
+	width: 100%;
+	padding: .4rem 0;
+}
+.statistics li{
+	float: left;
+	width: 25%;
+	text-align: center;
+	color: #fff;
+	font-size: .32rem;
+}
+.backcolor img{
+	height: auto;
+	width: 100%;
+}
+.answer_sheet{
+	width: 100%;
+	background-color: #fff;
+}
+.answer_sheet .title{
+	height: 1rem;
+	line-height: 1rem;
+	border-bottom: 1px solid #eee;
+}
+.answer_sheet .title h4,
+.answer_sheet .title span{
+	display: inline-block;
+}
+.answer_sheet .title h4{
+	font-weight: normal;
+	margin-left: 4%;
+	font-size: .34rem;
+}
+.answer_sheet .title span i{
+	display: inline-block;
+	height: .25rem;
+	width: .5rem;
+	background-color: #37a4df;
+}
+.title span{
+	padding-left: 3%;
+}
+.answer_sheet .title span.red i{
+	background-color: #f00;
+}
+.answer_sheet .title span.gary i{
+	background-color: #ccc;
+	padding-right: 2%;
+}
+.answer_sheet .title span.gary{
+	padding-right: 2%;
+}
+.answer_content{
+	/*padding: .5rem 3%;*/
+}
+.answer_content{
+	width: 100%;
+	margin-top: .5rem;
+}
+.answer_content li{
+	width: 100%;
+	height: 1rem;
+	padding-left: 4%;
+	line-height: 1rem;
+}
+.answer_content li span{
+	display: inline-block;
+	height: .6rem;
+	width: .6rem;
+	border: 1px solid #aaa;
+	border-radius: 50%;
+	text-align: center;
+	line-height: .56rem;
+	margin-right: .2rem;
+	color: #fff;
+}
+.answer_content li .red{
+	background-color: #f00;
+	border-color: #f00;
+}
+.answer_content li .gary{
+	background-color: #ccc;
+	border-color: #eee;
+}
+.answer_content li .blue{
+	background-color: #37a4df;
+	border-color: #37a4df;
+}
+.footer{
+	background-color: #37A4DF;
+	text-align: center;
+	color: #fff;
+	font-size: .34rem;
+	line-height: .6rem;
+}
+.footer a{
+	color: inherit;
+}
