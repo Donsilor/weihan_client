@@ -14,6 +14,4 @@ export default {
 
 <style>
 @import "assets/css/base.css";
-@import 'element-ui/lib/theme-chalk/index.css';
-@import 'assets/iconfont/iconfont.css';
 </style>

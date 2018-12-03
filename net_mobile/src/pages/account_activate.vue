@@ -1,5 +1,5 @@
 <template>
-    <div class="app">
+    <div>
         <h2>账号激活</h2>
         <div class="step_box">
             <h3>第一步：修改初始密码</h3>
@@ -22,7 +22,8 @@
                 <!-- </form> -->
                 <!-- </div>
         <div class="step_box" v-show="isQus"> -->
-                <h3>第二步：设置密保问题及答案</h3>
+                <h3 class="way-second">第二步：设置密保问题及答案</h3>
+
                 <!-- <form action="" method="" class="form2"> -->
                 <div class="input_box">
                     <span class="left">密保问题：</span>
@@ -35,7 +36,7 @@
                     <span class="vee" v-show="errors.has('select')" v-cloak> {{ errors.first('select') }} </span>
                 </div>
                 <div class="input_box">
-                    <span class="left">答案：</span>
+                    <span class="left ans">答案：</span>
                     <span class="right">
                         <input name="question" type="text" placeholder="输入答案" v-validate="'required'" :class="{'is-danger': errors.has('question') }" v-model="answer" />
                     </span>
@@ -87,7 +88,18 @@ export default {
 
 <style scoped>
 @import "../assets/css/account_activate.css";
-.vee{padding-left:25%;width:80%;color: #f00;}
+.vee{
+    padding-left:25%;width:80%;color: #f00;}
 .is-danger{border:1px solid #f00}
-.submit{width:90%;height:2.5rem;margin:auto;display:block;border-radius:.2rem;text-align:center;line-height:2.5rem;color:#fff;font-size:1rem;background:#c9c9c9;margin-top:1.8rem;}
+.submit{    width:6.7rem;
+    height:.82rem;
+    margin:.34rem auto 0;
+    display:block;
+    border-radius:.2rem;
+    text-align:center;
+    line-height:.82rem;
+    color:#fff;
+    font-size:.3rem;
+    background:#c9c9c9;
+    }
 </style>

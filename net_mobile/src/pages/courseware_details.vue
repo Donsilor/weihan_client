@@ -1,18 +1,19 @@
 <template>
     <div>
         <!-- 文件头 -->
-        <hfold :idx='5' :title="video_info.title"></hfold>
+        <hfold :idx='5' :title="courseware_details.title"></hfold>
         <div class="box clf">
             <div class="banner">
-                视频
+                <div><i class="iconfont icon-PDF"></i>手工焊条电弧焊.PDF</div>
+                <span>(点击上方PDF文件显示全屏)</span>
             </div>
             <!--视频-->
             <div class="introduction clf">
                 <p class="title">简介</p>
-                <span>演示：{{video_info.author}}</span>
-                <span>焊接类型：{{video_info.tag}}</span>
-                <span>接头类型：{{video_info.headType}}</span>
-                <span>母材间隙：{{video_info.mGap}}</span>
+                <span>演示：{{courseware_details.author}}</span>
+                <span>焊接类型：{{courseware_details.tag}}</span>
+                <span>接头类型：{{courseware_details.headType}}</span>
+                <span>母材间隙：{{courseware_details.mGap}}</span>
                 <a href="javascript:" class="expansion">展开更多</a>
             </div>
             <!--简介-->
@@ -57,14 +58,14 @@
 <script>
 import hfold from "../components/hfold";
 export default {
-    name: "video_details",
+    name: "courseware_details",
     components: {
         hfold
     },
     mounted() {},
     data() {
         return {
-            video_info: {
+            courseware_details: {
                 title: '虚拟焊接',
                 author:'张起灵',
                 tag:'smaw',
@@ -92,4 +93,23 @@ export default {
 <style scoped>
 @import "../assets/css/base.css";
 @import "../assets/css/videodetails.css";
+.banner{
+    height: 1.46rem;
+    background:#fff;
+    margin-bottom: .2rem;
+    padding: .3rem
+}
+.banner div{
+    font-size: .24rem;
+    color: #37a4df;
+    padding-bottom: .3rem
+}
+.banner div i{
+    margin-right: .1rem
+}
+.banner span{
+    display: block;
+    font-size: .2rem;
+    color: #999
+}
 </style>

@@ -1,29 +1,26 @@
 <template>
     <div>
         <div class="clf">
-            <router-link to="/"><span>取消</span></router-link>
+            <router-link to="/find_password"><span><i class="iconfont icon-youfanhui"></i></span></router-link>
             <h2>忘记密码</h2>
-            <router-link to="/another_way"><span>方法二</span></router-link>
+            <router-link to="/"><span>取消</span></router-link>
         </div>
         <div class="step_box">
-            <h3>方法一：请回答密保问题的答案</h3>
+            <h3>方法二：请管理员重置密码</h3>
             <form action="" method="">
                 <div class="input_box">
-                    <span class="left">密保问题：</span>
+                    <span class="left ans">姓名：</span>
                     <span class="right">
-                        <select name="encrypted" v-model="question">
-                            <option value="null">请选择密保问题</option>
-                            <option v-for="(curques,index)  in questions" :value="index" :key="index">{{curques}}</option>
-                        </select>
+                        <input type="text" name="user" v-model="myname" />
                     </span>
                 </div>
                 <div class="input_box">
-                    <span class="left ans">答案：</span>
+                    <span class="left ans">账号：</span>
                     <span class="right">
-                        <input type="text" name="answer" v-model="answer" />
+                        <input type="text" name="account" v-model="account" />
                     </span>
                 </div>
-                <input name="sub1" class="submit" type="button" value="提交" @click="changePass1"/>
+                <input name="sub1" class="submit" type="button" value="提交" @click="changePass2"/>
             </form>
         </div>
 
@@ -33,18 +30,18 @@
 
 <script>
 export default {
-    name: "find_password",
+    name: "another_way",
     mounted(){
         console.log('首先加载')
     },
     data() {
         return {
-            questions: [
-                "您的学号（或工号1）是？",
-                "您的学号（或工号2）是？",
-                "您的学号（或工号3）是？",
-                "您的学号（或工号4）是？"
-            ],
+            // questions: [
+            //     "您的学号（或工号1）是？",
+            //     "您的学号（或工号2）是？",
+            //     "您的学号（或工号3）是？",
+            //     "您的学号（或工号4）是？"
+            // ],
             question: null,
             answer: null,
             myname: null,
@@ -76,5 +73,14 @@ export default {
     color:#fff;
     font-size:.3rem;
     background:#c9c9c9;
+}
+.clf a:first-child{
+    display: block;
+    top: .35rem
+
+}
+
+.clf a:first-child span i{
+    font-size: .6rem;
 }
 </style>

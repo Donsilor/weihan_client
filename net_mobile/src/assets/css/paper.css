@@ -1,0 +1,131 @@
+.single-choice{
+    font-size: .3rem;
+    padding: .3rem .2rem;
+
+}
+.question{
+    font-size: .3rem;
+    padding-left: .25rem;
+    padding-bottom: .8rem
+}
+.answer{
+    width: 100%;
+
+}
+.answer ul{
+    width: 100%
+}
+.answer ul li{
+    width: 100%;
+    font-size: .3rem;
+    height: 1rem;
+    padding: 0 .3rem;
+    line-height: 1rem
+}
+.answer ul li:nth-child(2){
+    background: #fff;
+}
+.answer ul li a{
+    width: .6rem;
+    height: .6rem;
+    border-radius: 50%;
+    display: block;
+    float: left;
+    border:1px solid #999;
+    font-weight: bold;
+    line-height: .6rem;
+    text-align: center;
+    margin-top: .2rem;
+    margin-right: .2rem
+}
+.answer ul li span{
+    display: block;
+    float: left;
+}
+.arrow{
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 3rem;
+}
+.arrow a{
+   width: 1.2rem;
+   height: 1.2rem;
+   border-radius: 50%;
+   box-shadow:0 0 5px #333;
+   color: #fff
+
+}
+.arrow .pre{
+    float: left;
+    margin-left: .4rem;
+    background: rgba(0,0,0,0.35)
+}
+.arrow .next{
+    float: right;
+    margin-right: .4rem;
+    background: #37a4df
+}
+.paper-bot{
+    width: 100%;
+    height: 1.08rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    padding: 0 .3rem
+}
+.paper-bot .fl{
+    width: 3rem;
+    height: .6rem;
+    border-radius: .5rem;
+    margin-top: .24rem;
+    font-size: .24rem;
+    line-height: .6rem;
+    padding:.05rem .2rem;
+    color: #37a4df;
+    border: 1px solid #37a4df
+}
+.paper-bot .fl span{
+    width: 50%;
+    height: 100%;
+    border-right: 1px solid #37a4df;
+    display: block;
+    float: left;
+    color: #37a4df;
+    line-height: .5rem;
+}
+.paper-bot .fl a{
+    width: 50%;
+    height: 100%;
+    display: block;
+    color: #37a4df;
+    text-align: center;
+    float: left;
+    line-height: .5rem;
+}
+.paper-bot .fr{
+    width: 50%;
+    height: 100%;
+}
+.paper-bot .fr a{
+    width: .36rem;
+    height: .36rem;
+    text-align: right;
+    color: #37a4df;
+    font-size: .3rem;
+    display: block;
+    float: right;
+    margin-right: .2rem
+}
+.paper-bot .fr a i{
+    font-size: .5rem;
+    line-height: 1.08rem;
+}
+.paper-bot .fr span{
+    display: block;
+    font-size: .3rem;
+    color: #37a4df;
+    line-height: 1.08rem;
+    float: right;
+}

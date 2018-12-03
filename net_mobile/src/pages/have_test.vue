@@ -1,6 +1,7 @@
 <template>
+<div>
+    <hfold :idx='5' :title="have_test_details.title"></hfold>
   <div class="box">
-    <myselect></myselect>
     <div class="content_list" v-for="(ls,index) in lists" :value="index" :key="index">
       <div class="list-title" @click="onSlotClick(index)">
         <h4>{{ls.name}}</h4>
@@ -26,27 +27,31 @@
                 {{item.datatime}}截止
               </span>
               <span>剩余{{item.residue}}次</span>
-              <router-link to="/paper" class="edit">
+              <a href="#" class="edit">
                 <i class="iconfont icon-tianxie"></i>
-              </router-link>
+              </a>
             </div>
         </li>
       </ul>
     </div>
     <div class="info" v-show="isShow">没有更多了</div>
   </div>
+</div>  
 </template>
 
 <script>
-import myselect from "../components/myselect";
+import hfold from "../components/hfold";
 export default {
-  name: "tests",
+  name: "have_test",
   components: {
-    myselect
+    hfold
   },
   mounted() {},
   data() {
     return {
+        have_test_details:{
+            title:'已参加考试'
+        },
       lists: [
         {
           name: "焊工理论考试",
@@ -81,46 +86,6 @@ export default {
               datatime:'11月30',
               residue: 2,
               status: 0 //1已考，0未考
-            },
-                        {
-              name: "中级焊工理论考试",
-              // tag: "smaw",
-              count: 136,
-              point: 80,
-              time: 30,
-              datatime:'11月30',
-              residue: 2,
-              status: 0 //1已考，0未考
-            },
-                        {
-              name: "中级焊工理论考试",
-              // tag: "smaw",
-              count: 136,
-              point: 80,
-              time: 30,
-              datatime:'11月30',
-              residue: 2,
-              status: 0 //1已考，0未考
-            },
-                        {
-              name: "中级焊工理论考试",
-              // tag: "smaw",
-              count: 136,
-              point: 80,
-              time: 30,
-              datatime:'11月30',
-              residue: 2,
-              status: 0 //1已考，0未考
-            },
-            {
-              name: "高级焊工理论考试",
-              // tag: "smaw",
-              count: 136,
-              point: 80,
-              time: 30,
-              datatime:'11月30',
-              residue: 2,
-              status: 1 //1已考，0未考
             }
           ]
         },
@@ -177,8 +142,8 @@ export default {
 <style scoped>
 @import "../assets/css/courseware.css";
 @import "../assets/css/have_text.css";
-.search_box input[data-v-620d09b8]{
-	width: 4.5rem
+.box[data-v-7e458eb5] {
+    padding-top: .88rem;
 }
 </style>
 

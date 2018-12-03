@@ -1,27 +1,11 @@
-body{
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	font-size: .3rem;
-}
-.header{
-	position: relative;
-}
-.header a{
-	position: absolute;
-	width: .5rem;
-	height: .5rem;
-	top: .15rem;
-	left: 5%;
-	/* background: url(../images/back_l.png) no-repeat center/40%; */
+.box{
+    background: #fff
 }
 .score{
 	width: 100%;
 	padding-top: .3rem;
-	padding-bottom: .8rem;
-	background: url(../images/bg.png) no-repeat top/100% 94%;
+    padding-bottom: .8rem;
+    background: url('../images/bg.png')center/100% 100%;
 }
 .score_num{
 	width: 3rem;
@@ -34,7 +18,7 @@ body{
 }
 .score_num p{
 	margin: .6rem 0 .2rem;
-	font-size: .34rem;
+	font-size: .3rem;
 }
 .score_num span{
 	font-size: .76rem;
@@ -48,7 +32,7 @@ body{
 	width: 25%;
 	text-align: center;
 	color: #fff;
-	font-size: .32rem;
+	font-size: .3rem;
 }
 .backcolor img{
 	height: auto;
@@ -58,45 +42,50 @@ body{
 	width: 100%;
 	background-color: #fff;
 }
-.answer_sheet .title{
-	height: 1rem;
-	line-height: 1rem;
+.answer_sheet .sub-title{
+    padding:.3rem .3rem;
 	border-bottom: 1px solid #eee;
 }
-.answer_sheet .title h4,
-.answer_sheet .title span{
+.answer_sheet .sub-title p,
+.answer_sheet .sub-title span{
 	display: inline-block;
 }
-.answer_sheet .title h4{
-	font-weight: normal;
-	margin-left: 4%;
-	font-size: .34rem;
+.answer_sheet .sub-title p{
+    height: 100%;
+    font-size: .3rem;
+    float: left;
 }
-.answer_sheet .title span i{
+.answer_sheet .sub-title span i{
 	display: inline-block;
-	height: .25rem;
-	width: .5rem;
+	height: .16rem;
+	width: .36rem;
 	background-color: #37a4df;
 }
-.title span{
-	padding-left: 3%;
+.sub-title span{
+    padding-left:.4rem;
+    font-size: .24rem;
+    padding-top: .1rem
 }
-.answer_sheet .title span.red i{
+.answer_sheet .sub-title span.red i{
 	background-color: #f00;
 }
-.answer_sheet .title span.gary i{
+.answer_sheet .sub-title span.gary i{
 	background-color: #ccc;
 	padding-right: 2%;
 }
-.answer_sheet .title span.gary{
+/* .answer_sheet .sub-title span.gary{
 	padding-right: 2%;
-}
+} */
 .answer_content{
 	/*padding: .5rem 3%;*/
 }
 .answer_content{
 	width: 100%;
 	margin-top: .5rem;
+}
+.answer_content ul{
+    width: 100%;
+    padding: 0 .3rem;
 }
 .answer_content li{
 	width: 100%;
@@ -105,14 +94,15 @@ body{
 	line-height: 1rem;
 }
 .answer_content li span{
-	display: inline-block;
+    display: inline-block;
+    font-size: .24rem;
 	height: .6rem;
-	width: .6rem;
+    width: calc((100% - 2.1rem)/8);
 	border: 1px solid #aaa;
 	border-radius: 50%;
 	text-align: center;
 	line-height: .56rem;
-	margin-right: .2rem;
+	margin-right: .3rem;
 	color: #fff;
 }
 .answer_content li .red{
@@ -127,13 +117,20 @@ body{
 	background-color: #37a4df;
 	border-color: #37a4df;
 }
-.footer{
+.submit-footer{
+    width: 100%;
+    height: .82rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 	background-color: #37A4DF;
 	text-align: center;
 	color: #fff;
 	font-size: .34rem;
 	line-height: .6rem;
 }
-.footer a{
-	color: inherit;
+.submit-footer a{
+    font-size: .3rem;
+    line-height: .82rem;
+    color: #fff
 }

@@ -5,7 +5,6 @@
         <router-view></router-view>
         <!-- 菜单 -->
         <bmenu :idx='$glb.menu'></bmenu>
-
     </div>
 </template>
 <script>

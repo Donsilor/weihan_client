@@ -1,56 +1,31 @@
-.mine{
-	margin-top: 3.2rem;
+.content_list .kind{
+	padding: .3rem;
+	position: relative;
 }
-.kind{
-	width: 100%;
-	padding-top: .5rem;
+.test .c_title{
+	font-size:.3rem;
+	color:#000;
+	font-family:lty;
+	padding-bottom: .24rem
 }
-.kind>div{
-	height: 3rem;
-	padding: 0 !important;
-	margin-left: 3% !important;
+.test .c_title span{
+	font-size: .24rem;
+	padding-left: .88rem
 }
-.kind>div:first-child{
-	margin-left: 5% !important;
+.test li div:nth-child(2) span{
+	font-size: .2rem;
+	display: block;
+	float: left;
+	margin-right: .6rem;
 }
-.kind_child1{
-	width: 38% !important;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
+.test li div:nth-child(2) span:nth-child(4){
+	margin-right: 0
 }
-.kind_child1 .name{
-	font-size: .9rem;
-}
-.kind_child1 .class_hour span:last-child{
-	margin-left: 5%;
-}
-.kind_child2{
-	width: 20% !important;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-}
-.kind_child2 div:last-child{
-	margin-top: .6rem;
-}
-.kind_child3{
-	width: 15% !important;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-}
-.kind_child3 span{
-	margin-top: 1.5rem;
-	display: inline-block;
-}
-.kind_child4{
-	height: 1.8rem !important;
-	width: 1.8rem !important;
-	margin-top: .4rem;
-	margin-right: 2%;
-	background: url(../images/test_paper.png) no-repeat center/70%;
-}
-.red{
-	color: #f00;
+.test li div a{
+	display: block;
+    position: absolute;
+    top: .53rem;
+    right: .3rem;
+    font-size: .3rem;
+    color: #37a4df;
 }

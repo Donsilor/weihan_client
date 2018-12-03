@@ -1,8 +1,12 @@
 <template>
     <div class="header">
-        <a href="javascript:" class="arrow" @click="backClick" v-show="idx>4"></a>
+        <a href="javascript:" class="arrow" @click="backClick" v-show="idx>4">
+            <i class="iconfont icon-youfanhui"></i>
+        </a>
         <h5 class="title">{{idx>4?title:heads[idx]}}</h5>
-        <a href="javascript:" class="message" @click="onMessageClick"></a>
+        <router-link to="/" class="message" @click="onMessageClick" v-show="idx<4">
+            <i class="iconfont icon-xiaoxi-copy" ></i>
+        </router-link>
     </div>
 </template>
 
@@ -31,16 +35,4 @@ export default {
     }
 };
 </script>
-
-<style>
-.header {
-    width: 100%;
-    background-color: #37a4df;
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    left: 0;
-}
-</style>
-
 

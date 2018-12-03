@@ -9,17 +9,20 @@ import '@/common/validate'
 import api from '@/common/md_axios'
 import interfaces from '@/common/interfaces'
 import global from '@/common/global'
-import element from 'element-ui'
-// import '@/assets/iconfont/iconfont.css'
+//导入iconfont全局样式
+import '@/assets/iconfont/iconfont.css'
+//导入适配rem
+import remconfig from '@/assets/js/rem'
+remconfig();
+
 
 Vue.prototype.$api = api;
 Vue.prototype.$infs = interfaces;
 Vue.prototype.$glb = global;
-Vue.use(element);
 Vue.config.productionTip = false;
-
 /* eslint-disable no-new */
 // 页面入口
+
 new Vue({
   el: '#app',
   router,

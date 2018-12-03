@@ -13,8 +13,8 @@ body{background: #f4f5f6;}
 .userinf_box::before{
 	display: block;
 	content: '';
-	width: 1.5rem;
-	height: 1.5rem;
+	width: 1.32rem;
+	height: 1.32rem;
 	border-radius: 50%;
 	position: absolute;
 	left: .3rem;
@@ -33,7 +33,7 @@ body{background: #f4f5f6;}
 }
 .userinf_box .account{
 	font-size: .24rem;
-	padding-bottom: .92rem;
+	padding-bottom: .9rem;
 }
 .my_bg{
 	width: 100%;
@@ -50,7 +50,7 @@ body{background: #f4f5f6;}
 .user_inf ul li{
 	width: 50%;
 	float: left;
-	margin-bottom: .22rem;
+	margin-bottom: .19rem;
 	font-size: .24rem;
 	text-align: left;
 	color: #fff;
@@ -58,6 +58,7 @@ body{background: #f4f5f6;}
 .my_content{
 	width: 100%;
 	height: auto;
+	padding-top: .1rem;
 	padding-left:.3rem;
 	background: #fff;
 }
@@ -66,40 +67,34 @@ body{background: #f4f5f6;}
 }
 .my_content ul li{
 	width: 100%;
-	height: 1rem;
+	height: .98rem;
 	text-align: left;
 	font-size: .3rem;
-	line-height: 1rem;
-	padding-left: .6rem;
 	border-bottom: 1px solid #f3f3f3;
 	position: relative;
 }
-.my_content ul li::before{
+.my_content ul li a{
 	display: block;
-	content: '';
-	width: .4rem;
-	height: .4rem;
-	position: absolute;
-	left: 0;
-	top: .3rem;
-	background: #333;
+	width:100%;
+	height:100%;
+	line-height: .98rem;
 }
-.my_content ul li:first-child::before{background: url(../images/my_icon1.png)center/100% 100%;}
-.my_content ul li:nth-child(2)::before{background: url(../images/my_icon2.png)center/100% 100%;}
-.my_content ul li:nth-child(3)::before{background: url(../images/my_icon3.png)center/100% 100%;}
-.my_content ul li:nth-child(4)::before{background: url(../images/my_icon4.png)center/100% 100%;}
-.my_content ul li:last-child::before{background: url(../images/my_icon5.png)center/100% 100%;}
+.my_content ul li a i:first-child{
+	font-size: .3rem;
+	margin-right: .16rem;
+	color:#37a4df;
+}
+.my_content ul li a i:last-child{
+	font-size: .28rem;
+	margin-right: .3rem;
+	float: right;
+}
 .my_content ul li:last-child{
 	border:none;
 }
-.my_content ul li a{
-	display: block;
-	width: .4rem;
-	height: .4rem;
-	float: right;
-	margin-top: .3rem;
-	margin-right: .3rem;
-	background: url(../images/my_icon7.png)center/100% 100%;
+.my_content ul li:last-child a i{
+	float: none;
+	margin-right: .16rem;
 }
 
 

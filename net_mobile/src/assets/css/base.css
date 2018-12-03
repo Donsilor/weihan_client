@@ -2,7 +2,7 @@
 /* 深圳市静江网络科技有限公司 */
 *,*:before,*:after {-webkit-box-sizing:border-box; box-sizing:border-box;margin:0; padding:0;}
 html{-ms-text-size-adjust:100%;-webkit-text-size-adjust: 100%;height:100%;}
-body{position:relative; font:14px/1 "Microsoft YaHei", Helvetica, sans-serif;color:#333;max-width:650px;margin:auto; box-shadow:0 0 5px #ccc;background:#fff;}
+body{position:relative;color:#333;max-width:650px;height:100%;margin:auto;}
 input{border:none;}
 input,select,option,textarea{outline: none;}
 input[type="button"],button,select{cursor: pointer;border: none;outline: none;}
@@ -15,42 +15,121 @@ a:hover{text-decoration:none;}
 .clf:before,.clf:after,.w:before,.w:after{content:"";display:block;height:0;clear:both;visibility:hidden;}
 .fl{float: left;}
 .fr{float: right;}
-.w{width: 100%;max-width:1200px;margin: auto;}
 @font-face {font-family:ltx;src:url('../font/ltx_5.ttf');}
 /* 初始化样式结束 */
-.header{width:100%;height:auto;background:#37a4df;position:relative;padding:1rem 0;}
-.header .title{text-align:center;color:#fff;font-size:1.2rem;font-weight:300;font-family:ltx;}
-.header .message{display:block;width:22px;height:22px;position:absolute;right:2%;top:50%;transform:translateY(-50%);}
+.header {
+	width: 100%;
+	height: .88rem;
+	background: #37a4df;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 0;
+	z-index: 66;
+}
+.box{
+	padding-top: .88rem;
+	padding-bottom: 1.08rem;
+	background: #f4f5f6;
+	min-height: 100vh
+}
+.header .title {
+	text-align: center;
+	color: #fff;
+	font-size: .36rem;
+	line-height: .88rem;
+	font-weight: 300;
+	font-family: ltx;
+}
 
-.nav_bar{position:fixed;bottom:0;right:0;width:100%;background:#fff;border-top:1px solid #dbdbdb;}
-.nav_bar ul li{float:left;width:calc(100% / 5);text-align:center;padding:.3rem 0;}
-.nav_bar ul li > a span{display:block;}
-.nav_bar ul li > a .icon{width:2rem;height:2rem;margin:0 auto .2rem;background-image:url(../images/navbar_icon.png);}
-.nav_bar ul li:nth-child(1) > a .icon{background-position:0 0;background-size:500% 200%;}
-.nav_bar ul li:nth-child(2) > a .icon{background-position:-33px 0;background-size:500% 200%;}
-.nav_bar ul li:nth-child(3) > a .icon{background-position:-65px 0;background-size:500% 200%;}
-.nav_bar ul li:nth-child(4) > a .icon{background-position:-95px 0;background-size:500% 200%;}
-.nav_bar ul li:nth-child(5) > a .icon{background-position:-128px 0;background-size:500% 200%;}
+.header .message{
+	display: block;
+	font-size: .36rem;
+	position: absolute;
+	right: 2%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.header .message i{
+	color: #fff;
+	font-size: .36rem;
+}
+.header .arrow{
+	display: block;
+	font-size: .36rem;
+	position: absolute;
+	left: 2%;
+	top: 50%;
+	transform: translateY(-50%);  
+}
+.header .arrow i{
+	font-size: .36rem;
+	color: #fff;
+}
+.header .arrow i:before{
+	transform: rotate(-180deg);
+}
+.footer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	background: #fff;
+	border-top: 1px solid #dbdbdb;
+	height: 1.08rem;
+	padding-top: .15rem;
+}
 
-.nav_bar ul li.current:nth-child(1) > a .icon{background-position:0 -32px;background-size:500% 200%;}
-.nav_bar ul li.current:nth-child(2) > a .icon{background-position:-35px -32px;background-size:500% 200%;}
-.nav_bar ul li.current:nth-child(3) > a .icon{background-position:-65px -32px;background-size:500% 200%;}
-.nav_bar ul li.current:nth-child(4) > a .icon{background-position:-95px -32px;background-size:500% 200%;}
-.nav_bar ul li.current:nth-child(5) > a .icon{background-position:-130px -32px;background-size:500% 200%;}
+.footer ul li {
+	float: left;
+	width: calc(100% / 5);
+	text-align: center;
+	padding: .03rem 0;
+}
 
+.footer ul li>a span {
+	display: block;
+	font-size: .24rem;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.footer ul li>a .icon {
+	width: .42rem;
+	height: .42rem;
+	margin: 0 auto .02rem;
+}
+.footer ul li>a .icon i{
+	font-size: .42rem;
+}
+.footer ul .current>a .icon i{
+	font-size: .42rem;
+	color:#37a4df;
+}
+.footer ul .current>a .name{
+	color:#37a4df;
+}
+.introduction{
+	width: 100%;
+	overflow: hidden;
+	padding-top: .32rem;
+	position: relative;
+	background: #fff;
+	margin-bottom: .2rem;
+}
+.box .title{
+	width:auto;
+	padding-left: .1rem;
+	margin-bottom: .3rem;
+	margin-left: .2rem;
+	border-left: .04rem solid #37a4df;
+	color: #37a4df;
+	font-size: .3rem;
+	display: block;
+}
+.introduction span{
+	width: 100%;
+	margin-bottom: .3rem;
+	padding-left: .3rem;
+	font-size: .24rem;
+	display: block;
+}
+.info{font-size:.2rem;color:#666;text-align:center;background:none!important;margin-top: 0!important;line-height: .78rem}

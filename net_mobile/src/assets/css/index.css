@@ -1,42 +1,50 @@
 body{background:#f4f5f6;}
-.banner{width:100%;}
+.banner{width:100%;height: 3.6rem}
 .banner img{width:100%;height:auto;}
 
 /*页面通用字体样式*/
 .subtitle{font-size:1rem;color:#37a4df;font-weight:500;font-family:ltx;line-height:25px;}
-.c_title{font-size:1rem;color:#000;font-family:lty;}
-.content{padding-bottom:4rem;}
-.content span{font-size:.8rem;color:#000;}
+.c_title{font-size:.3rem;color:#000;font-family:lty;}
+.content span{font-size:.2rem;color:#000;}
 .content span i,.content span em{font-style:inherit;}
 
-.content > div{background:#fff;margin-top:.5rem;}
-.content > div .subtitle{padding:.5rem 0 .5rem 2%;border-bottom:1px solid #dbdbdb;}
-.content > div .subtitle:before{display:inline-block;content:'';width:25px;height:25px;vertical-align:middle;margin-right:.2rem;}
-.content > div ul li{padding:.8rem 3% .8rem;border-bottom:1px solid #dbdbdb;position:relative;overflow:hidden;}
+.content > div{background:#fff;margin-top: .2rem}
+.content > div .subtitle{border-bottom:1px solid #eee;padding-left: .2rem;padding-bottom: .3rem;font-size: .3rem;padding-top: .28rem}
+.content > div .subtitle i{font-size: .34rem;padding-right: .1rem}
+.content > div ul li{padding:.3rem .3rem;border-bottom:1px solid #eee;overflow:hidden;position: relative}
 .content > div ul li:last-child{border:none;}
+.content > div ul li a{display: block}
+/* .content > div ul li a div span{display: block; float: left;} */
 
-.courseware .subtitle:before{background-image:url(../images/icon_sprite.png);background-position:0 -25px;}
-.courseware li a > div:last-child{margin-top:.6rem;}
-.courseware li a > div:last-child span:nth-child(2){margin-left:5%;}
-.courseware li a > div:last-child span:nth-child(3){position:absolute;right:8%;color:#ec3939;}
+.courseware li a > div:last-child span{display: block;float: left;}
+.courseware li a > div:last-child{margin-top:.24rem;width: 100%}
+.courseware li a > div:last-child span:nth-child(2){margin-left:.7rem}
+.courseware li a > div:last-child span:last-child{color:#ec3939;float: right;}
 
-.video .subtitle:before{background-image:url(../images/icon_sprite.png);background-position:-25px -25px;}
-.video li a > div:first-child{float:left;width:40%;height:5rem;background:#ccc;margin-right:4%;}
-.video li a > div:last-child span{display:block;}
-.video li a > div:last-child span:nth-child(2){margin:.8rem 0;}
 
-.exam .subtitle:before{background-image:url(../images/icon_sprite.png);background-position:0 -25px;}
-.exam li a > div:last-child{margin-top:.8rem;}
-.exam li a > div:last-child span{margin-right:5%;}
-.exam li a > div:last-child span:last-child{display:block;width:1rem;height:1rem;background:url(../images/icon_edit.png)no-repeat center/100% 100%;position:absolute;top:50%;transform:translateY(-50%);right:3%;}
+.video .video-r{float: left;}
+.video .video-r span{display: block;padding-top: .22rem;float: none;}
+.video li a > div:first-child{float:left;width:2.22rem;height:1.42rem;background:#ccc;margin-right:.2rem;}
+.video li a > div:first-child video{width: 100%;height: 100%;}
 
-.simulator .subtitle:before{background-image:url(../images/icon_sprite.png);background-position:0 -25px;}
+
+.exam li a > div:last-child span{display: block;float: left;}
+.exam li a > div:last-child{width:100%;margin-top:.24rem}
+.exam .c_title span{
+    font-size: .24rem;
+    padding-left: .88rem;
+}
+.exam li a > div:last-child span{margin-right:.6rem;}
+.exam li a > div:last-child span:nth-child(4){margin-right: 0}
+.exam li a > div:last-child a{display: block;position: absolute;top: .53rem;right: .3rem;font-size: .3rem;color: #37a4df}
+
+.simulator li a > div:last-child span{display: block}
 .simulator li a > span{display:block;float:left;width:calc(100% / 4);}
 .simulator li a > span:nth-child(2),.simulator li a > span:nth-child(3){text-align:center;}
 .simulator li a > span:last-child{text-align:right;}
 .simulator li a > span.show{color:#37a4df;}
 
-.info{font-size:1rem;color:#666;padding:.6rem;text-align:center;background:none!important;}
+.info{font-size:.2rem;color:#666;text-align:center;background:none!important;margin-top: 0!important;line-height: .78rem}
 
 
 

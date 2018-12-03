@@ -1,12 +1,12 @@
 <template>
-    <div class="mine">
+    <div class="box">
         <myselect></myselect>
-
         <div class="content_list" v-for="(ls,index) in lists" :value="index" :key="index">
-            <div class="title" @click="onSlotClick(index)">
+            <div class="list-title" @click="onSlotClick(index)">
                 <h4>{{ls.name}}</h4>
             </div>
             <div class="kind" v-for="(item,idx) in ls.items" :value="idx" :key="idx" @click="onGotoClick(index,idx)" v-show="ls.isShow">
+                <router-link to="/video_details" class="clf">
                 <div class="video_box">
                     <video width="50" height="50" :src="item.src">
                     </video>
@@ -14,11 +14,11 @@
                 <div class="video_title">
                     <div>{{item.name}}</div>
                     <div><span>标签：</span>{{item.tag}}</div>
-                    <div>共计{{item.count}}课时</div>
                 </div>
+                </router-link>
             </div>
         </div>
-        <div class="without" v-show="isShow">
+        <div class="info" v-show="isShow">
             没有更多了
         </div>
     </div>
@@ -35,103 +35,127 @@ export default {
         return {
             lists: [
                 {
-                    name: "焊条电弧焊",
+                    name: "视屏列表 ",
                     isShow:true,
                     items: [
                         {
                             name: "手工电弧焊",
                             tag: "smaw",
-                            count: 136,
+                            // count: 136,
                             src: ''
                         },
                         {
                             name: "手工电弧焊",
                             tag: "smaw",
-                            count: 136,
+                            // count: 136,
                             src: ''
                         },
                         {
                             name: "手工电弧焊",
                             tag: "smaw",
-                            count: 136,
-                            src: ''
-                        }
-                    ]
-                },
-                {
-                    name: "埋弧焊",
-                    isShow:false,
-                    items: [
-                        {
-                            name: "手工电弧焊",
-                            tag: "smaw",
-                            count: 136,
+                            // count: 136,
                             src: ''
                         },
                         {
                             name: "手工电弧焊",
                             tag: "smaw",
-                            count: 136,
+                            // count: 136,
                             src: ''
                         },
                         {
                             name: "手工电弧焊",
                             tag: "smaw",
-                            count: 136,
-                            src: ''
-                        }
-                    ]
-                },
-                {
-                    name: "基础知识",
-                    isShow:false,
-                    items: [
-                        {
-                            name: "手工电弧焊",
-                            tag: "smaw",
-                            count: 136,
+                            // count: 136,
                             src: ''
                         },
                         {
                             name: "手工电弧焊",
                             tag: "smaw",
-                            count: 136,
+                            // count: 136,
                             src: ''
                         },
                         {
                             name: "手工电弧焊",
                             tag: "smaw",
-                            count: 136,
-                            src: ''
-                        }
-                    ]
-                },
-                {
-                    name: "缺陷预测",
-                    isShow:false,
-                    items: [
-                        {
-                            name: "手工电弧焊",
-                            tag: "smaw",
-                            count: 136,
-                            src: ''
-                        },
-                        {
-                            name: "手工电弧焊",
-                            tag: "smaw",
-                            count: 136,
-                            src: ''
-                        },
-                        {
-                            name: "手工电弧焊",
-                            tag: "smaw",
-                            count: 136,
+                            // count: 136,
                             src: ''
                         }
                     ]
                 }
+                // {
+                //     name: "埋弧焊",
+                //     isShow:false,
+                //     items: [
+                //         {
+                //             name: "手工电弧焊",
+                //             tag: "smaw",
+                //             count: 136,
+                //             src: ''
+                //         },
+                //         {
+                //             name: "手工电弧焊",
+                //             tag: "smaw",
+                //             count: 136,
+                //             src: ''
+                //         },
+                //         {
+                //             name: "手工电弧焊",
+                //             tag: "smaw",
+                //             count: 136,
+                //             src: ''
+                //         }
+                //     ]
+                // },
+                // {
+                //     name: "基础知识",
+                //     isShow:false,
+                //     items: [
+                //         {
+                //             name: "手工电弧焊",
+                //             tag: "smaw",
+                //             count: 136,
+                //             src: ''
+                //         },
+                //         {
+                //             name: "手工电弧焊",
+                //             tag: "smaw",
+                //             count: 136,
+                //             src: ''
+                //         },
+                //         {
+                //             name: "手工电弧焊",
+                //             tag: "smaw",
+                //             count: 136,
+                //             src: ''
+                //         }
+                //     ]
+                // },
+                // {
+                //     name: "缺陷预测",
+                //     isShow:false,
+                //     items: [
+                //         {
+                //             name: "手工电弧焊",
+                //             tag: "smaw",
+                //             count: 136,
+                //             src: ''
+                //         },
+                //         {
+                //             name: "手工电弧焊",
+                //             tag: "smaw",
+                //             count: 136,
+                //             src: ''
+                //         },
+                //         {
+                //             name: "手工电弧焊",
+                //             tag: "smaw",
+                //             count: 136,
+                //             src: ''
+                //         }
+                //     ]
+                // }
             ],
-            isShow:false
+            isShow:true
         };
     },
     methods: {

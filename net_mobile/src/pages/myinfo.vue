@@ -21,11 +21,12 @@
             </div>
             <div class="my_content">
                 <ul class="clf">
-                    <li>已学习课件<a href="#"></a></li>
-                    <li>已观看视频<a href="#"></a></li>
-                    <li>已参加考试<a href="#"></a></li>
-                    <li>修改密码<a href="#"></a></li>
-                    <li>退出登录</li>
+					<li><router-link to="/have_courseware"><i class="iconfont icon-kejianku"></i>已学习课件<i class="iconfont icon-youfanhui01"></i></router-link></li>
+					<li><router-link to="/have_video"><i class="iconfont icon-gongxiang-">
+                        </i>已观看视频<i class="iconfont icon-youfanhui01"></i></router-link></li>
+					<li><router-link to="/have_test"><i class="iconfont icon-kaoshier"></i>已参加考试<i class="iconfont icon-youfanhui01"></i></router-link></li>
+					<li><a href="#"><i class="iconfont icon-xiugaimima"></i>修改密码<i class="iconfont icon-youfanhui01"></i></a></li>
+					<li><router-link to="/"><i class="iconfont icon-Group"></i>退出登录</router-link></li>
                 </ul>
             </div>
         </div>
@@ -33,17 +34,17 @@
 </template>
 
 <script>
+
 export default {
     name: "myinfo",
     data() {
         return {};
     },
-    methods: {
-    }
+    methods: {}
 };
 </script>
 
 <style scoped>
-@import "../assets/css/mybase.css";
+@import "../assets/css/base.css";
 @import "../assets/css/my.css";
 </style>

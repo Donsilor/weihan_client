@@ -1,56 +1,27 @@
-.app{padding-top:5rem;position: fixed !important;width: 100%;height: 100%;top: 0;left: 0;}
-.logo{width:40%;height:auto;margin:0 auto 3rem; }
+
+body{
+    background: #fff!important;
+
+}
+#app>div{    padding-top: 1.38rem}
+.logo{width:2.06rem;height:1.42rem;margin:0 auto 1.08rem auto;}
 .logo img{width:100%;}
-.title{text-align:center;color:#37a4df;font-size:1.4rem;font-family:ltx;}
-form{padding-top:1rem;}
-form > .box{display:block;width:90%;height:2.5rem;margin:1.5rem auto 0;border:1px solid #b5b5b5;border-radius:.2rem;line-height:2.5rem;}
-form > .box span{display:block;float:left;width:25px;height:25px;padding-left: 2%}
-form > .box:nth-of-type(1) span{background-position:0 0 ;}
-form > .box:nth-of-type(2) span{background-position:-25px 0;}
-form > .box input{font-size:.8rem;color:#010101;padding-left:2%;display:block;width:calc(100% - 25px);height:2.5rem;background:transparent;float:left;}
-form > .operating{width:90%;margin:1rem auto 0;}
-form > .operating label{float:left;font-size:.9rem;}
-form > .operating label input{width:.9rem;height:.9rem;appearance:none;-moz-appearance:none; -webkit-appearance:none;border:1px solid #3b3b3b;border-radius:.2rem;vertical-align:bottom;margin-right:.2rem;}
+.title{text-align:center;color:#37a4df;font-size:.48rem;font-family:ltx;}
+form{padding-top:.89rem;}
+form > .login-box{display:block;width:90%;height:.82rem;margin:0 auto .6rem;border:1px solid #b5b5b5;border-radius:.2rem;line-height:.82rem;position: relative;}
+form > .login-box p{position: absolute;left: .6rem;bottom:-.65rem;font-size: .24rem;color: red;display: block}
+form > .login-box span{display:block;font-size: .26rem;line-height: .82rem;position: absolute;left: .2rem;}
+form > .login-box:nth-of-type(1) span{background-position:0 0 ;}
+form > .login-box:nth-of-type(2) span{background-position:-25px 0;}
+form > .login-box input{font-size:.24rem;color:#010101;padding-left:.6rem;display:block;width:100%;height:100%;background:transparent;float:left;border-radius:.2rem;}
+form > .operating{width:100%;margin:0 auto;padding:0 .4rem}
+form > .operating label{float:left;font-size:.24rem;}
+form > .operating label input{width:.26rem;height:.26rem;appearance:none;-moz-appearance:none; -webkit-appearance:none;border:1px solid #3b3b3b;border-radius:.05rem;vertical-align:bottom;margin-right:.05rem;}
 form > .operating label input[type=checkbox]:checked{background:url(../images/icon_checken.png)no-repeat center/100% 100%;border:none;}
-form > .operating a{float:right;font-size:.9rem;color:#37a4df;}
-form > .submit{width:90%;height:2.5rem;margin:auto;display:block;border-radius:.2rem;text-align:center;line-height:2.5rem;color:#fff;font-size:1rem;background:#c9c9c9;margin-top:1.8rem;}
-.copyright{position:fixed;width:100%;text-align:center;font-size:.9rem;color:#333;bottom:1rem;left:50%;transform:translateX(-50%);}
-form > .info{display: block;font-size:.8rem;padding-left:10%;padding-top:10px;color:#f00;}
-.btn_box{width: 100%;text-align: center;margin-top: 2rem;}
-.btn{width: 90%;}
-.pop_box{
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,.7)
-}
-.pop{
-    position: absolute;
-    left: 16%;
-    top: 40%;
-    z-index: 6;
-    width: 68%;
-    background-color: #fff;
-    border-radius: 4px;
-    text-align: center;
-}
-.pop div:first-child{
-    height: 4.5rem;
-    line-height: 4.5rem;
-    border-bottom: 1px solid #ccc
-}
-.pop div:last-child{
-    height: 2.5rem;
-    line-height: 2.5rem;
-}
-.pop div:last-child button{
-    background-color: transparent;
-    color: #3BA6DF;
-    font-size: 1.1rem;
-    letter-spacing: 3px;
-}
+form > .operating a{float:right;font-size:.24rem;color:#37a4df;}
+form > .submit{width:6.7rem;height:.82rem;margin:auto;display:block;border-radius:.1rem;text-align:center;line-height:.6rem;color:#fff;font-size:.3rem;background:#c9c9c9;margin-top:.6rem;}
+.copyright{position:fixed;width:100%;text-align:center;font-size:.24rem;color:#333;bottom:.29rem;left:50%;transform:translateX(-50%);}
+form > .info{display: block;font-size:.8rem;padding-left:10%;padding-top:10px;color:#f00; }
 
 
 
