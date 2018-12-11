@@ -89,12 +89,15 @@
 }
 .answer_content li{
 	width: 100%;
-	height: 1rem;
-	padding-left: 4%;
-	line-height: 1rem;
 }
-.answer_content li span{
-    display: inline-block;
+.answer_content li .answer-title{
+	font-size: .24rem;
+	padding-bottom: .26rem;
+	padding-left: .1rem
+}
+.answer_content li div span{
+	display:block;
+	float: left;
     font-size: .24rem;
 	height: .6rem;
     width: calc((100% - 2.1rem)/8);
@@ -103,17 +106,21 @@
 	text-align: center;
 	line-height: .56rem;
 	margin-right: .3rem;
+	margin-bottom:.26rem;
 	color: #fff;
 }
-.answer_content li .red{
+.answer_content li div span:nth-child(8n){
+	margin-right: 0
+}
+.answer_content li div .red{
 	background-color: #f00;
 	border-color: #f00;
 }
-.answer_content li .gary{
+.answer_content li div .gary{
 	background-color: #ccc;
 	border-color: #eee;
 }
-.answer_content li .blue{
+.answer_content li div .blue{
 	background-color: #37a4df;
 	border-color: #37a4df;
 }

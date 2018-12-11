@@ -77,13 +77,13 @@ li.wrong span{
 	padding-left: 3%;
 }
 .answer .fl i{
-	background: url(../images/answer.png) no-repeat center/100%;
+	/* background: url(../images/answer.png) no-repeat center/100%; */
 }
 .answer .fr{
 	margin-right: 3%;
 }
 .answer .fr i{
-	background: url(../images/answer_sheet.png) no-repeat center/100%;
+	/* background: url(../images/answer_sheet.png) no-repeat center/100%; */
 }
 .answer_pop{
 	position: absolute;
@@ -203,7 +203,7 @@ li.wrong span{
 }
 .submit span:first-child{
 	padding-left: 6%;
-	background: url(../images/answer.png) no-repeat left/26%;
+	/* background: url(../images/answer.png) no-repeat left/26%; */
 	border-right: 1px solid #37A4DF;
 }
 .pop2{

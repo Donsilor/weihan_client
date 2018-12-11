@@ -5,11 +5,7 @@
                 <span><i class="iconfont icon-sousuo"></i></span>
                 <input type="text" class="search-wrapbox" placeholder="请输入搜索内容" />
                 <a href="#" class="search">搜索</a>
-                <a class="filtrate" @click="onMenuClick(1)">筛选
-                    <span :class="{'on':showSelect}">
-                        <i class="iconfont icon-zhankai"></i>
-                    </span>
-                </a>
+                <a class="filtrate" @click="onMenuClick()">筛选<i class="iconfont icon-zhankai"></i></a>
             </div>
             <!-- 条件选项 -->
             <div class="popups" v-show="showSelect">
@@ -30,8 +26,9 @@
                 </div>
             </div>
         </div>
-        <div class="shade" v-show="showSelect">
-        </div>
+
+        <div class="shade" v-show="showSelect"></div>
+
     </div>
 
 </template>
@@ -49,28 +46,15 @@ export default {
             diffs: ["课后作业", "题库练习", "题库"],
             typeed: null,
             types: ["SMAW", "TIG"],
-            statused: null,
-            statuss: ["未学习", "学习中", "已学习"],
             sorted: 0,
             kinded: 0,
             curSel: -1
         };
     },
     methods: {
-        //条目点击
-        onMenuClick(index) {
-            console.log("查询条目点击" + index);
-            if (this.curSel == index) {
-                this.curSel = -1;
-            } else {
-                this.hideAll();
-                this.curSel = index;
-            }
-            this.showAndHide(index);
-        },
         // 显示隐藏
-        showAndHide(index) {
-           this.showSelect = !this.showSelect
+        onMenuClick(index) {
+            this.showSelect = !this.showSelect
         },
         // 关闭所有
         hideAll() {
@@ -82,8 +66,7 @@ export default {
                 this.sorted,
                 this.kinded,
                 this.diffed,
-                this.typeed,
-                this.statused
+                this.typeed
             );
             this.hideAll();
         }

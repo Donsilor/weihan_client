@@ -7,40 +7,103 @@ export const methods = {
 export default {
     // 登录
     user: {
+        // 登录
         login: {
-            /**接口地址 */
-            url: '/selectAppVersion',
-            /**接口方法 */
-            method: methods.get,
-            // 参数
+            url: '/studentClient/students/sso',
+            method: methods.post,
             data: {}
         },
-        regist: {
-            url: '/v1/users/register',
+        // 验证token
+        checkToken:{
+            url:'/studentClient/students/checkToken',
+            method:methods.post,
+            data:{}
+        },
+        // 登出
+        loginout:{
+            url:'/studentClient/students/loginout',
+            method:methods.post,
+            data:{}
+        },
+        // 修改密码        
+        changePassWord:{
+            url:'/studentClient/students/changePassWord',
+            method:methods.post,
+            data:{}
+        },
+        // 激活
+        activate: {
+            url: '/studentClient/students/activate',
             method: methods.post,
-            data: {
-                UserId: '',
-                AccountType: '', //账户类型："admin","user"
-                UserType: '',       //账户注册类别："personal"  "company"
-                PhoneNo: '',
-                Email: '',
-                Company: '',
-                Name: '',
-                Password: '',
-                Province: '',
-                City: '',
-                Category: '',
-                Avatar: '',
-                Enable: true,
-                EnableFace: false, //是否启用人脸识别
-                Balance: '',
-                Profile: '',
-                Addr: '',
-                Notice: '',
-                Tags: null,    //分类：用户题目（question）和视频课程（class）
-                CreateAt: '',
-                UpdateAt: ''
-            }
+            data: {}
+        },
+        //获取学生信息
+        getInfo: {
+            url: '/studentClient/students/',
+            method: methods.get,
+            data: {}
+        },
+        // 找回密码
+        findPassword: {
+            url: '/studentClient/students/forgetPasswd',
+            method: methods.post,
+            data: {}
+        }
+    },
+    file: {
+        // 获取已学习的课件列表
+        getHasCourseWare:{
+          url:'/studentClient/getHasSeeCourse',
+          method:methods.get,
+          data:{}  
+        },
+        // 获取课件列表
+        getCoursewares: {
+            url: '/studentClient/coursewares',
+            method: methods.get,
+            data: {}
+        },
+        // 获取课件详细信息,:id
+        getCoursewaresInfo: {
+            url: '/studentClient/coursewares/',
+            method: methods.get,
+            data: {}
+        },
+    },
+    video: {
+        // 获取视频列表
+        getVideos: {
+            url: '/studentClient/videos',
+            method: methods.get,
+            // 前三个参数，page起始页码，countbypage一页几条
+            data: { oneClassId: '', twoClassId: '', threeClassId: '', page: '', countByPage: '' }
+        },
+        // 获取视频列表
+        getVideoInfo: {
+            url: '/studentClient/videos/',
+            method: methods.get,
+            // 前三个参数，page起始页码，countbypage一页几条
+            data: {}
+        },
+        // 获取文件列表（暂时不用）
+        getFilesList: {
+            url: '/service/storages',
+            method: methods.get,
+            data: {}
+        },
+        // 获得视频文件
+        getFileByName: {
+            url: '/static/',
+            method: methods.get,
+            data: {}
+        }
+    },
+    other: {
+        // 获取数据字典
+        getDictionaries: {
+            url: '/common/uiLabels/',
+            method: methods.get,
+            data: {}
         }
     }
 }

@@ -6,7 +6,7 @@
             <div class="list-title" @click="onSlotClick(index)">
                 <h4>{{ls.title1}}>{{ls.title2}}>{{ls.title3}}</h4>
             </div>
-            <div class="kind" v-for="(item,idx) in ls.items" :value="idx" :key="idx" @click="onGotoClick(index,idx)" v-show="ls.isShow">
+            <div class="kind clf" v-for="(item,idx) in ls.items" :value="idx" :key="idx" @click="onGotoClick(index,idx)" v-show="ls.isShow">
                 <div class="video_box">
                     <video width="50" height="50" :src="item.src">
                     </video>

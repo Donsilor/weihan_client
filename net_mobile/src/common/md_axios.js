@@ -2,7 +2,10 @@
 // axios请求本地化
 import axios from 'axios'
 import $ from 'jquery';
-import {methods} from './interfaces'
+import router from '@/router'
+import global from './global';
+import { methods } from './interfaces'
+import { Indicator, Toast } from "mint-ui";
 // 请求配置,这些是创建请求时可以用的配置选项。只有 url 是必需的。如果没有指定 method，请求将默认使用 get 方法。
 const md_http = axios.create({
     // `url` 是用于请求的服务器 URL
@@ -13,8 +16,8 @@ const md_http = axios.create({
 
     // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。
     // 它可以通过设置一个 `baseURL` 便于为 axios 实例的方法传递相对 URL
-    baseURL: 'http://192.168.0.109:8009',
-    // baseURL: 'http://192.168.0.116:3003',
+    // baseURL: 'http://192.168.0.109:8009',
+    baseURL: 'http://192.168.0.116:8009',
 
     // `transformRequest` 允许在向服务器发送前，修改请求数据
     // 只能用在 'PUT', 'POST' 和 'PATCH' 这几个请求方法
@@ -133,15 +136,51 @@ const md_httpFun = {
     [methods.get]: md_http.get,
     [methods.post]: md_http.post,
 };
+// 是否在有遮罩
+let isHasInd = false;
+// 超时计时器
+let timer;
+// 加载遮罩超时
+function myIndicator() {
+    if (isHasInd) return;
+    isHasInd = true;
+    Indicator.open('加载中...');
+    timer = setTimeout(() => {
+        closeIndicator();
+        Toast({
+            message: '加载超时',
+            duration: 2000,
+            position: 'bottom'
+        });
+    }, global.timeout);
+}
+// 关闭遮罩
+function closeIndicator() {
+    Indicator.close();
+    clearTimeout(timer);
+    isHasInd = false;
+}
 //请求接口入口
 export default {
-    // 请求接口，参数，
-    // 此处可以对参数扩展
-    api: function (infs, params = {}) {
+    //请求接口，不需要token
+    // infs  接口类型
+    // params 请求参数
+    // param是/:xxx类型的接口请求
+    req: function (infs, params = {}, param = null) {
+        !isHasInd && myIndicator('加载中...');
         return new Promise(function (resolve, reject) {
-            const axion_method = md_httpFun[infs.method];
+            let axion_method = md_httpFun[infs.method];
             if (axion_method) {
-                axion_method(infs.url, $.extend(params, infs.data))
+                let url = infs.url + (param ? param : '');
+                if (params.token) {
+                    url += '?token=' + params.token;//+ '&userId=' + params.userId;
+                    delete params.token;
+                }
+                let data = $.extend(params, infs.data);
+                if (infs.method == methods.get) {
+                    data = { params: data };
+                }
+                axion_method(url, data)
                     .then(response => {
                         if (response.status == 200) {
                             resolve(response.data);
@@ -149,19 +188,36 @@ export default {
                         else {
                             reject(response.data);
                         }
+                        closeIndicator();
                     }).catch(error => {
-                        reject({
-                            message: `请求失败!`,
-                            resultCode: 1,
-                            attributes: error
-                        });
+                        if (error.response) {
+                            reject(error.response && error.response.data);
+                        } else {
+                            reject({ code: -1, message: '请求失败' });
+                        }
+                        closeIndicator();
                     });
             }
-            else reject({
-                message: `无效请求方法-method[${method}]!`,
-                resultCode: 1
-            });
+            else {
+                reject({
+                    message: `无效请求方法-method[${method}]!`,
+                    resultCode: 1
+                });
+                closeIndicator();
+            }
         });
+    },
+    // 请求接口，参数，需要
+    // 此处可以对参数扩展
+    api: function (infs, params = {}, param = null) {
+        if (!global.token) {//没有token，返回登录   
+            router.push({ path: '/' });
+            return new Promise(function (resolve, reject) { resolve({ code: -1, message: '请求失败' }) });
+        }
+        myIndicator('加载中...');
+        params.token = global.token;
+        // params.userId = global.userId;
+        return this.req(infs, params, param);
     }
 }
 

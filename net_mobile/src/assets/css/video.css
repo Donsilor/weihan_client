@@ -5,13 +5,16 @@
 	width: 2.22rem;
 	height: 1.42rem;
 	background-color: #ccc;
+	float: left;
 }
 .content_list .kind{
 	padding: .3rem
 }
 .kind .video_title{
-	width: auto;
+	width:calc(100% - 2.22rem);
 	vertical-align: top;
+	float: left;
+	padding-left: .2rem
 }
 .kind .video_title div:first-child{
 	font-size: .3rem;

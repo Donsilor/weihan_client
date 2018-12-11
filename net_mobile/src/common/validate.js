@@ -13,17 +13,19 @@ const dictionary = {
     zh_CN: {
         messages: {
             email: () => '请输入正确的邮箱',
-            required: (field) => "请输入" + field,//参数是当前的属性
+            required: (field) => { if (field == 'password') { return '请再次输入新密码' } else return "请输入" + field },//参数是当前的属性
             confirmed: () => "两次输入密码不一致",
         },
         attributes: {
             email: '邮箱',
             password: '密码',
+            oldpsw:'旧密码',
             name: '账号',
+            username: '用户名',
             phone: '手机',
             check: '验证码',
             question: '密保答案',
-            select:"选项"
+            select: "选项"
         }
     }
 };

@@ -1,3 +1,17 @@
 .search_box input{
 	width: 4.5rem!important;
 }
+.filtrate{
+	display: block;
+	font-size: .24rem;
+	float: left;
+	line-height: .46rem;
+	padding-left: .25rem;
+	border-left: 1px solid rgb(181,181,181)
+}
+.search_box .search{
+	margin-right: .3rem
+}
+.search-wrap{
+	height: .86rem;
+}

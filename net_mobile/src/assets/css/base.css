@@ -133,3 +133,6 @@ a:hover{text-decoration:none;}
 	display: block;
 }
 .info{font-size:.2rem;color:#666;text-align:center;background:none!important;margin-top: 0!important;line-height: .78rem}
+.bgColor{
+    background-color: #37A4DF!important;
+}

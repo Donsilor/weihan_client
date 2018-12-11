@@ -15,7 +15,8 @@
             <router-link to="/courseware_details" class="clf" @click="onCoursewareClick(index)">
               <div class="c_title">{{cs.title}}</div>
               <div class="clf">
-                <span>标签：
+                <span>
+                  标签：
                   <em>{{cs.tag}}</em>
                 </span>
                 <span>{{cs.level}}</span>
@@ -37,7 +38,8 @@
               </div>
               <div class="video-r">
                 <p class="c_title">{{vi.title}}</p>
-                <span>标签：
+                <span>
+                  标签：
                   <em>{{vi.tag}}</em>
                 </span>
               </div>
@@ -53,12 +55,17 @@
         <ul>
           <li v-for="(exam,index) in exams" :value="index" :key="index">
             <a href="javascript:" class="clf" @click="onExamsClick(index)">
-              <div class="c_title">{{exam.title}}<span>得分：{{exam.point}}分</span></div>
+              <div class="c_title">
+                {{exam.title}}
+                <span>得分：{{exam.point}}分</span>
+              </div>
               <div class="clf">
-                <span>标签：
+                <span>
+                  标签：
                   <em>{{exam.tag}}</em>
                 </span>
-                <span>限时
+                <span>
+                  限时
                   <i>{{exam.time}}</i>分钟
                 </span>
                 <span>
@@ -143,26 +150,26 @@ export default {
         {
           title: "初级焊工理论考试",
           tag: "SMAW",
-          point:'100',
+          point: "100",
           time: 30,
-          datatime:'11月30',
-          residue:3
+          datatime: "11月30",
+          residue: 3
         },
         {
           title: "中级焊工理论考试",
           tag: "SMAW",
-          point:'100',
+          point: "100",
           time: 30,
-          datatime:'11月30',
-          residue:3
+          datatime: "11月30",
+          residue: 3
         },
         {
           title: "高级焊工理论考试",
           tag: "SMAW",
-          point:'100',
+          point: "100",
           time: 30,
-          datatime:'11月30',
-          residue:3
+          datatime: "11月30",
+          residue: 3
         }
       ],
       // 模拟演示

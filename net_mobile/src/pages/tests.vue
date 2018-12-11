@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <myselect></myselect>
+    <testselect></testselect>
     <div class="content_list" v-for="(ls,index) in lists" :value="index" :key="index">
       <div class="list-title" @click="onSlotClick(index)">
         <h4>{{ls.name}}</h4>
@@ -38,11 +38,11 @@
 </template>
 
 <script>
-import myselect from "../components/myselect";
+import testselect from "../components/testselect";
 export default {
   name: "tests",
   components: {
-    myselect
+    testselect
   },
   mounted() {},
   data() {

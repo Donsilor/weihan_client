@@ -1,0 +1,45 @@
+.box{
+    background: #fff
+}
+.box div{
+    width: 100%;
+    margin-bottom:.4rem;
+    padding: 0 .4rem;
+}
+.box .old_psw{
+    padding-top: .6rem;
+}
+.box div span{
+    width: 20%;
+    font-size: .24rem;
+    text-align: right;
+    padding-right: .1rem;
+    line-height: .64rem;
+    display: block;
+    float: left;
+
+}
+.box div input{
+    width: 80%;
+    height: .64rem;
+    padding-left: .1rem;
+    line-height: .64rem;
+    border-radius: .1rem;
+    line-height: .64rem;
+    display: block;
+    float: left;
+    border: 1px solid rgb(181,181,181)
+}
+.box .but{
+    display: block;
+    width: 6.7rem;
+    height: .82rem;
+    margin: 0 auto;
+    background:#ccc;
+    color: #fff;
+    font-size: .3rem;
+    line-height: .82rem;
+    text-align: center;
+    border-radius:5px;
+    margin-top: .1rem
+}
