@@ -16,8 +16,8 @@ const md_http = axios.create({
 
     // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。
     // 它可以通过设置一个 `baseURL` 便于为 axios 实例的方法传递相对 URL
-    // baseURL: 'http://192.168.0.109:8009',
-    baseURL: 'http://192.168.0.116:8009',
+    baseURL: 'http://192.168.0.109:8009',
+    // baseURL: 'http://192.168.0.116:8009',
 
     // `transformRequest` 允许在向服务器发送前，修改请求数据
     // 只能用在 'PUT', 'POST' 和 'PATCH' 这几个请求方法
@@ -135,6 +135,7 @@ const md_http = axios.create({
 const md_httpFun = {
     [methods.get]: md_http.get,
     [methods.post]: md_http.post,
+    [methods.put]: md_http.put,
 };
 // 是否在有遮罩
 let isHasInd = false;
@@ -171,10 +172,11 @@ export default {
         return new Promise(function (resolve, reject) {
             let axion_method = md_httpFun[infs.method];
             if (axion_method) {
-                let url = infs.url + (param ? param : '');
+                let url = infs.url + (param ? param : '') + (infs.extends ? infs.extends : '');
                 if (params.token) {
-                    url += '?token=' + params.token;//+ '&userId=' + params.userId;
+                    url += '?token=' + params.token + '&userId=' + params.userId;
                     delete params.token;
+                    delete params.userId;
                 }
                 let data = $.extend(params, infs.data);
                 if (infs.method == methods.get) {
@@ -216,7 +218,7 @@ export default {
         }
         myIndicator('加载中...');
         params.token = global.token;
-        // params.userId = global.userId;
+        params.userId = global.userId;
         return this.req(infs, params, param);
     }
 }

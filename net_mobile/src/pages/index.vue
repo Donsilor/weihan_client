@@ -198,7 +198,7 @@ export default {
   methods: {
     // 课件点击事件
     onCoursewareClick(index) {
-      let curdata = this.coursewares[index];
+      let curdata = this.coursewares[index];      
       console.log("课件" + index);
     },
     // 视频点击事件

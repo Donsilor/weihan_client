@@ -2,7 +2,8 @@
 // 服务器接口列表
 export const methods = {
     get: 'get',
-    post: 'post'
+    post: 'post',
+    put: 'put'
 }
 export default {
     // 登录
@@ -14,22 +15,22 @@ export default {
             data: {}
         },
         // 验证token
-        checkToken:{
-            url:'/studentClient/students/checkToken',
-            method:methods.post,
-            data:{}
+        checkToken: {
+            url: '/studentClient/students/checkToken',
+            method: methods.post,
+            data: {}
         },
         // 登出
-        loginout:{
-            url:'/studentClient/students/loginout',
-            method:methods.post,
-            data:{}
+        loginout: {
+            url: '/studentClient/students/loginout',
+            method: methods.post,
+            data: {}
         },
         // 修改密码        
-        changePassWord:{
-            url:'/studentClient/students/changePassWord',
-            method:methods.post,
-            data:{}
+        changePassWord: {
+            url: '/studentClient/students/changePassWord',
+            method: methods.post,
+            data: {}
         },
         // 激活
         activate: {
@@ -52,10 +53,10 @@ export default {
     },
     file: {
         // 获取已学习的课件列表
-        getHasCourseWare:{
-          url:'/studentClient/getHasSeeCourse',
-          method:methods.get,
-          data:{}  
+        getHasCourseWare: {
+            url: '/studentClient/getHasSeeCourse',
+            method: methods.get,
+            data: {}
         },
         // 获取课件列表
         getCoursewares: {
@@ -69,6 +70,13 @@ export default {
             method: methods.get,
             data: {}
         },
+        // 上传学习进度
+        putCurseProgress: {
+            url: '/studentClient/coursewares/',
+            method: methods.put,
+            extends: '/progress',
+            data: {}
+        }
     },
     video: {
         // 获取视频列表
@@ -97,6 +105,20 @@ export default {
             method: methods.get,
             data: {}
         }
+    },
+    test: {
+        // 获得考试页面数据
+        getExam: {
+            url: '/studentClient/exam',
+            method: methods.get,
+            data: {}
+        },
+        //获得考试试卷
+        getExamTestPaper:{
+            url: '/studentClient/exam',
+            method:methods.post,
+            data:{}
+        } 
     },
     other: {
         // 获取数据字典

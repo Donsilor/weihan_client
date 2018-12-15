@@ -6,7 +6,7 @@
           <i class="iconfont icon-sousuo"></i>
         </span>
         <input type="text" class="search-wrapbox" placeholder="请输入搜索内容" v-model="searchText">
-        <a href="javascript:" class="search" @click="callParent">搜索</a>
+        <a href="javascript:" class="search" @click="sureSearch">搜索</a>
       </div>
       <!-- 条件目录 -->
       <div class="select">
@@ -41,7 +41,8 @@
               <i class="iconfont icon-zhankai"></i>
             </span>
           </a>
-        </div>
+        </div>        
+      <!-- <div class="select">加载中。。。</div> -->
       </div>
       <!-- 条件选项 -->
       <div class="popups" v-show="showOne||showTwo||showThree||showSelect">
@@ -117,7 +118,7 @@
       </div>
     </div>
     <!-- 阴影 -->
-    <div class="shade" v-show="showOne||showTwo||showThree||showSelect"></div>
+    <div class="shade" v-show="showOne||showTwo||showThree||showSelect" @click="hideAll"></div>
   </div>
 </template>
 
@@ -177,14 +178,6 @@ export default {
     };
   },
   methods: {
-    // 回传父类，搜索框查询不带筛选条件
-    callParent() {
-      // childByValue是在父组件on监听的方法
-      // 第二个参数this.childValue是需要传的值
-      this.$emit("childByValue", {
-        keyword: this.searchText
-      });
-    },
     //条目点击
     onMenuClick(index) {
       console.log("查询条目点击" + index);
@@ -213,11 +206,16 @@ export default {
     // 确认条件事件，筛选事件，带上查询条件
     sureSearch() {
       this.hideAll();
+      // childByValue是在父组件on监听的方法
+      // 第二个参数this.childValue是需要传的值
       this.$emit("childByValue", {
         keyword: this.searchText,
         oneClassId: this.curOne,
         twoClassId: this.curTwo,
-        threeClassId: this.curThree
+        threeClassId: this.curThree,
+        diffed: this.diffed,
+        typeed: this.typeed,
+        statused: this.statused
       });
     }
   }

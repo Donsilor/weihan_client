@@ -49,6 +49,9 @@ router.beforeEach((to, from, next) => {
   }
   next();
 })
+router.afterEach((to, from, next) => {
+  window.scrollTo(0, 0);
+})
 /* eslint-disable no-new */
 // 页面入口
 

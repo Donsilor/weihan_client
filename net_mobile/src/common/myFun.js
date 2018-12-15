@@ -19,7 +19,3 @@ export function toast(info) {
     }
     return Toast(obj);
 }
-/**Indicator.open('加载中...'); */
-export function indicator(info) {
-    Indicator.open(info ? info : '加载中...');
-}

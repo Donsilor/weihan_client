@@ -17,9 +17,13 @@ import have_courseware from '../pages/have_courseware'
 import have_video from '../pages/have_video'
 import have_test from '../pages/have_test'
 import paper from '../pages/paper'
+import homework from '../pages/homework'
+import question_bank from '../pages/question_bank'
 import submit from '../pages/submit'
+import analyze from '../pages/analyze'
 import change_psw from '../pages/change_psw.vue'
 import message from '../pages/message.vue'
+import pdf from '../pages/pdf_component.vue'
 
 Vue.use(Router)
 
@@ -33,23 +37,27 @@ export default new Router({
     { path: '/have_test', component: have_test, meta: { title: '已参加的考试', requireAuth: true } },
     { path: '/change_psw', component: change_psw, meta: { title: '修改密码', requireAuth: true } },
     { path: '/video_details', name: 'video_details', component: video_details, meta: { title: '视频详细', requireAuth: true } },
-    { path: '/courseware_details', name: 'courseware_details', component: courseware_details, meta: { title: '课件详细', requireAuth: true } },
+    { path: '/courseware_details', name: 'courseware_details', component: courseware_details, meta: { title: '课件详细', requireAuth: true, keepAlive: true } },
     { path: '/simulator_demonstration', name: 'simulator_demonstration', component: simulator_demonstration, meta: { title: '视频详细', requireAuth: true } },
-    { path: '/paper', name: 'paper', component: paper, meta: { title: '视频详细', requireAuth: true } },
-    { path: '/submit', name: 'submit', component: submit, meta: { title: '视频详细', requireAuth: true } },
+    { path: '/paper', name: 'paper', component: paper, meta: { title: '考试', requireAuth: true } },
+    { path: '/homework', name: 'homework', component: homework, meta: { title: '课后作业', requireAuth: true } },
+    { path: '/question_bank', name: 'question_bank', component: question_bank, meta: { title: '练习题库', requireAuth: true } },
+    { path: '/submit', name: 'submit', component: submit, meta: { title: '试卷提交', requireAuth: true } },
+    { path: '/analyze', name: 'analyze', component: analyze, meta: { title: '试卷分析', requireAuth: true } },
     { path: '/message', name: 'message', component: message, meta: { title: '消息', requireAuth: true } },
+    { path: '/pdf', name: 'pdf', component: pdf, meta: { title: '查看文件', requireAuth: true } },
     {
       path: '/home',
       component: home,
       name: '虚拟焊接网络教学系统',
       redirect: { path: "/index" },
-      meta: { title: '虚拟焊接网络教学系统', requireAuth: true },
+      meta: { title: '虚拟焊接网络教学系统', requireAuth: true, keepAlive: true },
       children: [
-        { path: '/index', component: index, meta: { title: '虚拟焊接网络教学系统', requireAuth: true } },
-        { path: '/courseware', component: courseware, meta: { title: '课件', requireAuth: true } },
-        { path: '/videos', component: videos, meta: { title: '视频', requireAuth: true } },
-        { path: '/tests', component: tests, meta: { title: '考试', requireAuth: true } },
-        { path: '/myinfo', component: myinfo, meta: { title: '我的', requireAuth: true } },
+        { path: '/index', component: index, meta: { title: '虚拟焊接网络教学系统', requireAuth: true, keepAlive: true } },
+        { path: '/courseware', component: courseware, meta: { title: '课件', requireAuth: true, keepAlive: true } },
+        { path: '/videos', component: videos, meta: { title: '视频', requireAuth: true, keepAlive: true } },
+        { path: '/tests', component: tests, meta: { title: '考试', requireAuth: true, keepAlive: true } },
+        { path: '/myinfo', component: myinfo, meta: { title: '我的', requireAuth: true, keepAlive: true } },
       ]
     },
   ]

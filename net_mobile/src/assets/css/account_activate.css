@@ -54,9 +54,9 @@ form .input_box{
 	margin-bottom: .6rem;
 	position: relative;
 }
-/* form .input_box:nth-child(2){
+form .input_box:nth-child(2){
 	margin-bottom: 0
-} */
+}
 .input_box span{
 	display: inline-block;
 	height: .64rem;
