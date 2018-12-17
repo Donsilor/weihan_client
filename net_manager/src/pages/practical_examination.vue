@@ -92,19 +92,17 @@ export default {
   mounted() {
     this.queryTasks();
     this.deleleTask();
-    this.updateTask();
     this.insertTask();
     this.releaseTask();
-    this.cancelReleaseTask();
   },
   methods: {
     queryTasks(pageIndex = 1){
-      this.$Api.practicalExamination.task.search().then(response=>{
+      this.$Api.practicalExamination.task.search(new RequestParams().addAttribute("sortType", "-name")).then(response=>{
         this.tasks = response.dataItems;
       })
     },
     deleleTask(id){
-      this.$Api.practicalExamination.task.delete(new RequestParams().addAttribute("id", "id")).then(response=>{
+      this.$Api.practicalExamination.task.delete(new RequestParams().addAttribute("id", "456")).then(response=>{
         console.log(response)
       })
     },
@@ -123,11 +121,6 @@ export default {
         console.log(response)
       })
     },
-    cancelReleaseTask(){
-      this.$Api.practicalExamination.task.cancelRelease(new RequestParams().addAttribute("id", "id")).then(response=>{
-        console.log(response)
-      })
-    }
   },
   computed: {},
   components: {}

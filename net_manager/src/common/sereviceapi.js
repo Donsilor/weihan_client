@@ -230,25 +230,38 @@ export default (function createApis(apis) {
 
         url = queryParams(url, params);
         const axios_method = api.virtual_service ? virtualServer.executeController.bind(virtualServer) : axios_instance_method[method];
-        
         if (axios_method) {
           let loadingInstance = Loading.service({
             fullscreen: true,
             lock: true,
             background: 'rgba(0, 0, 0, 0.2)'
           });
-          axios_method(url, new RequestParams($.extend(param, params)).getJsonParams(), config).then(response => {
+          (e=>{
+            switch(method){
+              case HTTP_REQUEST_METHOD.GET:
+              case HTTP_REQUEST_METHOD.GETURL:{
+                config.params = new RequestParams($.extend(param, params)).getJsonParams();
+                return axios_method(url, config)
+              }
+              case HTTP_REQUEST_METHOD.DELETEURL:
+              case HTTP_REQUEST_METHOD.DELETE : {
+                config.data = new RequestParams($.extend(param, params)).getJsonParams();
+                return axios_method(url, config)
+              }
+              default: return axios_method(url, new RequestParams($.extend(param, params)).getJsonParams(), config)
+            }
+          })().then(response => {
             ///因为到达这里的状态都是 ok ，再加上后端业务 Code 不做 ok 返回
             ///所以这里决定不做 code 的处理
             resolve(response.data);
           }).catch(error => {
             //目前所有的code 自动弹出提示
             Message.error({
-              message: error.response || error.response.data || error.response.data.message,
+              message: error.response && error.response.data && error.response.data.message,
               center: true,
               duration: 3000
             })
-            reject(error.response.data)
+            reject(error.response && error.response.data)
           }).finally(e => loadingInstance.close());
         }
         else {
