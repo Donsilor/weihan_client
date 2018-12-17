@@ -11,7 +11,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {path:"/", component:"practical_examination", meta:{title:"实操考试", requireAuth:false}}
+    {path:"/", component:practical_examination, meta:{title:"实操考试", requireAuth:false}}
   ]
   // routes: [
   //   {
