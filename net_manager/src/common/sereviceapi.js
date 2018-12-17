@@ -4,7 +4,7 @@
 import { HOST, HTTP_REQUEST_METHOD, CLIENT_SIDE_TIMESTAMP } from "./constants";
 import APIS from "./serviceurls";
 import axios from "axios";
-import { queryParams } from "./common";
+import { queryParams } from "./utils";
 import { ResponseBody, RequestParams, User } from "./entity";
 import { MessageBox, Loading, Message } from 'element-ui';
 

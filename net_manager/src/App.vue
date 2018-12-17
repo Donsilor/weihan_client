@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import pop from './components/h_pop'
 export default {
   name: 'App',
 }
