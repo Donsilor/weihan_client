@@ -2,7 +2,7 @@
 import XLSX from 'xlsx';
 import moment from "moment";
 import Vue from "Vue";
-import { LOCATION_USER_KEY, LOCATION_TOKEN_KEY } from "./constants"
+import { LOCATION_USER_KEY, LOCATION_TOKEN_KEY, CURRENTLY_SELECTED_MENU_KEY } from "./constants"
 
 export const CentralInterface = new Vue();
 
@@ -42,6 +42,22 @@ export const ResponseBody = class ResponseBody {
       this.code = code;
     }
     else $.extend(this, obj);
+  }
+}
+
+/**系统参数 */
+export const SystemParameter = new class SystemParameter {
+
+  constructor(){
+    this.__currently_path = localStorage.getItem(CURRENTLY_SELECTED_MENU_KEY) || "/"
+  }
+
+  get CURRENTLY_SELECTED_PATH(){
+    return this.__currently_path;
+  }
+
+  set CURRENTLY_SELECTED_PATH(v) {
+    localStorage.setItem(CURRENTLY_SELECTED_MENU_KEY, this.__currently_path = v);
   }
 }
 

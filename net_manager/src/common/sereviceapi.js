@@ -193,8 +193,8 @@ const axios_instance_method = {
   [HTTP_REQUEST_METHOD.POSTURL]: axios_instance.post,
   [HTTP_REQUEST_METHOD.PUT]: axios_instance.put,
   [HTTP_REQUEST_METHOD.PUTURL]: axios_instance.put,
-  [HTTP_REQUEST_METHOD.DELELE]: axios_instance.delele,
-  [HTTP_REQUEST_METHOD.DELELEURL]: axios_instance.delele,
+  [HTTP_REQUEST_METHOD.DELETE]: axios_instance.delete,
+  [HTTP_REQUEST_METHOD.DELETEURL]: axios_instance.delete,
 };
 /**后端接口 */
 export default (function createApis(apis) {
@@ -228,9 +228,7 @@ export default (function createApis(apis) {
           })
         }
 
-        if (method == HTTP_REQUEST_METHOD.GETURL || method == HTTP_REQUEST_METHOD.POSTURL) {
-          url = queryParams(url, params);
-        }
+        url = queryParams(url, params);
         const axios_method = api.virtual_service ? virtualServer.executeController.bind(virtualServer) : axios_instance_method[method];
         
         if (axios_method) {
@@ -246,11 +244,11 @@ export default (function createApis(apis) {
           }).catch(error => {
             //目前所有的code 自动弹出提示
             Message.error({
-              message: error.data.message,
+              message: error.response || error.response.data || error.response.data.message,
               center: true,
               duration: 3000
             })
-            reject(error.data)
+            reject(error.response.data)
           }).finally(e => loadingInstance.close());
         }
         else {

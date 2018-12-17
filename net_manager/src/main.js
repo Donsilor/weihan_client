@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
-import {User} from "./common/entity"
+import {User, SystemParameter} from "./common/entity"
 import api from "./common/sereviceapi"
 ///////////////////////////////////////////////////////
 import 'jquery'
@@ -19,12 +19,16 @@ import 'element-ui/lib/theme-chalk/index.css'
 /////////////////////////////
 Vue.use(ElementUI);
 Vue.config.productionTip = false
-Vue.prototype.$api = api;
+Vue.prototype.$Api = api.service;
+Vue.prototype.$SystemParameter = SystemParameter;
+Vue.prototype.$window_heigh = document.body.clientHeight
 /////////////////////////////////////////////////////////////////////
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title;
   }
+  SystemParameter.CURRENTLY_SELECTED_PATH = to.path;
+
   if (to.matched.some(record => record.meta.requireAuth)){  // 判断该路由是否需要登录权限
     if (User.IS_TOKEN_EFFECTIVE == 0) {  // 判断当前的token是否存在
       next();
