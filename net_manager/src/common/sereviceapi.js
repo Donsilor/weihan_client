@@ -6,7 +6,7 @@ import APIS from "./serviceurls";
 import axios from "axios";
 import { queryParams } from "./common";
 import { ResponseBody, RequestParams, User } from "./entity";
-import { MessageBox, Loading } from 'element-ui';
+import { MessageBox, Loading, Message } from 'element-ui';
 
 const axios_instance = axios.create({
   // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。
@@ -148,7 +148,7 @@ const virtualServer = new class VirtualServer {
     })
   }
 
-  saveDb(){
+  saveDb() {
     localStorage.setItem("VirtualServer_DB", JSON.stringify(this.__db))
   }
 
@@ -191,6 +191,10 @@ const axios_instance_method = {
   [HTTP_REQUEST_METHOD.GETURL]: axios_instance.get,
   [HTTP_REQUEST_METHOD.POST]: axios_instance.post,
   [HTTP_REQUEST_METHOD.POSTURL]: axios_instance.post,
+  [HTTP_REQUEST_METHOD.PUT]: axios_instance.put,
+  [HTTP_REQUEST_METHOD.PUTURL]: axios_instance.put,
+  [HTTP_REQUEST_METHOD.DELELE]: axios_instance.delele,
+  [HTTP_REQUEST_METHOD.DELELEURL]: axios_instance.delele,
 };
 /**后端接口 */
 export default (function createApis(apis) {
@@ -208,26 +212,18 @@ export default (function createApis(apis) {
     apis = function (params = new RequestParams()) {
       return new Promise(function (resolve, reject) {
 
-        let loadingInstance = Loading.service({
-          fullscreen: true,
-          lock: true,
-          background: 'rgba(0, 0, 0, 0.2)'
-        });
-
         let { url, method, param = {}, config = {} } = $.extend(true, {}, api);
-        let token = JSON.parse(localStorage.getItem("token")) || false;
 
         if (api.authorization) {
-          let toKetMessage = !token ? "请先登陆!" : new Date().getTime() > token.expires_in - (1000 * 10 * 60) ? "登陆已过期，请重新登陆!" : null;
+          let toKetMessage = User.IS_TOKEN_EFFECTIVE == 2 ? "请先登陆!" : User.IS_TOKEN_EFFECTIVE == 1 ? "登陆已过期，请重新登陆!" : null;
           if (toKetMessage) return MessageBox.alert(toKetMessage, "警告", {
             callback: e => {
-              loadingInstance.close();
               location.href = "/"
             }
           })
           else config = $.extend(config, {
-            headers:{
-              [api.authorization]:token.access_token
+            headers: {
+              [api.authorization]: token.access_token
             }
           })
         }
@@ -236,37 +232,33 @@ export default (function createApis(apis) {
           url = queryParams(url, params);
         }
         const axios_method = api.virtual_service ? virtualServer.executeController.bind(virtualServer) : axios_instance_method[method];
+        
         if (axios_method) {
-          axios_method(url, new RequestParams($.extend(param, params)).getJsonParams(), config).then(response => {
-            loadingInstance.close();
-            if (response.data.code == 0) {
-              resolve(response.data);
-            }
-            else if (response.data.code == 401) {
-              return MessageBox.alert("登陆已过期，请重新登陆!", "警告", {
-                callback: e => {
-                  location.href = "/"
-                }
-              })
-            }
-            else {
-              reject(new ResponseBody(response.data.message || `服务器出错辣!`));
-            }
-          }).catch(error => {
-            reject(new ResponseBody({
-              message: `服务器还没准备好!`,
-              resultCode: 1,
-              attributes: error
-            }));
+          let loadingInstance = Loading.service({
+            fullscreen: true,
+            lock: true,
+            background: 'rgba(0, 0, 0, 0.2)'
           });
+          axios_method(url, new RequestParams($.extend(param, params)).getJsonParams(), config).then(response => {
+            ///因为到达这里的状态都是 ok ，再加上后端业务 Code 不做 ok 返回
+            ///所以这里决定不做 code 的处理
+            resolve(response.data);
+          }).catch(error => {
+            //目前所有的code 自动弹出提示
+            Message.error({
+              message: error.data.message,
+              center: true,
+              duration: 3000
+            })
+            reject(error.data)
+          }).finally(e => loadingInstance.close());
         }
         else {
-          loadingInstance.close();
           reject(new ResponseBody(`无效请求方法-method[${method}]!`))
         };
       });
     };
-    
+
     if (api.virtual_service) {
       virtualServer.setController(api.url, api.virtual_controller);
     }

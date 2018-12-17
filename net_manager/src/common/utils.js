@@ -65,19 +65,6 @@ export const array2Descendants = function (arr = [], idKey = "id", pidKey = "pid
 }
 
 /**
- * 判断是否是下级或者自己
- * @param {*} obj 
- * @param {*} id 
- */
-export const isChildrensId = function(obj, id){
-  return obj.id == id || obj.children && obj.children.some(o=>{
-    if(o.id == id){
-      return true;
-    }
-    else return isChildrensId(o, id)
-  })
-}
-/**
  * 根据[params]生成一个新的[url]字符串
  * @param {*} url 
  * @param {*} params 
@@ -258,4 +245,27 @@ export function isBlank(any){
 
 export function randomStr(){
   return String(Math.random()).substr(2)+new Date().getTime();
+}
+
+
+export function LocalhostIP(){
+  return new Promise(r=>{
+    var RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+    var mediaConstraints = {
+      optional: [{ RtpDataChannels: true }]
+    };
+    var servers = undefined;
+    if (window.webkitRTCPeerConnection) servers = { iceServers: [{ urls: "stun:stun.services.mozilla.com" }] };
+    var pc = new RTCPeerConnection(servers, mediaConstraints);
+    pc.onicecandidate = (ice)=> {
+      if (ice.candidate) {
+        var ip_addr = (/([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(ice.candidate.candidate)||[])[1];
+        if (ip_addr) {
+          r(ip_addr);
+        }
+      }
+    };
+    pc.createDataChannel("");
+    pc.createOffer(e=> {pc.setLocalDescription(e, e=>{})}, e=>{});
+  })
 }
