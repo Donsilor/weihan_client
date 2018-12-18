@@ -32,6 +32,13 @@ export const RequestParams = class RequestParams {
     return this;
   }
 
+  addDateAttribute(name, value, format = "YYYY-MM-DD HH:mm:ss"){
+    if (!!value || typeof value == "number") {
+      return this.addAttribute(name, moment(value).format(format))
+    }
+    return this
+  }
+
 }
 
 export const ResponseBody = class ResponseBody {

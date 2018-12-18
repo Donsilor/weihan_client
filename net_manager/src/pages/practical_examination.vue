@@ -56,35 +56,12 @@ import { User, RequestParams } from "../common/entity";
 export default {
   data() {
     return {
-      render:false,
-      tasks: new Array(20).fill({
-        id: "3",
-        name: "123",
-        code: "1",
-        weldingType: "1",
-        typeConnector: "1",
-        weldingPosition: "1",
-        baseMetalMaterial: "1",
-        baseMaterialThicknes: "1",
-        baseMetalGap: "1",
-        voltage: "1",
-        weldingWreElectrodeType: "1",
-        weldingWreElectrodeDiameter: "1",
-        trainingTimes: "1",
-        tolerance: "1",
-        difficulty: "1",
-        releaseStatus: "1",
-        sort: "1",
-        createTime: "2018-12-17 17:37:25",
-        updateTime: "2018-12-17 17:37:34",
-        releaseTime: "",
-        selected:false
-      }),
+      tasks: [],
       searchParams: {
         times: [],
         queryType:"",
         key:null,
-        sortType:""
+        sortType:"-name"
       },
       selectedTasks:[]
     };
@@ -97,7 +74,14 @@ export default {
   },
   methods: {
     queryTasks(pageIndex = 1){
-      this.$Api.practicalExamination.task.search(new RequestParams().addAttribute("sortType", "-name")).then(response=>{
+      this.$Api.practicalExamination.task.search(new RequestParams()
+      .addAttribute("pageSize", 5)
+      .addAttribute("pageIndex", pageIndex)
+      .addDateAttribute("startTime", this.searchParams.times[0])
+      .addDateAttribute("endTime", this.searchParams.times[1])
+      .addAttribute("queryType", this.searchParams.queryType)
+      .addAttribute("key", this.searchParams.key)
+      .addAttribute("sortType", this.searchParams.sortType)).then(response=>{
         this.tasks = response.dataItems;
       })
     },

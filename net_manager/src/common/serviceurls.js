@@ -53,7 +53,7 @@ export default {
         
         release: {
           /**接口地址 */
-          url: '/service/practical/examination/task/release',
+          url: '/service/practical/examination/task/release/$id',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
         },

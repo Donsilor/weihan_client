@@ -236,6 +236,7 @@ export default (function createApis(apis) {
             lock: true,
             background: 'rgba(0, 0, 0, 0.2)'
           });
+
           (e=>{
             switch(method){
               case HTTP_REQUEST_METHOD.GET:
