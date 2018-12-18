@@ -46,7 +46,7 @@ export default {
         
         delete: {
           /**接口地址 */
-          url: '/service/practical/task/$id',
+          url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.DELETEURL,
         },
@@ -92,6 +92,14 @@ export default {
           url: '/service/practical/examination/release/$id',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
+        },
+      },
+      schoolReport:{
+        search: {
+          /**接口地址 */
+          url: '/service/practical/schoolReport/$taskId',
+          /**接口方法 */
+          method: HTTP_REQUEST_METHOD.GET,
         },
       }
     }

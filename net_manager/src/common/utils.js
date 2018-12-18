@@ -65,24 +65,6 @@ export const array2Descendants = function (arr = [], idKey = "id", pidKey = "pid
 }
 
 /**
- * 根据[params]生成一个新的[url]字符串
- * @param {*} url 
- * @param {*} params 
- */
-export const queryParams = function(url = "", params = {}){
-  return url.replace(/\$\w+/ig, function(key){
-    let __key = key.substr(1);
-    let value = params[__key];
-    if (params instanceof FormData) {
-      value = params.get(__key)
-      params.delete(__key)
-    }
-    else delete params[__key];
-    return value;
-  });
-}
-
-/**
  * 正则检查对象
  */
 export const RegExpCheck = new class RegExpCheck {

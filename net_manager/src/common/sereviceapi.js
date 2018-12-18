@@ -228,7 +228,17 @@ export default (function createApis(apis) {
           })
         }
 
-        url = queryParams(url, params);
+        url = url.replace(/\$\w+/ig, function(key){
+          let __key = key.substr(1);
+          let value = params[__key];
+          if (params instanceof FormData) {
+            value = params.get(__key)
+            params.delete(__key)
+          }
+          else delete params[__key];
+          return value;
+        });
+        
         const axios_method = api.virtual_service ? virtualServer.executeController.bind(virtualServer) : axios_instance_method[method];
         if (axios_method) {
           let loadingInstance = Loading.service({
