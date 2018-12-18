@@ -21,43 +21,87 @@ export default {
     },
   },
   service: {
-    practicalExamination: {
+    practical: {
       task: {
         search: {
           /**接口地址 */
-          url: '/service/practical/examination/task',
+          url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.GET,
         },
         
         update: {
           /**接口地址 */
-          url: '/service/practical/examination/task',
+          url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
         },
         
         insert: {
           /**接口地址 */
-          url: '/service/practical/examination/task',
+          url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.PUT,
         },
         
         delete: {
           /**接口地址 */
-          url: '/service/practical/examination/task/$id',
+          url: '/service/practical/task/$id',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.DELETEURL,
         },
         
         release: {
           /**接口地址 */
-          url: '/service/practical/examination/task/release/$id',
+          url: '/service/practical/task/release/$id',
+          /**接口方法 */
+          method: HTTP_REQUEST_METHOD.POST,
+        },
+      },
+      examination: {
+        search: {
+          /**接口地址 */
+          url: '/service/practical/examination',
+          /**接口方法 */
+          method: HTTP_REQUEST_METHOD.GET,
+        },
+        
+        update: {
+          /**接口地址 */
+          url: '/service/practical/examination',
+          /**接口方法 */
+          method: HTTP_REQUEST_METHOD.POST,
+        },
+        
+        insert: {
+          /**接口地址 */
+          url: '/service/practical/examination',
+          /**接口方法 */
+          method: HTTP_REQUEST_METHOD.PUT,
+        },
+        
+        delete: {
+          /**接口地址 */
+          url: '/service/practical/examination/$id',
+          /**接口方法 */
+          method: HTTP_REQUEST_METHOD.DELETEURL,
+        },
+        
+        release: {
+          /**接口地址 */
+          url: '/service/practical/examination/release/$id',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
         },
       }
+    }
+  },
+  common:{
+    uiLabels:{
+      /**接口地址 */
+      url: '/common/uiLabels/$type',
+      /**接口方法 */
+      method: HTTP_REQUEST_METHOD.GET,
     }
   }
 }

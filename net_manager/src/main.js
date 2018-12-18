@@ -19,7 +19,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 /////////////////////////////
 Vue.use(ElementUI);
 Vue.config.productionTip = false
-Vue.prototype.$Api = api.service;
+Vue.prototype.$Api = api;
 Vue.prototype.$SystemParameter = SystemParameter;
 Vue.prototype.$window_heigh = document.body.clientHeight
 /////////////////////////////////////////////////////////////////////
