@@ -1,0 +1,35 @@
+.tableWrap {
+  padding: 0 25px 0 20px;
+}
+.tableWrap i {
+  width: 14px;
+  height: 14px;
+  color: #36a3de;
+}
+.tableWrap i.select {
+  margin-right: 2%;
+  margin-left: 2%;
+  border: 1px solid $lightGray;
+  color: #fff;
+  font-size: 13px;
+  line-height: 13px;
+}
+.tableWrap .iconfont {
+  font-size: 18px;
+  margin: 0 3px;
+}
+.tableWrap .el-table th > .cell {
+  font-size: 18px;
+  text-align: center;
+  font-weight: normal;
+}
+.tableWrap .el-table td {
+  font-size: 16px;
+  text-align: center;
+}
+.tableWrap .el-table--enable-row-hover .el-table__body tr:hover > td {
+  background-color: #e2e7ec !important;
+}
+.tableWrap .el-checkbox__inner {
+  border-color: $lightGray;
+}
