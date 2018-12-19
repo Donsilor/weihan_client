@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import commonHeader from 'common/header/Header'
-import commonSidebar from 'common/sidebar/Sidebar'
+import commonHeader from 'components/header/Header'
+import commonSidebar from 'components/sidebar/Sidebar'
 
 export default {
   name: 'home',

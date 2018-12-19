@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import TopBar from 'common/mainTopBar/MainTopBar'
-import SearchBar from 'common/searchBar/SearchBar'
-import OperateBar from 'common/operateBar/OperateBar'
-import Paging from 'common/paging/Paging'
+import TopBar from 'components/mainTopBar/MainTopBar'
+import SearchBar from 'components/searchBar/SearchBar'
+import OperateBar from 'components/operateBar/OperateBar'
+import Paging from 'components/paging/Paging'
 
 export default {
   name: 'schoolInfo',

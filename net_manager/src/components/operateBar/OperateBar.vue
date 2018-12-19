@@ -1,7 +1,7 @@
 <template>
   <div class="operateBar clf">
     <label @click="select(informationList)" class="selectAll fl">
-      <i class="iconfont checkBox" :class="{'active': ifAllSelect}">&#xe663;</i>
+      <!-- <i class="iconfont checkBox" :class="{'active': ifAllSelect}">&#xe663;</i> -->
       <span>全选</span>
     </label>
     <a href="javascript:" class="fl iconfont" v-if="deleteBtn">&#xe63a;</a>

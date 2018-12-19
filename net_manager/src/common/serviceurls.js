@@ -30,18 +30,11 @@ export default {
           method: HTTP_REQUEST_METHOD.GET,
         },
         
-        update: {
+        upsert: {
           /**接口地址 */
           url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
-        },
-        
-        insert: {
-          /**接口地址 */
-          url: '/service/practical/task',
-          /**接口方法 */
-          method: HTTP_REQUEST_METHOD.PUT,
         },
         
         delete: {
@@ -61,35 +54,28 @@ export default {
       examination: {
         search: {
           /**接口地址 */
-          url: '/service/practical/examination',
+          url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.GET,
         },
         
-        update: {
+        upsert: {
           /**接口地址 */
-          url: '/service/practical/examination',
+          url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
         },
         
-        insert: {
-          /**接口地址 */
-          url: '/service/practical/examination',
-          /**接口方法 */
-          method: HTTP_REQUEST_METHOD.PUT,
-        },
-        
         delete: {
           /**接口地址 */
-          url: '/service/practical/examination/$id',
+          url: '/service/practical/task/$id',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.DELETEURL,
         },
         
         release: {
           /**接口地址 */
-          url: '/service/practical/examination/release/$id',
+          url: '/service/practical/task/release/$id',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
         },
@@ -101,6 +87,23 @@ export default {
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.GET,
         },
+      },
+      /**竞赛*/
+      competition:{
+        group:{
+          upsert: {
+            /**接口地址 */
+            url: '/service/competitionGroup',
+            /**接口方法 */
+            method: HTTP_REQUEST_METHOD.POST,
+          },
+          select: {
+            /**接口地址 */
+            url: '/service/competitionGroup/$taskId',
+            /**接口方法 */
+            method: HTTP_REQUEST_METHOD.POST,
+          },
+        }
       }
     }
   },
