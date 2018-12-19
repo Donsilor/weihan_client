@@ -157,16 +157,9 @@ export default {
           console.log(response);
         });
     },
-    updateTask() {
+    upsertTask() {
       this.$Api.service.practical.task
-        .update(new RequestParams().addAttributes(this.taskInfo.data))
-        .then(response => {
-          console.log(response);
-        });
-    },
-    insertTask() {
-      this.$Api.service.practical.task
-        .insert(new RequestParams().addAttributs(this.taskInfo.data))
+        .upsert(new RequestParams().addAttributes(this.taskInfo.data))
         .then(response => {
           console.log(response);
         });
