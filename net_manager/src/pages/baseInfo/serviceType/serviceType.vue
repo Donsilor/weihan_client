@@ -4,7 +4,8 @@
     <search-bar></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="informationList" style="width: 100%" class="list_content" @selection-change="handleSelectionChange">
+      <el-table ref="multipleTable" :data="informationList" style="width: 100%" class="list_content"
+                @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="教学类型编码" prop="number" class="number"></el-table-column>
         <el-table-column label="教学类型" prop="type" class="name"></el-table-column>
@@ -65,6 +66,13 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    handleSelectionChange (val) {
+      this.multipleSelection = val
+      console.log(this.multipleSelection)
+    }
+
   }
 }
 
