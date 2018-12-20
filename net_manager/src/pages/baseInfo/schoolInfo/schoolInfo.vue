@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar></top-bar>
+    <top-bar :newSchool="true"></top-bar>
     <search-bar></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
@@ -102,7 +102,4 @@ export default {
 
 <style lang="stylus" scoped>
 @import "~assets/common.styl"
-</style>
-<style lang="stylus">
-@import "~assets/tableStyle.styl"
 </style>

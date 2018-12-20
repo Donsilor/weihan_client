@@ -1,5 +1,5 @@
 <template>
-  <div class="paging">
+  <div class="paging clf">
     <button class="fr goto">跳转</button>
     <el-pagination
       @size-change="handleSizeChange"
