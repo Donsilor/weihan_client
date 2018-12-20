@@ -29,21 +29,21 @@ export default {
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.GET,
         },
-        
+
         upsert: {
           /**接口地址 */
           url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
         },
-        
+
         delete: {
           /**接口地址 */
           url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.DELETEURL,
         },
-        
+
         release: {
           /**接口地址 */
           url: '/service/practical/task/release/$id',
@@ -58,21 +58,21 @@ export default {
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.GET,
         },
-        
+
         upsert: {
           /**接口地址 */
           url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
         },
-        
+
         delete: {
           /**接口地址 */
           url: '/service/practical/task/$id',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.DELETEURL,
         },
-        
+
         release: {
           /**接口地址 */
           url: '/service/practical/task/release/$id',
@@ -80,7 +80,7 @@ export default {
           method: HTTP_REQUEST_METHOD.POST,
         },
       },
-      schoolReport:{
+      schoolReport: {
         search: {
           /**接口地址 */
           url: '/service/practical/schoolReport/$taskId',
@@ -89,8 +89,8 @@ export default {
         },
       },
       /**竞赛*/
-      competition:{
-        group:{
+      competition: {
+        group: {
           upsert: {
             /**接口地址 */
             url: '/service/competitionGroup',
@@ -107,8 +107,8 @@ export default {
       }
     }
   },
-  common:{
-    uiLabels:{
+  common: {
+    uiLabels: {
       /**接口地址 */
       url: '/common/uiLabels/$type',
       /**接口方法 */
@@ -116,4 +116,3 @@ export default {
     }
   }
 }
-
