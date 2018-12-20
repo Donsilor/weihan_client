@@ -39,7 +39,7 @@ export default {
   width 100%
   height 72px
   min-width 920px
-  border-bottom 1px solid $lightGray
+  border-bottom 1px solid $borderColor
   background-color #fff
 
   .fl

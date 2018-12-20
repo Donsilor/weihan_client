@@ -1,22 +1,21 @@
 .tableWrap {
   padding: 0 25px 0 20px;
 }
-.tableWrap i {
-  width: 14px;
-  height: 14px;
-  color: #36a3de;
-}
 .tableWrap i.select {
   margin-right: 2%;
   margin-left: 2%;
-  border: 1px solid $lightGray;
+  border: 1px solid $borderColor;
   color: #fff;
   font-size: 13px;
   line-height: 13px;
 }
 .tableWrap .iconfont {
-  font-size: 18px;
+  font-size: 22px;
   margin: 0 3px;
+  cursor: pointer;
+}
+.tableWrap .iconfont:hover {
+  color: $iconfontColor;
 }
 .tableWrap .el-table th > .cell {
   font-size: 18px;
@@ -31,5 +30,5 @@
   background-color: #e2e7ec !important;
 }
 .tableWrap .el-checkbox__inner {
-  border-color: $lightGray;
+  border-color: $borderColor;
 }

@@ -24,10 +24,24 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
 .wrap
   height calc(100vh - 72px)
 
 .main
   float right
   width 86%
+  height calc(100vh - 72px)
+  overflow-x hidden
+  overflow-y scroll
+
+  &::-webkit-scrollbar
+    width .5rem
+    background-color #ccc
+
+</style>
+
+<style lang="stylus">
+@import "~assets/common.styl"
+@import "~assets/tableStyle.styl"
 </style>

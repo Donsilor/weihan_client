@@ -2,21 +2,22 @@
   padding 0 25px 0 20px
 
   i
-    width 14px
-    height 14px
-    color #36a3de
 
     &.select
       margin-right 2%
       margin-left 2%
-      border 1px solid $lightGray
+      border 1px solid $borderColor
       color #fff
       font-size 13px
       line-height 13px
 
   .iconfont
-    font-size 18px
+    font-size 22px
     margin 0 3px
+    cursor pointer
+
+    &:hover
+      color $iconfontColor
 
   .el-table
     th
@@ -38,4 +39,4 @@
             background-color #e2e7ec !important
 
   .el-checkbox__inner
-    border-color $lightGray
+    border-color $borderColor
