@@ -196,6 +196,14 @@ const axios_instance_method = {
   [HTTP_REQUEST_METHOD.DELETE]: axios_instance.delete,
   [HTTP_REQUEST_METHOD.DELETEURL]: axios_instance.delete,
 };
+
+const alertError = function (message){
+  Message.error({
+    message: message,
+    center: true,
+    duration: 3000
+  })
+}
 /**后端接口 */
 export default (function createApis(apis) {
   var api = apis;
@@ -228,7 +236,7 @@ export default (function createApis(apis) {
           })
         }
 
-        url = url.replace(/\$\w+/ig, function(key){
+        url = url.replace(/\$\w+/ig, function (key) {
           let __key = key.substr(1);
           let value = params[__key];
           if (params instanceof FormData) {
@@ -238,7 +246,7 @@ export default (function createApis(apis) {
           else delete params[__key];
           return value;
         });
-        
+
         const axios_method = api.virtual_service ? virtualServer.executeController.bind(virtualServer) : axios_instance_method[method];
         if (axios_method) {
           let loadingInstance = Loading.service({
@@ -247,31 +255,32 @@ export default (function createApis(apis) {
             background: 'rgba(0, 0, 0, 0.2)'
           });
 
-          (e=>{
-            switch(method){
+          (requestBody => {
+            switch (method) {
               case HTTP_REQUEST_METHOD.GET:
-              case HTTP_REQUEST_METHOD.GETURL:{
-                config.params = new RequestParams($.extend(param, params)).getJsonParams();
+              case HTTP_REQUEST_METHOD.GETURL: {
+                config.params = requestBody
                 return axios_method(url, config)
               }
               case HTTP_REQUEST_METHOD.DELETEURL:
-              case HTTP_REQUEST_METHOD.DELETE : {
-                config.data = new RequestParams($.extend(param, params)).getJsonParams();
+              case HTTP_REQUEST_METHOD.DELETE: {
+                config.data = requestBody;
                 return axios_method(url, config)
               }
-              default: return axios_method(url, new RequestParams($.extend(param, params)).getJsonParams(), config)
+              default: return axios_method(url, requestBody, config);
             }
-          })().then(response => {
+          })(new RequestParams($.extend(param, params)).getJsonParams()).then(response => {
             ///因为到达这里的状态都是 ok ，再加上后端业务 Code 不做 ok 返回
             ///所以这里决定不做 code 的处理
             resolve(response.data);
           }).catch(error => {
+            if(error.response){
+              alertError(error.response.data.message)
+            }
+            else {
+              alertError("服务器还没准备好")
+            }
             //目前所有的code 自动弹出提示
-            Message.error({
-              message: error.response && error.response.data && error.response.data.message,
-              center: true,
-              duration: 3000
-            })
             reject(error.response && error.response.data)
           }).finally(e => loadingInstance.close());
         }

@@ -105,6 +105,14 @@ export default {
           },
         }
       }
+    },
+    users:{
+      login:{
+        /**接口地址 */
+        url: '/service/users/login',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.POST,
+      }
     }
   },
   common: {

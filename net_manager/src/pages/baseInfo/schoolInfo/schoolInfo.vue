@@ -41,38 +41,12 @@ export default {
     return {
       // 全选
       ifAllSelect: false,
-      informationList: [
-        {
+      informationList: new Array(20).fill({
           ifSelect: false,
           number: '6801000003309',
           name: '北京大学',
-          url: 'http://baidu.com'
-        },
-        {
-          ifSelect: false,
-          number: '6801000003310',
-          name: '南京大学',
-          url: 'http://souhu.com'
-        },
-        {
-          ifSelect: false,
-          number: '6801000003311',
-          name: '清华大学',
-          url: 'http://fenghuagn.com'
-        },
-        {
-          ifSelect: false,
-          number: '6801000003312',
-          name: '黑龙江理工大学',
-          url: 'http://guge.com'
-        },
-        {
-          ifSelect: false,
-          number: '6801000003313',
-          name: '深圳大学',
-          url: 'http://gougle.com'
-        }
-      ]
+          url: 'http://baidu.com',
+      })
     }
   },
   methods: {
