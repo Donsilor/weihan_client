@@ -73,7 +73,19 @@ export const User = new class User {
 
   constructor() {
     this.__info = $.extend({
-      
+      birthDate: "1990.1.1",
+      createAt: "2018-12-16 18:06:27",
+      email: "798445721@qq.com",
+      name: "超级管理员",
+      nickName: "",
+      password: "123456",
+      phoneNo: "15889808583",
+      schools: [],
+      sex: 1,
+      teachType: 0,
+      userId: "user_1EQpgMuXVHu892wJBDflGTUwRRE",
+      userName: "superadmin",
+      userType: 1,
     }, JSON.parse(localStorage.getItem(LOCATION_USER_KEY) || "{}"));
     this.__token = $.extend({
       /**有效期目标时间 */
@@ -99,7 +111,7 @@ export const User = new class User {
   get IS_TOKEN_EFFECTIVE(){
     if(this.__token.access_token){
       if(this.__token.expires_in){
-        if(new Date().getTime() > this.__token.expires_in){
+        if(moment(this.__token.expires_in).isAfter()){
           return 0;
         }
         else {

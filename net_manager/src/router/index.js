@@ -27,55 +27,55 @@ export default new Router({
           path: '/school_info',
           name: 'schoolInfo',
           component: SchoolInfo,
-          meta: { title: '学校信息', requireAuth: false }
+          meta: { title: '学校信息', requireAuth: true }
         },
         {
           path: '/service_type',
           name: 'service_type',
           component: ServiceType,
-          meta: { title: '服务类别', requireAuth: false }
+          meta: { title: '服务类别', requireAuth: true }
         },
         {
           path: '/contestManage',
           name: 'contestManage',
           component: ContestManage,
-          meta: { title: '竞赛管理', requireAuth: false }
+          meta: { title: '竞赛管理', requireAuth: true }
         },
         {
           path: '/historyCompetition',
           name: 'historyCompetition',
           component: HistoryCompetition,
-          meta: { title: '历史竞赛', requireAuth: false }
+          meta: { title: '历史竞赛', requireAuth: true }
         },
         {
           path: '/currentContest',
           name: 'currentContest',
           component: CurrentContest,
-          meta: { title: '当前竞赛', requireAuth: false }
+          meta: { title: '当前竞赛', requireAuth: true }
         },
         {
           path: '/monitoring',
           name: 'monitoring',
           component: Monitoring,
-          meta: { title: '监控', requireAuth: false }
+          meta: { title: '监控', requireAuth: true }
         },
         {
           path: '/remoteControl',
           name: 'remoteControl',
           component: RemoteControl,
-          meta: { title: '远程群控', requireAuth: false }
+          meta: { title: '远程群控', requireAuth: true }
         },
         {
           path: '/taskManage',
           name: 'taskManage',
           component: TaskManage,
-          meta: { title: '任务管理', requireAuth: false }
+          meta: { title: '任务管理', requireAuth: true }
         },
         {
           path: '/examManage',
           name: 'examManage',
           component: ExamManage,
-          meta: { title: '考试管理', requireAuth: false }
+          meta: { title: '考试管理', requireAuth: true }
         }
       ]
     }

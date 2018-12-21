@@ -59,7 +59,6 @@ export default {
         this.$refs.multipleTable.clearSelection()
       }
       this.ifAllSelect = !this.ifAllSelect
-      // this.informationList.map(o => this.ifAllSelect === true ? o.ifSelect = true : o.ifSelect = false)
     },
     formatServeUrl (row) {
       return <a href={row.url} target="_blank">{row.url}</a>

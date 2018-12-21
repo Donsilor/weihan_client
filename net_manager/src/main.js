@@ -18,7 +18,7 @@ import 'assets/iconfont.css'
 /////////////////////////////
 Vue.use(ElementUI);
 Vue.config.productionTip = false
-Vue.prototype.$Api = api;
+Vue.prototype.$api = api;
 Vue.prototype.$SystemParameter = SystemParameter;
 Vue.prototype.$window_heigh = document.body.clientHeight
 /////////////////////////////////////////////////////////////////////
@@ -28,7 +28,7 @@ router.beforeEach((to, from, next) => {
   }
   SystemParameter.CURRENTLY_SELECTED_PATH = to.path;
 
-  if (to.matched.some(record => record.meta.requireAuth)){  // 判断该路由是否需要登录权限
+  if (to.meta.requireAuth){  // 判断该路由是否需要登录权限
     if (User.IS_TOKEN_EFFECTIVE == 0) {  // 判断当前的token是否存在
       next();
     }

@@ -124,7 +124,7 @@ export default {
     };
   },
   async mounted() {
-    this.queryTypes = await this.$Api.common.uiLabels(
+    this.queryTypes = await this.$api.common.uiLabels(
       new RequestParams().addAttribute("type", "taskQueryClass")
     );
     this.queryTasks();
@@ -135,7 +135,7 @@ export default {
       this.taskInfo = item || {};
     },
     queryTasks(pageIndex = 1) {
-      this.$Api.service.practical.task
+      this.$api.service.practical.task
         .search(
           new RequestParams()
             .addAttribute("pageSize", 5)
@@ -151,21 +151,21 @@ export default {
         });
     },
     deleleTask(id) {
-      this.$Api.service.practical.task
+      this.$api.service.practical.task
         .delete(new RequestParams().addAttribute("id", "456"))
         .then(response => {
           console.log(response);
         });
     },
     upsertTask() {
-      this.$Api.service.practical.task
+      this.$api.service.practical.task
         .upsert(new RequestParams().addAttributes(this.taskInfo.data))
         .then(response => {
           console.log(response);
         });
     },
     releaseTask(id, status) {
-      this.$Api.service.practical.task
+      this.$api.service.practical.task
         .release(
           new RequestParams()
             .addAttribute("releaseStatus", !!status)
