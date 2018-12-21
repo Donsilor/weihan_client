@@ -127,11 +127,11 @@ export default {
           children: [
             {
               name: '任务管理',
-              url: '/'
+              url: '/taskManage'
             },
             {
               name: '考试管理',
-              url: '/'
+              url: '/examManage'
             }
           ]
         },

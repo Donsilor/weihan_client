@@ -12,6 +12,9 @@ import Monitoring from '@/pages/contestFunction/monitoring/monitoring'
 
 import RemoteControl from '@/pages/remoteControl/remoteControl'
 
+import ExamManage from '@/pages/practicalOperationExam/examManage/examManage'
+import TaskManage from '@/pages/practicalOperationExam/taskManage/taskManage'
+
 Vue.use(Router)
 
 export default new Router({
@@ -59,6 +62,18 @@ export default new Router({
           name: 'remoteControl',
           component: RemoteControl,
           meta: { title: '远程群控', requireAuth: false }
+        },
+        {
+          path: '/taskManage',
+          name: 'taskManage',
+          component: TaskManage,
+          meta: { title: '任务管理', requireAuth: false }
+        },
+        {
+          path: '/examManage',
+          name: 'examManage',
+          component: ExamManage,
+          meta: { title: '考试管理', requireAuth: false }
         }
       ]
     }
