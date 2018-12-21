@@ -61,6 +61,11 @@ export default {
 
     > *
       margin-left 20px
+      cursor pointer
+
+    .iconfont
+      &:hover
+        color $iconfontColor
 
     .administrator
       line-height 40px

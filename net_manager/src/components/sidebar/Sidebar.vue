@@ -99,23 +99,23 @@ export default {
           children: [
             {
               name: '题库管理',
-              url: '/'
+              url: '/questionBankManage'
             },
             {
               name: '作业管理',
-              url: '/'
+              url: '/taskManage'
             },
             {
               name: '试题管理',
-              url: '/'
+              url: '/testQuestionManage'
             },
             {
               name: '视频库',
-              url: '/'
+              url: '/videoDatabase'
             },
             {
               name: '课程库',
-              url: '/'
+              url: '/courseLibrary'
             }
           ]
         },
@@ -127,11 +127,11 @@ export default {
           children: [
             {
               name: '任务管理',
-              url: '/taskManage'
+              url: '/'
             },
             {
               name: '考试管理',
-              url: '/examManage'
+              url: '/'
             }
           ]
         },
@@ -159,11 +159,11 @@ export default {
           children: [
             {
               name: '查询',
-              url: '/'
+              url: '/inquire'
             },
             {
               name: '成绩分布报表',
-              url: '/'
+              url: '/scoreReport'
             }
           ]
         },
@@ -175,11 +175,11 @@ export default {
           children: [
             {
               name: '教学操作录像',
-              url: '/'
+              url: '/teachingOperationVideo'
             },
             {
               name: '学员操作录像',
-              url: '/'
+              url: '/studentOperationVideo'
             }
           ]
         },
@@ -188,7 +188,7 @@ export default {
           testBg: 'sideberIcon_09.png',
           sidebarShow: false,
           bgclass: 'icon-beifen',
-          url: '/'
+          url: '/backups'
         }
       ]
     }

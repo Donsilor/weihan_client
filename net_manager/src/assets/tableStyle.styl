@@ -3,20 +3,23 @@
 
   i
 
-    &.select
-      margin-right 2%
-      margin-left 2%
-      border 1px solid $borderColor
-      color #fff
-      font-size 13px
-      line-height 13px
-      
+    //&.select
+    //  margin-right 2%
+    //  margin-left 2%
+    //  border 1px solid $borderColor
+    //  color #fff
+    //  font-size 13px
+    //  line-height 13px
 
   .iconfont
-    font-size 22px
+    font-size 20px
     margin 0 3px
     cursor pointer
 
+    &:hover
+      color $iconfontColor
+
+  a
     &:hover
       color $iconfontColor
 
@@ -45,13 +48,3 @@
 
   .el-checkbox__inner
     border-color $borderColor
-
-
-  td.active
-    height 40px
-    width 40px
-    background-color #eee
-    margin auto
-    text-align center
-    line-height 40px
-    padding 0

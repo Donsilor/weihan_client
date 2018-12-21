@@ -1,20 +1,15 @@
 .tableWrap {
   padding: 0 25px 0 20px;
 }
-.tableWrap i.select {
-  margin-right: 2%;
-  margin-left: 2%;
-  border: 1px solid $borderColor;
-  color: #fff;
-  font-size: 13px;
-  line-height: 13px;
-}
 .tableWrap .iconfont {
-  font-size: 22px;
+  font-size: 20px;
   margin: 0 3px;
   cursor: pointer;
 }
 .tableWrap .iconfont:hover {
+  color: $iconfontColor;
+}
+.tableWrap a:hover {
   color: $iconfontColor;
 }
 .tableWrap .el-table th > .cell {
