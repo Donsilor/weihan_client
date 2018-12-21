@@ -77,6 +77,7 @@ a{text-decoration:none;color: #666;}
 .fr{float: right;}
 
 /* 自定义初始化样式结束 */
+body{overflow: hidden;}
 
 </style>
 

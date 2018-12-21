@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :newSchool="true"></top-bar>
+    <top-bar></top-bar>
     <search-bar></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
@@ -59,6 +59,12 @@ export default {
           state: '演示中'
         }
       ]
+    }
+  },
+  methods: {
+    handleSelectionChange (val) {
+      this.multipleSelection = val
+      console.log(this.multipleSelection)
     }
   }
 }
