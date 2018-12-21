@@ -45,7 +45,7 @@ export default {
   select.filter
     width 120px
     height 26px
-    border 1px solid $lightGray
+    border 1px solid $borderColor
     margin 2px 0
 
   .search
@@ -57,7 +57,7 @@ export default {
       height 30px
       font-size 12px
       padding-left 25px
-      border 1px solid $lightGray
+      border 1px solid $borderColor
 
     .iconfont
       position absolute
@@ -72,16 +72,19 @@ export default {
     button
       width 60px
       height 26px
-      border 1px solid $lightGray
+      border 1px solid $borderColor
       font-size 12px
       border-radius 5px
       margin-left 12px
       background none
 
+      &:active
+        background-color #999
+
   select.sort
     width 120px
     height 26px
-    border 1px solid $lightGray
+    border 1px solid $borderColor
     margin 2px 0
 
 select

@@ -2,8 +2,11 @@
   <div class="sidebar">
     <ul class="stair">
       <li v-for="(item,index) in menu" :key="index">
-        <div @click="switchTab(index)" :class="{blue:changeBlue === index}">
-          <i class="icon iconfont" :class="item.bgclass"></i>{{item.name}}
+        <router-link tag="div" v-if="item.url" @click="switchTab(index)" :class="{blue:changeBlue === index}" :to="item.url">
+          <i class="icon iconfont" :class="item.bgclass"></i>{{item.index}}{{item.name}}
+        </router-link>
+        <div v-else @click="switchTab(index)" :class="{blue:changeBlue === index}">
+          <i class="icon iconfont" :class="item.bgclass"></i>{{item.index}}{{item.name}}
         </div>
         <ul class="second_level" v-show="item.sidebarShow">
           <li v-for="(ite,idx) in item.children" :key="idx" :class="{active:changeBackground === idx}"
@@ -68,12 +71,16 @@ export default {
           bgclass: 'icon-gongneng',
           children: [
             {
-              name: '21',
-              url: '/'
+              name: '竞赛管理',
+              url: '/contestManage'
             },
             {
-              name: '22',
-              url: '/'
+              name: '历史竞赛',
+              url: '/historyCompetition'
+            },
+            {
+              name: '当前竞赛',
+              url: '/currentContest'
             }
           ]
         },
@@ -82,16 +89,7 @@ export default {
           testBg: 'sideberIcon_04.png',
           sidebarShow: false,
           bgclass: 'icon-jiankong',
-          children: [
-            {
-              name: '21',
-              url: '/'
-            },
-            {
-              name: '22',
-              url: '/'
-            }
-          ]
+          url: '/remoteControl'
         },
         {
           name: '理论教学',
@@ -100,28 +98,40 @@ export default {
           bgclass: 'icon-jiaoxuejihua',
           children: [
             {
-              name: '21',
+              name: '题库管理',
               url: '/'
             },
             {
-              name: '22',
+              name: '作业管理',
+              url: '/'
+            },
+            {
+              name: '试题管理',
+              url: '/'
+            },
+            {
+              name: '视频库',
+              url: '/'
+            },
+            {
+              name: '课程库',
               url: '/'
             }
           ]
         },
         {
-          name: '实体考试',
+          name: '实操考试',
           testBg: 'sideberIcon_06.png',
           sidebarShow: false,
           bgclass: 'icon-exam',
           children: [
             {
-              name: '21',
-              url: '/'
+              name: '任务管理',
+              url: '/taskManage'
             },
             {
-              name: '22',
-              url: '/'
+              name: '考试管理',
+              url: '/examManage'
             }
           ]
         },
@@ -132,11 +142,11 @@ export default {
           bgclass: 'icon-renzheng',
           children: [
             {
-              name: '21',
+              name: '考试',
               url: '/'
             },
             {
-              name: '22',
+              name: '证书',
               url: '/'
             }
           ]
@@ -148,27 +158,27 @@ export default {
           bgclass: 'icon-chengjichaxun',
           children: [
             {
-              name: '21',
+              name: '查询',
               url: '/'
             },
             {
-              name: '22',
+              name: '成绩分布报表',
               url: '/'
             }
           ]
         },
         {
-          name: '操作对象',
+          name: '操作录像',
           testBg: 'sideberIcon_09.png',
           sidebarShow: false,
           bgclass: 'icon-luxiangxian',
           children: [
             {
-              name: '21',
+              name: '教学操作录像',
               url: '/'
             },
             {
-              name: '22',
+              name: '学员操作录像',
               url: '/'
             }
           ]
@@ -177,7 +187,8 @@ export default {
           name: '备份',
           testBg: 'sideberIcon_09.png',
           sidebarShow: false,
-          bgclass: 'icon-beifen'
+          bgclass: 'icon-beifen',
+          url: '/'
         }
       ]
     }
@@ -195,6 +206,7 @@ export default {
       },
     */
     switchTab (index) {
+      console.log(index)
       let show = false
       this.menu.map(i => {
         if (i[index] !== index) {
@@ -207,7 +219,7 @@ export default {
       this.changeBlue = index
     },
     defaultShow () {
-      this.changeBackground = 1
+      this.changeBackground = 0
       this.changeBlue = 1
       this.menu[1].sidebarShow = true
     },
@@ -234,7 +246,7 @@ export default {
   height 100%
   min-width 150px
   background-color #eff4f8
-  border-right 1px solid $lightGray
+  border-right 1px solid $borderColor
 
 .stair
   height 100%
@@ -248,6 +260,10 @@ export default {
       width 100%
       height 48px
       cursor pointer
+
+      &.router-link-exact-active
+        color #1b7dc2
+        background-color #e2e7ec
 
     i
       display inline-block
