@@ -20,7 +20,11 @@
         <el-table-column label="有效时间段" prop="valid_time" class="valid_time" width="200"></el-table-column>
         <el-table-column label="考试时长" prop="exam_time" class="exam_time"></el-table-column>
         <el-table-column label="状态" prop="status" class="status"></el-table-column>
-        <el-table-column label="操作" prop="handle" width="200"></el-table-column>
+        <el-table-column label="操作" width="200">
+          <template slot-scope="scope">
+            <a href="javascript:">发布</a>
+          </template>
+        </el-table-column>
       </el-table>
       <paging></paging>
     </div>
@@ -113,7 +117,7 @@ export default {
           exam_time: '30分钟',
           status: '已截止',
           handle: '各学员成绩详情'
-        }  
+        }
       ]
     }
   },

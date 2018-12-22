@@ -19,7 +19,11 @@
         <el-table-column label="公差" prop="tolerance" class="tolerance"></el-table-column>
         <el-table-column label="有效时间段" prop="time" class="time" width="180"></el-table-column>
         <el-table-column label="状态" prop="status" class="status"></el-table-column>
-        <el-table-column label="操作" prop="handle" width="200"></el-table-column>
+        <el-table-column label="操作" width="200">
+          <template slot-scope="scope">
+            <a href="javascript:">发布</a>
+          </template>
+        </el-table-column>
       </el-table>
       <paging></paging>
     </div>
@@ -92,7 +96,7 @@ export default {
           time: '11:12:13',
           status: '已截止',
           handle: '各学员成绩详情'
-        }  
+        }
       ]
     }
   },
