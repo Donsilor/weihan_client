@@ -29,7 +29,7 @@
         end-placeholder="结束日期"
       ></el-date-picker>
       <button>搜索</button>
-    </div> -->
+    </div>-->
     <div class="inquireModule fl">
       <label v-for="(item, index) in option.queryKeys" :key="index" v-if="option.queryKeys">
         <span>{{item.title}}：</span>
@@ -46,8 +46,8 @@
       <!-- <label >
         <span>姓名：</span>
         <el-input size="mini" placeholder="请输入内容" clearable></el-input>
-      </label> -->
-      <button>搜索</button>
+      </label>-->
+      <button v-if="option.queryKeys">搜索</button>
     </div>
     <label v-if="option.querySortType">
       <select class="sort fr" v-model="option.querySortType.selected">
@@ -66,69 +66,71 @@ export default {
   props: {
     option: {
       type: Object,
-      default: {
-        queryTypes: {
-          asd1: {
-            title: "asd1",
-            types: {
-              金属材料焊接1: 1,
-              金属材料焊接2: 2,
-              金属材料焊接3: 3,
-              金属材料焊接4: 4
-            },
-            selected: ""
-          },
-          asd2: {
-            title: "asd2",
-            types: {
-              金属材料焊接1: 1,
-              金属材料焊接2: 2,
-              金属材料焊接3: 3,
-              金属材料焊接4: 4
-            },
-            selected: ""
-          },
-          asd3: {
-            title: "asd3",
-            types: {
-              金属材料焊接1: 1,
-              金属材料焊接2: 2,
-              金属材料焊接3: 3,
-              金属材料焊接4: 4
-            },
-            selected: ""
-          }
-        },
-        queryKeys:{
-          asd1:{
-            title:"asd1",
-            placeholder:"123415",
-            value:null
-          },
-          asd2:{
-            title:"asd2",
-            placeholder:"123415",
-            value:null
-          },
-          asd3:{
-            title:"asd3",
-            placeholder:"123415",
-            value:null
-          }
-        },
-        querySortType:{
-          selected:null,
-          types:{
-            排序1:"-name",
-            排序2:"name"
-          }
-        },
-        times:[],
-        videoDatabaseModule: false,
-        searchModule: true,
-        timeQuantumSearchModule: false,
-        inquire: false,
-        inquireName: false
+      default(){
+        return {
+          // queryTypes: {
+        //   asd1: {
+        //     title: "asd1",
+        //     types: {
+        //       金属材料焊接1: 1,
+        //       金属材料焊接2: 2,
+        //       金属材料焊接3: 3,
+        //       金属材料焊接4: 4
+        //     },
+        //     selected: ""
+        //   },
+        //   asd2: {
+        //     title: "asd2",
+        //     types: {
+        //       金属材料焊接1: 1,
+        //       金属材料焊接2: 2,
+        //       金属材料焊接3: 3,
+        //       金属材料焊接4: 4
+        //     },
+        //     selected: ""
+        //   },
+        //   asd3: {
+        //     title: "asd3",
+        //     types: {
+        //       金属材料焊接1: 1,
+        //       金属材料焊接2: 2,
+        //       金属材料焊接3: 3,
+        //       金属材料焊接4: 4
+        //     },
+        //     selected: ""
+        //   }
+        // },
+        // queryKeys: {
+        //   asd1: {
+        //     title: "asd1",
+        //     placeholder: "123415",
+        //     value: null
+        //   },
+        //   asd2: {
+        //     title: "asd2",
+        //     placeholder: "123415",
+        //     value: null
+        //   },
+        //   asd3: {
+        //     title: "asd3",
+        //     placeholder: "123415",
+        //     value: null
+        //   }
+        // },
+        // querySortType: {
+        //   selected: null,
+        //   types: {
+        //     排序1: "-name",
+        //     排序2: "name"
+        //   }
+        // },
+        // times: [],
+        // videoDatabaseModule: false,
+        // searchModule: true,
+        // timeQuantumSearchModule: false,
+        // inquire: false,
+        // inquireName: false
+        }
       }
     }
   },

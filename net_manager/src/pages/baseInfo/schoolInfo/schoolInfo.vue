@@ -24,7 +24,7 @@
       </el-table>
       <paging 
       :loadDatas="loadSchools"
-      :totalPage="schools.totalPage+100"
+      :totalPage="schools.totalPage"
       :pageSize="schools.pageSize"
       :pageIndex="schools.pageIndex"></paging>
     </div>
