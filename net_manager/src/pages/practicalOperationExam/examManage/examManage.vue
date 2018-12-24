@@ -20,7 +20,11 @@
         <el-table-column label="有效时间段" prop="valid_time" class="valid_time" width="200"></el-table-column>
         <el-table-column label="考试时长" prop="exam_time" class="exam_time"></el-table-column>
         <el-table-column label="状态" prop="status" class="status"></el-table-column>
-        <el-table-column label="操作" prop="handle" width="200"></el-table-column>
+        <el-table-column label="操作" width="200">
+          <template slot-scope="scope">
+            <a href="javascript:">发布</a>
+          </template>
+        </el-table-column>
       </el-table>
       <paging></paging>
     </div>
@@ -41,6 +45,132 @@
       </el-table>
       <paging></paging>
     </div> -->
+
+
+    <!-- 新建弹窗开始 -->
+    <div class="maskLayer">
+      <div class="wrap">
+        <div class="title">
+          <span class="fl">新建考试</span>
+          <span class="fr">X</span>
+        </div>
+        <div class="content">
+            <ul>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;考试名称：</div>
+                <div><input type="text"></div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;有效时段：</div>
+                <div class="time_quantum">
+                  <input type="text" class="fl">
+                  <span class="fl">—</span>
+                  <input type="text" class="fr">
+                </div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;考试时长：</div>
+                <div><input type="text"></div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;焊接类型：</div>
+                <div>
+                  <select name="">
+                    <option value=""></option>
+                    <option value="">1111</option>
+                    <option value="">2222</option>
+                    <option value="">3333</option>
+                    <option value="">4444</option>
+                    <option value="">5555</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;接头类型：</div>
+                <div>
+                  <select name="">
+                    <option value=""></option>
+                    <option value="">1111</option>
+                    <option value="">2222</option>
+                    <option value="">3333</option>
+                    <option value="">4444</option>
+                    <option value="">5555</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;焊接位置：</div>
+                <div>
+                  <select name="">
+                    <option value=""></option>
+                    <option value="">1111</option>
+                    <option value="">2222</option>
+                    <option value="">3333</option>
+                    <option value="">4444</option>
+                    <option value="">5555</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;母材材料：</div>
+                <div>
+                  <select name="">
+                    <option value=""></option>
+                    <option value="">1111</option>
+                    <option value="">2222</option>
+                    <option value="">3333</option>
+                    <option value="">4444</option>
+                    <option value="">5555</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;母材厚度：</div>
+                <div><input type="text" class="width">mm</div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;母材间隙：</div>
+                <div><input type="text" class="width">mm</div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;电压：</div>
+                <div><input type="text" class="width">v</div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;焊丝/焊条类型：</div>
+                <div>
+                  <select name="">
+                    <option value=""></option>
+                    <option value="">1111</option>
+                    <option value="">2222</option>
+                    <option value="">3333</option>
+                    <option value="">4444</option>
+                    <option value="">5555</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;焊丝/焊条直径：</div>
+                <div><input type="text" class="width">mm</div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;公差：</div>
+                <div><input type="text" class="width">%</div>
+              </li>
+              <li>
+                <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;训练次数：</div>
+                <div><input type="text" class="width">次</div>
+              </li>
+            </ul>
+            <div class="btn_wrap clf">
+              <button class="fr">取消</button>
+              <button class="fr">确定</button>
+              <button class="fr">下一步</button>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- 新建弹窗结束 -->
   </div>
 </template>
 
@@ -82,7 +212,7 @@ export default {
         },
         {
           ifSelect: false,
-          order: '1',
+          order: '2',
           number: '003312',
           name: '实操2',
           weld_type: 'CO2',
@@ -113,25 +243,25 @@ export default {
           exam_time: '30分钟',
           status: '已截止',
           handle: '各学员成绩详情'
-        }  
+        }
       ]
     }
   },
   methods: {
-    // select (rows) {
-    //   if (rows) {
-    //     rows.forEach(row => {
-    //       this.$refs.multipleTable.toggleRowSelection(row)
-    //     })
-    //   } else {
-    //     this.$refs.multipleTable.clearSelection()
-    //   }
-    //   this.ifAllSelect = !this.ifAllSelect
-    //   // this.informationList.map(o => this.ifAllSelect === true ? o.ifSelect = true : o.ifSelect = false)
-    // },
-    // formatServeUrl (row) {
-    //   return <a href={row.url} target="_blank">{row.url}</a>
-    // },
+    select (rows) {
+      if (rows) {
+        rows.forEach(row => {
+          this.$refs.multipleTable.toggleRowSelection(row)
+        })
+      } else {
+        this.$refs.multipleTable.clearSelection()
+      }
+      this.ifAllSelect = !this.ifAllSelect
+      // this.informationList.map(o => this.ifAllSelect === true ? o.ifSelect = true : o.ifSelect = false)
+    },
+    formatServeUrl (row) {
+      return <a href={row.url} target="_blank">{row.url}</a>
+    },
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
@@ -144,4 +274,95 @@ export default {
 
 <style lang="stylus" scoped>
 @import "~assets/common.styl"
+
+.wrap
+    position absolute
+    left 50%
+    top 50%
+    transform translate(-50%,-50%)
+    -ms-transform translate(-50%,-50%)
+    -webkit-transform translate(-50%,-50%)
+    width 500px
+
+    .title
+      width 100%
+      height 42px
+      background-color #34a5dd
+      padding 0 5%
+      line-height 42px
+      color #fff
+
+      .fr
+        font-size 22px
+
+    .content 
+      width 100%
+      background-color #fff
+      padding 20px 7% 20px 3%
+
+      ul
+        width 100%
+
+        li
+          height 26px
+          width 100%
+          margin-bottom 10px
+          font-size 0
+
+        li div
+          display inline-block
+          vertical-align top
+
+        li div.time_quantum input
+          width 45% !important 
+
+        li div.time_quantum span
+          width 10%
+          height 26px
+          line-height 26px
+          text-align center
+           
+        li div:first-child
+          width 31%
+          height 100%
+          font-size 14px
+          text-align right
+          line-height 30px
+
+        li div:last-child
+          width 69%
+          height 100%
+          font-size 14px
+          color #999
+
+        li div:last-child input
+            width 100%
+            height 22px
+            margin-top 4px
+            border 1px solid #ccc
+          
+        li div:last-child input.width
+            width 86%
+            margin-right 3%
+
+        li div:last-child select
+            width 100%
+
+      .btn_wrap
+        width 100%
+        margin-top 20px
+
+        button
+          width 70px
+          height 30px
+          background-color #34a5dd
+          font-size 14px
+          color #fff
+          margin-left 20px
+          border-radius 4px
+
+        button:first-child
+          background-color #fff
+          border 1px solid #34a5dd
+          color #34a5dd
 </style>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '@/pages/home/home'
+import Login from '@/pages/home/login'
 
 //////////////////////////// 基本信息 //////////////////////////////
 import SchoolInfo from '@/pages/baseInfo/schoolInfo/schoolInfo'
@@ -21,12 +22,16 @@ import RemoteControl from '@/pages/remoteControl/remoteControl'
 
 //////////////////////////// 理论教学 //////////////////////////////
 import QuestionBankManage from '@/pages/theoryTeaching/questionBankManage/questionBankManage'
-import TaskManage from '@/pages/theoryTeaching/taskManage/taskManage'
+import AssignmentManage from '@/pages/theoryTeaching/taskManage/taskManage'
 import TestQuestionManage from '@/pages/theoryTeaching/testQuestionManage/testQuestionManage'
 import VideoDatabase from '@/pages/theoryTeaching/videoDatabase/videoDatabase'
 import CourseLibrary from '@/pages/theoryTeaching/courseLibrary/courseLibrary'
 ///////////////////////////////////////////////////////////////////
 
+//////////////////////////// 实操考试 //////////////////////////////
+import TaskManage from '@/pages/practicalOperationExam/taskManage/taskManage'
+import ExamManage from '@/pages/practicalOperationExam/examManage/examManage'
+///////////////////////////////////////////////////////////////////
 
 //////////////////////////// 成绩查询 //////////////////////////////
 import Inquire from '@/pages/scoreInquiry/inquire/inquire'
@@ -41,9 +46,6 @@ import StudentOperationVideo from '@/pages/operationVideo/studentOperationVideo/
 ///////////////////////////// 备份 /////////////////////////////////
 import Backups from '@/pages/backups/backups'
 ///////////////////////////////////////////////////////////////////
-
-
-import ExamManage from '@/pages/practicalOperationExam/examManage/examManage'
 
 Vue.use(Router)
 
@@ -101,9 +103,9 @@ export default new Router({
           meta: { title: '题库管理', requireAuth: false }
         },
         {
-          path: '/taskManage',
-          name: 'taskManage',
-          component: TaskManage,
+          path: '/assignmentManage',
+          name: 'assignmentManage',
+          component: AssignmentManage,
           meta: { title: '作业管理', requireAuth: false }
         },
         {
@@ -123,6 +125,18 @@ export default new Router({
           name: 'courseLibrary',
           component: CourseLibrary,
           meta: { title: '课程库', requireAuth: false }
+        },
+        {
+          path: '/taskManage',
+          name: 'taskManage',
+          component: TaskManage,
+          meta: { title: '任务管理', requireAuth: false }
+        },
+        {
+          path: '/examManage',
+          name: 'examManage',
+          component: ExamManage,
+          meta: { title: '考试管理', requireAuth: false }
         },
         {
           path: '/inquire',
