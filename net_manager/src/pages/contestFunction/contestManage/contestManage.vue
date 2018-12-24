@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :newContest="true" :importBtn="true" :exportBtn="true"></top-bar>
+    <top-bar :newContest="true" :importBtn="true" :exportBtn="true" @show="showImportPopup"></top-bar>
     <search-bar></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
@@ -25,6 +25,7 @@
       </el-table>
       <paging></paging>
     </div>
+    <import-dialog :ifShowImport="ifShowImport" @close="closeImport"></import-dialog>
   </div>
 </template>
 
@@ -33,6 +34,7 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
+import ImportDialog from './dialog/importDialog'
 
 export default {
   name: 'ContestManage',
@@ -40,53 +42,38 @@ export default {
     TopBar,
     SearchBar,
     OperateBar,
-    Paging
+    Paging,
+    ImportDialog
   },
   data () {
     return {
-      contestList: [
-        {
-          number: 68010003309,
-          name: '作业竞赛1',
-          time: '20分钟',
-          weldsTypes: 'SMAW',
-          spliceType: '平板对接',
-          weldsPosition: '平焊',
-          parentMetal: '不锈钢',
-          thickness: '3mm',
-          tolerance: '3%'
-        },
-        {
-          number: 68010003309,
-          name: '作业竞赛1',
-          time: '20分钟',
-          weldsTypes: 'SMAW',
-          spliceType: '平板对接',
-          weldsPosition: '平焊',
-          parentMetal: '不锈钢',
-          thickness: '3mm',
-          tolerance: '3%'
-        },
-        {
-          number: 68010003309,
-          name: '作业竞赛1',
-          time: '20分钟',
-          weldsTypes: 'SMAW',
-          spliceType: '平板对接',
-          weldsPosition: '平焊',
-          parentMetal: '不锈钢',
-          thickness: '3mm',
-          tolerance: '3%'
-        }
-      ]
+      contestList: new Array(5).fill({
+        number: 68010003309,
+        name: '作业竞赛1',
+        time: '20分钟',
+        weldsTypes: 'SMAW',
+        spliceType: '平板对接',
+        weldsPosition: '平焊',
+        parentMetal: '不锈钢',
+        thickness: '3mm',
+        tolerance: '3%'
+      }),
+      ifShowImport: false
     }
   },
   methods: {
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
+    },
+    showImportPopup (e) {
+      console.log(e)
+      this.ifShowImport = e
+    },
+    closeImport (e) {
+      console.log(e)
+      this.ifShowImport = e
     }
-
   }
 }
 

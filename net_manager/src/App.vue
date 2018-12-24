@@ -50,10 +50,12 @@ summary{display:list-item;}
 /* 自定义初始化样式结束 */
 *,*:before,*:after {-webkit-box-sizing:border-box; box-sizing:border-box;margin:0; padding:0;}
 /*:root {font-size: calc(.8vw + .1vh);}*/
-html{font-family: "PingFang SC UltraLight",PingFangSC-Light,"Microsoft YaHei",Tahoma,"Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;font-size: 16px;}
-body{font-size: 1rem;}
+html{font-family:
+  "PingFang SC UltraLight",PingFangSC-Light,"Microsoft YaHei",Tahoma,"Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;font-size: calc(.8vw + .1vh);}
+/*body{font-size: 16px;}*/
 label{cursor: pointer;}
 input{outline: none;}
+input:-webkit-autofill {-webkit-box-shadow: 0 0 0 1000px white inset;border: 1px solid #CCC!important;}
 [type=button],button,select{cursor: pointer;outline: none;}
 input::-webkit-input-placeholder{color:#b2b2b2;}
 input::-moz-placeholder{color:#b2b2b2;}

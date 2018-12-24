@@ -17,7 +17,7 @@
       <a href="javascript:" v-if="uploadFile"><i class="iconfont">&#xe69d;</i> 上传视频</a>
       <a href="javascript:" v-if="uploadCourse"><i class="iconfont">&#xe71b;</i> 上传课程</a>
 
-      <a href="javascript:" v-if="importBtn"><i class="iconfont">&#xe634;</i> 导入</a>
+      <a href="javascript:" v-if="importBtn" @click="$emit('show', true)"><i class="iconfont">&#xe634;</i> 导入</a>
       <a href="javascript:" v-if="exportBtn"><i class="iconfont">&#xe608;</i> 导出</a>
     </div>
   </div>
@@ -88,20 +88,20 @@ export default {
 @import "~assets/common.styl"
 
 .topBar
-  line-height 46px
+  line-height 2.875rem
   padding 0 70px 0 20px
   border-bottom 1px solid $borderColor
 
   .btns
 
     a
-      font-size 16px
+      font-size 1rem
       color #34a6dd
       margin-left 1rem
 
 .el-breadcrumb
-  line-height 46px
-  font-size 16px
+  line-height 2.875rem
+  font-size 1rem
 
 </style>
 
