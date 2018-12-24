@@ -4,7 +4,7 @@
        <i class="iconfont checkBox" :class="{'active': ifAllSelect}">&#xe663;</i>
       <span>全选</span>
     </label>
-    <i class="iconfont" v-if="deleteBtn">&#xe63a;</i>
+    <i class="iconfont" v-if="deleteBtn" @click="$emit('deleteSelected', true)">&#xe63a;</i>
     <router-link tag="i" class="iconfont" v-if="projectionScreen" :to="'/monitoring'">&#xe60a;</router-link>
     <i class="iconfont" v-if="stopBtn">&#xe618;</i>
     <div class="inquireOperate" v-if="inquireOperate">

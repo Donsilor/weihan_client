@@ -1,8 +1,8 @@
 <template>
   <div>
-    <top-bar :newContest="true" :importBtn="true" :exportBtn="true" @show="showImportPopup"></top-bar>
+    <top-bar :newContest="true" :importBtn="true" :exportBtn="true" @importDialog="showImportPopup"></top-bar>
     <search-bar></search-bar>
-    <operate-bar :deleteBtn="true"></operate-bar>
+    <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
     <div class="tableWrap">
       <el-table ref="multipleTable" :data="contestList" style="width: 100%"
                 @selection-change="handleSelectionChange">
@@ -26,6 +26,7 @@
       <paging></paging>
     </div>
     <import-dialog :ifShowImport="ifShowImport" @close="closeImport"></import-dialog>
+    <delete-dialog :ifShowDelete="ifShowDelete" @cancelDelete="cancelDelete"></delete-dialog>
   </div>
 </template>
 
@@ -35,6 +36,7 @@ import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import ImportDialog from './dialog/importDialog'
+import deleteDialog from 'components/dialog/deleteDialog/deleteDialog'
 
 export default {
   name: 'ContestManage',
@@ -43,7 +45,8 @@ export default {
     SearchBar,
     OperateBar,
     Paging,
-    ImportDialog
+    ImportDialog,
+    deleteDialog
   },
   data () {
     return {
@@ -58,7 +61,8 @@ export default {
         thickness: '3mm',
         tolerance: '3%'
       }),
-      ifShowImport: false
+      ifShowImport: false,
+      ifShowDelete: false
     }
   },
   methods: {
@@ -73,6 +77,14 @@ export default {
     closeImport (e) {
       console.log(e)
       this.ifShowImport = e
+    },
+    cancelDelete (e) {
+      console.log(e)
+      this.ifShowDelete = e
+    },
+    deleteSelected (e) {
+      console.log(e)
+      this.ifShowDelete = e
     }
   }
 }

@@ -12,6 +12,8 @@ cleaerfix()
 
 $iconfontColor = #34a6dd
 
+$inputBorderColor = #b5b5b5
+
 .maskLayer
   position fixed
   top 0
@@ -49,6 +51,31 @@ $iconfontColor = #34a6dd
 
     .popupWrap
       padding 1.875rem 2.625rem
+
+    .btns
+      margin-top 2.5rem
+      text-align right
+
+      &:after
+        cleaerfix()
+
+      a
+        display inline-block
+        font-size 1.125rem
+        line-height  2.625rem
+        padding 0 1.5rem
+        color #fff
+        background-color #34a5dd
+        border 1px solid #34a5dd
+        border-radius .3rem
+
+        &.cancel
+          background-color #fff
+          color #34a5dd
+          border-color #34a5dd
+
+        &:not(:first-child)
+          margin-left 2.5rem
 
 i.el-icon-star-on
   color #f00

@@ -14,10 +14,12 @@
       <a href="javascript:" v-if="newExamPapers">+ 新建试题考卷</a>
       <a href="javascript:" v-if="manageVideoClassify"><i class="iconfont">&#xe626;</i> 管理视频分类</a>
       <a href="javascript:" v-if="manageCourseClassify"><i class="iconfont">&#xe626;</i> 管理课程分类</a>
+      <a href="javascript:" v-if="newExam" @click="$emit('newExam', true)">+ 新建考试</a>
       <a href="javascript:" v-if="uploadFile"><i class="iconfont">&#xe69d;</i> 上传视频</a>
       <a href="javascript:" v-if="uploadCourse"><i class="iconfont">&#xe71b;</i> 上传课程</a>
 
-      <a href="javascript:" v-if="importBtn" @click="$emit('show', true)"><i class="iconfont">&#xe634;</i> 导入</a>
+      <a href="javascript:" v-if="importBtn" @click="$emit('importDialog', true)"><i class="iconfont">&#xe634;</i> 导入
+      </a>
       <a href="javascript:" v-if="exportBtn"><i class="iconfont">&#xe608;</i> 导出</a>
     </div>
   </div>
@@ -68,6 +70,10 @@ export default {
       default: false
     },
     manageCourseClassify: {
+      type: Boolean,
+      default: false
+    },
+    newExam: {
       type: Boolean,
       default: false
     },
