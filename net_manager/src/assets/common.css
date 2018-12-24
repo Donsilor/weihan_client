@@ -1,0 +1,47 @@
+.maskLayer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 999;
+}
+.centerLayer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50rem;
+}
+.centerLayer .popup {
+  background-color: #fff;
+}
+.centerLayer .popup .popupTopBar {
+  font-size: 1.5rem;
+  line-height: 4.125rem;
+  color: #fff;
+  background-color: #34a5dd;
+  padding: 0 2.25rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.centerLayer .popup .popupTopBar:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.centerLayer .popup .popupTopBar .iconfont {
+  cursor: pointer;
+}
+.centerLayer .popup .popupWrap {
+  padding: 1.875rem 2.625rem;
+}
+i.el-icon-star-on {
+  color: #f00;
+  font-size: 10px;
+  height: 100%;
+  vertical-align: top;
+  line-height: 28px;
+}

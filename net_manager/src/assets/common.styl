@@ -5,6 +5,11 @@ ellipsis()
   white-space nowrap
   text-overflow ellipsis
 
+cleaerfix()
+  content ''
+  display table
+  clear: both
+
 $iconfontColor = #34a6dd
 
 .maskLayer
@@ -15,6 +20,35 @@ $iconfontColor = #34a6dd
   left 0
   background-color rgba(0,0,0,.7)
   z-index 999
+
+.centerLayer
+  position fixed
+  top 50%
+  left 50%
+  transform translate(-50%, -50%)
+  width 50rem
+
+  .popup
+    background-color #fff
+
+    .popupTopBar
+      font-size 1.5rem
+      line-height 4.125rem
+      color #fff
+      background-color #34a5dd
+      padding 0 2.25rem
+      ellipsis()
+
+      &:after
+        content ''
+        display table
+        clear both
+
+      .iconfont
+        cursor pointer
+
+    .popupWrap
+      padding 1.875rem 2.625rem
 
 i.el-icon-star-on
   color #f00

@@ -56,21 +56,21 @@ export default {
 
   .selectAll
     margin-right 2%
-    height 16px
-    font-size 14px
-    line-height 15px
+    height 1rem
+    font-size .875rem
+    line-height 1rem
 
   .checkBox
     margin-right 6px
-    width 16px
-    height 16px
+    width 1rem
+    height 1rem
     border 1px solid $borderColor
     color #fff
-    font-size 15px
-    line-height 15px
+    font-size 1rem
+    line-height 1rem
 
   > .iconfont
-    font-size 20px
+    font-size 1.25rem
     margin-right 1rem
     vertical-align middle
     cursor pointer
