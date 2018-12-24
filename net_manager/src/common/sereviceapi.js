@@ -232,7 +232,7 @@ export default (function createApis(apis) {
           })
           else config = $.extend(config, {
             headers: {
-              [api.authorization]: token.access_token
+              [api.authorization]: User.token.access_token
             }
           })
         }
@@ -275,10 +275,10 @@ export default (function createApis(apis) {
             ///所以这里决定不做 code 的处理
             resolve(response.data);
           }).catch(error => {
-            if(error.response.status == 401){
-              return location.href = "/#/login"
-            }
-            else if(error.response){
+            if(error.response){
+              if(error.response.status == 401){
+                return location.href = "/#/login"
+              }
               alertError(error.response.data.message)
             }
             else {

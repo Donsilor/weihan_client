@@ -30,6 +30,7 @@ export default {
           url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.GET,
+          authorization: "token"
         },
 
         upsert: {
@@ -37,6 +38,7 @@ export default {
           url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
+          authorization: "token"
         },
 
         delete: {
@@ -44,6 +46,7 @@ export default {
           url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.DELETEURL,
+          authorization: "token"
         },
 
         release: {
@@ -51,6 +54,7 @@ export default {
           url: '/service/practical/task/release/$id',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
+          authorization: "token"
         },
       },
       /**考试 */
@@ -60,6 +64,7 @@ export default {
           url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.GET,
+          authorization: "token"
         },
 
         upsert: {
@@ -67,6 +72,7 @@ export default {
           url: '/service/practical/task',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
+          authorization: "token"
         },
 
         delete: {
@@ -74,6 +80,7 @@ export default {
           url: '/service/practical/task/$id',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.DELETEURL,
+          authorization: "token"
         },
 
         release: {
@@ -81,6 +88,7 @@ export default {
           url: '/service/practical/task/release/$id',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.POST,
+          authorization: "token"
         },
       },
       /**成绩 */
@@ -90,6 +98,7 @@ export default {
           url: '/service/practical/schoolReport/$taskId',
           /**接口方法 */
           method: HTTP_REQUEST_METHOD.GET,
+          authorization: "token"
         }
       },
       /**竞赛*/
@@ -101,12 +110,14 @@ export default {
             url: '/service/competitionGroup',
             /**接口方法 */
             method: HTTP_REQUEST_METHOD.POST,
+            authorization: "token"
           },
           select: {
             /**接口地址 */
             url: '/service/competitionGroup/$taskId',
             /**接口方法 */
             method: HTTP_REQUEST_METHOD.POST,
+            authorization: "token"
           },
         }
       }
@@ -128,12 +139,14 @@ export default {
         url: '/service/schools',
         /**接口方法 */
         method: HTTP_REQUEST_METHOD.GET,
+        authorization: "token"
       },
       insert:{
         /**接口地址 */
         url: '/service/schools',
         /**接口方法 */
         method: HTTP_REQUEST_METHOD.POST,
+        authorization: "token"
       }
     }
   },
@@ -144,7 +157,7 @@ export default {
       /**接口地址 */
       url: '/common/uiLabels/$type',
       /**接口方法 */
-      method: HTTP_REQUEST_METHOD.GET,
+      method: HTTP_REQUEST_METHOD.GET
     }
   }
 }
