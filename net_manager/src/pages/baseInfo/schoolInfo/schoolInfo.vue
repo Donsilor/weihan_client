@@ -28,6 +28,7 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
+import { User, RequestParams } from "common/entity";
 
 export default {
   name: 'schoolInfo',
@@ -49,7 +50,15 @@ export default {
       })
     }
   },
+  mounted(){
+    this.loadSchools();
+  },
   methods: {
+    async loadSchools(){
+      this.$api.service.schools.search(new RequestParams()).then(response=>{
+        console.log(response)
+      }).catch(e => {console.log(e)})
+    },
     select (rows) {
       if (rows) {
         rows.forEach(row => {
