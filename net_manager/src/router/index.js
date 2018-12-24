@@ -49,7 +49,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {path: '/login', name: 'login', component: Login},
+    // {path: '/login', name: 'login', component: Login},
     {
       path: '/', name: 'home', component: Home, redirect: '/school_info', children: [
         {
