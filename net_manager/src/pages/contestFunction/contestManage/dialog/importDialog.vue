@@ -99,21 +99,5 @@ export default {
         color #fff
         border-radius .3rem
 
-  .btns
-    margin-top 2.5rem
-    text-align right
-
-    &:after
-      cleaerfix()
-
-
-    a
-      display inline-block
-      font-size 1.125rem
-      line-height  2.75rem
-      padding 0 1.5rem
-      color #fff
-      background-color #34a5dd
-      border-radius .3rem
 
 </style>
