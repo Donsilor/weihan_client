@@ -38,3 +38,10 @@
 .centerLayer .popup .popupWrap {
   padding: 1.875rem 2.625rem;
 }
+i.el-icon-star-on {
+  color: #f00;
+  font-size: 10px;
+  height: 100%;
+  vertical-align: top;
+  line-height: 28px;
+}

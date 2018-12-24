@@ -67,7 +67,7 @@ export default {
         },
         {
           ifSelect: false,
-          order: '1',
+          order: '2',
           number: '003312',
           name: '实操2',
           weld_type: 'CO2',
