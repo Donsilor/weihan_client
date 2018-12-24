@@ -7,6 +7,7 @@ import axios from "axios";
 import { queryParams } from "./utils";
 import { ResponseBody, RequestParams, User } from "./entity";
 import { MessageBox, Loading, Message } from 'element-ui';
+import Vue from "vue";
 
 const axios_instance = axios.create({
   // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。
@@ -274,7 +275,10 @@ export default (function createApis(apis) {
             ///所以这里决定不做 code 的处理
             resolve(response.data);
           }).catch(error => {
-            if(error.response){
+            if(error.response.status == 401){
+              return location.href = "/#/login"
+            }
+            else if(error.response){
               alertError(error.response.data.message)
             }
             else {
