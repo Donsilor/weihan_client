@@ -6,8 +6,8 @@
     <div class="tableWrap">
       <el-table ref="multipleTable" :data="questions.datas" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
-        <el-table-column label="考卷编号" prop="number"></el-table-column>
-        <el-table-column label="考卷名称" prop="name"></el-table-column>
+        <el-table-column label="试卷编号" prop="number"></el-table-column>
+        <el-table-column label="试卷名称" prop="name"></el-table-column>
         <el-table-column label="创建者" prop="creator"></el-table-column>
         <el-table-column label="最后修改者" prop="lastMender"></el-table-column>
         <el-table-column label="总题数" prop="total"></el-table-column>
@@ -17,7 +17,7 @@
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <i class="iconfont">&#xe617;</i>
-            <a href="javascript:">各学员成绩详情</a>
+            <a href="javascript:">成绩详情</a>
           </template>
         </el-table-column>
       </el-table>
@@ -43,6 +43,9 @@ export default {
   },
   data () {
     return {
+      questions: {
+        datas: []
+      }
     }
   },
   mounted(){
