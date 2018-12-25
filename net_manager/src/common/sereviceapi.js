@@ -220,7 +220,6 @@ export default (function createApis(apis) {
   else {
     apis = function (params = new RequestParams()) {
       return new Promise(function (resolve, reject) {
-        return reject()
 
         let { url, method, param = {}, config = {} } = $.extend(true, {}, api);
 
@@ -251,13 +250,11 @@ export default (function createApis(apis) {
 
         const axios_method = api.virtual_service ? virtualServer.executeController.bind(virtualServer) : axios_instance_method[method];
         if (axios_method) {
-/*
           let loadingInstance = Loading.service({
             fullscreen: true,
             lock: true,
             background: 'rgba(0, 0, 0, 0.2)'
           });
-*/
 
           (requestBody => {
             switch (method) {
@@ -279,7 +276,7 @@ export default (function createApis(apis) {
             resolve(response.data);
           }).catch(error => {
             if(error.response.status == 401){
-              // return location.href = "/#/login"
+              return location.href = "/#/login"
             }
             else if(error.response){
               alertError(error.response.data.message)
