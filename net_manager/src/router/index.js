@@ -58,115 +58,115 @@ export default new Router({
           path: '/school_info',
           name: 'schoolInfo',
           component: SchoolInfo,
-          meta: { title: '学校信息', requireAuth: false }
+          meta: { title: '学校信息', requireAuth: true }
         },
         {
           path: '/service_type',
           name: 'service_type',
           component: ServiceType,
-          meta: { title: '服务类别', requireAuth: false }
+          meta: { title: '服务类别', requireAuth: true }
         },
         {
           path: '/contestManage',
           name: 'contestManage',
           component: ContestManage,
-          meta: { title: '竞赛管理', requireAuth: false }
+          meta: { title: '竞赛管理', requireAuth: true }
         },
         {
           path: '/historyCompetition',
           name: 'historyCompetition',
           component: HistoryCompetition,
-          meta: { title: '历史竞赛', requireAuth: false }
+          meta: { title: '历史竞赛', requireAuth: true }
         },
         {
           path: '/currentContest',
           name: 'currentContest',
           component: CurrentContest,
-          meta: { title: '当前竞赛', requireAuth: false }
+          meta: { title: '当前竞赛', requireAuth: true }
         },
         {
           path: '/monitoring',
           name: 'monitoring',
           component: Monitoring,
-          meta: { title: '监控', requireAuth: false }
+          meta: { title: '监控', requireAuth: true }
         },
         {
           path: '/remoteControl',
           name: 'remoteControl',
           component: RemoteControl,
-          meta: { title: '远程群控', requireAuth: false }
+          meta: { title: '远程群控', requireAuth: true }
         },
         {
           path: '/questionBankManage',
           name: 'questionBankManage',
           component: QuestionBankManage,
-          meta: { title: '题库管理', requireAuth: false }
+          meta: { title: '题库管理', requireAuth: true }
         },
         {
           path: '/assignmentManage',
           name: 'assignmentManage',
           component: AssignmentManage,
-          meta: { title: '作业管理', requireAuth: false }
+          meta: { title: '作业管理', requireAuth: true }
         },
         {
           path: '/testQuestionManage',
           name: 'testQuestionManage',
           component: TestQuestionManage,
-          meta: { title: '试题管理', requireAuth: false }
+          meta: { title: '试题管理', requireAuth: true }
         },
         {
           path: '/videoDatabase',
           name: 'videoDatabase',
           component: VideoDatabase,
-          meta: { title: '视频库', requireAuth: false }
+          meta: { title: '视频库', requireAuth: true }
         },
         {
           path: '/courseLibrary',
           name: 'courseLibrary',
           component: CourseLibrary,
-          meta: { title: '课程库', requireAuth: false }
+          meta: { title: '课程库', requireAuth: true }
         },
         {
           path: '/taskManage',
           name: 'taskManage',
           component: TaskManage,
-          meta: { title: '任务管理', requireAuth: false }
+          meta: { title: '任务管理', requireAuth: true }
         },
         {
           path: '/examManage',
           name: 'examManage',
           component: ExamManage,
-          meta: { title: '考试管理', requireAuth: false }
+          meta: { title: '考试管理', requireAuth: true }
         },
         {
           path: '/inquire',
           name: 'inquire',
           component: Inquire,
-          meta: { title: '查询', requireAuth: false }
+          meta: { title: '查询', requireAuth: true }
         },
         {
           path: '/scoreReport',
           name: 'scoreReport',
           component: ScoreReport,
-          meta: { title: '成绩分布报表', requireAuth: false }
+          meta: { title: '成绩分布报表', requireAuth: true }
         },
         {
           path: '/teachingOperationVideo',
           name: 'teachingOperationVideo',
           component: TeachingOperationVideo,
-          meta: { title: '教学操作视频', requireAuth: false }
+          meta: { title: '教学操作视频', requireAuth: true }
         },
         {
           path: '/studentOperationVideo',
           name: 'studentOperationVideo',
           component: StudentOperationVideo,
-          meta: { title: '学员操作视频', requireAuth: false }
+          meta: { title: '学员操作视频', requireAuth: true }
         },
         {
           path: '/backups',
           name: 'backups',
           component: Backups,
-          meta: { title: '备份', requireAuth: false }
+          meta: { title: '备份', requireAuth: true }
         }
       ]
     }

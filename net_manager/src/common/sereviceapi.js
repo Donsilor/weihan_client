@@ -233,7 +233,7 @@ export default (function createApis(apis) {
           })
           else config = $.extend(config, {
             headers: {
-              [api.authorization]: token.access_token
+              [api.authorization]: User.token.access_token
             }
           })
         }
