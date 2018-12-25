@@ -220,78 +220,36 @@ select {
 }
 </style>
 <style lang="stylus">
-@import '~assets/common.styl';
+.el-input
+  width 7.5rem
+  margin-right 1.75rem
 
-.searchBar {
-  font-size: 0.75rem;
-  line-height: 1.875rem;
-  padding: 1.5rem 4.375rem 1.5rem 1.25rem;
+  .el-input__inner
+    padding-left .5rem
+    border-radius 0
 
-  select, input {
-    width: 7.5rem;
-    height: 1.625rem;
-    border: 1px solid $borderColor;
-    margin: 0.125rem 1.75rem 0.125rem 0;
-  }
+.el-date-editor
+  width auto
+  height 1.875rem
+  padding-left .3125rem
+  padding-right .3125rem
 
-  input {
-    padding: 0 0.5rem;
-  }
+  &.el-input__inner
+    width 15.5rem
+    margin-right 1.25rem
 
-  .search {
-    position: relative;
+  .el-range__icon
+    line-height 1
 
-    input[type=text] {
-      float: left;
-      width: 16.25rem;
-      height: 1.875rem;
-      font-size: 0.75rem;
-      padding-left: 1.5rem;
-      border: 1px solid $borderColor;
-    }
+  .el-range-separator
+    width 1rem
+    line-height 1.5rem
+    padding 0
 
-    .iconfont {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 1.875rem;
-      height: 1.875rem;
-      text-align: center;
-      line-height: 1.875rem;
-    }
-  }
+  .el-range-input
+    width 5.5rem
 
-  .timeQuantumSearch {
-    margin-left: 28px;
-  }
-
-  button {
-    width: 3.75rem;
-    height: 1.625rem;
-    border: 1px solid $borderColor;
-    font-size: 0.75rem;
-    border-radius: 5px;
-    background: none;
-
-    &:active {
-      background-color: #999;
-
-      &:active {
-        background-color: #999;
-      }
-    }
-  }
-
-  select.sort {
-    width: 7.5rem;
-    height: 1.625rem;
-    border: 1px solid $borderColor;
-    margin: 0.125rem 0;
-  }
-}
-
-select {
-  font-size: 12px;
-}
+  .el-range__close-icon
+    width 1rem
+    line-height 1.5rem
 </style>
