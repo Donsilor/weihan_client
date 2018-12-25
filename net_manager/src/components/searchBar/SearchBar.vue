@@ -32,7 +32,7 @@
     </div>-->
     <div class="inquireModule fl">
       <label v-for="(item, index) in option.queryKeys" :key="index" v-if="option.queryKeys">
-        <span>{{item.title}}：</span>
+        <span v-if="item.title">{{item.title}}：</span>
         <el-input size="mini" :placeholder="item.placeholder" clearable v-model="item.value"></el-input>
       </label>
       <el-date-picker
@@ -59,88 +59,88 @@
 
 <script>
 export default {
-  name: "SearchBar",
+  name: 'SearchBar',
   model: {
-    prop: "option"
+    prop: 'option'
   },
   props: {
     option: {
       type: Object,
-      default(){
+      default () {
         return {
           // queryTypes: {
-        //   asd1: {
-        //     title: "asd1",
-        //     types: {
-        //       金属材料焊接1: 1,
-        //       金属材料焊接2: 2,
-        //       金属材料焊接3: 3,
-        //       金属材料焊接4: 4
-        //     },
-        //     selected: ""
-        //   },
-        //   asd2: {
-        //     title: "asd2",
-        //     types: {
-        //       金属材料焊接1: 1,
-        //       金属材料焊接2: 2,
-        //       金属材料焊接3: 3,
-        //       金属材料焊接4: 4
-        //     },
-        //     selected: ""
-        //   },
-        //   asd3: {
-        //     title: "asd3",
-        //     types: {
-        //       金属材料焊接1: 1,
-        //       金属材料焊接2: 2,
-        //       金属材料焊接3: 3,
-        //       金属材料焊接4: 4
-        //     },
-        //     selected: ""
-        //   }
-        // },
-        // queryKeys: {
-        //   asd1: {
-        //     title: "asd1",
-        //     placeholder: "123415",
-        //     value: null
-        //   },
-        //   asd2: {
-        //     title: "asd2",
-        //     placeholder: "123415",
-        //     value: null
-        //   },
-        //   asd3: {
-        //     title: "asd3",
-        //     placeholder: "123415",
-        //     value: null
-        //   }
-        // },
-        // querySortType: {
-        //   selected: null,
-        //   types: {
-        //     排序1: "-name",
-        //     排序2: "name"
-        //   }
-        // },
-        // times: [],
-        // videoDatabaseModule: false,
-        // searchModule: true,
-        // timeQuantumSearchModule: false,
-        // inquire: false,
-        // inquireName: false
+          //   asd1: {
+          //     title: 'asd1',
+          //     types: {
+          //       金属材料焊接1: 1,
+          //       金属材料焊接2: 2,
+          //       金属材料焊接3: 3,
+          //       金属材料焊接4: 4
+          //     },
+          //     selected: ''
+          //   },
+          //   asd2: {
+          //     title: 'asd2',
+          //     types: {
+          //       金属材料焊接1: 1,
+          //       金属材料焊接2: 2,
+          //       金属材料焊接3: 3,
+          //       金属材料焊接4: 4
+          //     },
+          //     selected: ''
+          //   },
+          //   asd3: {
+          //     title: 'asd3',
+          //     types: {
+          //       金属材料焊接1: 1,
+          //       金属材料焊接2: 2,
+          //       金属材料焊接3: 3,
+          //       金属材料焊接4: 4
+          //     },
+          //     selected: ''
+          //   }
+          // },
+          // queryKeys: {
+          //   asd1: {
+          //     title: 'asd1',
+          //     placeholder: '123415',
+          //     value: null
+          //   },
+          //   asd2: {
+          //     title: 'asd2',
+          //     placeholder: '123415',
+          //     value: null
+          //   },
+          //   asd3: {
+          //     title: 'asd3',
+          //     placeholder: '123415',
+          //     value: null
+          //   }
+          // },
+          // querySortType: {
+          //   selected: null,
+          //   types: {
+          //     排序1: '-name',
+          //     排序2: 'name'
+          //   }
+          // },
+          // times: [],
+          // videoDatabaseModule: false,
+          // searchModule: true,
+          // timeQuantumSearchModule: false,
+          // inquire: false,
+          // inquireName: false
         }
       }
     }
   },
-  data() {
+  data () {
     return {
-      timeQuantum: "",
-      inquireTimeQuantum: ""
-    };
+      timeQuantum: '',
+      inquireTimeQuantum: ''
+    }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -220,36 +220,42 @@ select {
 }
 </style>
 <style lang="stylus">
-.el-input
-  width 7.5rem
-  margin-right 1.75rem
+.searchBar
+  .el-input
+    width 7.5rem
+    margin-right 1.75rem
 
-  .el-input__inner
-    padding-left .5rem
-    border-radius 0
+    .el-input__inner
+      height 1.875rem
+      padding-left .5rem
+      border-radius 0
+
+    .el-input__suffix
+      line-height 1
 
 .el-date-editor
-  width auto
-  height 1.875rem
-  padding-left .3125rem
-  padding-right .3125rem
+    width auto
+    height 1.875rem
+    padding-left .3125rem
+    padding-right .3125rem
 
-  &.el-input__inner
-    width 15.5rem
-    margin-right 1.25rem
+    &.el-input__inner
+      width 15.5rem
+      margin-right 1.25rem
 
-  .el-range__icon
-    line-height 1
+    .el-range__icon
+      line-height 1
 
-  .el-range-separator
-    width 1rem
-    line-height 1.5rem
-    padding 0
+    .el-range-separator
+      width 1rem
+      line-height 1.5rem
+      padding 0
 
-  .el-range-input
-    width 5.5rem
+    .el-range-input
+      width 5.5rem
 
-  .el-range__close-icon
-    width 1rem
-    line-height 1.5rem
+    .el-range__close-icon
+      width 1rem
+      line-height 1.5rem
+
 </style>
