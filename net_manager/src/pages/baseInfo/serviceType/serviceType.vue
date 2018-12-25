@@ -4,11 +4,10 @@
     <search-bar></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="informationList" style="width: 100%" class="list_content"
-                @selection-change="handleSelectionChange">
+      <el-table ref="multipleTable" :data="teachTypes.datas" style="width: 100%" class="list_content" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
-        <el-table-column label="教学类型编码" prop="number" class="number"></el-table-column>
-        <el-table-column label="教学类型" prop="type" class="name"></el-table-column>
+        <el-table-column label="教学类型编码" prop="code" class="number"></el-table-column>
+        <el-table-column label="教学类型" prop="name" class="name"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <i class="modification icon iconfont icon-bianji"></i>
@@ -17,7 +16,11 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging></paging>
+      <paging 
+      :loadDatas="loadTeachTypes"
+      :totalPage="teachTypes.totalPage"
+      :pageSize="teachTypes.pageSize"
+      :pageIndex="teachTypes.pageIndex"></paging>
     </div>
   </div>
 </template>
@@ -27,6 +30,7 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
+import { User, RequestParams } from "common/entity";
 
 export default {
   name: '',
@@ -38,36 +42,37 @@ export default {
   },
   data () {
     return {
-      informationList: [
-        {
-          ifSelect: false,
-          number: '6801000003309',
-          type: '焊接'
-        },
-        {
-          ifSelect: false,
-          number: '6801000003310',
-          type: '机器人'
-        },
-        {
-          ifSelect: false,
-          number: '6801000003311',
-          type: '喷涂'
-        },
-        {
-          ifSelect: false,
-          number: '6801000003312',
-          type: '焊接'
-        },
-        {
-          ifSelect: false,
-          number: '6801000003313',
-          type: '机器人'
+      teachTypes:{
+        pageIndex: 1,
+        pageSize: 10,
+        totalPage:10,
+        datas: [],
+        search: {
+          queryKey: null,
+          queryType: null,
+          startTime: null,
+          endTime: null,
+          sortType: null,
+          id: null
         }
-      ]
+      }
     }
   },
+  mounted(){
+    this.loadTeachTypes();
+  },
   methods: {
+    async loadTeachTypes(pageIndex=1, pageSize=10) {
+      let response = await this.$api.service.teachTypes.search(
+        new RequestParams()
+          .addAttribute("pageIndex", pageIndex)
+          .addAttribute("pageSize", pageSize)
+      );
+      this.teachTypes.pageSize = response.pageSize;
+      this.teachTypes.totalPage = response.totalPage;
+      this.teachTypes.datas = response.dataItems;
+    },
+    
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
