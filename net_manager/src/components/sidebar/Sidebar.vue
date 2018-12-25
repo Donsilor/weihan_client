@@ -103,10 +103,10 @@ export default {
             },
             {
               name: '作业管理',
-              url: '/taskManage'
+              url: '/assignmentManage'
             },
             {
-              name: '试题管理',
+              name: '试卷管理',
               url: '/testQuestionManage'
             },
             {
@@ -143,11 +143,11 @@ export default {
           children: [
             {
               name: '考试',
-              url: '/'
+              url: '/exam'
             },
             {
               name: '证书',
-              url: '/'
+              url: '/certificate'
             }
           ]
         },
