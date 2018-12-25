@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :newExam="true" @newExam="newExam"></top-bar>
+    <top-bar :examOrder="true" :newExam="true" :importBtn="true" :exportBtn="true" @newExam="newExam"></top-bar>
     <search-bar></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
@@ -22,13 +22,16 @@
         <el-table-column label="状态" prop="status" class="status"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
-            <a href="javascript:">发布</a>
+            <a href="javascript:" @click="ifParameter = true">发布</a>
           </template>
         </el-table-column>
       </el-table>
       <paging></paging>
     </div>
     <new-exam :ifNewExam="ifNewExam" @cancelNewExam="cancelNewExam"></new-exam>
+  
+    <parameterDetail :ifParameter='ifParameter'></parameterDetail>
+    <examImport></examImport>
   </div>
 </template>
 
@@ -38,22 +41,27 @@ import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import NewExam from './dialog/newExam'
+import parameterDetail from './dialog/parameter_detail'
+import ExamImport from './dialog/examImport'
 
 export default {
+  ifParameter: 'false',
   name: 'schoolInfo',
   components: {
     TopBar,
     SearchBar,
     OperateBar,
     Paging,
-    NewExam
+    NewExam,
+    parameterDetail,
+    ExamImport
   },
   data () {
     return {
       ifNewExam: false,
       // 全选
       ifAllSelect: false,
-      informationList: new Array(10).fill([
+      informationList: [
         {
           ifSelect: false,
           order: '1',
@@ -70,8 +78,42 @@ export default {
           exam_time: '30分钟',
           status: '未发布',
           handle: '发布'
+        },
+        {
+          ifSelect: false,
+          order: '1',
+          number: '003309',
+          name: '实操1',
+          weld_type: 'SMAW',
+          splice_type: '平板对接',
+          weld_location: '平焊',
+          base_type: '不锈钢',
+          base_interval: '3mm',
+          base_thickness: '3mm',
+          tolerance: '3%',
+          valid_time: '11:12:13',
+          exam_time: '30分钟',
+          status: '未发布',
+          handle: '截止'
+        },
+        {
+          ifSelect: false,
+          order: '1',
+          number: '003309',
+          name: '实操1',
+          weld_type: 'SMAW',
+          splice_type: '平板对接',
+          weld_location: '平焊',
+          base_type: '不锈钢',
+          base_interval: '3mm',
+          base_thickness: '3mm',
+          tolerance: '3%',
+          valid_time: '11:12:13',
+          exam_time: '30分钟',
+          status: '未发布',
+          handle: '各学院成绩详情'
         }
-      ])
+      ]
     }
   },
   methods: {
@@ -94,11 +136,9 @@ export default {
       console.log(this.multipleSelection)
     },
     newExam (e) {
-      console.log(e)
       this.ifNewExam = e
     },
     cancelNewExam (e) {
-      console.log(e)
       this.ifNewExam = e
     }
   }
@@ -109,5 +149,4 @@ export default {
 
 <style lang="stylus" scoped>
 @import "~assets/common.styl"
-
 </style>

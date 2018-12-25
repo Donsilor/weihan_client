@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :newSchool="true"></top-bar>
+    <top-bar :missionOrder="true" :newMission="true" :importBtn="true" :exportBtn="true" @newTask="newTask"></top-bar>
     <search-bar></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
@@ -27,6 +27,9 @@
       </el-table>
       <paging></paging>
     </div>
+
+    <NewTask :ifNewTask="ifNewTask" @cancelNewTask="cancelNewTask"></NewTask>
+
   </div>
 </template>
 
@@ -35,6 +38,7 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
+import NewTask from './dialog/NewTask'
 
 export default {
   name: 'schoolInfo',
@@ -42,10 +46,12 @@ export default {
     TopBar,
     SearchBar,
     OperateBar,
-    Paging
+    Paging,
+    NewTask
   },
   data () {
     return {
+      ifNewTask: false,
       // 全选
       ifAllSelect: false,
       informationList: [
@@ -118,6 +124,12 @@ export default {
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
+    },
+    newTask (e) {
+      this.ifNewTask = e
+    },
+    cancelNewTask (e) {
+      this.ifNewTask = e
     }
   }
 

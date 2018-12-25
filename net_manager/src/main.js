@@ -22,27 +22,27 @@ Vue.prototype.$api = api;
 Vue.prototype.$SystemParameter = SystemParameter;
 Vue.prototype.$window_heigh = document.body.clientHeight
 /////////////////////////////////////////////////////////////////////
-router.beforeEach((to, from, next) => {
-  if (to.meta.title) {
-    document.title = to.meta.title;
-  }
-  SystemParameter.CURRENTLY_SELECTED_PATH = to.path;
+// router.beforeEach((to, from, next) => {
+  // if (to.meta.title) {
+  //   document.title = to.meta.title;
+  // }
+  // SystemParameter.CURRENTLY_SELECTED_PATH = to.path;
 
-  if (to.meta.requireAuth){  // 判断该路由是否需要登录权限
-    if (User.IS_TOKEN_EFFECTIVE == 0) {  // 判断当前的token是否存在
-      next();
-    }
-    else {
-      next({
-        path: '/login',
-        query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
-      })
-    }
-  }
-  else {
-    next();
-  }
-});
+  // if (to.meta.requireAuth){  // 判断该路由是否需要登录权限
+  //   if (User.IS_TOKEN_EFFECTIVE == 0) {  // 判断当前的token是否存在
+  //     next();
+  //   }
+  //   else {
+  //     next({
+  //       path: '/login',
+  //       query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+  //     })
+  //   }
+  // }
+  // else {
+  //   next();
+  // }
+// });
 
 
 /* eslint-disable no-new */
