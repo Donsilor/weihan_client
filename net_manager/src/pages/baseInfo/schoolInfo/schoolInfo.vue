@@ -22,7 +22,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging 
+      <paging
       :loadDatas="loadSchools"
       :totalPage="schools.totalPage"
       :pageSize="schools.pageSize"
@@ -39,7 +39,7 @@ import Paging from "components/paging/Paging";
 import { User, RequestParams } from "common/entity";
 
 export default {
-  name: "schoolInfo",
+  name: 'SchoolInfo',
   components: {
     TopBar,
     SearchBar,
