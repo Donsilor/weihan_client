@@ -101,13 +101,13 @@ export default {
   },
   methods: {
     async loadTasks(pageIndex=1, pageSize=10) {
-      let response = await this.$api.service.practical.task.search(
+      let response = await this.$api.service.competition.group.select(
         new RequestParams()
           .addAttribute("pageIndex", pageIndex)
           .addAttribute("pageSize", pageSize)
           .addAttribute("query", {
             $and:[
-              {effectiveEndTime:{$lt:moment().format("YYYY-MM-DD HH:mm:ss")}}
+              {effectiveEndTime:{$gt:moment().format("YYYY-MM-DD HH:mm:ss")}}
             ]
           })
       );

@@ -114,9 +114,9 @@ export default {
           },
           select: {
             /**接口地址 */
-            url: '/service/competitionGroup/$taskId',
+            url: '/service/competitionGroup',
             /**接口方法 */
-            method: HTTP_REQUEST_METHOD.POSTURL,
+            method: HTTP_REQUEST_METHOD.POST,
             authorization: "token"
           },
         }

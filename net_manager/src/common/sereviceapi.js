@@ -236,13 +236,15 @@ export default (function createApis(apis) {
         }
 
         url = url.replace(/\$\w+/ig, function (key) {
-          let __key = key.substr(1);
-          let value = params[__key];
+          let __key = key.substr(1), value = null;
           if (params instanceof FormData) {
             value = params.get(__key)
             params.delete(__key)
           }
-          else delete params[__key];
+          else {
+            value = params[__key];
+            delete params[__key];
+          }
           return value;
         });
 
@@ -268,7 +270,7 @@ export default (function createApis(apis) {
               }
               default: return axios_method(url, requestBody, config);
             }
-          })(new RequestParams($.extend(true, param, params)).getJsonParams()).then(response => {
+          })(params instanceof FormData ? params : $.extend(true, param, params)).then(response => {
             ///因为到达这里的状态都是 ok ，再加上后端业务 Code 不做 ok 返回
             ///所以这里决定不做 code 的处理
             resolve(response.data);
