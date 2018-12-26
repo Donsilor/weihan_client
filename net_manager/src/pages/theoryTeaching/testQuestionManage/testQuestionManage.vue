@@ -22,7 +22,7 @@
         </el-table-column>
       </el-table>
       <paging
-        :loadDatas="laodTasks"
+        :loadDatas="loadQuestions"
         :totalPage="tasks.totalPage"
         :pageSize="tasks.pageSize"
         :pageIndex="tasks.pageIndex"

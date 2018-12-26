@@ -53,7 +53,7 @@ export default {
           /**接口地址 */
           url: '/service/practical/task/release/$id',
           /**接口方法 */
-          method: HTTP_REQUEST_METHOD.POST,
+          method: HTTP_REQUEST_METHOD.POSTURL,
           authorization: "token"
         },
       },
@@ -87,7 +87,7 @@ export default {
           /**接口地址 */
           url: '/service/practical/task/release/$id',
           /**接口方法 */
-          method: HTTP_REQUEST_METHOD.POST,
+          method: HTTP_REQUEST_METHOD.POSTURL,
           authorization: "token"
         },
       },
@@ -116,7 +116,7 @@ export default {
             /**接口地址 */
             url: '/service/competitionGroup/$taskId',
             /**接口方法 */
-            method: HTTP_REQUEST_METHOD.POST,
+            method: HTTP_REQUEST_METHOD.POSTURL,
             authorization: "token"
           },
         }
@@ -152,9 +152,9 @@ export default {
     teachTypes:{
       search:{
         /**接口地址 */
-        url: '/service/teachTypes',
+        url: '/service/teachTypes/get',
         /**接口方法 */
-        method: HTTP_REQUEST_METHOD.GET,
+        method: HTTP_REQUEST_METHOD.POST,
         authorization: "token"
       },
     },
@@ -188,12 +188,13 @@ export default {
         authorization: "token"
       },
     },
+    /**考试 */
     papers:{
       search:{
         /**接口地址 */
-        url: '/service/papers',
+        url: '/service/papers/get',
         /**接口方法 */
-        method: HTTP_REQUEST_METHOD.GET,
+        method: HTTP_REQUEST_METHOD.POST,
         authorization: "token"
       },
     }
@@ -205,7 +206,7 @@ export default {
       /**接口地址 */
       url: '/common/uiLabels/$type',
       /**接口方法 */
-      method: HTTP_REQUEST_METHOD.GET
+      method: HTTP_REQUEST_METHOD.GETURL
     }
   }
 }

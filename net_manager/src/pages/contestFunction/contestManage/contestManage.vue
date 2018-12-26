@@ -1,10 +1,10 @@
 <template>
   <div>
     <top-bar :newContest="true" :importBtn="true" :exportBtn="true" @importDialog="showImportPopup"></top-bar>
-    <search-bar></search-bar>
+    <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="contestList" style="width: 100%"
+      <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"
                 @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="竞赛编号" prop="number"></el-table-column>
@@ -23,7 +23,11 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging></paging>
+      <paging 
+      :loadDatas="laodTasks"
+      :totalPage="tasks.totalPage"
+      :pageSize="tasks.pageSize"
+      :pageIndex="tasks.pageIndex"></paging>
     </div>
     <import-dialog :ifShowImport="ifShowImport" @close="closeImport"></import-dialog>
     <delete-dialog :ifShowDelete="ifShowDelete" @cancelDelete="cancelDelete"></delete-dialog>
@@ -37,6 +41,7 @@ import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import ImportDialog from './dialog/importDialog'
 import deleteDialog from 'components/dialog/deleteDialog/deleteDialog'
+import { User, RequestParams } from "common/entity";
 
 export default {
   name: 'ContestManage',
@@ -50,22 +55,68 @@ export default {
   },
   data () {
     return {
-      contestList: new Array(5).fill({
-        number: 68010003309,
-        name: '作业竞赛1',
-        time: '20分钟',
-        weldsTypes: 'SMAW',
-        spliceType: '平板对接',
-        weldsPosition: '平焊',
-        parentMetal: '不锈钢',
-        thickness: '3mm',
-        tolerance: '3%'
-      }),
-      ifShowImport: false,
-      ifShowDelete: false
-    }
+      searchOption: {
+        queryTypes: {
+          asd1: {
+            title: null,
+            types: {
+              任务名称: 1,
+              焊接类型: 2,
+              接头类型: 3,
+              焊接位置: 4,
+              母材材料: 5,
+              母材间隙: 6,
+              母材厚度: 7,
+              公差: 8
+            },
+            selected: ""
+          }
+        },
+        queryKeys: {
+          asd1: {
+            title: null,
+            placeholder: "123415",
+            value: null
+          }
+        },
+        querySortType: {
+          selected: null,
+          types: {
+            名称倒序: "-name",
+            名称正序: "name"
+          }
+        },
+        times: []
+      },
+      tasks: {
+        pageIndex: 1,
+        pageSize: 10,
+        totalPage: 10,
+        datas: [],
+        search: {
+          queryKey: null,
+          queryType: null,
+          startTime: null,
+          endTime: null,
+          sortType: null,
+          id: null
+        }
+      }
+    };
+  },
+  mounted() {
+    this.laodTasks();
   },
   methods: {
+    async laodTasks(pageIndex = 1, pageSize = 10) {
+      let response = await this.$api.service.homeworks.search(
+        new RequestParams()
+          .addAttribute("pageSize", pageSize)
+          .addAttribute("pageIndex", pageIndex)
+      );
+      this.tasks.datas = response.homeworks;
+      this.tasks.totalPage = response.totalPage;
+    },
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
