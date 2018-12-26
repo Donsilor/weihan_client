@@ -27,10 +27,10 @@ export default {
       task: {
         search: {
           /**接口地址 */
-          url: '/service/practical/task',
+          url: '/service/practical/task/get',
           /**接口方法 */
-          method: HTTP_REQUEST_METHOD.GET,
-          authorization: "token"
+          method: HTTP_REQUEST_METHOD.POST,
+          authorization: "token",
         },
 
         upsert: {
@@ -158,10 +158,29 @@ export default {
         authorization: "token"
       },
     },
+    /*课程*/
+    coursewares:{
+      search:{
+        /**接口地址 */
+        url: '/service/coursewares',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.GET,
+        authorization: "token"
+      },
+    },
     questions:{
       search:{
         /**接口地址 */
         url: '/service/questions',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.GET,
+        authorization: "token"
+      },
+    },
+    homeworks:{
+      search:{
+        /**接口地址 */
+        url: '/service/homeworks',
         /**接口方法 */
         method: HTTP_REQUEST_METHOD.GET,
         authorization: "token"

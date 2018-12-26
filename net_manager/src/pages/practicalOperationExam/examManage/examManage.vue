@@ -1,11 +1,15 @@
 <template>
   <div>
     <top-bar :newExam="true" @newExam="newExam"></top-bar>
-    <search-bar></search-bar>
+    <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="informationList" style="width: 100%"
-                @selection-change="handleSelectionChange">
+      <el-table
+        ref="multipleTable"
+        :data="tasks.datas"
+        style="width: 100%"
+        @selection-change="handleSelectionChange"
+      >
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="考试顺序" prop="order" class="order"></el-table-column>
         <el-table-column label="考试编号" prop="number" class="number"></el-table-column>
@@ -26,21 +30,27 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging></paging>
+      <paging
+        :loadDatas="laodTasks"
+        :totalPage="tasks.totalPage"
+        :pageSize="tasks.pageSize"
+        :pageIndex="tasks.pageIndex"
+      ></paging>
     </div>
     <new-exam :ifNewExam="ifNewExam" @cancelNewExam="cancelNewExam"></new-exam>
   </div>
 </template>
 
 <script>
-import TopBar from 'components/mainTopBar/MainTopBar'
-import SearchBar from 'components/searchBar/SearchBar'
-import OperateBar from 'components/operateBar/OperateBar'
-import Paging from 'components/paging/Paging'
-import NewExam from './dialog/newExam'
+import TopBar from "components/mainTopBar/MainTopBar";
+import SearchBar from "components/searchBar/SearchBar";
+import OperateBar from "components/operateBar/OperateBar";
+import Paging from "components/paging/Paging";
+import NewExam from "./dialog/newExam";
+import { User, RequestParams } from "common/entity";
 
 export default {
-  name: 'schoolInfo',
+  name: "schoolInfo",
   components: {
     TopBar,
     SearchBar,
@@ -48,66 +58,107 @@ export default {
     Paging,
     NewExam
   },
-  data () {
+  data() {
     return {
       ifNewExam: false,
       // 全选
       ifAllSelect: false,
-      informationList: new Array(10).fill([
-        {
-          ifSelect: false,
-          order: '1',
-          number: '003309',
-          name: '实操1',
-          weld_type: 'SMAW',
-          splice_type: '平板对接',
-          weld_location: '平焊',
-          base_type: '不锈钢',
-          base_interval: '3mm',
-          base_thickness: '3mm',
-          tolerance: '3%',
-          valid_time: '11:12:13',
-          exam_time: '30分钟',
-          status: '未发布',
-          handle: '发布'
+      searchOption: {
+        queryTypes: {
+          asd1: {
+            title: null,
+            types: {
+              任务名称: 1,
+              焊接类型: 2,
+              接头类型: 3,
+              焊接位置: 4,
+              母材材料: 5,
+              母材间隙: 6,
+              母材厚度: 7,
+              公差: 8
+            },
+            selected: ""
+          }
+        },
+        queryKeys: {
+          asd1: {
+            title: null,
+            placeholder: "123415",
+            value: null
+          }
+        },
+        querySortType: {
+          selected: null,
+          types: {
+            名称倒序: "-name",
+            名称正序: "name"
+          }
+        },
+        times: []
+      },
+      tasks: {
+        pageIndex: 1,
+        pageSize: 10,
+        totalPage: 10,
+        datas: [],
+        search: {
+          queryKey: null,
+          queryType: null,
+          startTime: null,
+          endTime: null,
+          sortType: null,
+          id: null
         }
-      ])
-    }
+      }
+    };
+  },
+  mounted() {
+    this.laodTasks();
   },
   methods: {
-    select (rows) {
+    async laodTasks(pageIndex = 1, pageSize = 10) {
+      let response = await this.$api.service.practical.task.search(
+        new RequestParams()
+          .addAttribute("pageSize", pageSize)
+          .addAttribute("pageIndex", pageIndex)
+      );
+      this.tasks.datas = response.dataItems;
+      this.tasks.totalPage = response.totalPage;
+    },
+    select(rows) {
       if (rows) {
         rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row)
-        })
+          this.$refs.multipleTable.toggleRowSelection(row);
+        });
       } else {
-        this.$refs.multipleTable.clearSelection()
+        this.$refs.multipleTable.clearSelection();
       }
-      this.ifAllSelect = !this.ifAllSelect
+      this.ifAllSelect = !this.ifAllSelect;
       // this.informationList.map(o => this.ifAllSelect === true ? o.ifSelect = true : o.ifSelect = false)
     },
-    formatServeUrl (row) {
-      return <a href={row.url} target="_blank">{row.url}</a>
+    formatServeUrl(row) {
+      return (
+        <a href={row.url} target="_blank">
+          {row.url}
+        </a>
+      );
     },
-    handleSelectionChange (val) {
-      this.multipleSelection = val
-      console.log(this.multipleSelection)
+    handleSelectionChange(val) {
+      this.multipleSelection = val;
+      console.log(this.multipleSelection);
     },
-    newExam (e) {
-      console.log(e)
-      this.ifNewExam = e
+    newExam(e) {
+      console.log(e);
+      this.ifNewExam = e;
     },
-    cancelNewExam (e) {
-      console.log(e)
-      this.ifNewExam = e
+    cancelNewExam(e) {
+      console.log(e);
+      this.ifNewExam = e;
     }
   }
-
-}
-
+};
 </script>
 
 <style lang="stylus" scoped>
-@import "~assets/common.styl"
-
+@import '~assets/common.styl';
 </style>

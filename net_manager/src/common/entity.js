@@ -26,7 +26,7 @@ export const RequestParams = class RequestParams {
 
   addAttribute(name, value) {
     if (!!value || typeof value == "number") {
-      this[String(name).trim()] = String(value).trim();
+      this[String(name).trim()] = value;
     }
     else delete this[String(name).trim()];
     return this;

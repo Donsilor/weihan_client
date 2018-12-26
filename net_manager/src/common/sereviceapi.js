@@ -228,7 +228,7 @@ export default (function createApis(apis) {
               location.href = "/"
             }
           })
-          else config = $.extend(config, {
+          else config = $.extend(true, config, {
             headers: {
               [api.authorization]: User.token.access_token
             }
@@ -268,7 +268,7 @@ export default (function createApis(apis) {
               }
               default: return axios_method(url, requestBody, config);
             }
-          })(new RequestParams($.extend(param, params)).getJsonParams()).then(response => {
+          })(new RequestParams($.extend(true, param, params)).getJsonParams()).then(response => {
             ///因为到达这里的状态都是 ok ，再加上后端业务 Code 不做 ok 返回
             ///所以这里决定不做 code 的处理
             resolve(response.data);

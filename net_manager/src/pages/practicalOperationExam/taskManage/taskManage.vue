@@ -1,7 +1,7 @@
 <template>
   <div>
     <top-bar :newSchool="true"></top-bar>
-    <search-bar></search-bar>
+    <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
       <el-table
@@ -29,7 +29,11 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging></paging>
+      <paging
+      :loadDatas="laodTasks"
+      :totalPage="tasks.totalPage"
+      :pageSize="tasks.pageSize"
+      :pageIndex="tasks.pageIndex"></paging>
     </div>
   </div>
 </template>
@@ -53,6 +57,39 @@ export default {
     return {
       // 全选
       ifAllSelect: false,
+      searchOption:{
+          queryTypes: {
+            asd1: {
+              title: null,
+              types: {
+                任务名称: 1,
+                焊接类型: 2,
+                接头类型: 3,
+                焊接位置: 4,
+                母材材料: 5,
+                母材间隙: 6,
+                母材厚度: 7,
+                公差: 8,
+              },
+              selected: ''
+            },
+          },
+          queryKeys: {
+            asd1: {
+              title: null,
+              placeholder: '123415',
+              value: null
+            },
+          },
+          querySortType: {
+            selected: null,
+            types: {
+              名称倒序: '-name',
+              名称正序: 'name'
+            }
+          },
+          times: [],
+        },
       tasks: {
         pageIndex: 1,
         pageSize: 10,
@@ -80,6 +117,7 @@ export default {
           .addAttribute("pageIndex", pageIndex)
       );
       this.tasks.datas = response.dataItems;
+      this.tasks.totalPage = response.totalPage
     },
     select(rows) {
       if (rows) {
