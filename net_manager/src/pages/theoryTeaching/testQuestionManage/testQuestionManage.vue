@@ -43,10 +43,13 @@ export default {
   },
   data () {
     return {
+      questions:{
+        datas:[]
+      }
     }
   },
   mounted(){
-    this.loadQuestions();
+    // this.loadQuestions();
   },
   methods: {
     async loadQuestions(pageIndex=1, pageSize=10) {

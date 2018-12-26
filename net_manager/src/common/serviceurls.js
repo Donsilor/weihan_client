@@ -136,9 +136,9 @@ export default {
     schools:{
       search:{
         /**接口地址 */
-        url: '/service/schools',
+        url: '/service/schools/get',
         /**接口方法 */
-        method: HTTP_REQUEST_METHOD.GET,
+        method: HTTP_REQUEST_METHOD.POST,
         authorization: "token"
       },
       insert:{

@@ -28,7 +28,6 @@
 
 <script>
 import { User, RequestParams } from '../../common/entity'
-
 export default {
   data () {
     return {
