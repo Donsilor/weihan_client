@@ -4,7 +4,7 @@
     <search-bar></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="historyContestList" style="width: 100%"
+      <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"
                 @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="竞赛组编号" prop="groupNumber"></el-table-column>
@@ -24,7 +24,11 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging></paging>
+      <paging 
+      :loadDatas="laodTasks"
+      :totalPage="tasks.totalPage"
+      :pageSize="tasks.pageSize"
+      :pageIndex="tasks.pageIndex"></paging>
     </div>
   </div>
 </template>

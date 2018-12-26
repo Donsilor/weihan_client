@@ -3,7 +3,7 @@
     <top-bar :newContest="true" :importBtn="true" :exportBtn="true"></top-bar>
     <operate-bar :projectionScreen="true" :stopBtn="true"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="CurrentContestList" style="width: 100%"
+      <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"
                 @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="竞赛组编号" prop="groupNumber"></el-table-column>
@@ -21,7 +21,11 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging></paging>
+      <paging 
+      :loadDatas="laodTasks"
+      :totalPage="tasks.totalPage"
+      :pageSize="tasks.pageSize"
+      :pageIndex="tasks.pageIndex"></paging>
     </div>
   </div>
 </template>
@@ -40,44 +44,73 @@ export default {
   },
   data () {
     return {
-      CurrentContestList: [
-        {
-          groupNumber: 2018121401,
-          number: 68010003309,
-          name: '作业竞赛1',
-          contestType: '一对一',
-          groupA: '杨科',
-          groupB: '陈晓东',
-          createWay: '教师指定',
-          time: '20分钟',
-          startTime: '2018/12/06 11:00'
+      searchOption: {
+        queryTypes: {
+          asd1: {
+            title: null,
+            types: {
+              任务名称: 1,
+              焊接类型: 2,
+              接头类型: 3,
+              焊接位置: 4,
+              母材材料: 5,
+              母材间隙: 6,
+              母材厚度: 7,
+              公差: 8
+            },
+            selected: ""
+          }
         },
-        {
-          groupNumber: 2018121401,
-          number: 68010003309,
-          name: '作业竞赛1',
-          contestType: '一对一',
-          groupA: '杨科',
-          groupB: '陈晓东',
-          createWay: '教师指定',
-          time: '20分钟',
-          startTime: '2018/12/06 11:00'
+        queryKeys: {
+          asd1: {
+            title: null,
+            placeholder: "123415",
+            value: null
+          }
         },
-        {
-          groupNumber: 2018121401,
-          number: 68010003309,
-          name: '作业竞赛1',
-          contestType: '一对一',
-          groupA: '杨科',
-          groupB: '陈晓东',
-          createWay: '教师指定',
-          time: '20分钟',
-          startTime: '2018/12/06 11:00'
+        querySortType: {
+          selected: null,
+          types: {
+            名称倒序: "-name",
+            名称正序: "name"
+          }
+        },
+        times: []
+      },
+      tasks: {
+        pageIndex: 1,
+        pageSize: 10,
+        totalPage: 10,
+        datas: [],
+        search: {
+          queryKey: null,
+          queryType: null,
+          startTime: null,
+          endTime: null,
+          sortType: null,
+          id: null
         }
-      ]
+      }
     }
   },
+  mounted(){
+    this.loadTasks();
+  },
   methods: {
+    async loadTasks(pageIndex=1, pageSize=10) {
+      let response = await this.$api.service.competition.group.select(
+        new RequestParams()
+          .addAttribute("pageIndex", pageIndex)
+          .addAttribute("pageSize", pageSize)
+          .addAttribute("query", {
+            $and:[
+              {effectiveEndTime:{$lt:moment().format("YYYY-MM-DD HH:mm:ss")}}
+            ]
+          })
+      );
+      this.tasks.totalPage = response.totalPage;
+      this.tasks.datas = response.dataItems;
+    },
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
