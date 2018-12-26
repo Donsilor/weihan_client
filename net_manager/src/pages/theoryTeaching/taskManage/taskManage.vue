@@ -11,12 +11,12 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" width="50"></el-table-column>
-        <el-table-column label="作业编号" prop="number"></el-table-column>
+        <el-table-column label="作业编号" prop="code"></el-table-column>
         <el-table-column label="作业名称" prop="name"></el-table-column>
-        <el-table-column label="创建者" prop="creator"></el-table-column>
-        <el-table-column label="最后创建者" prop="lastCreator"></el-table-column>
-        <el-table-column label="总题库" prop="total"></el-table-column>
-        <el-table-column label="有效时间段" prop="effectivePeriod"></el-table-column>
+        <el-table-column label="创建者" prop="creatorName"></el-table-column>
+        <el-table-column label="最后创建者" prop="updatorName"></el-table-column>
+        <el-table-column label="总题数" prop="questionCount"></el-table-column>
+        <el-table-column label="有效时间段" prop="effectivePeriod"  :formatter="o=>`${o.startDate}~${o.endDate}`"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <i class="iconfont">&#xe61b;</i>

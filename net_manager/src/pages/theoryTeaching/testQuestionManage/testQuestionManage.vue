@@ -6,14 +6,14 @@
     <div class="tableWrap">
       <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
-        <el-table-column label="试卷编号" prop="number"></el-table-column>
+        <el-table-column label="试卷编号" prop="code"></el-table-column>
         <el-table-column label="试卷名称" prop="name"></el-table-column>
-        <el-table-column label="创建者" prop="creator"></el-table-column>
-        <el-table-column label="最后修改者" prop="lastMender"></el-table-column>
-        <el-table-column label="总题数" prop="total"></el-table-column>
-        <el-table-column label="有效时间段" prop="effectivePeriod"></el-table-column>
-        <el-table-column label="考试时长" prop="duration"></el-table-column>
-        <el-table-column label="总分" prop="totalScore"></el-table-column>
+        <el-table-column label="创建者" prop="creatorName"></el-table-column>
+        <el-table-column label="最后修改者" prop="updatorName"></el-table-column>
+        <el-table-column label="总题数" prop="questionsCount"></el-table-column>
+        <el-table-column label="有效时间段" prop="effectivePeriod"  :formatter="o=>`${o.startDate}~${o.endDate}`"></el-table-column>
+        <el-table-column label="考试时长" prop="examTime"></el-table-column>
+        <el-table-column label="总分" prop="totalPoints"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <i class="iconfont">&#xe617;</i>
@@ -101,6 +101,9 @@ export default {
     this.loadQuestions();
   },
   methods: {
+    log(a, b){
+      console.log(a, b)
+    },
     async loadQuestions(pageIndex=1, pageSize=10) {
       let response = await this.$api.service.papers.search(
         new RequestParams()
@@ -109,7 +112,7 @@ export default {
       );
       this.tasks.pageSize = response.pageSize;
       this.tasks.totalPage = response.totalPage;
-      this.tasks.datas = response.papers;
+      this.tasks.datas = response.dataItems;
     },
     handleSelectionChange (val) {
       this.multipleSelection = val

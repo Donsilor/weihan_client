@@ -11,14 +11,14 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" width="50"></el-table-column>
-        <el-table-column label="课程编号" prop="number"></el-table-column>
-        <el-table-column label="视频名称" prop="videoName"></el-table-column>
-        <el-table-column label="创建者" prop="creator"></el-table-column>
-        <el-table-column label="课程名称" prop="courseName"></el-table-column>
+        <el-table-column label="课程编号" prop="code"></el-table-column>
+        <el-table-column label="课件名称" prop="storageName"></el-table-column>
+        <el-table-column label="创建者" prop="creatorName"></el-table-column>
+        <el-table-column label="课程名称" prop="name"></el-table-column>
         <el-table-column label="课程类型" prop="courseType"></el-table-column>
         <el-table-column label="大纲类型" prop="outlineType"></el-table-column>
         <el-table-column label="3级分类" prop="classify"></el-table-column>
-        <el-table-column label="文件大小 /M" prop="fileSize"></el-table-column>
+        <el-table-column label="文件大小 /M" prop="size"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <i class="iconfont">&#xe617;</i>

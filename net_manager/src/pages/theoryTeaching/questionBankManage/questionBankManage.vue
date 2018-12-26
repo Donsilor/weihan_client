@@ -6,11 +6,11 @@
     <div class="tableWrap">
       <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"  @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
-        <el-table-column label="题库编号" prop="number"></el-table-column>
+        <el-table-column label="题库编号" prop="code"></el-table-column>
         <el-table-column label="题库名称" prop="name"></el-table-column>
-        <el-table-column label="创建者" prop="creator"></el-table-column>
-        <el-table-column label="最后创建者" prop="lastCreator"></el-table-column>
-        <el-table-column label="总题库" prop="total"></el-table-column>
+        <el-table-column label="创建者" prop="creatorName"></el-table-column>
+        <el-table-column label="最后创建者" prop="updatorName"></el-table-column>
+        <el-table-column label="总题数" prop="questionCount"></el-table-column>
         <el-table-column label="题库类型" prop="questionBankType"></el-table-column>
         <el-table-column label="状态" prop="state"></el-table-column>
         <el-table-column label="操作" width="200">
