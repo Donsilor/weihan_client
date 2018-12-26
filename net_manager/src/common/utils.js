@@ -21,6 +21,7 @@ export const array2Object = function (arr = [], key = "id", type=1) {
  * @param {*} type 返回类型 1 数组 0 以ID为Key的对象
  */
 export const array2Descendants = function (arr = [], idKey = "id", pidKey = "pid", type = 1) {
+  if(!arr) return type ? [] : {}
   let objs = {}, objarr = [];
   for (let item of arr) {
     let id = item[idKey], pid = item[pidKey];

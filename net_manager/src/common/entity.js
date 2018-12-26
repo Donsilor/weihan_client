@@ -26,7 +26,7 @@ export const RequestParams = class RequestParams {
 
   addAttribute(name, value) {
     if (!!value || typeof value == "number") {
-      this[String(name).trim()] = String(value).trim();
+      this[String(name).trim()] = value;
     }
     else delete this[String(name).trim()];
     return this;
@@ -56,15 +56,15 @@ export const ResponseBody = class ResponseBody {
 export const SystemParameter = new class SystemParameter {
 
   constructor(){
-    this.__currently_path = localStorage.getItem(CURRENTLY_SELECTED_MENU_KEY) || "/"
+    this.__currently_index = JSON.parse(localStorage.getItem(CURRENTLY_SELECTED_MENU_KEY) || "[1,0,'/']")
   }
 
-  get CURRENTLY_SELECTED_PATH(){
-    return this.__currently_path;
+  get CURRENTLY_SELECTED_INDEX(){
+    return this.__currently_index;
   }
 
-  set CURRENTLY_SELECTED_PATH(v) {
-    localStorage.setItem(CURRENTLY_SELECTED_MENU_KEY, this.__currently_path = v);
+  set CURRENTLY_SELECTED_INDEX(v) {
+    localStorage.setItem(CURRENTLY_SELECTED_MENU_KEY, JSON.stringify(this.__currently_index = v));
   }
 }
 
@@ -72,7 +72,7 @@ export const SystemParameter = new class SystemParameter {
 export const User = new class User {
 
   constructor() {
-    this.__info = $.extend({
+    this.__info = $.extend(true, {
       birthDate: "1990.1.1",
       createAt: "2018-12-16 18:06:27",
       email: "798445721@qq.com",
@@ -87,7 +87,7 @@ export const User = new class User {
       userName: "superadmin",
       userType: 1,
     }, JSON.parse(localStorage.getItem(LOCATION_USER_KEY) || "{}"));
-    this.__token = $.extend({
+    this.__token = $.extend(true, {
       /**有效期目标时间 */
       expires_in:null,
       /**token 字符串 */

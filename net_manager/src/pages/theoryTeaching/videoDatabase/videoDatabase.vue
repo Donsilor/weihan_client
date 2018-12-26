@@ -1,11 +1,15 @@
 <template>
   <div>
     <top-bar :manageVideoClassify="true" :uploadFile="true" :exportBtn="true"></top-bar>
-    <search-bar :videoDatabaseModule="true"></search-bar>
+    <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="videoList" style="width: 100%"
-                @selection-change="handleSelectionChange">
+      <el-table
+        ref="multipleTable"
+        :data="tasks.list"
+        style="width: 100%"
+        @selection-change="handleSelectionChange"
+      >
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="视频编号" prop="number"></el-table-column>
         <el-table-column label="视频名称" prop="videoName"></el-table-column>
@@ -21,61 +25,108 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging></paging>
+      <paging
+        :loadDatas="laodTasks"
+        :totalPage="tasks.totalPage"
+        :pageSize="tasks.pageSize"
+        :pageIndex="tasks.pageIndex"
+      ></paging>
     </div>
   </div>
 </template>
 
 <script>
-import TopBar from 'components/mainTopBar/MainTopBar'
-import SearchBar from 'components/searchBar/SearchBar'
-import OperateBar from 'components/operateBar/OperateBar'
-import Paging from 'components/paging/Paging'
+import TopBar from "components/mainTopBar/MainTopBar";
+import SearchBar from "components/searchBar/SearchBar";
+import OperateBar from "components/operateBar/OperateBar";
+import Paging from "components/paging/Paging";
+import { User, RequestParams } from "common/entity";
+import { array2Descendants } from "common/utils";
 
 export default {
-  name: 'VideoDatabase',
+  name: "VideoDatabase",
   components: {
     TopBar,
     SearchBar,
     OperateBar,
     Paging
   },
-  data () {
+  data() {
     return {
-      videoList: [
-        {
-          number: 2018121401,
-          videoName: '作业一',
-          creator: '李三',
-          courseName: '焊接方法与设备',
-          courseType: '机器人',
-          outlineType: '核心专业课',
-          classify: '',
-          fileSize: 300
+      searchOption: {
+        queryTypes: {
+          asd1: {
+            title: null,
+            types: {
+              任务名称: 1,
+              焊接类型: 2,
+              接头类型: 3,
+              焊接位置: 4,
+              母材材料: 5,
+              母材间隙: 6,
+              母材厚度: 7,
+              公差: 8
+            },
+            selected: ""
+          }
         },
-        {
-          number: 2018121401,
-          videoName: '作业一',
-          creator: '李三',
-          courseName: '',
-          courseType: '焊接',
-          outlineType: '专业基础课',
-          classify: '',
-          fileSize: 300
+        queryKeys: {
+          asd1: {
+            title: null,
+            placeholder: "123415",
+            value: null
+          }
+        },
+        querySortType: {
+          selected: null,
+          types: {
+            名称倒序: "-name",
+            名称正序: "name"
+          }
+        },
+        times: []
+      },
+      tasks: {
+        pageIndex: 1,
+        pageSize: 10,
+        totalPage: 10,
+        datas: [],
+        list: [],
+        search: {
+          queryKey: null,
+          queryType: null,
+          startTime: null,
+          endTime: null,
+          sortType: null,
+          id: null
         }
-      ]
-    }
+      }
+    };
+  },
+  mounted() {
+    this.laodTasks();
   },
   methods: {
-    handleSelectionChange (val) {
-      this.multipleSelection = val
-      console.log(this.multipleSelection)
+    async laodTasks(pageIndex = 1, pageSize = 10) {
+      let response = await this.$api.service.coursewares.search(
+        new RequestParams()
+          .addAttribute("pageSize", pageSize)
+          .addAttribute("pageIndex", pageIndex)
+          .addAttribute("query", {
+            $and: [{ storageId: { $regex: ".mp4", $options: "$ig" } }]
+          })
+      );
+      this.tasks.datas = array2Descendants(response.dataItems);
+      this.tasks.list = response.dataItems;
+      this.tasks.totalPage = response.totalPage;
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val;
+      console.log(this.multipleSelection);
     }
   }
-}
-
+};
 </script>
 
 <style lang="stylus" scoped>
-
 </style>

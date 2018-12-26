@@ -2,15 +2,17 @@
   <div class="sidebar">
     <ul class="stair">
       <li v-for="(item,index) in menu" :key="index">
-        <router-link tag="div" v-if="item.url" @click="switchTab(index)" :class="{blue:changeBlue === index}" :to="item.url">
-          <i class="icon iconfont" :class="item.bgclass"></i>{{item.index}}{{item.name}}
-        </router-link>
+        <div v-if="item.url" @click="switchTab(index,item)" >
+          <router-link tag="div" :class="{blue:changeBlue === index}" :to="item.url">
+            <i class="icon iconfont" :class="item.bgclass"></i>{{item.index}}{{item.name}}
+          </router-link>
+        </div>
         <div v-else @click="switchTab(index)" :class="{blue:changeBlue === index}">
           <i class="icon iconfont" :class="item.bgclass"></i>{{item.index}}{{item.name}}
         </div>
         <ul class="second_level" v-show="item.sidebarShow">
           <li v-for="(ite,idx) in item.children" :key="idx" :class="{active:changeBackground === idx}"
-              @click="backColor(idx)">
+              @click="backColor(idx,ite)">
             <router-link :to="ite.url">
               <span class="circle"></span>
               {{ite.name}}
@@ -24,6 +26,7 @@
 
 <script>
 
+import {User, SystemParameter} from "common/entity"
 export default {
   name: 'CommonSidebar',
   data () {
@@ -205,8 +208,7 @@ export default {
         this.changeBlue = index
       },
     */
-    switchTab (index) {
-      console.log(index)
+    switchTab (index,data) {
       let show = false
       this.menu.map(i => {
         if (i[index] !== index) {
@@ -215,21 +217,28 @@ export default {
       })
       this.menu[index].sidebarShow = true
       show === true ? this.menu[index].sidebarShow = false : this.menu[index].sidebarShow = true
-      this.changeBackground = -1
       this.changeBlue = index
+      SystemParameter.CURRENTLY_SELECTED_INDEX[0] = index
+        if(data){
+          SystemParameter.CURRENTLY_SELECTED_INDEX[2] = data.url
+        }
+        SystemParameter.CURRENTLY_SELECTED_INDEX = SystemParameter.CURRENTLY_SELECTED_INDEX
     },
     defaultShow () {
-      this.changeBackground = 0
-      this.changeBlue = 1
-      this.menu[1].sidebarShow = true
+      this.changeBlue = +SystemParameter.CURRENTLY_SELECTED_INDEX[0]
+      this.changeBackground = +SystemParameter.CURRENTLY_SELECTED_INDEX[1]
+      this.menu[+SystemParameter.CURRENTLY_SELECTED_INDEX[0]].sidebarShow = true
+      this.$router.push(SystemParameter.CURRENTLY_SELECTED_INDEX[2])
     },
-    backColor (idx) {
-      this.changeBackground = idx
+    backColor (idx,data) {
+      SystemParameter.CURRENTLY_SELECTED_INDEX[1] = this.changeBackground = idx
+      SystemParameter.CURRENTLY_SELECTED_INDEX[2] = data.url
+      SystemParameter.CURRENTLY_SELECTED_INDEX = SystemParameter.CURRENTLY_SELECTED_INDEX
     }
   },
 
   mounted () {
-    this.defaultShow()
+    this.defaultShow();
   }
 
 }

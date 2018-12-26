@@ -27,10 +27,10 @@ export default {
       task: {
         search: {
           /**接口地址 */
-          url: '/service/practical/task',
+          url: '/service/practical/task/get',
           /**接口方法 */
-          method: HTTP_REQUEST_METHOD.GET,
-          authorization: "token"
+          method: HTTP_REQUEST_METHOD.POST,
+          authorization: "token",
         },
 
         upsert: {
@@ -53,7 +53,7 @@ export default {
           /**接口地址 */
           url: '/service/practical/task/release/$id',
           /**接口方法 */
-          method: HTTP_REQUEST_METHOD.POST,
+          method: HTTP_REQUEST_METHOD.POSTURL,
           authorization: "token"
         },
       },
@@ -87,7 +87,7 @@ export default {
           /**接口地址 */
           url: '/service/practical/task/release/$id',
           /**接口方法 */
-          method: HTTP_REQUEST_METHOD.POST,
+          method: HTTP_REQUEST_METHOD.POSTURL,
           authorization: "token"
         },
       },
@@ -116,7 +116,7 @@ export default {
             /**接口地址 */
             url: '/service/competitionGroup/$taskId',
             /**接口方法 */
-            method: HTTP_REQUEST_METHOD.POST,
+            method: HTTP_REQUEST_METHOD.POSTURL,
             authorization: "token"
           },
         }
@@ -136,9 +136,9 @@ export default {
     schools:{
       search:{
         /**接口地址 */
-        url: '/service/schools',
+        url: '/service/schools/get',
         /**接口方法 */
-        method: HTTP_REQUEST_METHOD.GET,
+        method: HTTP_REQUEST_METHOD.POST,
         authorization: "token"
       },
       insert:{
@@ -152,18 +152,49 @@ export default {
     teachTypes:{
       search:{
         /**接口地址 */
-        url: '/service/teachTypes',
+        url: '/service/teachTypes/get',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.POST,
+        authorization: "token"
+      },
+    },
+    /*课程*/
+    coursewares:{
+      search:{
+        /**接口地址 */
+        url: '/service/coursewares/get',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.POST,
+        authorization: "token"
+      },
+    },
+    /**题库 */
+    questions:{
+      search:{
+        /**接口地址 */
+        url: '/service/questions/get',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.POST,
+        authorization: "token"
+      },
+    },
+    /**作业 */
+    homeworks:{
+      search:{
+        /**接口地址 */
+        url: '/service/homeworks',
         /**接口方法 */
         method: HTTP_REQUEST_METHOD.GET,
         authorization: "token"
       },
     },
-    questions:{
+    /**考试 */
+    papers:{
       search:{
         /**接口地址 */
-        url: '/service/questions',
+        url: '/service/papers/get',
         /**接口方法 */
-        method: HTTP_REQUEST_METHOD.GET,
+        method: HTTP_REQUEST_METHOD.POST,
         authorization: "token"
       },
     }
@@ -175,7 +206,7 @@ export default {
       /**接口地址 */
       url: '/common/uiLabels/$type',
       /**接口方法 */
-      method: HTTP_REQUEST_METHOD.GET
+      method: HTTP_REQUEST_METHOD.GETURL
     }
   }
 }

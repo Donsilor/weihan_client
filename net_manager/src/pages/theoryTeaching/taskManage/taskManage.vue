@@ -1,11 +1,15 @@
 <template>
   <div>
     <top-bar :newTask="true" :importBtn="true" :exportBtn="true"></top-bar>
-    <search-bar :timeQuantumSearchModule="true"></search-bar>
+    <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="questionBankList" style="width: 100%"
-                @selection-change="handleSelectionChange">
+      <el-table
+        ref="multipleTable"
+        :data="tasks.datas"
+        style="width: 100%"
+        @selection-change="handleSelectionChange"
+      >
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="作业编号" prop="number"></el-table-column>
         <el-table-column label="作业名称" prop="name"></el-table-column>
@@ -20,57 +24,102 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging></paging>
+      <paging
+        :loadDatas="laodTasks"
+        :totalPage="tasks.totalPage"
+        :pageSize="tasks.pageSize"
+        :pageIndex="tasks.pageIndex"
+      ></paging>
     </div>
   </div>
 </template>
 
 <script>
-import TopBar from 'components/mainTopBar/MainTopBar'
-import SearchBar from 'components/searchBar/SearchBar'
-import OperateBar from 'components/operateBar/OperateBar'
-import Paging from 'components/paging/Paging'
+import TopBar from "components/mainTopBar/MainTopBar";
+import SearchBar from "components/searchBar/SearchBar";
+import OperateBar from "components/operateBar/OperateBar";
+import Paging from "components/paging/Paging";
+import { User, RequestParams } from "common/entity";
 
 export default {
-  name: 'TaskManage',
+  name: "TaskManage",
   components: {
     TopBar,
     SearchBar,
     OperateBar,
     Paging
   },
-  data () {
+  data() {
     return {
-      questionBankList: [
-        {
-          number: 2018121401,
-          name: '作业一',
-          creator: '李三',
-          lastCreator: '陈大',
-          total: 5,
-          effectivePeriod: '2018/11/11-2018/11/21'
+      searchOption: {
+        queryTypes: {
+          asd1: {
+            title: null,
+            types: {
+              任务名称: 1,
+              焊接类型: 2,
+              接头类型: 3,
+              焊接位置: 4,
+              母材材料: 5,
+              母材间隙: 6,
+              母材厚度: 7,
+              公差: 8
+            },
+            selected: ""
+          }
         },
-        {
-          number: 2018121401,
-          name: '作业一',
-          creator: '李三',
-          lastCreator: '陈大',
-          total: 5,
-          effectivePeriod: '2018/11/11-2018/11/21'
+        queryKeys: {
+          asd1: {
+            title: null,
+            placeholder: "123415",
+            value: null
+          }
+        },
+        querySortType: {
+          selected: null,
+          types: {
+            名称倒序: "-name",
+            名称正序: "name"
+          }
+        },
+        times: []
+      },
+      tasks: {
+        pageIndex: 1,
+        pageSize: 10,
+        totalPage: 10,
+        datas: [],
+        search: {
+          queryKey: null,
+          queryType: null,
+          startTime: null,
+          endTime: null,
+          sortType: null,
+          id: null
         }
-      ]
-    }
+      }
+    };
+  },
+  mounted() {
+    this.laodTasks();
   },
   methods: {
-    handleSelectionChange (val) {
-      this.multipleSelection = val
-      console.log(this.multipleSelection)
+    async laodTasks(pageIndex = 1, pageSize = 10) {
+      let response = await this.$api.service.homeworks.search(
+        new RequestParams()
+          .addAttribute("pageSize", pageSize)
+          .addAttribute("pageIndex", pageIndex)
+      );
+      this.tasks.datas = response.homeworks;
+      this.tasks.totalPage = response.totalPage;
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val;
+      console.log(this.multipleSelection);
     }
   }
-}
-
+};
 </script>
 
 <style lang="stylus" scoped>
-
 </style>

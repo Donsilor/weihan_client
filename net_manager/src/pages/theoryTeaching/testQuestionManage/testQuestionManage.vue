@@ -1,10 +1,10 @@
 <template>
   <div>
     <top-bar :newExamPapers="true" :importBtn="true" :exportBtn="true"></top-bar>
-    <search-bar :timeQuantumSearchModule="true"></search-bar>
+    <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="questions.datas" style="width: 100%" @selection-change="handleSelectionChange">
+      <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="试卷编号" prop="number"></el-table-column>
         <el-table-column label="试卷名称" prop="name"></el-table-column>
@@ -21,7 +21,12 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging></paging>
+      <paging
+        :loadDatas="laodTasks"
+        :totalPage="tasks.totalPage"
+        :pageSize="tasks.pageSize"
+        :pageIndex="tasks.pageIndex"
+      ></paging>
     </div>
   </div>
 </template>
@@ -43,8 +48,52 @@ export default {
   },
   data () {
     return {
-      questions: {
-        datas: []
+      searchOption: {
+        queryTypes: {
+          asd1: {
+            title: null,
+            types: {
+              任务名称: 1,
+              焊接类型: 2,
+              接头类型: 3,
+              焊接位置: 4,
+              母材材料: 5,
+              母材间隙: 6,
+              母材厚度: 7,
+              公差: 8
+            },
+            selected: ""
+          }
+        },
+        queryKeys: {
+          asd1: {
+            title: null,
+            placeholder: "123415",
+            value: null
+          }
+        },
+        querySortType: {
+          selected: null,
+          types: {
+            名称倒序: "-name",
+            名称正序: "name"
+          }
+        },
+        times: []
+      },
+      tasks: {
+        pageIndex: 1,
+        pageSize: 10,
+        totalPage: 10,
+        datas: [],
+        search: {
+          queryKey: null,
+          queryType: null,
+          startTime: null,
+          endTime: null,
+          sortType: null,
+          id: null
+        }
       }
     }
   },
@@ -53,14 +102,14 @@ export default {
   },
   methods: {
     async loadQuestions(pageIndex=1, pageSize=10) {
-      let response = await this.$api.service.questions.search(
+      let response = await this.$api.service.papers.search(
         new RequestParams()
           .addAttribute("pageIndex", pageIndex)
           .addAttribute("pageSize", pageSize)
       );
-      this.questions.pageSize = response.pageSize;
-      this.questions.totalPage = response.totalPage;
-      this.questions.datas = response.dataItems;
+      this.tasks.pageSize = response.pageSize;
+      this.tasks.totalPage = response.totalPage;
+      this.tasks.datas = response.papers;
     },
     handleSelectionChange (val) {
       this.multipleSelection = val
