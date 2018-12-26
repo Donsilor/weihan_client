@@ -51,7 +51,10 @@ export default {
           /**token 字符串 */
           access_token: responseBody.token
         }
-        User.info = { id: responseBody.userId }
+        User.info = { 
+          id: responseBody.userId,
+          username:this.username
+        }
         this.$router.push(this.$route.query.redirect || '/')
       }
     }

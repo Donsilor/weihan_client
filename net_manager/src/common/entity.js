@@ -72,7 +72,7 @@ export const SystemParameter = new class SystemParameter {
 export const User = new class User {
 
   constructor() {
-    this.__info = $.extend({
+    this.__info = $.extend(true, {
       birthDate: "1990.1.1",
       createAt: "2018-12-16 18:06:27",
       email: "798445721@qq.com",
@@ -87,7 +87,7 @@ export const User = new class User {
       userName: "superadmin",
       userType: 1,
     }, JSON.parse(localStorage.getItem(LOCATION_USER_KEY) || "{}"));
-    this.__token = $.extend({
+    this.__token = $.extend(true, {
       /**有效期目标时间 */
       expires_in:null,
       /**token 字符串 */
