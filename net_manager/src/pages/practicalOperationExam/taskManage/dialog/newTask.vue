@@ -112,8 +112,8 @@
           </ul>
           <div class="btns">
             <a href="javascript:">下一步</a>
-            <a href="javascript:">确定</a>
-            <a href="javascript:" class="cancel">取消</a>
+            <a href="javascript:" @click="$emit('cancelNewTask', false)">确定</a>
+            <a href="javascript:" class="cancel" @click="$emit('cancelNewTask', false)">取消</a>
           </div>
         </div>
       </div>

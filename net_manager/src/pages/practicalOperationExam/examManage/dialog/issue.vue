@@ -3,23 +3,27 @@
     <div class="centerLayer">
       <div class="popup newContest">
         <div class="popupTopBar">
-          <span class="title fl">警告</span>
+          <span class="title fl">发布</span>
           <i class="iconfont fr" @click="ss=false">&#xe607;</i>
         </div>
         <div class="popupWrap">
-           <div class="occupied">
-              <div v-if="1">选中数：<span>127</span></div>
-           </div>
-           <div class="explain">
-              <div v-if="0">
-                <i></i>还有学生在该房间内进行考试，删除考试失败
-              </div>
-              <div v-else-if="1">
-                <i></i>还有学生在该房间内进行考试，不能修改考试参数
-              </div>
-              <div v-else>
-                  你确定要删除这些考试嘛？
-              </div>
+           <div class="where">
+                <input type="radio" name="issueWhere" id="grade">
+                <label for="grade">发布到班级</label>
+                <input type="radio" name="issueWhere" id="group" class="group">
+                <label for="group">发布到组别</label>
+            </div>
+            <div>
+                <i></i>
+                <span>发布到班级</span>：
+                <select name="">
+                    <option value=""></option>
+                    <option value="">1111111</option>
+                    <option value="">2222222</option>
+                    <option value="">3333333</option>
+                    <option value="">4444</option>
+                    <option value="">555555</option>
+                </select>
             </div>
             <div class="btn clf">
                 <button class="fr">取消</button>
@@ -57,13 +61,23 @@ export default {
 .centerLayer
     width 36rem
 
-    .occupied
-        height 1rem
-
-    .explain
+    .where
         font-size 1.2rem
-        margin 3rem 2rem 4rem
+        margin-bottom 2rem
+
+        input 
+          line-height 1rem
+          margin-left 4rem
+
+        label
+          margin-right 2rem
+          line-height 1rem
+          padding-bottom 1rem
+          font-size 1.2rem
           
+    select 
+        width 76%
+
     .btn
         margin-top 3rem
 

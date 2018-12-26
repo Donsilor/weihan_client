@@ -1,16 +1,16 @@
 <template>
-  <div class="maskLayer" v-if="ifShowExamImport">
+  <div class="maskLayer" v-if="0">
     <div class="centerLayer">
       <div class="popup newContest">
         <div class="popupTopBar">
           <span class="title fl">导入</span>
-          <i class="iconfont fr" @click="$emit('close', false)">&#xe607;</i>
+          <i class="iconfont fr" @click="ss = false">&#xe607;</i>
         </div>
         <div class="popupWrap">
-          <div class="item">
+          <div class="item clf">
             <div class="title"><i class="iconfont">&#xe6dd;</i>下载模板</div>
             <div class="subText">为提高导入的成功率，请下载并使用系统提供的模板</div>
-            <a href="javascript:" class="downloadTemplate"></a>
+            <a href="javascript:" class="downloadTemplate">下载模板</a>
           </div>
           <div class="item">
             <div class="title"><i class="iconfont">&#xe71a;</i>上传</div>
@@ -30,6 +30,18 @@
           </div>
         </div>
       </div>
+      <div class="progressBarWrap">
+          <div> 正在导入    
+            <span>100</span>/
+            <span>248</span>
+          </div>
+          <div class="progressBar clf">
+            <div class="fl">
+              <div class="info"></div>
+            </div>
+            <div class="fr">20%</div>
+          </div>
+      </div>
     </div>
   </div>
 </template>
@@ -39,7 +51,9 @@
 export default {
   name: '',
   data () {
-    return {}
+    return {
+      ss: true
+    }
   },
   props: {
     ifShowExamImport: {
@@ -99,5 +113,36 @@ export default {
         color #fff
         border-radius .3rem
 
+  a.downloadTemplate
+    float left 
+    width 15%
+    height 2.5rem
+    font-size 1rem
+    line-height 2.5rem
+    text-align center
+    background-color #34a5dd
+    color #fff
+    border-radius .3rem
+    margin-top 1rem
+    margin-bottom 2.6rem
+
+.progressBarWrap
+  margin-top 1rem
+  padding 2rem 15%
+  background-color #fff
+
+  .progressBar
+    margin-top 1rem
+    width 80%
+
+    .fl
+      height 1rem
+      width 88%
+      border 1px solid #aaa
+
+      .info
+        width 20%
+        height  1rem
+        background-color #aaa
 
 </style>

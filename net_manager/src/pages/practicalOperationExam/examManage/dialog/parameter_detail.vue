@@ -4,7 +4,7 @@
       <div class="popup">
         <div class="popupTopBar">
           <span class="title fl">参数明细</span>
-          <i class="iconfont fr">&#xe607;</i>
+          <i class="iconfont fr" @click="$emit('cancelParameter', false)">&#xe607;</i>
         </div>
         <div class="popupWrap">
           <ul>

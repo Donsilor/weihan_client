@@ -148,6 +148,24 @@ export default {
         method: HTTP_REQUEST_METHOD.POST,
         authorization: "token"
       }
+    },
+    teachTypes:{
+      search:{
+        /**接口地址 */
+        url: '/service/teachTypes',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.GET,
+        authorization: "token"
+      },
+    },
+    questions:{
+      search:{
+        /**接口地址 */
+        url: '/service/questions',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.GET,
+        authorization: "token"
+      },
     }
   },
   /**公共 */

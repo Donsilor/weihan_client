@@ -4,8 +4,7 @@
     <search-bar></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="questionBankList" style="width: 100%"
-                @selection-change="handleSelectionChange">
+      <el-table ref="multipleTable" :data="questions.datas" style="width: 100%"  @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="题库编号" prop="number"></el-table-column>
         <el-table-column label="题库名称" prop="name"></el-table-column>
@@ -21,7 +20,11 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging></paging>
+      <paging 
+      :loadDatas="loadQuestions"
+      :totalPage="questions.totalPage"
+      :pageSize="questions.pageSize"
+      :pageIndex="questions.pageIndex"></paging>
     </div>
   </div>
 </template>
@@ -31,6 +34,7 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
+import { User, RequestParams } from "common/entity";
 
 export default {
   name: 'QuestionBankManage',
@@ -42,41 +46,35 @@ export default {
   },
   data () {
     return {
-      questionBankList: [
-        {
-          number: 2018121401,
-          name: '初级作业库',
-          creator: '李三',
-          lastCreator: '陈大',
-          total: 60,
-          questionBankType: '作业库',
-          state: '在线',
-          privacy: false
-        },
-        {
-          number: 2018121401,
-          name: '初级作业库',
-          creator: '李三',
-          lastCreator: '陈大',
-          total: 600,
-          questionBankType: '作业库',
-          state: '部分公开',
-          privacy: true
-        },
-        {
-          number: 2018121401,
-          name: '初级作业库',
-          creator: '李三',
-          lastCreator: '陈大',
-          total: 600,
-          questionBankType: '作业库',
-          state: '未公开',
-          privacy: true
+      questions:{
+        pageIndex: 1,
+        pageSize: 10,
+        totalPage:10,
+        datas: [],
+        search: {
+          queryKey: null,
+          queryType: null,
+          startTime: null,
+          endTime: null,
+          sortType: null,
+          id: null
         }
-      ]
+      }
     }
   },
+  mounted(){
+    this.loadQuestions();
+  },
   methods: {
+    async loadQuestions(pageIndex=1, pageSize=10) {
+      let response = await this.$api.service.questions.search(
+        new RequestParams()
+          .addAttribute("pageIndex", pageIndex)
+          .addAttribute("pageSize", pageSize)
+      );
+      this.questions.totalPage = response.totalPage;
+      this.questions.datas = response.questionLibs;
+    },
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)

@@ -4,10 +4,8 @@
 import { HOST, HTTP_REQUEST_METHOD, CLIENT_SIDE_TIMESTAMP } from "./constants";
 import APIS from "./serviceurls";
 import axios from "axios";
-import { queryParams } from "./utils";
 import { ResponseBody, RequestParams, User } from "./entity";
 import { MessageBox, Loading, Message } from 'element-ui';
-import Vue from "vue";
 
 const axios_instance = axios.create({
   // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。

@@ -32,7 +32,7 @@
     </div>-->
     <div class="inquireModule fl">
       <label v-for="(item, index) in option.queryKeys" :key="index" v-if="option.queryKeys">
-        <span>{{item.title}}：</span>
+        <span v-if="item.title">{{item.title}}：</span>
         <el-input size="mini" :placeholder="item.placeholder" clearable v-model="item.value"></el-input>
       </label>
       <el-date-picker
@@ -59,88 +59,88 @@
 
 <script>
 export default {
-  name: "SearchBar",
+  name: 'SearchBar',
   model: {
-    prop: "option"
+    prop: 'option'
   },
   props: {
     option: {
       type: Object,
-      default(){
+      default () {
         return {
           // queryTypes: {
-        //   asd1: {
-        //     title: "asd1",
-        //     types: {
-        //       金属材料焊接1: 1,
-        //       金属材料焊接2: 2,
-        //       金属材料焊接3: 3,
-        //       金属材料焊接4: 4
-        //     },
-        //     selected: ""
-        //   },
-        //   asd2: {
-        //     title: "asd2",
-        //     types: {
-        //       金属材料焊接1: 1,
-        //       金属材料焊接2: 2,
-        //       金属材料焊接3: 3,
-        //       金属材料焊接4: 4
-        //     },
-        //     selected: ""
-        //   },
-        //   asd3: {
-        //     title: "asd3",
-        //     types: {
-        //       金属材料焊接1: 1,
-        //       金属材料焊接2: 2,
-        //       金属材料焊接3: 3,
-        //       金属材料焊接4: 4
-        //     },
-        //     selected: ""
-        //   }
-        // },
-        // queryKeys: {
-        //   asd1: {
-        //     title: "asd1",
-        //     placeholder: "123415",
-        //     value: null
-        //   },
-        //   asd2: {
-        //     title: "asd2",
-        //     placeholder: "123415",
-        //     value: null
-        //   },
-        //   asd3: {
-        //     title: "asd3",
-        //     placeholder: "123415",
-        //     value: null
-        //   }
-        // },
-        // querySortType: {
-        //   selected: null,
-        //   types: {
-        //     排序1: "-name",
-        //     排序2: "name"
-        //   }
-        // },
-        // times: [],
-        // videoDatabaseModule: false,
-        // searchModule: true,
-        // timeQuantumSearchModule: false,
-        // inquire: false,
-        // inquireName: false
+          //   asd1: {
+          //     title: 'asd1',
+          //     types: {
+          //       金属材料焊接1: 1,
+          //       金属材料焊接2: 2,
+          //       金属材料焊接3: 3,
+          //       金属材料焊接4: 4
+          //     },
+          //     selected: ''
+          //   },
+          //   asd2: {
+          //     title: 'asd2',
+          //     types: {
+          //       金属材料焊接1: 1,
+          //       金属材料焊接2: 2,
+          //       金属材料焊接3: 3,
+          //       金属材料焊接4: 4
+          //     },
+          //     selected: ''
+          //   },
+          //   asd3: {
+          //     title: 'asd3',
+          //     types: {
+          //       金属材料焊接1: 1,
+          //       金属材料焊接2: 2,
+          //       金属材料焊接3: 3,
+          //       金属材料焊接4: 4
+          //     },
+          //     selected: ''
+          //   }
+          // },
+          // queryKeys: {
+          //   asd1: {
+          //     title: 'asd1',
+          //     placeholder: '123415',
+          //     value: null
+          //   },
+          //   asd2: {
+          //     title: 'asd2',
+          //     placeholder: '123415',
+          //     value: null
+          //   },
+          //   asd3: {
+          //     title: 'asd3',
+          //     placeholder: '123415',
+          //     value: null
+          //   }
+          // },
+          // querySortType: {
+          //   selected: null,
+          //   types: {
+          //     排序1: '-name',
+          //     排序2: 'name'
+          //   }
+          // },
+          // times: [],
+          // videoDatabaseModule: false,
+          // searchModule: true,
+          // timeQuantumSearchModule: false,
+          // inquire: false,
+          // inquireName: false
         }
       }
     }
   },
-  data() {
+  data () {
     return {
-      timeQuantum: "",
-      inquireTimeQuantum: ""
-    };
+      timeQuantum: '',
+      inquireTimeQuantum: ''
+    }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -220,78 +220,42 @@ select {
 }
 </style>
 <style lang="stylus">
-@import '~assets/common.styl';
+.searchBar
+  .el-input
+    width 7.5rem
+    margin-right 1.75rem
 
-.searchBar {
-  font-size: 0.75rem;
-  line-height: 1.875rem;
-  padding: 1.5rem 4.375rem 1.5rem 1.25rem;
+    .el-input__inner
+      height 1.875rem
+      padding-left .5rem
+      border-radius 0
 
-  select, input {
-    width: 7.5rem;
-    height: 1.625rem;
-    border: 1px solid $borderColor;
-    margin: 0.125rem 1.75rem 0.125rem 0;
-  }
+    .el-input__suffix
+      line-height 1
 
-  input {
-    padding: 0 0.5rem;
-  }
+.el-date-editor
+    width auto
+    height 1.875rem
+    padding-left .3125rem
+    padding-right .3125rem
 
-  .search {
-    position: relative;
+    &.el-input__inner
+      width 15.5rem
+      margin-right 1.25rem
 
-    input[type=text] {
-      float: left;
-      width: 16.25rem;
-      height: 1.875rem;
-      font-size: 0.75rem;
-      padding-left: 1.5rem;
-      border: 1px solid $borderColor;
-    }
+    .el-range__icon
+      line-height 1
 
-    .iconfont {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 1.875rem;
-      height: 1.875rem;
-      text-align: center;
-      line-height: 1.875rem;
-    }
-  }
+    .el-range-separator
+      width 1rem
+      line-height 1.5rem
+      padding 0
 
-  .timeQuantumSearch {
-    margin-left: 28px;
-  }
+    .el-range-input
+      width 5.5rem
 
-  button {
-    width: 3.75rem;
-    height: 1.625rem;
-    border: 1px solid $borderColor;
-    font-size: 0.75rem;
-    border-radius: 5px;
-    background: none;
+    .el-range__close-icon
+      width 1rem
+      line-height 1.5rem
 
-    &:active {
-      background-color: #999;
-
-      &:active {
-        background-color: #999;
-      }
-    }
-  }
-
-  select.sort {
-    width: 7.5rem;
-    height: 1.625rem;
-    border: 1px solid $borderColor;
-    margin: 0.125rem 0;
-  }
-}
-
-select {
-  font-size: 12px;
-}
 </style>

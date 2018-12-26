@@ -20,7 +20,7 @@
         <el-table-column label="有效时间段" prop="valid_time" class="valid_time" width="200"></el-table-column>
         <el-table-column label="考试时长" prop="exam_time" class="exam_time"></el-table-column>
         <el-table-column label="状态" prop="status" class="status"></el-table-column>
-        <el-table-column label="操作" width="200">
+        <el-table-column label="操作" width="200" prop="handle" class="handle">
           <template slot-scope="scope">
             <a href="javascript:" @click="ifParameter = true">发布</a>
           </template>
@@ -29,9 +29,12 @@
       <paging></paging>
     </div>
     <new-exam :ifNewExam="ifNewExam" @cancelNewExam="cancelNewExam"></new-exam>
-  
-    <parameterDetail :ifParameter='ifParameter'></parameterDetail>
+    <parameterDetail :ifParameter='ifParameter' @cancelParameter = cancelParameter></parameterDetail>
     <examImport></examImport>
+    <examExport></examExport>
+    <importFinish></importFinish>
+    <issue></issue>
+    <warning></warning>
   </div>
 </template>
 
@@ -43,9 +46,12 @@ import Paging from 'components/paging/Paging'
 import NewExam from './dialog/newExam'
 import parameterDetail from './dialog/parameter_detail'
 import ExamImport from './dialog/examImport'
+import ExamExport from './dialog/ExamExport'
+import ImportFinish from './dialog/ImportFinish'
+import Issue from './dialog/Issue'
+import Warning from './dialog/Warning'
 
 export default {
-  ifParameter: 'false',
   name: 'schoolInfo',
   components: {
     TopBar,
@@ -54,10 +60,15 @@ export default {
     Paging,
     NewExam,
     parameterDetail,
-    ExamImport
+    ExamImport,
+    ExamExport,
+    ImportFinish,
+    Issue,
+    Warning
   },
   data () {
     return {
+      ifParameter: false,
       ifNewExam: false,
       // 全选
       ifAllSelect: false,
@@ -140,6 +151,9 @@ export default {
     },
     cancelNewExam (e) {
       this.ifNewExam = e
+    },
+    cancelParameter(e){
+      this.ifParameter = e
     }
   }
 

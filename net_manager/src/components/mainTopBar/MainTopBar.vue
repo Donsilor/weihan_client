@@ -14,7 +14,7 @@
       <a href="javascript:" v-if="newQuestion">+ 新建题库</a>
       <a href="javascript:" v-if="newQuestionTemplateDownload"><i class="iconfont">&#xe615;</i> 题库模板下载</a>
       <a href="javascript:" v-if="newTask">+ 新建作业</a>
-      <a href="javascript:" v-if="newExamPapers">+ 新建试题考卷</a>
+      <a href="javascript:" v-if="newExamPapers">+ 新建试卷</a>
       <a href="javascript:" v-if="manageVideoClassify"><i class="iconfont">&#xe626;</i> 管理视频分类</a>
       <a href="javascript:" v-if="manageCourseClassify"><i class="iconfont">&#xe626;</i> 管理课程分类</a>
       <a href="javascript:" v-if="uploadFile"><i class="iconfont">&#xe69d;</i> 上传视频</a>
@@ -116,6 +116,8 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  method: {
   }
 }
 
