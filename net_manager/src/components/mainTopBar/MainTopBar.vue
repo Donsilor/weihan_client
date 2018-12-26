@@ -7,6 +7,9 @@
     </el-breadcrumb>
     <div class="btns fr">
       <a href="javascript:" v-if="newSchool">+ 新建学校</a>
+      <a href="javascript:" v-if="newSever">+ 新建服务类别</a>
+      <a href="javascript:" v-if="newPeople">+ 新建人员</a>
+
       <a href="javascript:" v-if="newContest">+ 新建竞赛</a>
       <a href="javascript:" v-if="newQuestion">+ 新建题库</a>
       <a href="javascript:" v-if="newQuestionTemplateDownload"><i class="iconfont">&#xe615;</i> 题库模板下载</a>
@@ -14,12 +17,16 @@
       <a href="javascript:" v-if="newExamPapers">+ 新建试卷</a>
       <a href="javascript:" v-if="manageVideoClassify"><i class="iconfont">&#xe626;</i> 管理视频分类</a>
       <a href="javascript:" v-if="manageCourseClassify"><i class="iconfont">&#xe626;</i> 管理课程分类</a>
-      <a href="javascript:" v-if="newExam" @click="$emit('newExam', true)">+ 新建考试</a>
       <a href="javascript:" v-if="uploadFile"><i class="iconfont">&#xe69d;</i> 上传视频</a>
       <a href="javascript:" v-if="uploadCourse"><i class="iconfont">&#xe71b;</i> 上传课程</a>
 
-      <a href="javascript:" v-if="importBtn" @click="$emit('importDialog', true)"><i class="iconfont">&#xe634;</i> 导入
-      </a>
+      <a href="javascript:" v-if=" examOrder"><i class="iconfont">&#xe608;</i> 考试顺序</a>
+      <a href="javascript:" v-if="newExam" @click="$emit('newExam', true)">+ 新建考试</a>
+
+      <a href="javascript:" v-if=" missionOrder"><i class="iconfont">&#xe608;</i> 任务顺序</a>
+      <a href="javascript:" v-if="newMission" @click="$emit('newTask', true)">+ 新建任务</a>
+
+      <a href="javascript:" v-if="importBtn" @click="$emit('importDialog', true)"><i class="iconfont">&#xe634;</i> 导入</a>
       <a href="javascript:" v-if="exportBtn"><i class="iconfont">&#xe608;</i> 导出</a>
     </div>
   </div>
@@ -34,6 +41,14 @@ export default {
   },
   props: {
     newSchool: {
+      type: Boolean,
+      default: false
+    },
+    newSever: {
+      type: Boolean,
+      default: false
+    },
+    newPeople: {
       type: Boolean,
       default: false
     },
@@ -84,7 +99,25 @@ export default {
     uploadCourse: {
       type: Boolean,
       default: false
+    },
+    examOrder: {
+      type: Boolean,
+      default: false
+    },
+    newExam: {
+      type: Boolean,
+      default: false
+    },
+    missionOrder: {
+      type: Boolean,
+      default: false
+    },
+    newMission: {
+      type: Boolean,
+      default: false
     }
+  },
+  method: {
   }
 }
 

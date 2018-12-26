@@ -31,6 +31,7 @@ import CourseLibrary from '@/pages/theoryTeaching/courseLibrary/courseLibrary'
 //////////////////////////// 实操考试 //////////////////////////////
 import TaskManage from '@/pages/practicalOperationExam/taskManage/taskManage'
 import ExamManage from '@/pages/practicalOperationExam/examManage/examManage'
+import ScoreDetails from '@/pages/practicalOperationExam/examManage/scoreDetails'
 ///////////////////////////////////////////////////////////////////
 
 //////////////////////////// 大赛认证 //////////////////////////////

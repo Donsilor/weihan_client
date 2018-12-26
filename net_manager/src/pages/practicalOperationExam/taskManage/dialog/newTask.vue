@@ -1,15 +1,15 @@
 <template>
-  <div class="maskLayer" v-if="ifNewExam">
+  <div class="maskLayer" v-if="ifNewTask">
     <div class="centerLayer">
       <div class="popup">
         <div class="popupTopBar">
           <span class="title fl">新建考试</span>
-          <i class="iconfont fr" @click="$emit('cancelNewExam', false)">&#xe607;</i>
+          <i class="iconfont fr" @click="$emit('cancelNewTask', false)">&#xe607;</i>
         </div>
         <div class="popupWrap">
           <ul>
             <li>
-              <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;考试名称：</div>
+              <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;任务名称：</div>
               <div><input type="text"></div>
             </li>
             <li>
@@ -19,10 +19,6 @@
                 <span class="fl">—</span>
                 <input type="text" class="fr">
               </div>
-            </li>
-            <li>
-              <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;考试时长：</div>
-              <div><input type="text"></div>
             </li>
             <li>
               <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;焊接类型：</div>
@@ -116,8 +112,8 @@
           </ul>
           <div class="btns">
             <a href="javascript:">下一步</a>
-            <a href="javascript:" @click="$emit('cancelNewExam', false)">确定</a>
-            <a href="javascript:" class="cancel" @click="$emit('cancelNewExam', false)">取消</a>
+            <a href="javascript:" @click="$emit('cancelNewTask', false)">确定</a>
+            <a href="javascript:" class="cancel" @click="$emit('cancelNewTask', false)">取消</a>
           </div>
         </div>
       </div>
@@ -133,7 +129,7 @@ export default {
     return {}
   },
   props: {
-    ifNewExam: {
+    ifNewTask: {
       type: Boolean,
       default: false
     }

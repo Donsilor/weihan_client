@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :newExam="true" @newExam="newExam"></top-bar>
+    <top-bar :examOrder="true" :newExam="true" :importBtn="true" :exportBtn="true" @newExam="newExam"></top-bar>
     <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
@@ -24,9 +24,9 @@
         <el-table-column label="有效时间段" prop="valid_time" class="valid_time" width="200"></el-table-column>
         <el-table-column label="考试时长" prop="exam_time" class="exam_time"></el-table-column>
         <el-table-column label="状态" prop="status" class="status"></el-table-column>
-        <el-table-column label="操作" width="200">
+        <el-table-column label="操作" width="200" prop="handle" class="handle">
           <template slot-scope="scope">
-            <a href="javascript:">发布</a>
+            <a href="javascript:" @click="ifParameter = true">发布</a>
           </template>
         </el-table-column>
       </el-table>
@@ -38,15 +38,27 @@
       ></paging>
     </div>
     <new-exam :ifNewExam="ifNewExam" @cancelNewExam="cancelNewExam"></new-exam>
+    <parameterDetail :ifParameter='ifParameter' @cancelParameter = cancelParameter></parameterDetail>
+    <examImport></examImport>
+    <examExport></examExport>
+    <importFinish></importFinish>
+    <issue></issue>
+    <warning></warning>
   </div>
 </template>
 
 <script>
-import TopBar from "components/mainTopBar/MainTopBar";
-import SearchBar from "components/searchBar/SearchBar";
-import OperateBar from "components/operateBar/OperateBar";
-import Paging from "components/paging/Paging";
-import NewExam from "./dialog/newExam";
+import TopBar from 'components/mainTopBar/MainTopBar'
+import SearchBar from 'components/searchBar/SearchBar'
+import OperateBar from 'components/operateBar/OperateBar'
+import Paging from 'components/paging/Paging'
+import NewExam from './dialog/newExam'
+import parameterDetail from './dialog/parameter_detail'
+import ExamImport from './dialog/examImport'
+import ExamExport from './dialog/ExamExport'
+import ImportFinish from './dialog/ImportFinish'
+import Issue from './dialog/Issue'
+import Warning from './dialog/Warning'
 import { User, RequestParams } from "common/entity";
 
 export default {
@@ -56,13 +68,73 @@ export default {
     SearchBar,
     OperateBar,
     Paging,
-    NewExam
+    NewExam,
+    parameterDetail,
+    ExamImport,
+    ExamExport,
+    ImportFinish,
+    Issue,
+    Warning
   },
   data() {
     return {
+      ifParameter: false,
       ifNewExam: false,
       // 全选
       ifAllSelect: false,
+      informationList: [
+        {
+          ifSelect: false,
+          order: '1',
+          number: '003309',
+          name: '实操1',
+          weld_type: 'SMAW',
+          splice_type: '平板对接',
+          weld_location: '平焊',
+          base_type: '不锈钢',
+          base_interval: '3mm',
+          base_thickness: '3mm',
+          tolerance: '3%',
+          valid_time: '11:12:13',
+          exam_time: '30分钟',
+          status: '未发布',
+          handle: '发布'
+        },
+        {
+          ifSelect: false,
+          order: '1',
+          number: '003309',
+          name: '实操1',
+          weld_type: 'SMAW',
+          splice_type: '平板对接',
+          weld_location: '平焊',
+          base_type: '不锈钢',
+          base_interval: '3mm',
+          base_thickness: '3mm',
+          tolerance: '3%',
+          valid_time: '11:12:13',
+          exam_time: '30分钟',
+          status: '未发布',
+          handle: '截止'
+        },
+        {
+          ifSelect: false,
+          order: '1',
+          number: '003309',
+          name: '实操1',
+          weld_type: 'SMAW',
+          splice_type: '平板对接',
+          weld_location: '平焊',
+          base_type: '不锈钢',
+          base_interval: '3mm',
+          base_thickness: '3mm',
+          tolerance: '3%',
+          valid_time: '11:12:13',
+          exam_time: '30分钟',
+          status: '未发布',
+          handle: '各学院成绩详情'
+        }
+      ],
       searchOption: {
         queryTypes: {
           asd1: {
@@ -110,7 +182,7 @@ export default {
           id: null
         }
       }
-    };
+    }
   },
   mounted() {
     this.laodTasks();
@@ -147,18 +219,19 @@ export default {
       this.multipleSelection = val;
       console.log(this.multipleSelection);
     },
-    newExam(e) {
-      console.log(e);
-      this.ifNewExam = e;
+    newExam (e) {
+      this.ifNewExam = e
     },
-    cancelNewExam(e) {
-      console.log(e);
-      this.ifNewExam = e;
+    cancelNewExam (e) {
+      this.ifNewExam = e
+    },
+    cancelParameter(e) {
+      this.ifParameter = e
     }
   }
 };
 </script>
 
 <style lang="stylus" scoped>
-@import '~assets/common.styl';
+@import "~assets/common.styl"
 </style>
