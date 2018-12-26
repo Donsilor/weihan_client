@@ -209,7 +209,6 @@ export default {
       },
     */
     switchTab (index) {
-      console.log(index)
       let show = false
       this.menu.map(i => {
         if (i[index] !== index) {
@@ -234,7 +233,6 @@ export default {
 
   mounted () {
     this.defaultShow();
-    console.log(this.$router)
   }
 
 }
