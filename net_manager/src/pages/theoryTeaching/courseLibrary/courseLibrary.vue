@@ -6,7 +6,7 @@
     <div class="tableWrap">
       <el-table
         ref="multipleTable"
-        :data="tasks.datas"
+        :data="tasks.list"
         style="width: 100%"
         @selection-change="handleSelectionChange"
       >
@@ -112,9 +112,12 @@ export default {
         new RequestParams()
           .addAttribute("pageSize", pageSize)
           .addAttribute("pageIndex", pageIndex)
+          .addAttribute("query", {
+            $and: [{ storageId: { $regex: ".jp", $options: "$ig" } }]
+          })
       );
-      this.tasks.datas = array2Descendants(response.items);
-      this.tasks.list = response.items;
+      this.tasks.datas = array2Descendants(response.dataItems);
+      this.tasks.list = response.dataItems;
       this.tasks.totalPage = response.totalPage;
     },
     handleSelectionChange(val) {

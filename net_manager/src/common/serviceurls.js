@@ -162,25 +162,36 @@ export default {
     coursewares:{
       search:{
         /**接口地址 */
-        url: '/service/coursewares',
+        url: '/service/coursewares/get',
         /**接口方法 */
-        method: HTTP_REQUEST_METHOD.GET,
+        method: HTTP_REQUEST_METHOD.POST,
         authorization: "token"
       },
     },
+    /**题库 */
     questions:{
       search:{
         /**接口地址 */
-        url: '/service/questions',
+        url: '/service/questions/get',
         /**接口方法 */
-        method: HTTP_REQUEST_METHOD.GET,
+        method: HTTP_REQUEST_METHOD.POST,
         authorization: "token"
       },
     },
+    /**作业 */
     homeworks:{
       search:{
         /**接口地址 */
         url: '/service/homeworks',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.GET,
+        authorization: "token"
+      },
+    },
+    papers:{
+      search:{
+        /**接口地址 */
+        url: '/service/papers',
         /**接口方法 */
         method: HTTP_REQUEST_METHOD.GET,
         authorization: "token"

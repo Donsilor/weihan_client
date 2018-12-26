@@ -2,9 +2,11 @@
   <div class="sidebar">
     <ul class="stair">
       <li v-for="(item,index) in menu" :key="index">
-        <router-link tag="div" v-if="item.url" @click="switchTab(index)" :class="{blue:changeBlue === index}" :to="item.url">
-          <i class="icon iconfont" :class="item.bgclass"></i>{{item.index}}{{item.name}}
-        </router-link>
+        <div v-if="item.url" @click="switchTab(index)" >
+          <router-link tag="div" :class="{blue:changeBlue === index}" :to="item.url">
+            <i class="icon iconfont" :class="item.bgclass"></i>{{item.index}}{{item.name}}
+          </router-link>
+        </div>
         <div v-else @click="switchTab(index)" :class="{blue:changeBlue === index}">
           <i class="icon iconfont" :class="item.bgclass"></i>{{item.index}}{{item.name}}
         </div>
@@ -24,6 +26,7 @@
 
 <script>
 
+import {User, SystemParameter} from "common/entity"
 export default {
   name: 'CommonSidebar',
   data () {
@@ -215,21 +218,23 @@ export default {
       })
       this.menu[index].sidebarShow = true
       show === true ? this.menu[index].sidebarShow = false : this.menu[index].sidebarShow = true
-      this.changeBackground = -1
       this.changeBlue = index
+      SystemParameter.CURRENTLY_SELECTED_INDEX = [index, -1]
     },
     defaultShow () {
-      this.changeBackground = 0
-      this.changeBlue = 1
-      this.menu[1].sidebarShow = true
+      this.changeBlue = +SystemParameter.CURRENTLY_SELECTED_INDEX[0]
+      this.changeBackground = +SystemParameter.CURRENTLY_SELECTED_INDEX[1]
+      this.menu[+SystemParameter.CURRENTLY_SELECTED_INDEX[0]].sidebarShow = true
     },
     backColor (idx) {
-      this.changeBackground = idx
+      SystemParameter.CURRENTLY_SELECTED_INDEX[1] = this.changeBackground = idx
+      SystemParameter.CURRENTLY_SELECTED_INDEX = SystemParameter.CURRENTLY_SELECTED_INDEX
     }
   },
 
   mounted () {
-    this.defaultShow()
+    this.defaultShow();
+    console.log(this.$router)
   }
 
 }

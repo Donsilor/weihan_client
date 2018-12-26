@@ -56,15 +56,15 @@ export const ResponseBody = class ResponseBody {
 export const SystemParameter = new class SystemParameter {
 
   constructor(){
-    this.__currently_path = localStorage.getItem(CURRENTLY_SELECTED_MENU_KEY) || "/"
+    this.__currently_index = JSON.parse(localStorage.getItem(CURRENTLY_SELECTED_MENU_KEY) || "[1,0]")
   }
 
-  get CURRENTLY_SELECTED_PATH(){
-    return this.__currently_path;
+  get CURRENTLY_SELECTED_INDEX(){
+    return this.__currently_index;
   }
 
-  set CURRENTLY_SELECTED_PATH(v) {
-    localStorage.setItem(CURRENTLY_SELECTED_MENU_KEY, this.__currently_path = v);
+  set CURRENTLY_SELECTED_INDEX(v) {
+    localStorage.setItem(CURRENTLY_SELECTED_MENU_KEY, JSON.stringify(this.__currently_index = v));
   }
 }
 
