@@ -16,7 +16,7 @@
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <i class="iconfont">&#xe61b;</i>
-            <a href="javascript:">各学员成绩详情</a>
+            <a href="javascript:">成绩详情</a>
           </template>
         </el-table-column>
       </el-table>

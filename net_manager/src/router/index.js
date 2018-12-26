@@ -33,6 +33,11 @@ import TaskManage from '@/pages/practicalOperationExam/taskManage/taskManage'
 import ExamManage from '@/pages/practicalOperationExam/examManage/examManage'
 ///////////////////////////////////////////////////////////////////
 
+//////////////////////////// 大赛认证 //////////////////////////////
+import Certificate from '@/pages/seriesCertification/certificate/certificate'
+import Exam from '@/pages/seriesCertification/exam/exam'
+///////////////////////////////////////////////////////////////////
+
 //////////////////////////// 成绩查询 //////////////////////////////
 import Inquire from '@/pages/scoreInquiry/inquire/inquire'
 import ScoreReport from '@/pages/scoreInquiry/scoreReport/scoreReport'
@@ -112,7 +117,7 @@ export default new Router({
           path: '/testQuestionManage',
           name: 'testQuestionManage',
           component: TestQuestionManage,
-          meta: { title: '试题管理', requireAuth: true }
+          meta: { title: '试卷管理', requireAuth: true }
         },
         {
           path: '/videoDatabase',
@@ -137,6 +142,18 @@ export default new Router({
           name: 'examManage',
           component: ExamManage,
           meta: { title: '考试管理', requireAuth: true }
+        },
+        {
+          path: '/exam',
+          name: 'exam',
+          component: Exam,
+          meta: { title: '考试', requireAuth: true }
+        },
+        {
+          path: '/certificate',
+          name: 'certificate',
+          component: Certificate,
+          meta: { title: '证书', requireAuth: true }
         },
         {
           path: '/inquire',
