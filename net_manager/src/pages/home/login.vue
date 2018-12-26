@@ -38,26 +38,26 @@ export default {
   },
   mounted () {},
   methods: {
-  //   async login () {
-  //     let responseBody = await this.$api.service.users.login(
-  //       new RequestParams()
-  //         .addAttribute('userName', this.username)
-  //         .addAttribute('password', this.password)
-  //     )
-  //     if (responseBody) {
-  //       User.token = {
-  //         /**有效期目标时间 */
-  //         expires_in: responseBody.expire,
-  //         /**token 字符串 */
-  //         access_token: responseBody.token
-  //       }
-  //       User.info = { 
-  //         id: responseBody.userId,
-  //         username:this.username
-  //       }
-  //       this.$router.push(this.$route.query.redirect || '/')
-  //     }
-  //   }
+    async login () {
+      let responseBody = await this.$api.service.users.login(
+        new RequestParams()
+          .addAttribute('userName', this.username)
+          .addAttribute('password', this.password)
+      )
+      if (responseBody) {
+        User.token = {
+          /**有效期目标时间 */
+          expires_in: responseBody.expire,
+          /**token 字符串 */
+          access_token: responseBody.token
+        }
+        User.info = { 
+          id: responseBody.userId,
+          username:this.username
+        }
+        this.$router.push(this.$route.query.redirect || '/')
+      }
+    }
   }
 }
 </script>

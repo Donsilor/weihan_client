@@ -219,21 +219,21 @@ export default (function createApis(apis) {
     apis = function (params = new RequestParams()) {
       return new Promise(function (resolve, reject) {
 
-        let { url, method, param = {}, config = {} } = $.extend(true, {}, api);
+        // let { url, method, param = {}, config = {} } = $.extend(true, {}, api);
 
-        if (api.authorization) {
-          let toKetMessage = User.IS_TOKEN_EFFECTIVE == 2 ? "请先登陆!" : User.IS_TOKEN_EFFECTIVE == 1 ? "登陆已过期，请重新登陆!" : null;
-          if (toKetMessage) return MessageBox.alert(toKetMessage, "警告", {
-            callback: e => {
-              location.href = "/"
-            }
-          })
-          else config = $.extend(true, config, {
-            headers: {
-              [api.authorization]: User.token.access_token
-            }
-          })
-        }
+        // if (api.authorization) {
+        //   let toKetMessage = User.IS_TOKEN_EFFECTIVE == 2 ? "请先登陆!" : User.IS_TOKEN_EFFECTIVE == 1 ? "登陆已过期，请重新登陆!" : null;
+        //   if (toKetMessage) return MessageBox.alert(toKetMessage, "警告", {
+        //     callback: e => {
+        //       location.href = "/"
+        //     }
+        //   })
+        //   else config = $.extend(true, config, {
+        //     headers: {
+        //       [api.authorization]: User.token.access_token
+        //     }
+        //   })
+        // }
 
         url = url.replace(/\$\w+/ig, function (key) {
           let __key = key.substr(1);

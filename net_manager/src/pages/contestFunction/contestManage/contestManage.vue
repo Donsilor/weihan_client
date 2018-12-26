@@ -29,8 +29,8 @@
       :pageSize="tasks.pageSize"
       :pageIndex="tasks.pageIndex"></paging>
     </div>
-    <import-dialog :ifShowImport="ifShowImport" @close="closeImport"></import-dialog>
-    <delete-dialog :ifShowDelete="ifShowDelete" @cancelDelete="cancelDelete"></delete-dialog>
+    <import-dialog :ifShowImport="false" @close="closeImport"></import-dialog>
+    <delete-dialog :ifShowDelete="false" @cancelDelete="cancelDelete"></delete-dialog>
   </div>
 </template>
 
@@ -109,12 +109,12 @@ export default {
   },
   methods: {
     async laodTasks(pageIndex = 1, pageSize = 10) {
-      let response = await this.$api.service.homeworks.search(
+      let response = await this.$api.service.practical.task.search(
         new RequestParams()
           .addAttribute("pageSize", pageSize)
           .addAttribute("pageIndex", pageIndex)
       );
-      this.tasks.datas = response.homeworks;
+      this.tasks.datas = response.dataItems;
       this.tasks.totalPage = response.totalPage;
     },
     handleSelectionChange (val) {

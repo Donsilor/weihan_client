@@ -35,6 +35,7 @@ import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import { User, RequestParams } from "common/entity";
+import moment from "moment";
 
 export default {
   name: 'HistoryCompetition',
@@ -100,10 +101,15 @@ export default {
   },
   methods: {
     async loadTasks(pageIndex=1, pageSize=10) {
-      let response = await this.$api.service.task.search(
+      let response = await this.$api.service.practical.task.search(
         new RequestParams()
           .addAttribute("pageIndex", pageIndex)
           .addAttribute("pageSize", pageSize)
+          .addAttribute("query", {
+            $and:[
+              {effectiveEndTime:{$lt:moment().format("YYYY-MM-DD HH:mm:ss")}}
+            ]
+          })
       );
       this.tasks.totalPage = response.totalPage;
       this.tasks.datas = response.dataItems;
