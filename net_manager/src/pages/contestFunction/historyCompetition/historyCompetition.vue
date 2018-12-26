@@ -34,6 +34,7 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
+import { User, RequestParams } from "common/entity";
 
 export default {
   name: 'HistoryCompetition',
@@ -45,47 +46,68 @@ export default {
   },
   data () {
     return {
-      historyContestList: [
-        {
-          groupNumber: 2018121401,
-          number: 68010003309,
-          name: '作业竞赛1',
-          contestType: '一对一',
-          groupA: '杨科',
-          groupB: '陈晓东',
-          createWay: '教师指定',
-          time: '20分钟',
-          startTime: '2018/12/06 11:00',
-          result: 'A 方胜'
+      searchOption: {
+        queryTypes: {
+          asd1: {
+            title: null,
+            types: {
+              任务名称: 1,
+              焊接类型: 2,
+              接头类型: 3,
+              焊接位置: 4,
+              母材材料: 5,
+              母材间隙: 6,
+              母材厚度: 7,
+              公差: 8
+            },
+            selected: ""
+          }
         },
-        {
-          groupNumber: 2018121401,
-          number: 68010003309,
-          name: '作业竞赛1',
-          contestType: '一对一',
-          groupA: '杨科',
-          groupB: '陈晓东',
-          createWay: '教师指定',
-          time: '20分钟',
-          startTime: '2018/12/06 11:00',
-          result: 'A 方胜'
+        queryKeys: {
+          asd1: {
+            title: null,
+            placeholder: "123415",
+            value: null
+          }
         },
-        {
-          groupNumber: 2018121401,
-          number: 68010003309,
-          name: '作业竞赛1',
-          contestType: '一对一',
-          groupA: '杨科',
-          groupB: '陈晓东',
-          createWay: '教师指定',
-          time: '20分钟',
-          startTime: '2018/12/06 11:00',
-          result: 'A 方胜'
+        querySortType: {
+          selected: null,
+          types: {
+            名称倒序: "-name",
+            名称正序: "name"
+          }
+        },
+        times: []
+      },
+      tasks: {
+        pageIndex: 1,
+        pageSize: 10,
+        totalPage: 10,
+        datas: [],
+        search: {
+          queryKey: null,
+          queryType: null,
+          startTime: null,
+          endTime: null,
+          sortType: null,
+          id: null
         }
-      ]
+      }
     }
   },
+  mounted(){
+    this.loadTasks();
+  },
   methods: {
+    async loadTasks(pageIndex=1, pageSize=10) {
+      let response = await this.$api.service.task.search(
+        new RequestParams()
+          .addAttribute("pageIndex", pageIndex)
+          .addAttribute("pageSize", pageSize)
+      );
+      this.tasks.totalPage = response.totalPage;
+      this.tasks.datas = response.dataItems;
+    },
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
