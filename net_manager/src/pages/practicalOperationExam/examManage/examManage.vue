@@ -86,6 +86,8 @@ export default {
   data () {
     return {
       ifParameter: false,
+      ifImport: false,
+      ifExport: false,
       ifNewExam: false,
       ifShowParameterDetail: false,
       ifImportExam: false,

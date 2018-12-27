@@ -1,6 +1,14 @@
 <template>
   <div>
-    <top-bar :missionOrder="true" :newMission="true" :importBtn="true" :exportBtn="true" @newTask="newTask"></top-bar>
+    <top-bar 
+    :missionOrder="true" 
+    :newMission="true" 
+    :importBtn="true" 
+    :exportBtn="true" 
+    @newTask="newTask" 
+    @importDialog="importDialog"
+    @exportDialog="exportDialog"
+    ></top-bar>
     <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
@@ -36,7 +44,13 @@
       :pageIndex="tasks.pageIndex"></paging>
     </div>
 
-    <NewTask :ifNewTask="ifNewTask" @cancelNewTask="cancelNewTask"></NewTask>
+    <newTask :ifNewTask="ifNewTask" @cancelNewTask="cancelNewTask"></newTask>
+    <parameterDetail :ifParameter='ifParameter' @cancelParameter = cancelParameter></parameterDetail>
+    <examImport :ifImport='ifImport' @cancelImport="cancelImport"></examImport>
+    <examExport :ifExport='ifExport' @cancelExport="cancelExport"></examExport>
+    <importFinish></importFinish>
+    <issue></issue>
+    <warning></warning>
 
   </div>
 </template>
@@ -47,7 +61,13 @@ import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import NewTask from './dialog/NewTask'
-import { User, RequestParams } from "common/entity"
+import parameterDetail from './dialog/parameter_detail'
+import ExamImport from './dialog/examImport'
+import ExamExport from './dialog/ExamExport'
+import ImportFinish from './dialog/ImportFinish'
+import Issue from './dialog/Issue'
+import Warning from './dialog/Warning'
+import { User, RequestParams } from "common/entity";
 
 export default {
   name: "schoolInfo",
@@ -56,10 +76,19 @@ export default {
     SearchBar,
     OperateBar,
     Paging,
-    NewTask
+    NewTask,
+    parameterDetail,
+    ExamImport,
+    ExamExport,
+    ImportFinish,
+    Issue,
+    Warning
   },
   data() {
     return {
+      ifParameter: false,
+      ifImport: false,
+      ifExport: false,
       ifNewTask: false,
       // 全选
       ifAllSelect: false,
@@ -148,10 +177,26 @@ export default {
       console.log(this.multipleSelection)
     },
     newTask (e) {
+      console.log(e)
       this.ifNewTask = e
     },
     cancelNewTask (e) {
       this.ifNewTask = e
+    },
+    cancelParameter(e) {
+      this.ifParameter = e
+    },
+    importDialog(e) {
+      this.ifImport = e
+    },
+    cancelImport(e) {
+      this.ifImport = e
+    },
+    exportDialog(e) {
+      this.ifExport = e
+    },
+    cancelExport(e) {
+      this.ifExport = e
     }
   }
 };

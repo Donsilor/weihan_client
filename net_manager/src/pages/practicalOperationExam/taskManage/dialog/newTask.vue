@@ -3,7 +3,7 @@
     <div class="centerLayer">
       <div class="popup">
         <div class="popupTopBar">
-          <span class="title fl">新建考试</span>
+          <span class="title fl">新建任务</span>
           <i class="iconfont fr" @click="$emit('cancelNewTask', false)">&#xe607;</i>
         </div>
         <div class="popupWrap">

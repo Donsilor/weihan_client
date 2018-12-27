@@ -1,5 +1,5 @@
 <template>
-  <div class="maskLayer" v-if="ifImportExam">
+  <div class="maskLayer" v-if="ifImport">
     <div class="centerLayer">
       <div class="popup newContest">
         <div class="popupTopBar">
@@ -31,16 +31,16 @@
         </div>
       </div>
       <div class="progressBarWrap">
-        <div @click="$emit('importSucceed', true)"> 正在导入
-          <span>100</span>/
-          <span>248</span>
-        </div>
-        <div class="progressBar clf">
-          <div class="fl">
-            <div class="info"></div>
+          <div> 正在导入    
+            <span>100</span>/
+            <span>248</span>
           </div>
-          <div class="fr">20%</div>
-        </div>
+          <div class="progressBar clf">
+            <div class="fl">
+              <div class="info"></div>
+            </div>
+            <div class="fr">20%</div>
+          </div>
       </div>
     </div>
   </div>
@@ -49,12 +49,13 @@
 <script>
 
 export default {
-  name: 'ExamImport',
+  name: '',
   data () {
-    return {}
+    return {
+    }
   },
   props: {
-    ifImportExam: {
+    ifImport: {
       type: Boolean,
       defalult: false
     }
@@ -112,7 +113,7 @@ export default {
         border-radius .3rem
 
   a.downloadTemplate
-    float left
+    float left 
     width 15%
     height 2.5rem
     font-size 1rem
@@ -140,7 +141,7 @@ export default {
 
       .info
         width 20%
-        height 1rem
+        height  1rem
         background-color #aaa
 
 </style>
