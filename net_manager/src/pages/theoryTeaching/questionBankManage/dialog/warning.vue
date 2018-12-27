@@ -3,7 +3,7 @@
     <div class="centerLayer">
       <div class="popup newContest">
         <div class="popupTopBar">
-          <span class="title fl">警告</span>
+          <span class="title fl">删除</span>
           <i class="iconfont fr" @click="$emit('closeWarn', false)">&#xe607;</i>
         </div>
         <div class="popupWrap">
@@ -12,10 +12,10 @@
            </div>
            <div class="explain">
               <div v-if="0">
-                <i></i>还有学生在该房间内进行考试，删除考试失败
+                <i></i>还有学生在该房间内进行考试，不能修改考试参数
               </div>
               <div v-else-if="1">
-                <i></i>还有学生在该房间内进行考试，不能修改考试参数
+                <i></i>你确定要删除这些题库吗？<br/>删除题库将会连同该题库内的试题一起删除？
               </div>
               <div v-else>
                   你确定要删除这些考试嘛？
@@ -59,10 +59,14 @@ export default {
 
     .occupied
         height 1rem
+        color #333
 
     .explain
+        width 52%
         font-size 1.2rem
-        margin 3rem 2rem 4rem
+        line-height 1.8rem
+        color #333
+        margin 3rem auto 4rem auto
 
     .btn
         margin-top 3rem
