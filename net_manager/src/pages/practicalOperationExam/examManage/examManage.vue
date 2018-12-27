@@ -1,6 +1,14 @@
 <template>
   <div>
-    <top-bar :examOrder="true" :newExam="true" :importBtn="true" :exportBtn="true" @newExam="newExam"></top-bar>
+    <top-bar 
+    :examOrder="true" 
+    :newExam="true" 
+    :importBtn="true" 
+    :exportBtn="true" 
+    @newExam="newExam" 
+    @importDialog="importDialog"
+    @exportDialog="exportDialog"
+    ></top-bar>
     <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
@@ -39,8 +47,8 @@
     </div>
     <new-exam :ifNewExam="ifNewExam" @cancelNewExam="cancelNewExam"></new-exam>
     <parameterDetail :ifParameter='ifParameter' @cancelParameter = cancelParameter></parameterDetail>
-    <examImport></examImport>
-    <examExport></examExport>
+    <examImport :ifImport='ifImport' @cancelImport="cancelImport"></examImport>
+    <examExport :ifExport='ifExport' @cancelExport="cancelExport"></examExport>
     <importFinish></importFinish>
     <issue></issue>
     <warning></warning>
@@ -79,6 +87,8 @@ export default {
   data() {
     return {
       ifParameter: false,
+      ifImport: false,
+      ifExport: false,
       ifNewExam: false,
       // 全选
       ifAllSelect: false,
@@ -227,6 +237,18 @@ export default {
     },
     cancelParameter(e) {
       this.ifParameter = e
+    },
+    importDialog(e) {
+      this.ifImport = e
+    },
+    cancelImport(e) {
+      this.ifImport = e
+    },
+    exportDialog(e) {
+      this.ifExport = e
+    },
+    cancelExport(e) {
+      this.ifExport = e
     }
   }
 };

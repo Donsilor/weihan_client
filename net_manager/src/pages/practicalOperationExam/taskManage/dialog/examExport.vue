@@ -9,9 +9,9 @@
         <div class="popupWrap">
             <h4>导出哪些数据</h4>
             <div class="data">
-                <input type="radio" name="seleData" value=true id="present" v-model="select">
+                <input type="radio" name="seleData" value=true id="present">
                 <label for="present">当前筛选的数据（<span>200</span>条）</label>
-                <input type="radio" name="seleData" value=false id="all" class="all" v-model="select">
+                <input type="radio" name="seleData" value=false id="all" class="all">
                 <label for="all">全部数据（<span>372</span>条）</label>
             </div>
             <h4>导出字段</h4>
@@ -24,8 +24,8 @@
               <div class="fields">考试名称<i></i></div>
               <div class="fields">考试名称<i></i></div>
             </div>
-            <h4 v-if="select">可选字段</h4>
-            <div v-if="select" class="fields_box backcolor">
+            <h4>可选字段</h4>
+            <div class="fields_box backcolor">
               <div class="fields">考试名称<i></i></div>
               <div class="fields">考试名称<i></i></div>
               <div class="fields">考试名称<i></i></div>
@@ -46,7 +46,6 @@ export default {
   name: '',
   data () {
     return {
-      select: true
     }
   },
   props: {
