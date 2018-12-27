@@ -20,7 +20,7 @@ $inputBorderColor = #b5b5b5
   right 0
   bottom 0
   left 0
-  background-color rgba(0,0,0,.7)
+  background-color rgba(0, 0, 0, .7)
   z-index 999
 
 .centerLayer
@@ -52,6 +52,29 @@ $inputBorderColor = #b5b5b5
     .popupWrap
       padding 1.875rem 2.625rem
 
+      > div
+
+        &:not(:last-of-type)
+          margin-bottom 2.5rem
+
+        span
+          display block
+          float left
+          width 25%
+          line-height 2.5rem
+          text-align right
+
+          i
+            font-size .75rem
+            color red
+
+        input
+          float left
+          width 60%
+          height 2.5rem
+          font-size .875rem
+          border 1px solid $inputBorderColor
+
     .btns
       margin-top 2.5rem
       text-align right
@@ -59,10 +82,14 @@ $inputBorderColor = #b5b5b5
       &:after
         cleaerfix()
 
+      &.textAlignLeft
+        text-align left
+        padding-left 25%
+
       a
         display inline-block
         font-size 1.125rem
-        line-height  2.625rem
+        line-height 2.625rem
         padding 0 1.5rem
         color #fff
         background-color #34a5dd
@@ -83,71 +110,30 @@ i.el-icon-star-on
   height 100%
   vertical-align top
   line-height 28px
-.ensure
-    width 100px
-    height 45px
-    line-height 45px
-    font-size 16px
-    color #ffffff
-    background-color #35a5de
-    border-radius 5px
-    text-align center
-    margin-right 40px
-    border 1px solid #ffffff
 
-.cancel
-    width 100px
-    height 45px
-    line-height 45px
-    font-size 16px
-    color #35a5de
-    background-color #ffffff
-    border 1px solid #35a5de
-    border-radius 5px
-    text-align center
-    margin-right 40px  
+.ensure
+  width 100px
+  height 45px
+  line-height 45px
+  font-size 16px
+  color #ffffff
+  background-color #35a5de
+  border-radius 5px
+  text-align center
+  margin-right 40px
+  border 1px solid #ffffff
+
 .window-top
-    width 100%
-    height 65px
-    background-color #35a5de
-    padding 0 40px
+  width 100%
+  height 65px
+  background-color #35a5de
+  padding 0 40px
 
 .clss
-    display block
-    height 100%
-    line-height 65px
-    color #ffffff
-    background #35a5de
-    border none
-    font-size 24px    
-
-.window-content
-    >div
-        span 
-            display block
-            float left
-            width 25%
-            height 40px
-            line-height 40px
-            text-align right
-.window-content
-    >div
-        input[type=text] 
-            display block
-            float left
-            width 60%
-            height 40px
-            line-height 40px          
-.window-content
-    >div
-     padding-bottom 30px
-
-.window-content
-    >div
-        select 
-            display block
-            float left
-            width 60%
-            height 40px
-            line-height 40px 
-            font-size 14px
+  display block
+  height 100%
+  line-height 65px
+  color #ffffff
+  background #35a5de
+  border none
+  font-size 24px

@@ -6,7 +6,7 @@
       <el-breadcrumb-item>学校管理</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="btns fr">
-      <a href="javascript:" v-if="newSchool">+ 新建学校</a>
+      <a href="javascript:" v-if="newSchool" @click="$emit('newSchool', true)">+ 新建学校</a>
       <a href="javascript:" v-if="newSever">+ 新建服务类别</a>
       <a href="javascript:" v-if="newPeople">+ 新建人员</a>
 
