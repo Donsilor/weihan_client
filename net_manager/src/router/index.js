@@ -7,6 +7,10 @@ import Login from '@/pages/home/login'
 //////////////////////////// 基本信息 //////////////////////////////
 import SchoolInfo from '@/pages/baseInfo/schoolInfo/schoolInfo'
 import ServiceType from '@/pages/baseInfo/serviceType/serviceType'
+import PeopleInfo from '@/pages/baseInfo/peopleInfo/peopleInfo'
+import ProfessionalInfo from '@/pages/baseInfo/professionalInfo/professionalInfo'
+import ClassInfo from '@/pages/baseInfo/ClassInfo/ClassInfo'
+import GroupInfo from '@/pages/baseInfo/GroupInfo/GroupInfo'
 ///////////////////////////////////////////////////////////////////
 
 //////////////////////////// 竞赛功能 //////////////////////////////
@@ -71,6 +75,30 @@ export default new Router({
           name: 'service_type',
           component: ServiceType,
           meta: { title: '服务类别', requireAuth: true }
+        },
+        {
+          path: '/people_info',
+          name: 'peopleInfo',
+          component:PeopleInfo,
+          meta: { title: '人员信息', requireAuth: false }
+        },
+        {
+          path: '/professional_info',
+          name: 'professionalinfo',
+          component:ProfessionalInfo,
+          meta: { title: '专业信息', requireAuth: false }
+        },
+        {
+          path: '/class_info',
+          name: 'classinfo',
+          component:ClassInfo,
+          meta: { title: '班级信息', requireAuth: false }
+        },
+        {
+          path: '/group_info',
+          name: 'groupinfo',
+          component:GroupInfo,
+          meta: { title: '组别信息', requireAuth: false }
         },
         {
           path: '/contestManage',

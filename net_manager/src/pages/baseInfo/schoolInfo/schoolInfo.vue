@@ -16,7 +16,7 @@
         <el-table-column label="服务器网址" prop="url" class="url" :formatter="formatServeUrl"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
-            <i class="modification icon iconfont icon-bianji"></i>
+            <i class="modification icon iconfont icon-bianji" @click="editor()"></i>
             <i class="delete icon iconfont icon-shanchu1"></i>
             <i class="examine icon iconfont icon-chakan"></i>
           </template>
@@ -28,6 +28,7 @@
       :pageSize="schools.pageSize"
       :pageIndex="schools.pageIndex"></paging>
     </div>
+    <schooleditor @hidden="hiddenShow" v-show="isShoweditor"></schooleditor>
   </div>
 </template>
 
@@ -37,6 +38,8 @@ import SearchBar from "components/searchBar/SearchBar";
 import OperateBar from "components/operateBar/OperateBar";
 import Paging from "components/paging/Paging";
 import { User, RequestParams } from "common/entity";
+import Schooleditor from './components/shcooleditor/shcooleditor'
+import Schooladd from './components/Schooladd/schooladd'
 
 export default {
   name: 'SchoolInfo',
@@ -44,36 +47,19 @@ export default {
     TopBar,
     SearchBar,
     OperateBar,
-    Paging
+    Paging,
+    Schooleditor,
+    Schooladd
   },
   data() {
     return {
       // 全选
       ifAllSelect: false,
+      isShoweditor:false,
       queryOption: {
         queryTypes: {
           asd1: {
             title: "asd1",
-            types: {
-              金属材料焊接1: 1,
-              金属材料焊接2: 2,
-              金属材料焊接3: 3,
-              金属材料焊接4: 4
-            },
-            selected: ""
-          },
-          asd2: {
-            title: "asd2",
-            types: {
-              金属材料焊接1: 1,
-              金属材料焊接2: 2,
-              金属材料焊接3: 3,
-              金属材料焊接4: 4
-            },
-            selected: ""
-          },
-          asd3: {
-            title: "asd3",
             types: {
               金属材料焊接1: 1,
               金属材料焊接2: 2,
@@ -88,16 +74,6 @@ export default {
             title: "asd1",
             placeholder: "123415",
             value: null
-          },
-          asd2: {
-            title: "asd2",
-            placeholder: "123415",
-            value: null
-          },
-          asd3: {
-            title: "asd3",
-            placeholder: "123415",
-            value: null
           }
         },
         querySortType:{
@@ -107,7 +83,7 @@ export default {
             排序2:"name"
           }
         },
-        times: [],
+        times:false,
         videoDatabaseModule: false,
         searchModule: true,
         timeQuantumSearchModule: false,
@@ -118,7 +94,12 @@ export default {
         pageIndex: 1,
         pageSize: 10,
         totalPage:10,
-        datas: [],
+        datas:new Array(10).fill({
+          ifSelect: false,
+          code: '6801000003309',
+          name: '北京大学',
+          url: 'http://baidu.com',
+      }),
         search: {
           queryKey: null,
           queryType: null,
@@ -164,7 +145,14 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val;
       console.log(this.multipleSelection);
-    }
+    },
+    editor(){
+      this.isShoweditor=true
+    },
+    hiddenShow(){
+        let that = this;
+        that.isShoweditor = false
+      }
   }
 };
 </script>

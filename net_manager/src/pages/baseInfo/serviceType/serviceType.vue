@@ -1,7 +1,7 @@
 <template>
   <div>
     <top-bar :newSever="true"></top-bar>
-    <search-bar></search-bar>
+    <search-bar :option="queryOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
       <el-table ref="multipleTable" :data="teachTypes.datas" style="width: 100%" class="list_content" @selection-change="handleSelectionChange">
@@ -10,7 +10,7 @@
         <el-table-column label="教学类型" prop="name" class="name"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
-            <i class="modification icon iconfont icon-bianji"></i>
+            <i class="modification icon iconfont icon-bianji" @click="editor()"></i>
             <i class="delete icon iconfont icon-shanchu1"></i>
             <i class="examine icon iconfont icon-chakan"></i>
           </template>
@@ -22,6 +22,7 @@
       :pageSize="teachTypes.pageSize"
       :pageIndex="teachTypes.pageIndex"></paging>
     </div>
+    <editorservice @hidden="hiddenShow" v-show="isShoweditor"></editorservice>
   </div>
 </template>
 
@@ -31,6 +32,8 @@ import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import { User, RequestParams } from "common/entity";
+import Addservive from './components/addservice/addservice'
+import Editorservice from './components/deitorservicetype/editorservice'
 
 export default {
   name: '',
@@ -38,15 +41,57 @@ export default {
     TopBar,
     SearchBar,
     OperateBar,
-    Paging
+    Paging,
+    Addservive,
+    Editorservice
   },
   data () {
     return {
+      isShoweditor:false,
+      queryOption: {
+        queryTypes: {
+          asd1: {
+            title: "asd1",
+            types: {
+              金属材料焊接1: 1,
+              金属材料焊接2: 2,
+              金属材料焊接3: 3,
+              金属材料焊接4: 4
+            },
+            selected: ""
+          }
+        },
+        queryKeys: {
+          asd1: {
+            title: "asd1",
+            placeholder: "123415",
+            value: null
+          }
+        },
+        querySortType:{
+          selected:null,
+          types:{
+            排序1:"-name",
+            排序2:"name"
+          }
+        },
+        times:false,
+        videoDatabaseModule: false,
+        searchModule: true,
+        timeQuantumSearchModule: false,
+        inquire: false,
+        inquireName: false
+      },
       teachTypes:{
         pageIndex: 1,
         pageSize: 10,
         totalPage:10,
-        datas: [],
+        datas:new Array(10).fill({
+          ifSelect: false,
+          code: '6801000003309',
+          name: '北京大学',
+          url: 'http://baidu.com',
+      }),
         search: {
           queryKey: null,
           queryType: null,
@@ -76,7 +121,14 @@ export default {
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
-    }
+    },
+    editor(){
+      this.isShoweditor=true
+    },
+    hiddenShow(){
+        let that = this;
+        that.isShoweditor = false
+      }
 
   }
 }

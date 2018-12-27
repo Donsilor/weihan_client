@@ -55,15 +55,19 @@ export default {
             },
             {
               name: '人员信息',
-              url: '/'
+              url: '/people_info'
+            },
+            {
+              name: '专业信息',
+              url: '/professional_info'
             },
             {
               name: '班级信息',
-              url: '/'
+              url: '/class_info'
             },
             {
               name: '组别信息',
-              url: '/'
+              url: '/group_info'
             }
           ]
         },
