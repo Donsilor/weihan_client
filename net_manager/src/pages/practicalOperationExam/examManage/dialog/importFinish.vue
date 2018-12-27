@@ -1,10 +1,10 @@
 <template>
-  <div class="maskLayer" v-if="0">
+  <div class="maskLayer" v-if="isImportFinish">
     <div class="centerLayer">
       <div class="popup newContest">
         <div class="popupTopBar">
           <span class="title fl">导入</span>
-          <i class="iconfont fr" @click="ss=false">&#xe607;</i>
+          <i class="iconfont fr" @click="$emit('closeImportFinish', false)">&#xe607;</i>
         </div>
         <div class="popupWrap">
             <div class="icon"></div>
@@ -29,16 +29,16 @@
 <script>
 
 export default {
-  name: '',
+  name: 'ImportFinish',
   data () {
     return {
       ss: true
     }
   },
   props: {
-    ifShowExamImport: {
+    isImportFinish: {
       type: Boolean,
-      defalult: true
+      default: true
     }
   }
 }
@@ -76,7 +76,7 @@ export default {
         & a
             color #34a5dd
 
-    button 
+    button
         width 10rem
         height 2.5rem
         border-radius 3px

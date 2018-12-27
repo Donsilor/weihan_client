@@ -13,8 +13,8 @@
           </p>
           <h1>你确认要删除这些学校吗？</h1>
           <div class="btns">
-            <a href="javascript:">确定</a>
-            <a href="javascript:" class="cancel">取消</a>
+            <a href="javascript:" @click="$emit('confirmDelete', true)">确定</a>
+            <a href="javascript:" class="cancel" @click="$emit('cancelDelete', false)">取消</a>
           </div>
         </div>
       </div>

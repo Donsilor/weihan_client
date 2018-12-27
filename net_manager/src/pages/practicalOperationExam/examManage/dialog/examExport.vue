@@ -1,10 +1,10 @@
 <template>
-  <div class="maskLayer" v-if="0">
+  <div class="maskLayer" v-if="ifExportExam">
     <div class="centerLayer">
       <div class="popup">
         <div class="popupTopBar">
           <span class="title fl">导出</span>
-          <i class="iconfont fr" @click="$emit('cancelNewExam', false)">&#xe607;</i>
+          <i class="iconfont fr" @click="$emit('cancelExport', false)">&#xe607;</i>
         </div>
         <div class="popupWrap">
             <h4>导出哪些数据</h4>
@@ -43,10 +43,16 @@
 <script>
 
 export default {
-  name: '',
+  name: 'ExamExport',
   data () {
     return {
       select: true
+    }
+  },
+  props: {
+    ifExportExam: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -59,7 +65,7 @@ export default {
     width auto !important
 
     .popupWrap
-      h4 
+      h4
         font-size 1.6rem
         color #111
         font-weight normal
@@ -69,7 +75,7 @@ export default {
         font-size 1.2rem
         margin-bottom 2rem
 
-        input 
+        input
           line-height 1rem
 
         label
@@ -96,15 +102,15 @@ export default {
             border-radius 2px
             font-size 1.2rem
             border 1px solid #34a5dd
-          
+
           &.backcolor .fields
               background-color #fff
               border 1px solid #666
               color #666
 
 
-          
 
-        
+
+
 
 </style>

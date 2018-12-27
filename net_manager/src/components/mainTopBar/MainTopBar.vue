@@ -27,7 +27,7 @@
       <a href="javascript:" v-if="newMission" @click="$emit('newTask', true)">+ 新建任务</a>
 
       <a href="javascript:" v-if="importBtn" @click="$emit('importDialog', true)"><i class="iconfont">&#xe634;</i> 导入</a>
-      <a href="javascript:" v-if="exportBtn"><i class="iconfont">&#xe608;</i> 导出</a>
+      <a href="javascript:" v-if="exportBtn" @click="$emit('exportDialog', true)"><i class="iconfont">&#xe608;</i> 导出</a>
     </div>
   </div>
 </template>
@@ -101,10 +101,6 @@ export default {
       default: false
     },
     examOrder: {
-      type: Boolean,
-      default: false
-    },
-    newExam: {
       type: Boolean,
       default: false
     },

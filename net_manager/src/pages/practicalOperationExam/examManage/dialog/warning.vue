@@ -1,10 +1,10 @@
 <template>
-  <div class="maskLayer" v-if="0">
+  <div class="maskLayer" v-if="hasWarn">
     <div class="centerLayer">
       <div class="popup newContest">
         <div class="popupTopBar">
           <span class="title fl">警告</span>
-          <i class="iconfont fr" @click="ss=false">&#xe607;</i>
+          <i class="iconfont fr" @click="$emit('closeWarn', false)">&#xe607;</i>
         </div>
         <div class="popupWrap">
            <div class="occupied">
@@ -22,8 +22,8 @@
               </div>
             </div>
             <div class="btn clf">
-                <button class="fr">取消</button>
-                <button class="fr">确定</button>
+                <button class="fr" @click="$emit('closeWarn', false)">取消</button>
+                <button class="fr" @click="$emit('closeWarn', false)">确定</button>
             </div>
         </div>
       </div>
@@ -34,16 +34,16 @@
 <script>
 
 export default {
-  name: '',
+  name: 'Warning',
   data () {
     return {
       ss: true
     }
   },
   props: {
-    ifShowExamImport: {
+    hasWarn: {
       type: Boolean,
-      defalult: true
+      defalult: false
     }
   }
 }
@@ -63,7 +63,7 @@ export default {
     .explain
         font-size 1.2rem
         margin 3rem 2rem 4rem
-          
+
     .btn
         margin-top 3rem
 
