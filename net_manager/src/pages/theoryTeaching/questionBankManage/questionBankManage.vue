@@ -1,8 +1,14 @@
 <template>
   <div>
-    <top-bar :newQuestion="true" :newQuestionTemplateDownload="true" :exportBtn="true"></top-bar>
+    <top-bar
+    :newQuestion="true" 
+    :newQuestionTemplateDownload="true" 
+    :exportBtn="true" 
+    @newQuestion="newQuestion"
+    @exportDialog="exportDialog">
+    </top-bar>
     <search-bar :option="searchOption"></search-bar>
-    <operate-bar :deleteBtn="true"></operate-bar>
+    <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
     <div class="tableWrap">
       <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"  @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
@@ -26,6 +32,11 @@
       :pageSize="tasks.pageSize"
       :pageIndex="tasks.pageIndex"></paging>
     </div>
+
+    <newQuestion :ifNewQuestion="ifNewQuestion" @cancelNewQuestion="cancelNewQuestion"></newQuestion>
+    <questionExport :ifExportQuestion="ifExportQuestion" @cancelExport="cancelExport"></questionExport>
+    <warning :ifRemove="ifRemove" @closeWarn="closeWarn"></warning>
+
   </div>
 </template>
 
@@ -35,6 +46,9 @@ import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import { User, RequestParams } from "common/entity";
+import NewQuestion from "./dialog/newQuestionBank";
+import QuestionExport from './dialog/ExamExport'
+import Warning from './dialog/Warning'
 
 export default {
   name: 'QuestionBankManage',
@@ -42,10 +56,17 @@ export default {
     TopBar,
     SearchBar,
     OperateBar,
-    Paging
+    Paging,
+    NewQuestion,
+    QuestionExport,
+    Warning
   },
   data () {
     return {
+      ifNewQuestion: false,
+      ifExportQuestion: false,
+      ifShowDelete: false,
+      ifRemove: false,
       searchOption: {
         queryTypes: {
           asd1: {
@@ -112,6 +133,26 @@ export default {
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
+    },
+    newQuestion(e){
+      this.ifNewQuestion = e
+    },
+    cancelNewQuestion(e){
+      this.ifNewQuestion = e
+    },
+    exportDialog (e) {
+      this.ifExportQuestion = e
+    },
+    cancelExport(e) {
+      this.ifExportQuestion = e
+    },
+    deleteSelected (e) {
+      this.ifRemove = e
+    },
+    closeWarn(e){
+      console.log(111)
+      console.log(e)
+      this.ifRemove = e
     }
   }
 }

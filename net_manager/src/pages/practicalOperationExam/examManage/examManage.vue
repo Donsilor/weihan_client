@@ -1,9 +1,14 @@
 <template>
   <div>
-    <top-bar :examOrder="true" :newExam="true" :importBtn="true" :exportBtn="true"
-             @newExam="newExam"
-             @importDialog="importExam"
-             @exportDialog="exportExam"></top-bar>
+    <top-bar
+    :examOrder="true"
+    :newExam="true"
+    :importBtn="true"
+    :exportBtn="true"
+    @newExam="newExam"
+    @importDialog="importExam"
+    @exportDialog="exportExam">
+    </top-bar>
     <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
     <div class="tableWrap">
@@ -236,11 +241,9 @@ export default {
       this.ifIssue = e
     },
     cancelDelete (e) {
-      console.log(e)
       this.ifShowDelete = e
     },
     deleteSelected (e) {
-      console.log(e)
       this.ifShowDelete = e
     },
     confirmDelete (e) {

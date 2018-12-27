@@ -11,7 +11,7 @@
       <a href="javascript:" v-if="newPeople">+ 新建人员</a>
 
       <a href="javascript:" v-if="newContest">+ 新建竞赛</a>
-      <a href="javascript:" v-if="newQuestion">+ 新建题库</a>
+      <a href="javascript:" v-if="newQuestion" @click="$emit('newQuestion', true)">+ 新建题库</a>
       <a href="javascript:" v-if="newQuestionTemplateDownload"><i class="iconfont">&#xe615;</i> 题库模板下载</a>
       <a href="javascript:" v-if="newTask">+ 新建作业</a>
       <a href="javascript:" v-if="newExamPapers">+ 新建试卷</a>
@@ -112,8 +112,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  method: {
   }
 }
 
