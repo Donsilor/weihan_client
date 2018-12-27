@@ -196,7 +196,7 @@ const axios_instance_method = {
   [HTTP_REQUEST_METHOD.DELETEURL]: axios_instance.delete,
 };
 
-const alertError = function (message){
+const alertError = function (message) {
   Message.error({
     message: message,
     center: true,
@@ -275,8 +275,8 @@ export default (function createApis(apis) {
             ///所以这里决定不做 code 的处理
             resolve(response.data);
           }).catch(error => {
-            if(error.response){
-              if(error.response.status == 401){
+            if (error.response) {
+              if (error.response.status == 401) {
                 return location.href = "/#/login"
               }
               alertError(error.response.data.message)
@@ -301,4 +301,5 @@ export default (function createApis(apis) {
 
   return apis;
 })(APIS);
+
 

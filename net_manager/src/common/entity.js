@@ -3,6 +3,7 @@ import XLSX from 'xlsx';
 import moment from "moment";
 import Vue from "Vue";
 import { LOCATION_USER_KEY, LOCATION_TOKEN_KEY, CURRENTLY_SELECTED_MENU_KEY } from "./constants"
+import {Crypto} from "./utils"
 
 export const CentralInterface = new Vue();
 
@@ -56,7 +57,7 @@ export const ResponseBody = class ResponseBody {
 export const SystemParameter = new class SystemParameter {
 
   constructor(){
-    this.__currently_index = JSON.parse(localStorage.getItem(CURRENTLY_SELECTED_MENU_KEY) || "[1,0,\"/\"]")
+    this.__currently_index = JSON.parse(localStorage.getItem(CURRENTLY_SELECTED_MENU_KEY) || "[0,0,\"/\"]")
   }
 
   get CURRENTLY_SELECTED_INDEX(){
@@ -86,21 +87,22 @@ export const User = new class User {
       userId: "user_1EQpgMuXVHu892wJBDflGTUwRRE",
       userName: "superadmin",
       userType: 1,
-    }, JSON.parse(localStorage.getItem(LOCATION_USER_KEY) || "{}"));
+    }, JSON.parse(Crypto.AES.decrypt(localStorage.getItem(LOCATION_USER_KEY) || "1F34A2EC42F23EE29BD7FD17DAEEDBD8")));
     this.__token = $.extend(true, {
       /**有效期目标时间 */
       expires_in:null,
       /**token 字符串 */
       access_token:null,
-    }, JSON.parse(localStorage.getItem(LOCATION_TOKEN_KEY) || "{}"));
+    }, JSON.parse(Crypto.AES.decrypt(localStorage.getItem(LOCATION_TOKEN_KEY) || "1F34A2EC42F23EE29BD7FD17DAEEDBD8")));
   }
 
   set info (v){
-    localStorage.setItem(LOCATION_USER_KEY, JSON.stringify(this.__info = v))
+    localStorage.setItem(LOCATION_USER_KEY, Crypto.AES.encrypt(JSON.stringify(this.__info = v)))
   }
 
   set token (v){
-    localStorage.setItem(LOCATION_TOKEN_KEY, JSON.stringify(this.__token = v))
+    /**防止用户身份被盗取, 在此做了加密存储 */
+    localStorage.setItem(LOCATION_TOKEN_KEY, Crypto.AES.encrypt(JSON.stringify(this.__token = v)))
   }
 
   get token (){
