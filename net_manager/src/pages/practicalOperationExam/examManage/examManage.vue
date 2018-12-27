@@ -1,27 +1,22 @@
 <template>
   <div>
-    <top-bar 
-    :examOrder="true" 
-    :newExam="true" 
-    :importBtn="true" 
-    :exportBtn="true" 
-    @newExam="newExam" 
-    @importDialog="importDialog"
-    @exportDialog="exportDialog"
-    ></top-bar>
+    <top-bar :examOrder="true" :newExam="true" :importBtn="true" :exportBtn="true"
+             @newExam="newExam"
+             @importDialog="importExam"
+             @exportDialog="exportExam"></top-bar>
     <search-bar :option="searchOption"></search-bar>
-    <operate-bar :deleteBtn="true"></operate-bar>
+    <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
     <div class="tableWrap">
       <el-table
         ref="multipleTable"
-        :data="tasks.datas"
+        :data="informationList"
         style="width: 100%"
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="考试顺序" prop="order" class="order"></el-table-column>
         <el-table-column label="考试编号" prop="number" class="number"></el-table-column>
-        <el-table-column label="考试名称" prop="name" class="name"></el-table-column>
+        <el-table-column label="考试名称" prop="name" class="name" :formatter="formatExamName"></el-table-column>
         <el-table-column label="焊接类型" prop="weld_type" class="weld_type"></el-table-column>
         <el-table-column label="接头类型" prop="splice_type" class="splice_type"></el-table-column>
         <el-table-column label="焊接位置" prop="weld_location" class="weld_location"></el-table-column>
@@ -32,9 +27,9 @@
         <el-table-column label="有效时间段" prop="valid_time" class="valid_time" width="200"></el-table-column>
         <el-table-column label="考试时长" prop="exam_time" class="exam_time"></el-table-column>
         <el-table-column label="状态" prop="status" class="status"></el-table-column>
-        <el-table-column label="操作" width="200" prop="handle" class="handle">
+        <el-table-column label="操作" width="200" class="handle">
           <template slot-scope="scope">
-            <a href="javascript:" @click="ifParameter = true">发布</a>
+            <a href="javascript:" @click="ifIssue = true">发布</a>
           </template>
         </el-table-column>
       </el-table>
@@ -46,12 +41,13 @@
       ></paging>
     </div>
     <new-exam :ifNewExam="ifNewExam" @cancelNewExam="cancelNewExam"></new-exam>
-    <parameterDetail :ifParameter='ifParameter' @cancelParameter = cancelParameter></parameterDetail>
-    <examImport :ifImport='ifImport' @cancelImport="cancelImport"></examImport>
-    <examExport :ifExport='ifExport' @cancelExport="cancelExport"></examExport>
-    <importFinish></importFinish>
-    <issue></issue>
-    <warning></warning>
+    <parameterDetail :ifParameter='ifShowParameterDetail' @cancelParameter='cancelParameter'></parameterDetail>
+    <examImport :ifImportExam="ifImportExam" @cancelImport="cancelImport" @importSucceed="importSucceed"></examImport>
+    <examExport :ifExportExam="ifExportExam" @cancelExport="cancelExport"></examExport>
+    <importFinish :isImportFinish="isImportFinish" @closeImportFinish="closeImportFinish"></importFinish>
+    <issue :ifIssue="ifIssue" @cancelIssue="cancelIssue"></issue>
+    <delete-dialog :ifShowDelete="ifShowDelete" @cancelDelete="cancelDelete" @confirmDelete="confirmDelete"></delete-dialog>
+    <warning :hasWarn="hasWarn" @closeWarn="closeWarn"></warning>
   </div>
 </template>
 
@@ -61,90 +57,64 @@ import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import NewExam from './dialog/newExam'
-import parameterDetail from './dialog/parameter_detail'
+import ParameterDetail from './dialog/parameter_detail'
 import ExamImport from './dialog/examImport'
 import ExamExport from './dialog/ExamExport'
 import ImportFinish from './dialog/ImportFinish'
 import Issue from './dialog/Issue'
+import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
 import Warning from './dialog/Warning'
-import { User, RequestParams } from "common/entity";
+
+import { User, RequestParams } from 'common/entity'
 
 export default {
-  name: "schoolInfo",
+  name: 'schoolInfo',
   components: {
     TopBar,
     SearchBar,
     OperateBar,
     Paging,
     NewExam,
-    parameterDetail,
+    ParameterDetail,
     ExamImport,
     ExamExport,
     ImportFinish,
     Issue,
+    DeleteDialog,
     Warning
   },
-  data() {
+  data () {
     return {
       ifParameter: false,
       ifImport: false,
       ifExport: false,
       ifNewExam: false,
+      ifShowParameterDetail: false,
+      ifImportExam: false,
+      ifExportExam: false,
+      isImportFinish: false,
+      ifIssue: false,
+      ifShowDelete: false,
+      hasWarn: false,
       // 全选
       ifAllSelect: false,
-      informationList: [
-        {
-          ifSelect: false,
-          order: '1',
-          number: '003309',
-          name: '实操1',
-          weld_type: 'SMAW',
-          splice_type: '平板对接',
-          weld_location: '平焊',
-          base_type: '不锈钢',
-          base_interval: '3mm',
-          base_thickness: '3mm',
-          tolerance: '3%',
-          valid_time: '11:12:13',
-          exam_time: '30分钟',
-          status: '未发布',
-          handle: '发布'
-        },
-        {
-          ifSelect: false,
-          order: '1',
-          number: '003309',
-          name: '实操1',
-          weld_type: 'SMAW',
-          splice_type: '平板对接',
-          weld_location: '平焊',
-          base_type: '不锈钢',
-          base_interval: '3mm',
-          base_thickness: '3mm',
-          tolerance: '3%',
-          valid_time: '11:12:13',
-          exam_time: '30分钟',
-          status: '未发布',
-          handle: '截止'
-        },
-        {
-          ifSelect: false,
-          order: '1',
-          number: '003309',
-          name: '实操1',
-          weld_type: 'SMAW',
-          splice_type: '平板对接',
-          weld_location: '平焊',
-          base_type: '不锈钢',
-          base_interval: '3mm',
-          base_thickness: '3mm',
-          tolerance: '3%',
-          valid_time: '11:12:13',
-          exam_time: '30分钟',
-          status: '未发布',
-          handle: '各学院成绩详情'
-        }
-      ],
+      informationList: new Array(5).fill({
+        ifSelect: false,
+        order: '1',
+        number: '003309',
+        name: '实操1',
+        weld_type: 'SMAW',
+        splice_type: '平板对接',
+        weld_location: '平焊',
+        base_type: '不锈钢',
+        base_interval: '3mm',
+        base_thickness: '3mm',
+        tolerance: '3%',
+        valid_time: '11:12:13',
+        exam_time: '30分钟',
+        status: '未发布',
+        handle: '发布'
+      }),
       searchOption: {
         queryTypes: {
           asd1: {
@@ -159,21 +129,21 @@ export default {
               母材厚度: 7,
               公差: 8
             },
-            selected: ""
+            selected: ''
           }
         },
         queryKeys: {
           asd1: {
             title: null,
-            placeholder: "123415",
+            placeholder: '123415',
             value: null
           }
         },
         querySortType: {
           selected: null,
           types: {
-            名称倒序: "-name",
-            名称正序: "name"
+            名称倒序: '-name',
+            名称正序: 'name'
           }
         },
         times: []
@@ -194,64 +164,93 @@ export default {
       }
     }
   },
-  mounted() {
-    this.laodTasks();
+  mounted () {
+    this.laodTasks()
   },
   methods: {
-    async laodTasks(pageIndex = 1, pageSize = 10) {
+    async laodTasks (pageIndex = 1, pageSize = 10) {
       let response = await this.$api.service.practical.task.search(
         new RequestParams()
-          .addAttribute("pageSize", pageSize)
-          .addAttribute("pageIndex", pageIndex)
-      );
-      this.tasks.datas = response.dataItems;
-      this.tasks.totalPage = response.totalPage;
+          .addAttribute('pageSize', pageSize)
+          .addAttribute('pageIndex', pageIndex)
+      )
+      this.tasks.datas = response.dataItems
+      this.tasks.totalPage = response.totalPage
     },
-    select(rows) {
+    select (rows) {
       if (rows) {
         rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
+          this.$refs.multipleTable.toggleRowSelection(row)
+        })
       } else {
-        this.$refs.multipleTable.clearSelection();
+        this.$refs.multipleTable.clearSelection()
       }
-      this.ifAllSelect = !this.ifAllSelect;
+      this.ifAllSelect = !this.ifAllSelect
       // this.informationList.map(o => this.ifAllSelect === true ? o.ifSelect = true : o.ifSelect = false)
     },
-    formatServeUrl(row) {
+    formatServeUrl (row) {
       return (
         <a href={row.url} target="_blank">
           {row.url}
         </a>
-      );
+      )
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
-      console.log(this.multipleSelection);
+    formatExamName (row) {
+      return <a onClick={this.showParameDetail.bind(this, true)}>{row.name}</a>
+    },
+    handleSelectionChange (val) {
+      this.multipleSelection = val
+      console.log(this.multipleSelection)
     },
     newExam (e) {
       this.ifNewExam = e
     },
+    showParameDetail (e) {
+      this.ifShowParameterDetail = e
+    },
+    importExam (e) {
+      this.ifImportExam = e
+    },
+    exportExam (e) {
+      this.ifExportExam = e
+    },
+    cancelImport (e) {
+      this.ifImportExam = e
+    },
+    cancelExport (e) {
+      this.ifExportExam = e
+    },
     cancelNewExam (e) {
       this.ifNewExam = e
     },
-    cancelParameter(e) {
-      this.ifParameter = e
+    cancelParameter (e) {
+      this.ifShowParameterDetail = e
     },
-    importDialog(e) {
-      this.ifImport = e
+    closeImportFinish (e) {
+      this.isImportFinish = e
     },
-    cancelImport(e) {
-      this.ifImport = e
+    importSucceed (e) {
+      this.isImportFinish = e
     },
-    exportDialog(e) {
-      this.ifExport = e
+    cancelIssue (e) {
+      this.ifIssue = e
     },
-    cancelExport(e) {
-      this.ifExport = e
+    cancelDelete (e) {
+      console.log(e)
+      this.ifShowDelete = e
+    },
+    deleteSelected (e) {
+      console.log(e)
+      this.ifShowDelete = e
+    },
+    confirmDelete (e) {
+      this.hasWarn = e
+    },
+    closeWarn (e) {
+      this.hasWarn = e
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>

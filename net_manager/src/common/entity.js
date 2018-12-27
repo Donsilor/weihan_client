@@ -109,17 +109,17 @@ export const User = new class User {
 
   /**Token 是否有效[0有效,1过期,2失效] */
   get IS_TOKEN_EFFECTIVE(){
-    // if(this.__token.access_token){
-    //   if(this.__token.expires_in){
-    //     if(moment(this.__token.expires_in).isAfter()){
-    //       return 0;
-    //     }
-    //     else {
+    if(this.__token.access_token){
+      if(this.__token.expires_in){
+        if(moment(this.__token.expires_in).isAfter()){
+          return 0;
+        }
+        else {
           return 1;
-    //     }
-    //   }
-    // }
-    // return 2;
+        }
+      }
+    }
+    return 2;
   }
 
   get info (){

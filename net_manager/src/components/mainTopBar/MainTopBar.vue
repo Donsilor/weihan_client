@@ -104,10 +104,6 @@ export default {
       type: Boolean,
       default: false
     },
-    newExam: {
-      type: Boolean,
-      default: false
-    },
     missionOrder: {
       type: Boolean,
       default: false

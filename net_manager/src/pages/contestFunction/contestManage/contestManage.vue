@@ -23,14 +23,14 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging 
+      <paging
       :loadDatas="laodTasks"
       :totalPage="tasks.totalPage"
       :pageSize="tasks.pageSize"
       :pageIndex="tasks.pageIndex"></paging>
     </div>
-    <import-dialog :ifShowImport="false" @close="closeImport"></import-dialog>
-    <delete-dialog :ifShowDelete="false" @cancelDelete="cancelDelete"></delete-dialog>
+    <import-dialog :ifShowImport="ifShowImport" @close="closeImport"></import-dialog>
+    <delete-dialog :ifShowDelete="ifShowDelete" @cancelDelete="cancelDelete"></delete-dialog>
   </div>
 </template>
 
@@ -55,6 +55,8 @@ export default {
   },
   data () {
     return {
+      ifShowImport: false,
+      ifShowDelete: false,
       searchOption: {
         queryTypes: {
           asd1: {
