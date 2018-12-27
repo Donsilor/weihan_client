@@ -10,7 +10,7 @@
           <div class="item">
             <div class="title"><i class="iconfont">&#xe6dd;</i>下载模板</div>
             <div class="subText">为提高导入的成功率，请下载并使用系统提供的模板</div>
-            <a href="javascript:" class="downloadTemplate"></a>
+            <a href="javascript:" class="downloadTemplate">下载模板</a>
           </div>
           <div class="item">
             <div class="title"><i class="iconfont">&#xe71a;</i>上传</div>
@@ -61,6 +61,9 @@ export default {
     width 80%
     margin auto
 
+    &:not(:last-of-type)
+      margin-bottom 2rem
+
     .title
       font-size 1.25rem
       line-height 2.5rem
@@ -99,5 +102,13 @@ export default {
         color #fff
         border-radius .3rem
 
+    .downloadTemplate
+      display inline-block
+      font-size 1rem
+      line-height 2.5rem
+      padding 0 1rem
+      color #fff
+      background-color #34a5dd
+      border-radius .3rem
 
 </style>
