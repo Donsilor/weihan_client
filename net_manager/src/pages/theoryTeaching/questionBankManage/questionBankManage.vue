@@ -33,7 +33,7 @@
         :pageIndex="tasks.pageIndex"></paging>
     </div>
 
-    <newQuestion :ifNewQuestion="ifNewQuestion" @cancelNewQuestion="cancelNewQuestion"  :option="tasks.data"></newQuestion>
+    <newQuestion v-if="ifNewQuestion" :close="e=>ifNewQuestion=false" :submit="e=>ifNewQuestion=false"  :option="tasks.data"></newQuestion>
     <questionExport :ifExportQuestion="ifExportQuestion" @cancelExport="cancelExport" :close="asd=-true"></questionExport>
     <warning :ifRemove="ifRemove" @closeWarn="closeWarn"></warning>
 
@@ -126,7 +126,15 @@ export default {
     this.loadQuestions()
   },
   methods: {
-
+    ExitQuestions(){
+      // this.$api.service.questions.create(
+      //   new RequestParams()
+      //     .addAttribute('name', this.tasks.data.name)
+      //     .addAttribute('grade', this.tasks.data.name)
+      //     .addAttribute('code', this.tasks.data.name)
+      //     .addAttribute('type', this.tasks.data.name)
+      // )
+    },
     async loadQuestions (pageIndex = 1, pageSize = 10) {
       let response = await this.$api.service.questions.search(
         new RequestParams()

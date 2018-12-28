@@ -76,6 +76,10 @@ export const SystemParameter = new class SystemParameter {
     }
   }
 
+  get CURRENTTIME(){
+    return new Date().toLocaleString("zh-CN", {hour12:false}).replace(/\/|\s+|:+/ig, "")
+  }
+
   /**所有的标签字典 */
   get DICTIONARIES(){
     return this.__dictionaries;

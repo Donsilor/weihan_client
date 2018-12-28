@@ -177,6 +177,13 @@ export default {
         method: HTTP_REQUEST_METHOD.POST,
         authorization: "token"
       },
+      create:{
+        /**接口地址 */
+        url: '/service/questions',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.POST,
+        authorization: "token"
+      },
     },
     /**作业 */
     homeworks:{
@@ -195,6 +202,54 @@ export default {
         url: '/service/papers/get',
         /**接口方法 */
         method: HTTP_REQUEST_METHOD.POST,
+        authorization: "token"
+      },
+    },
+    /**专业 */
+    professions:{
+      search:{
+        /**接口地址 */
+        url: '/service/professions',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.GET,
+        authorization: "token"
+      },
+      upset:{
+        /**接口地址 */
+        url: '/service/professions',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.POST,
+        authorization: "token"
+      },
+      delete:{
+        /**接口地址 */
+        url: '/service/professions/$id',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.DELETEURL,
+        authorization: "token"
+      },
+    },
+    /**专业 */
+    classes:{
+      search:{
+        /**接口地址 */
+        url: '/service/classes',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.GET,
+        authorization: "token"
+      },
+      upset:{
+        /**接口地址 */
+        url: '/service/classes',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.POST,
+        authorization: "token"
+      },
+      delete:{
+        /**接口地址 */
+        url: '/service/classes/$id',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.DELETEURL,
         authorization: "token"
       },
     }

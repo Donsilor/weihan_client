@@ -1,11 +1,15 @@
 <template>
   <div>
-    <top-bar :newSchool="true"></top-bar>
+    <top-bar :option="headButtons"></top-bar>
     <search-bar :option="queryOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="informationList" style="width: 100%"
-                @selection-change="handleSelectionChange">
+      <el-table
+        ref="multipleTable"
+        :data="majors.list"
+        style="width: 100%"
+        @selection-change="handleSelectionChange"
+      >
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="专业编号" prop="number" class="number"></el-table-column>
         <el-table-column label="专业名称" prop="professional_name" class="name"></el-table-column>
@@ -17,21 +21,26 @@
           </template>
         </el-table-column>
       </el-table>
-      <paging></paging>
-      <new-profession></new-profession>
+      <paging
+        :loadDatas="load"
+        :totalPage="majors.totalPage"
+        :pageSize="majors.pageSize"
+        :pageIndex="majors.pageIndex"></paging>
+      <new-profession v-if="editView" :close="e=>editView = false" :submit="edit" :option="majors.data"></new-profession>
     </div>
   </div>
 </template>
 
 <script>
-import TopBar from 'components/mainTopBar/MainTopBar'
-import SearchBar from 'components/searchBar/SearchBar'
-import OperateBar from 'components/operateBar/OperateBar'
-import Paging from 'components/paging/Paging'
-import NewProfession from './dialog/newProfession'
+import TopBar from "components/mainTopBar/MainTopBar";
+import SearchBar from "components/searchBar/SearchBar";
+import OperateBar from "components/operateBar/OperateBar";
+import Paging from "components/paging/Paging";
+import NewProfession from "./dialog/newProfession";
+import { User, RequestParams, SystemParameter } from 'common/entity'
 
 export default {
-  name: 'ProfessionalInfo',
+  name: "ProfessionalInfo",
   components: {
     TopBar,
     SearchBar,
@@ -39,8 +48,9 @@ export default {
     Paging,
     NewProfession
   },
-  data () {
+  data() {
     return {
+      editView: false,
       // 全选
       ifAllSelect: false,
       queryOption: {
@@ -63,51 +73,104 @@ export default {
             value: null
           }
         },
-        querySortType:{
-          selected:null,
-          types:{
-            排序1:"-name",
-            排序2:"name"
+        querySortType: {
+          selected: null,
+          types: {
+            排序1: "-name",
+            排序2: "name"
           }
         },
-        times:false,
+        times: false,
         videoDatabaseModule: false,
         searchModule: true,
         timeQuantumSearchModule: false,
         inquire: false,
         inquireName: false
       },
-      informationList: new Array(10).fill({
-          ifSelect: false,
-          number: '6801000003309',
-          professional_name: '软件技术'
-      })
+      majors:{
+        pageIndex: 1,
+        pageSize: 10,
+        totalPage: 10,
+        data: {
+          name: 'asd'
+        },
+        datas: [],
+        list: [],
+        search: {
+          queryKey: null,
+          queryType: null,
+          startTime: null,
+          endTime: null,
+          sortType: null,
+          id: null
+        }
+      }
+    };
+  },
+  computed: {
+    headButtons() {
+      let that = this;
+      return [
+        {
+          name: "新增专业",
+          clickView() {
+            that.editView = true;
+          }
+        }
+      ];
     }
   },
+  mounted () {
+    this.load()
+  },
   methods: {
-    select (rows) {
+    edit(){
+      this.$api.service.professions.upset(
+        new RequestParams()
+          .addAttribute('name', this.majors.data.name)
+          .addAttribute('code', SystemParameter.CURRENTTIME)
+      )
+      .then(response=>{
+        this.load();
+        this.editView = false
+      })
+      .catch(e=>{
+      })
+    },
+    async load (pageIndex = 1, pageSize = 10) {
+      let response = await this.$api.service.professions.search(
+        new RequestParams()
+          .addAttribute('pageIndex', pageIndex)
+          .addAttribute('pageSize', pageSize)
+      )
+      this.majors.totalPage = response.totalPage
+      this.majors.list = response.dataItems
+    },
+    select(rows) {
       if (rows) {
         rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row)
-        })
+          this.$refs.multipleTable.toggleRowSelection(row);
+        });
       } else {
-        this.$refs.multipleTable.clearSelection()
+        this.$refs.multipleTable.clearSelection();
       }
-      this.ifAllSelect = !this.ifAllSelect
+      this.ifAllSelect = !this.ifAllSelect;
     },
-    formatServeUrl (row) {
-      return <a href={row.url} target="_blank">{row.url}</a>
+    formatServeUrl(row) {
+      return (
+        <a href={row.url} target="_blank">
+          {row.url}
+        </a>
+      );
     },
-    handleSelectionChange (val) {
-      this.multipleSelection = val
-      console.log(this.multipleSelection)
+    handleSelectionChange(val) {
+      this.multipleSelection = val;
+      console.log(this.multipleSelection);
     }
   }
-
-}
-
+};
 </script>
 
 <style lang="stylus" scoped>
-@import "~assets/common.styl"
+@import '~assets/common.styl';
 </style>
