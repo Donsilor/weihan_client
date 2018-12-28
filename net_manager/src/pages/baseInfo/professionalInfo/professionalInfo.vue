@@ -11,8 +11,8 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" width="50"></el-table-column>
-        <el-table-column label="专业编号" prop="number" class="number"></el-table-column>
-        <el-table-column label="专业名称" prop="professional_name" class="name"></el-table-column>
+        <el-table-column label="专业编号" prop="code" class="number"></el-table-column>
+        <el-table-column label="专业名称" prop="name" class="name"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <i class="modification icon iconfont icon-bianji"></i>
@@ -114,6 +114,7 @@ export default {
         {
           name: "新增专业",
           clickView() {
+            that.majors.data = {};
             that.editView = true;
           }
         }
@@ -128,13 +129,11 @@ export default {
       this.$api.service.professions.upset(
         new RequestParams()
           .addAttribute('name', this.majors.data.name)
-          .addAttribute('code', SystemParameter.CURRENTTIME)
+          .addAttribute('code', SystemParameter.CODE)
       )
       .then(response=>{
         this.load();
         this.editView = false
-      })
-      .catch(e=>{
       })
     },
     async load (pageIndex = 1, pageSize = 10) {

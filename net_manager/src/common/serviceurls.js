@@ -209,9 +209,9 @@ export default {
     professions:{
       search:{
         /**接口地址 */
-        url: '/service/professions',
+        url: '/service/professions/get',
         /**接口方法 */
-        method: HTTP_REQUEST_METHOD.GET,
+        method: HTTP_REQUEST_METHOD.POST,
         authorization: "token"
       },
       upset:{
