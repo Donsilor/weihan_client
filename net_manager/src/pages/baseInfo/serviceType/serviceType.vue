@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :newSever="true" @newServeType="newServeType"></top-bar>
+    <top-bar :option="headButtons"></top-bar>
     <search-bar :option="queryOption"></search-bar>
     <operate-bar :deleteBtn="true" @deleteSelected="deleteService"></operate-bar>
     <div class="tableWrap">
@@ -108,6 +108,19 @@ export default {
           id: null
         }
       }
+    }
+  },
+  computed: {
+    headButtons() {
+      let that = this;
+      return [
+        {
+          name: "新增学校",
+          clickView() {
+            that.editView = true;
+          }
+        }
+      ];
     }
   },
   mounted () {

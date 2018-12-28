@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar></top-bar>
+    <top-bar :option="headButtons"></top-bar>    
     <search-bar></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
@@ -78,6 +78,19 @@ export default {
           thickness: '3mm'
         }
       ]
+    }
+  },
+  computed: {
+    headButtons() {
+      let that = this;
+      return [
+        {
+          name: "新增学校",
+          clickView() {
+            that.editView = true;
+          }
+        }
+      ];
     }
   },
   methods: {

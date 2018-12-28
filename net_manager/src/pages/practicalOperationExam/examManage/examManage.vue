@@ -1,14 +1,6 @@
 <template>
   <div>
-    <top-bar
-    :examOrder="true"
-    :newExam="true"
-    :importBtn="true"
-    :exportBtn="true"
-    @newExam="newExam"
-    @importDialog="importExam"
-    @exportDialog="exportExam">
-    </top-bar>
+    <top-bar :option="headButtons"></top-bar>            
     <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
     <div class="tableWrap">
@@ -167,6 +159,19 @@ export default {
           id: null
         }
       }
+    }
+  },
+  computed: {
+    headButtons() {
+      let that = this;
+      return [
+        {
+          name: "新增学校",
+          clickView() {
+            that.editView = true;
+          }
+        }
+      ];
     }
   },
   mounted () {

@@ -51,37 +51,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
-@import "~assets/common.styl"
-
-.centerLayer
-    width 36rem
-
-    .occupied
-        height 1rem
-        color #333
-
-    .explain
-        width 52%
-        font-size 1.2rem
-        line-height 1.8rem
-        color #333
-        margin 3rem auto 4rem auto
-
-    .btn
-        margin-top 3rem
-
-        button
-            width 5rem
-            height 2rem
-            background-color #34a5dd
-            border 1px solid #fff
-            color #ffffff
-            border-radius 3px
-
-            &:first-child
-                background-color #fff
-                border 1px solid #34a5dd
-                color #34a5dd
-                margin-left 2rem
+  @import "~assets/common.styl"
+  @import "~assets/error.styl"
 </style>
