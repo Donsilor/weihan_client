@@ -1,8 +1,8 @@
 <template>
   <div>
-    <top-bar :newSchool="true"></top-bar>
+    <top-bar :newSchool="true" @newSchool="newSchool"></top-bar>
     <search-bar :option="queryOption"></search-bar>
-    <operate-bar :deleteBtn="true"></operate-bar>
+    <operate-bar :deleteBtn="true" @deleteSelected="deleteSchool"></operate-bar>
     <div class="tableWrap">
       <el-table
         ref="multipleTable"
@@ -16,8 +16,8 @@
         <el-table-column label="服务器网址" prop="url" class="url" :formatter="formatServeUrl"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
-            <i class="modification icon iconfont icon-bianji" @click="editor()"></i>
-            <i class="delete icon iconfont icon-shanchu1"></i>
+            <i class="modification icon iconfont icon-bianji" @click="editSchool"></i>
+            <i class="delete icon iconfont icon-shanchu1" @click="deleteSchool"></i>
             <i class="examine icon iconfont icon-chakan"></i>
           </template>
         </el-table-column>
@@ -28,7 +28,9 @@
       :pageSize="schools.pageSize"
       :pageIndex="schools.pageIndex"></paging>
     </div>
-    <schooleditor @hidden="hiddenShow" v-show="isShoweditor"></schooleditor>
+    <new-school :ifNewSchool="ifNewSchool" @cancelNew="cancelNewSchool"></new-school>
+    <edit-school :ifEditSchool="ifEditSchool" @cancelEdit="cancelEditSchool"></edit-school>
+    <delete-dialog :ifDelete="ifDeleteSchool" @cancelDelete="cancelDelete"></delete-dialog>
   </div>
 </template>
 
@@ -37,9 +39,11 @@ import TopBar from "components/mainTopBar/MainTopBar";
 import SearchBar from "components/searchBar/SearchBar";
 import OperateBar from "components/operateBar/OperateBar";
 import Paging from "components/paging/Paging";
+import NewSchool from './dialog/newSchool'
+import EditSchool from './dialog/editSchool'
+import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
+
 import { User, RequestParams } from "common/entity";
-import Schooleditor from './components/shcooleditor/shcooleditor'
-import Schooladd from './components/Schooladd/schooladd'
 
 export default {
   name: 'SchoolInfo',
@@ -48,11 +52,15 @@ export default {
     SearchBar,
     OperateBar,
     Paging,
-    Schooleditor,
-    Schooladd
+    NewSchool,
+    EditSchool,
+    DeleteDialog
   },
   data() {
     return {
+      ifNewSchool: false,
+      ifEditSchool: false,
+      ifDeleteSchool: false,
       // 全选
       ifAllSelect: false,
       isShoweditor:false,
@@ -146,13 +154,28 @@ export default {
       this.multipleSelection = val;
       console.log(this.multipleSelection);
     },
-    editor(){
-      this.isShoweditor=true
+    editSchool () {
+      this.ifEditSchool = true
+    },
+    deleteSchool () {
+      this.ifDeleteSchool = true
     },
     hiddenShow(){
         let that = this;
         that.isShoweditor = false
-      }
+      },
+    newSchool (e) {
+      this.ifNewSchool = e
+    },
+    cancelNewSchool (e) {
+      this.ifNewSchool = e
+    },
+    cancelEditSchool (e) {
+      this.ifEditSchool = e
+    },
+    cancelDelete (e) {
+      this.ifDeleteSchool = e
+    }
   }
 };
 </script>

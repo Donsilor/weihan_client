@@ -18,7 +18,7 @@
         </el-table-column>
       </el-table>
       <paging></paging>
-      <editor :editorModule='false'></editor>
+      <new-profession></new-profession>
     </div>
   </div>
 </template>
@@ -28,16 +28,16 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
-import Editor from './components/editor/editor'
+import NewProfession from './dialog/newProfession'
 
 export default {
-  name: 'professionalinfo',
+  name: 'ProfessionalInfo',
   components: {
     TopBar,
     SearchBar,
     OperateBar,
     Paging,
-    Editor
+    NewProfession
   },
   data () {
     return {

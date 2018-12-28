@@ -1,5 +1,5 @@
 <template>
-  <div class="maskLayer" v-if="ifShowDelete">
+  <div class="maskLayer" v-if="ifDelete">
     <div class="centerLayer">
       <div class="popup delete clf">
         <div class="popupTopBar">
@@ -30,7 +30,7 @@ export default {
     return {}
   },
   props: {
-    ifShowDelete: {
+    ifDelete: {
       type: Boolean,
       defalult: false
     }

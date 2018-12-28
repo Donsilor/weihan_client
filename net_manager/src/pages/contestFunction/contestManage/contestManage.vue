@@ -30,7 +30,7 @@
       :pageIndex="tasks.pageIndex"></paging>
     </div>
     <import-dialog :ifShowImport="ifShowImport" @close="closeImport"></import-dialog>
-    <delete-dialog :ifShowDelete="ifShowDelete" @cancelDelete="cancelDelete"></delete-dialog>
+    <delete-dialog :ifDelete="ifShowDelete" @cancelDelete="cancelDelete"></delete-dialog>
   </div>
 </template>
 
@@ -40,7 +40,7 @@ import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import ImportDialog from './dialog/importDialog'
-import deleteDialog from 'components/dialog/deleteDialog/deleteDialog'
+import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
 import { User, RequestParams } from "common/entity";
 
 export default {
@@ -51,7 +51,7 @@ export default {
     OperateBar,
     Paging,
     ImportDialog,
-    deleteDialog
+    DeleteDialog
   },
   data () {
     return {

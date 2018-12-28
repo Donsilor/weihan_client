@@ -3,6 +3,8 @@ import XLSX from 'xlsx';
 import moment from "moment";
 import Vue from "Vue";
 import { LOCATION_USER_KEY, LOCATION_TOKEN_KEY, CURRENTLY_SELECTED_MENU_KEY } from "./constants"
+import {Crypto} from "./utils"
+import api from "./sereviceapi"
 
 export const CentralInterface = new Vue();
 
@@ -56,9 +58,30 @@ export const ResponseBody = class ResponseBody {
 export const SystemParameter = new class SystemParameter {
 
   constructor(){
-    this.__currently_index = JSON.parse(localStorage.getItem(CURRENTLY_SELECTED_MENU_KEY) || "[1,0,\"/\"]")
+    this.__currently_index = JSON.parse(localStorage.getItem(CURRENTLY_SELECTED_MENU_KEY) || "[0,0,\"/\"]");
+    this.__dictionaries = {};
+    this.init();
   }
 
+  init(){
+    if(JSON.stringify(this.__dictionaries) == "{}"){
+      api.common.uiLabels.get({type:"all"}).then(list=>{
+        for(let item of list){
+          if(!this.__dictionaries[item.type]){
+            this.__dictionaries[item.type] = [];
+          }
+          this.__dictionaries[item.type].push(item)
+        }
+      })
+    }
+  }
+
+  /**所有的标签字典 */
+  get DICTIONARIES(){
+    return this.__dictionaries;
+  }
+
+  /**当前系统现实的路由和菜单按钮项 */
   get CURRENTLY_SELECTED_INDEX(){
     return this.__currently_index;
   }
@@ -86,21 +109,22 @@ export const User = new class User {
       userId: "user_1EQpgMuXVHu892wJBDflGTUwRRE",
       userName: "superadmin",
       userType: 1,
-    }, JSON.parse(localStorage.getItem(LOCATION_USER_KEY) || "{}"));
+    }, JSON.parse(Crypto.AES.decrypt(localStorage.getItem(LOCATION_USER_KEY) || "1F34A2EC42F23EE29BD7FD17DAEEDBD8")));
     this.__token = $.extend(true, {
       /**有效期目标时间 */
       expires_in:null,
       /**token 字符串 */
       access_token:null,
-    }, JSON.parse(localStorage.getItem(LOCATION_TOKEN_KEY) || "{}"));
+    }, JSON.parse(Crypto.AES.decrypt(localStorage.getItem(LOCATION_TOKEN_KEY) || "1F34A2EC42F23EE29BD7FD17DAEEDBD8")));
   }
 
   set info (v){
-    localStorage.setItem(LOCATION_USER_KEY, JSON.stringify(this.__info = v))
+    localStorage.setItem(LOCATION_USER_KEY, Crypto.AES.encrypt(JSON.stringify(this.__info = v)))
   }
 
   set token (v){
-    localStorage.setItem(LOCATION_TOKEN_KEY, JSON.stringify(this.__token = v))
+    /**防止用户身份被盗取, 在此做了加密存储 */
+    localStorage.setItem(LOCATION_TOKEN_KEY, Crypto.AES.encrypt(JSON.stringify(this.__token = v)))
   }
 
   get token (){
@@ -109,17 +133,17 @@ export const User = new class User {
 
   /**Token 是否有效[0有效,1过期,2失效] */
   get IS_TOKEN_EFFECTIVE(){
-  //   if(this.__token.access_token){
-  //     if(this.__token.expires_in){
-  //       if(moment(this.__token.expires_in).isAfter()){
+    if(this.__token.access_token){
+      if(this.__token.expires_in){
+        if(moment(this.__token.expires_in).isAfter()){
           return 0;
-  //       }
-  //       else {
-          // return 1;
-  //       }
-  //     }
-  //   }
-  //   return 2;
+        }
+        else {
+          return 1;
+        }
+      }
+    }
+    return 2;
   }
 
   get info (){

@@ -203,10 +203,12 @@ export default {
   common: {
     /**标签 */
     uiLabels: {
-      /**接口地址 */
-      url: '/common/uiLabels/$type',
-      /**接口方法 */
-      method: HTTP_REQUEST_METHOD.GETURL
+      get:{
+        /**接口地址 */
+        url: '/common/uiLabels/$type',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.GETURL
+      }
     }
   }
 }

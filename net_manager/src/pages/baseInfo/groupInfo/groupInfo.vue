@@ -32,7 +32,7 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
-import Addgroupuser from './components/add/addgroupuser'
+import Addgroupuser from './dialog/addgroupuser'
 
 
 
