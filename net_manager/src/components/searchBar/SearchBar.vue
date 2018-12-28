@@ -47,10 +47,10 @@
         <span>姓名：</span>
         <el-input size="mini" placeholder="请输入内容" clearable></el-input>
       </label>-->
-      <button v-if="option.queryKeys">搜索</button>
+      <button v-if="option.queryKeys" @click="search">搜索</button>
     </div>
     <label v-if="option.querySortType">
-      <select class="sort fr" v-model="option.querySortType.selected">
+      <select class="sort fr" v-model="option.querySortType.selected" @change="sort">
         <option v-for="(v, k) in option.querySortType.types" :key="v" :value="v">{{k}}</option>
       </select>
     </label>
@@ -64,6 +64,14 @@ export default {
     prop: 'option'
   },
   props: {
+    sort:{
+      type:Function,
+      default:e=>console.log(e)
+    },
+    search:{
+      type:Function,
+      default:e=>console.log(e)
+    },
     option: {
       type: Object,
       default () {

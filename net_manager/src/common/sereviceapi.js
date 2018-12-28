@@ -217,13 +217,13 @@ export default (function createApis(apis) {
    */
   else {
     apis = function (params = new RequestParams()) {
-      return new Promise(function (resolve, reject) {
-
-        if(!(params instanceof RequestParams)){
-          params = new RequestParams(params)
-        }
+      return new Promise(async function (resolve, reject) {
 
         let { url, method, param = {}, config = {} } = $.extend(true, {}, api);
+        
+        if(api.confirm){
+          await MessageBox.confirm(api.confirm.message, api.confirm.title)
+        }
 
         if (api.authorization) {
           let toKetMessage = User.IS_TOKEN_EFFECTIVE == 2 ? "请先登陆!" : User.IS_TOKEN_EFFECTIVE == 1 ? "登陆已过期，请重新登陆!" : null;
@@ -274,7 +274,7 @@ export default (function createApis(apis) {
               }
               default: return axios_method(url, requestBody, config);
             }
-          })(params instanceof FormData ? params : $.extend(true, param, params)).then(response => {
+          })(params instanceof RequestParams ? $.extend(true, param, params): params ).then(response => {
             ///因为到达这里的状态都是 ok ，再加上后端业务 Code 不做 ok 返回
             ///所以这里决定不做 code 的处理
             resolve(response.data);
@@ -289,7 +289,7 @@ export default (function createApis(apis) {
               alertError("服务器还没准备好")
             }
             //目前所有的code 自动弹出提示
-            reject(error.response && error.response.data)
+            reject(error && error.response && error.response.data)
           }).finally(e => loadingInstance.close());
         }
         else {
