@@ -7,8 +7,8 @@
     </el-breadcrumb>
     <div class="btns fr">
       <a href="javascript:" v-if="newSchool" @click="$emit('newSchool', true)">+ 新建学校</a>
-      <a href="javascript:" v-if="newSever">+ 新建服务类别</a>
-      <a href="javascript:" v-if="newPeople">+ 新建人员</a>
+      <a href="javascript:" v-if="newSever" @click="$emit('newServeType', true)">+ 新建服务类别</a>
+      <a href="javascript:" v-if="newPeople" @click="$emit('newPeople', true)">+ 新建人员</a>
 
       <a href="javascript:" v-if="newContest">+ 新建竞赛</a>
       <a href="javascript:" v-if="newQuestion" @click="$emit('newQuestion', true)">+ 新建题库</a>
