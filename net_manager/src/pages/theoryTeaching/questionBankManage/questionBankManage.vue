@@ -36,6 +36,8 @@
     <newQuestion :ifNewQuestion="ifNewQuestion" @cancelNewQuestion="cancelNewQuestion"></newQuestion>
     <questionExport :ifExportQuestion="ifExportQuestion" @cancelExport="cancelExport"></questionExport>
     <warning :ifRemove="ifRemove" @closeWarn="closeWarn"></warning>
+    <compile></compile>
+    <peopleList></peopleList>
 
   </div>
 </template>
@@ -47,8 +49,10 @@ import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import { User, RequestParams } from "common/entity";
 import NewQuestion from "./dialog/newQuestionBank";
-import QuestionExport from './dialog/ExamExport'
+import QuestionExport from './dialog/QuestionBankExport'
 import Warning from './dialog/Warning'
+import Compile from './dialog/Compile'
+import PeopleList from './dialog/PeopleList'
 
 export default {
   name: 'QuestionBankManage',
@@ -59,7 +63,9 @@ export default {
     Paging,
     NewQuestion,
     QuestionExport,
-    Warning
+    Warning,
+    Compile,
+    PeopleList,
   },
   data () {
     return {

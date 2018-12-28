@@ -1,8 +1,15 @@
 <template>
   <div>
-    <top-bar :newExamPapers="true" :importBtn="true" :exportBtn="true"></top-bar>
+    <top-bar 
+    :newExamPapers="true" 
+    :importBtn="true" 
+    :exportBtn="true"
+    @newTestQuestion="newTestQuestion"
+    @importDialog="importDialog"
+    @exportDialog="exportDialog"
+    ></top-bar>
     <search-bar :option="searchOption"></search-bar>
-    <operate-bar :deleteBtn="true"></operate-bar>
+    <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
     <div class="tableWrap">
       <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
@@ -28,6 +35,13 @@
         :pageIndex="tasks.pageIndex"
       ></paging>
     </div>
+
+    <newTest :ifNewTest="ifNewTest" @cancelNewTest="cancelNewTest"></newTest>
+    <testImport :ifShowImport="ifShowImport" @cancelImport="cancelImport"></testImport>
+    <testExport :ifShowExport="ifShowExport" @cancelExport="cancelExport"></testExport>
+    <warning :ifShowWarning="ifShowWarning" @closeWarn="closeWarn"></warning>
+
+
   </div>
 </template>
 
@@ -36,7 +50,11 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
-import { User, RequestParams } from "common/entity";
+import { User, RequestParams } from "common/entity"
+import NewTest from './dialog/NewTestQuestion'
+import testImport from './dialog/testImport'
+import testExport from './dialog/testExport'
+import warning from './dialog/warning'
 
 export default {
   name: 'TestQuestionManage',
@@ -44,10 +62,18 @@ export default {
     TopBar,
     SearchBar,
     OperateBar,
-    Paging
+    Paging,
+    NewTest,
+    testImport,
+    testExport,
+    warning
   },
   data () {
     return {
+      ifNewTest: false,
+      ifShowImport: false,
+      ifShowExport: false,
+      ifShowWarning: false,
       searchOption: {
         queryTypes: {
           asd1: {
@@ -117,6 +143,30 @@ export default {
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
+    },
+    newTestQuestion(e){
+      this.ifNewTest = e
+    },
+    cancelNewTest(e){
+      this.ifNewTest = e
+    },
+    importDialog(e){
+      this.ifShowImport = e
+    },
+    cancelImport(e){
+      this.ifShowImport = e
+    },
+    exportDialog(e){
+      this.ifShowExport = e
+    },
+    cancelExport(e){
+      this.ifShowExport = e
+    },
+    deleteSelected(e){
+      this.ifShowWarning = e
+    },
+    closeWarn(e){
+      this.ifShowWarning = e
     }
   }
 }

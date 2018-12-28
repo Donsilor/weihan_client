@@ -128,7 +128,7 @@
 <script>
 
 export default {
-  name: 'NewwExam',
+  name: 'NewExam',
   data () {
     return {}
   },
