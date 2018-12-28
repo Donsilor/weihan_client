@@ -34,7 +34,7 @@
     </div>
 
     <newQuestion :ifNewQuestion="ifNewQuestion" @cancelNewQuestion="cancelNewQuestion"></newQuestion>
-    <questionExport :ifExportQuestion="ifExportQuestion" @cancelExport="cancelExport"></questionExport>
+    <questionExport :ifExportQuestion="ifExportQuestion" @cancelExport="cancelExport" v-model="tasks.data" :close="asd=-true"></questionExport>
     <warning :ifRemove="ifRemove" @closeWarn="closeWarn"></warning>
 
   </div>
@@ -45,7 +45,7 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
-import { User, RequestParams } from "common/entity";
+import { User, RequestParams, SystemParameter} from "common/entity";
 import NewQuestion from "./dialog/newQuestionBank";
 import QuestionExport from './dialog/ExamExport'
 import Warning from './dialog/Warning'
@@ -104,6 +104,11 @@ export default {
         pageIndex: 1,
         pageSize: 10,
         totalPage: 10,
+        data:{
+          name:"asd",
+          questionsLevel:"2",
+          questionsClass:"1"
+        },
         datas: [],
         list: [],
         search: {
@@ -121,6 +126,7 @@ export default {
     this.loadQuestions();
   },
   methods: {
+
     async loadQuestions(pageIndex=1, pageSize=10) {
       let response = await this.$api.service.questions.search(
         new RequestParams()

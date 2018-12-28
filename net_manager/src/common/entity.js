@@ -4,6 +4,7 @@ import moment from "moment";
 import Vue from "Vue";
 import { LOCATION_USER_KEY, LOCATION_TOKEN_KEY, CURRENTLY_SELECTED_MENU_KEY } from "./constants"
 import {Crypto} from "./utils"
+import api from "./sereviceapi"
 
 export const CentralInterface = new Vue();
 
@@ -57,9 +58,30 @@ export const ResponseBody = class ResponseBody {
 export const SystemParameter = new class SystemParameter {
 
   constructor(){
-    this.__currently_index = JSON.parse(localStorage.getItem(CURRENTLY_SELECTED_MENU_KEY) || "[0,0,\"/\"]")
+    this.__currently_index = JSON.parse(localStorage.getItem(CURRENTLY_SELECTED_MENU_KEY) || "[0,0,\"/\"]");
+    this.__dictionaries = {};
+    this.init();
   }
 
+  init(){
+    if(JSON.stringify(this.__dictionaries) == "{}"){
+      api.common.uiLabels.get({type:"all"}).then(list=>{
+        for(let item of list){
+          if(!this.__dictionaries[item.type]){
+            this.__dictionaries[item.type] = [];
+          }
+          this.__dictionaries[item.type].push(item)
+        }
+      })
+    }
+  }
+
+  /**所有的标签字典 */
+  get DICTIONARIES(){
+    return this.__dictionaries;
+  }
+
+  /**当前系统现实的路由和菜单按钮项 */
   get CURRENTLY_SELECTED_INDEX(){
     return this.__currently_index;
   }

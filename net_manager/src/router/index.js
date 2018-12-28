@@ -63,7 +63,7 @@ export default new Router({
   routes: [
     {path: '/login', name: 'login', component: Login},
     {
-      path: '/', name: 'home', component: Home,  children: [
+      path: '/', name: 'home', component: Home,  meta: { title: '首页', requireAuth: true }, children: [
         {
           path: '/school_info',
           name: 'schoolInfo',
@@ -80,25 +80,25 @@ export default new Router({
           path: '/people_info',
           name: 'peopleInfo',
           component:PeopleInfo,
-          meta: { title: '人员信息', requireAuth: false }
+          meta: { title: '人员信息', requireAuth: true }
         },
         {
           path: '/professional_info',
           name: 'professionalinfo',
           component:ProfessionalInfo,
-          meta: { title: '专业信息', requireAuth: false }
+          meta: { title: '专业信息', requireAuth: true }
         },
         {
           path: '/class_info',
           name: 'classinfo',
           component:ClassInfo,
-          meta: { title: '班级信息', requireAuth: false }
+          meta: { title: '班级信息', requireAuth: true }
         },
         {
           path: '/group_info',
           name: 'groupinfo',
           component:GroupInfo,
-          meta: { title: '组别信息', requireAuth: false }
+          meta: { title: '组别信息', requireAuth: true }
         },
         {
           path: '/contestManage',

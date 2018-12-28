@@ -219,6 +219,10 @@ export default (function createApis(apis) {
     apis = function (params = new RequestParams()) {
       return new Promise(function (resolve, reject) {
 
+        if(!(params instanceof RequestParams)){
+          params = new RequestParams(params)
+        }
+
         let { url, method, param = {}, config = {} } = $.extend(true, {}, api);
 
         if (api.authorization) {
