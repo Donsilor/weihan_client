@@ -1,8 +1,14 @@
 <template>
   <div>
-    <top-bar :newTask="true" :importBtn="true" :exportBtn="true"></top-bar>
+    <top-bar 
+    :newTask="true" 
+    :importBtn="true" 
+    :exportBtn="true"
+    @newHomework="newHomework"
+    @importDialog="importDialog"
+    @exportDialog="exportDialog"></top-bar>
     <search-bar :option="searchOption"></search-bar>
-    <operate-bar :deleteBtn="true"></operate-bar>
+    <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
     <div class="tableWrap">
       <el-table
         ref="multipleTable"
@@ -31,6 +37,11 @@
         :pageIndex="tasks.pageIndex"
       ></paging>
     </div>
+
+    <assignHomework :ifNewHomework="ifNewHomework" @cancelNewHomework="cancelNewHomework"></assignHomework>
+    <taskImport :ifImportTask="ifImportTask" @cancelImport="cancelImport"></taskImport>
+    <taskExport :ifExportTask="ifExportTask" @cancelExport="cancelExport"></taskExport>
+    <warning :ifShowWarning="ifShowWarning" @closeWarn="closeWarn"></warning>
   </div>
 </template>
 
@@ -40,6 +51,10 @@ import SearchBar from "components/searchBar/SearchBar";
 import OperateBar from "components/operateBar/OperateBar";
 import Paging from "components/paging/Paging";
 import { User, RequestParams } from "common/entity";
+import AssignHomework from './dialog/AssignHomework'
+import TaskImport from './dialog/TaskImport'
+import TaskExport from './dialog/TaskExport'
+import Warning from './dialog/Warning'
 
 export default {
   name: "TaskManage",
@@ -47,10 +62,19 @@ export default {
     TopBar,
     SearchBar,
     OperateBar,
-    Paging
+    Paging,
+    AssignHomework,
+    TaskImport,
+    TaskExport,
+    Warning
   },
   data() {
     return {
+      ifNewHomework: false,
+      ifImportTask: false,
+      ifExportTask: false,
+      ifDeleteTask: false,
+      ifShowWarning: false,
       searchOption: {
         queryTypes: {
           asd1: {
@@ -116,6 +140,31 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val;
       console.log(this.multipleSelection);
+    },
+    newHomework(e){
+      this.ifNewHomework = e
+    },
+    cancelNewHomework(e){
+      this.ifNewHomework = e
+    },
+    importDialog(e){
+      this.ifImportTask = e
+    },
+    cancelImport(e){
+      this.ifImportTask = e
+    },
+    exportDialog(e){
+      this.ifExportTask = e
+    },
+    cancelExport(e){
+      this.ifExportTask = e
+    },
+    deleteSelected(e){
+      this.ifShowWarning = e
+    },
+    closeWarn(e){
+      this.ifShowWarning = e
+      console.log(typeof(this.ifShowWarning))
     }
   }
 };

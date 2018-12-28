@@ -36,6 +36,8 @@
     <newQuestion v-if="ifNewQuestion" :close="e=>ifNewQuestion=false" :submit="e=>ifNewQuestion=false"  :option="tasks.data"></newQuestion>
     <questionExport :ifExportQuestion="ifExportQuestion" @cancelExport="cancelExport" :close="asd=-true"></questionExport>
     <warning :ifRemove="ifRemove" @closeWarn="closeWarn"></warning>
+    <compile></compile>
+    <peopleList></peopleList>
 
   </div>
 </template>
@@ -45,10 +47,12 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
-import { User, RequestParams, SystemParameter } from 'common/entity'
-import NewQuestion from './dialog/newQuestionBank'
-import QuestionExport from './dialog/ExamExport'
+import { User, RequestParams } from "common/entity";
+import NewQuestion from "./dialog/newQuestionBank";
+import QuestionExport from './dialog/QuestionBankExport'
 import Warning from './dialog/Warning'
+import Compile from './dialog/Compile'
+import PeopleList from './dialog/PeopleList'
 
 export default {
   name: 'QuestionBankManage',
@@ -59,7 +63,9 @@ export default {
     Paging,
     NewQuestion,
     QuestionExport,
-    Warning
+    Warning,
+    Compile,
+    PeopleList,
   },
   data () {
     return {
