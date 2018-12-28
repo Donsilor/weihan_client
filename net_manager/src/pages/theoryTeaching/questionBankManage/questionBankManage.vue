@@ -33,8 +33,8 @@
       :pageIndex="tasks.pageIndex"></paging>
     </div>
 
-    <newQuestion :ifNewQuestion="ifNewQuestion" @cancelNewQuestion="cancelNewQuestion"></newQuestion>
-    <questionExport :ifExportQuestion="ifExportQuestion" @cancelExport="cancelExport" v-model="tasks.data" :close="asd=-true"></questionExport>
+    <newQuestion :ifNewQuestion="ifNewQuestion" @cancelNewQuestion="cancelNewQuestion"  :option="tasks.data"></newQuestion>
+    <questionExport :ifExportQuestion="ifExportQuestion" @cancelExport="cancelExport" :close="asd=-true"></questionExport>
     <warning :ifRemove="ifRemove" @closeWarn="closeWarn"></warning>
 
   </div>

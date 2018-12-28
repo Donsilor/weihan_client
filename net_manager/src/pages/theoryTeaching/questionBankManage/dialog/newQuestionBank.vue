@@ -1,22 +1,22 @@
 <template>
 <!-- 显示与否由父组件决定 -->
-  <div class="maskLayer" v-if="ifNewQuestion">
+  <div class="maskLayer">
     <div class="centerLayer">
       <div class="popup">
         <div class="popupTopBar">
           <span class="title fl">新建题库</span>
-          <i class="iconfont fr" @click="close">&#xe607;</i>
+          <i class="iconfont fr" @click="close()">&#xe607;</i>
         </div>
         <div class="popupWrap">
           <ul>
             <li>
               <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;题库名称：</div>
-              <div><input type="text" v-model="data.name"></div>
+              <div><input type="text" v-model="option.name" ></div>
             </li>
             <li>
               <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;级别：</div>
               <div>
-                <select v-model="data.questionsLevel">
+                <select v-model="option.questionsLevel" >
                   <option value="-1">请选择</option>
                   <option v-for="(item, index) in SystemParameter['questionsLevel']" :key="index" :value="item.value">{{item.label}}</option>
                 </select>
@@ -25,7 +25,7 @@
             <li>
               <div><i class="el-icon-star-on"></i>&nbsp;&nbsp;题库类别：</div>
               <div>
-                <select v-model="data.questionsClass">
+                <select v-model="option.questionsClass" >
                   <option value="-1">请选择</option>
                   <option v-for="(item, index) in SystemParameter['questionsClass']" :key="index" :value="item.value">{{item.label}}</option>
                 </select>
@@ -34,8 +34,8 @@
             <li class="last">
               <div></div>
               <div class="btns">
-                <a href="javascript:" @click="submit">确定</a>
-                <a href="javascript:" @click="close">取消</a>
+                <a href="javascript:" @click="submit()">确定</a>
+                <a href="javascript:" @click="close()">取消</a>
               </div>
             </li>
           </ul>
@@ -52,28 +52,12 @@ export default {
   name: 'NewwExam',
   data () {
     return {
-      SystemParameter:SystemParameter.DICTIONARIES,
-      data:{
-
-      }
+      SystemParameter:SystemParameter.DICTIONARIES
     }
   },
   model:{
     props:'option',
     event: 'input'
-  },
-  watch: {
-    option(val) {
-      this.init()
-    },
-  },
-  methods:{
-    init(){
-      this.data = this.option
-    }
-  },
-  created(){
-    this.init()
   },
   props: {
     option:{
@@ -94,10 +78,6 @@ export default {
       type:Function,
       default:e=>console.log(e)
     },
-    ifNewQuestion: {
-      type: Boolean,
-      default: false
-    }
   }
 }
 
