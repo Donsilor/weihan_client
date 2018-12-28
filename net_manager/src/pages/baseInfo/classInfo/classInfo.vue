@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :newSchool="true"></top-bar>
+    <top-bar :option="headButtons"></top-bar>
     <search-bar :option="queryOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
@@ -83,6 +83,19 @@ export default {
           professional_name: '焊接专业',
           grade:'2018'
       })
+    }
+  },
+  computed: {
+    headButtons() {
+      let that = this;
+      return [
+        {
+          name: "新增学校",
+          clickView() {
+            that.editView = true;
+          }
+        }
+      ];
     }
   },
   methods: {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar></top-bar>
+    <top-bar :option="headButtons"></top-bar>
     <search-bar :option="query"></search-bar>
     <div class="tableWrap">
       <el-tabs v-model="activeTab" @tab-click="handleClick">
@@ -102,6 +102,19 @@ export default {
           }
         }
       }
+    }
+  },
+  computed: {
+    headButtons() {
+      let that = this;
+      return [
+        {
+          name: "新增学校",
+          clickView() {
+            that.editView = true;
+          }
+        }
+      ];
     }
   },
   methods: {
