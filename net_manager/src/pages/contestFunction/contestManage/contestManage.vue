@@ -30,7 +30,7 @@
       :pageIndex="tasks.pageIndex"></paging>
     </div>
     <import-dialog :ifShowImport="ifShowImport" @close="closeImport"></import-dialog>
-    <delete-dialog :ifShowDelete="ifShowDelete" @cancelDelete="cancelDelete"></delete-dialog>
+    <delete-dialog :ifDelete="ifShowDelete" @cancelDelete="cancelDelete"></delete-dialog>
   </div>
 </template>
 

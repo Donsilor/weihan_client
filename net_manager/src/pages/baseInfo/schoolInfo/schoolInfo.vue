@@ -2,7 +2,7 @@
   <div>
     <top-bar :newSchool="true" @newSchool="newSchool"></top-bar>
     <search-bar :option="queryOption"></search-bar>
-    <operate-bar :deleteBtn="true"></operate-bar>
+    <operate-bar :deleteBtn="true" @deleteSelected="deleteSchool"></operate-bar>
     <div class="tableWrap">
       <el-table
         ref="multipleTable"
@@ -30,7 +30,7 @@
     </div>
     <new-school :ifNewSchool="ifNewSchool" @cancelNew="cancelNewSchool"></new-school>
     <edit-school :ifEditSchool="ifEditSchool" @cancelEdit="cancelEditSchool"></edit-school>
-    <delete-dialog :ifDeleteSchool="ifDeleteSchool" @cancelDelete="cancelDelete"></delete-dialog>
+    <delete-dialog :ifDelete="ifDeleteSchool" @cancelDelete="cancelDelete"></delete-dialog>
   </div>
 </template>
 
@@ -39,8 +39,8 @@ import TopBar from "components/mainTopBar/MainTopBar";
 import SearchBar from "components/searchBar/SearchBar";
 import OperateBar from "components/operateBar/OperateBar";
 import Paging from "components/paging/Paging";
-import NewSchool from './dialog/newSchool/newSchool'
-import EditSchool from './dialog/editorShcool/editSchool'
+import NewSchool from './dialog/newSchool'
+import EditSchool from './dialog/editSchool'
 import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
 
 import { User, RequestParams } from "common/entity";
