@@ -1,5 +1,5 @@
 <template>
-  <div class="maskLayer" v-if="1111">
+  <div class="maskLayer" v-if="0">
     <div class="centerLayer">
       <div class="popup newContest">
         <div class="popupTopBar">
