@@ -2,9 +2,9 @@
   <div>
     <top-bar :option="headButtons"></top-bar>
     <search-bar :option="searchOption"></search-bar>
-    <operate-bar :deleteBtn="true"></operate-bar>
+    <operate-bar :deleteBtn="true" @selectAll="selectAll" @Del="deleteContests"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"
+      <el-table ref="multipleTable" :data="testData" style="width: 100%"
                 @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="竞赛编号" prop="number"></el-table-column>
@@ -18,7 +18,7 @@
         <el-table-column label="公差" prop="tolerance"></el-table-column>
         <el-table-column label="操作" width="100">
           <template slot-scope="scope">
-            <i class="iconfont">&#xe600;</i>
+            <i class="iconfont" @click="ifShowDetail = true">&#xe600;</i>
             <i class="iconfont">&#xe631;</i>
           </template>
         </el-table-column>
@@ -34,6 +34,7 @@
     <import-succeed v-if="ifImportSucceed" :close="e=>ifImportSucceed = false"></import-succeed>
     <export-dialog v-if="ifShowExport" :close="e=>ifShowExport = false"></export-dialog>
     <delete-dialog v-if="ifShowDelete" :close="e=>ifShowDelete = false"></delete-dialog>
+    <parameter-detail v-if="ifShowDetail" :close="e=>ifShowDetail = false"></parameter-detail>
   </div>
 </template>
 
@@ -46,6 +47,7 @@ import AddContestDialog from './dialog/addContestDialog'
 import ImportDialog from './dialog/importDialog'
 import importSucceed from './dialog/importSucDialog'
 import ExportDialog from './dialog/exportDialog'
+import ParameterDetail from './dialog/parameterDetail'
 import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
 import { User, RequestParams } from 'common/entity'
 
@@ -60,6 +62,7 @@ export default {
     ImportDialog,
     importSucceed,
     ExportDialog,
+    ParameterDetail,
     DeleteDialog
   },
   data () {
@@ -69,6 +72,7 @@ export default {
       ifImportSucceed: false,
       ifShowExport: false,
       ifShowDelete: false,
+      ifShowDetail: false,
       searchOption: {
         queryTypes: {
           asd1: {
@@ -115,7 +119,21 @@ export default {
           sortType: null,
           id: null
         }
-      }
+      },
+      testData: [
+        {
+          name: '11111'
+        },
+        {
+          name: '11111'
+        },
+        {
+          name: '11111'
+        },
+        {
+          name: '11111'
+        }
+      ]
     }
   },
   computed: {
@@ -165,6 +183,28 @@ export default {
     },
     importSucceed (e) {
       this.ifImportSucceed = e
+    },
+    deleteContests (id) {
+      let ids = null
+      if (id) {
+        ids = [id]
+      } else {
+        ids = this.multipleSelection.map(o => o.id)
+      }
+      if (ids.length) {
+        this.$api.service.professions.delete(ids)
+          .then(response => {
+            this.load()
+          })
+      }
+    },
+    selectAll (select) {
+      if (select) {
+        this.$refs.multipleTable.clearSelection()
+        this.$refs.multipleTable.toggleAllSelection()
+      } else {
+        this.$refs.multipleTable.clearSelection()
+      }
     }
   }
 }
