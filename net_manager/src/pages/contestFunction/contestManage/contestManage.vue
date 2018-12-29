@@ -2,7 +2,7 @@
   <div>
     <top-bar :option="headButtons"></top-bar>
     <search-bar :option="searchOption"></search-bar>
-    <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
+    <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
       <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"
                 @selection-change="handleSelectionChange">
@@ -24,13 +24,16 @@
         </el-table-column>
       </el-table>
       <paging
-      :loadDatas="laodTasks"
-      :totalPage="tasks.totalPage"
-      :pageSize="tasks.pageSize"
-      :pageIndex="tasks.pageIndex"></paging>
+        :loadDatas="laodTasks"
+        :totalPage="tasks.totalPage"
+        :pageSize="tasks.pageSize"
+        :pageIndex="tasks.pageIndex"></paging>
     </div>
-    <import-dialog :ifShowImport="ifShowImport" @close="closeImport"></import-dialog>
-    <delete-dialog :ifDelete="ifShowDelete" @cancelDelete="cancelDelete"></delete-dialog>
+    <add-contest-dialog v-if="ifAddContest" :close="e=>ifAddContest = false"></add-contest-dialog>
+    <import-dialog v-if="ifShowImport" :close="e=>ifShowImport = false" @importing="importSucceed"></import-dialog>
+    <import-succeed v-if="ifImportSucceed" :close="e=>ifImportSucceed = false"></import-succeed>
+    <export-dialog v-if="ifShowExport" :close="e=>ifShowExport = false"></export-dialog>
+    <delete-dialog v-if="ifShowDelete" :close="e=>ifShowDelete = false"></delete-dialog>
   </div>
 </template>
 
@@ -39,9 +42,12 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
+import AddContestDialog from './dialog/addContestDialog'
 import ImportDialog from './dialog/importDialog'
+import importSucceed from './dialog/importSucDialog'
+import ExportDialog from './dialog/exportDialog'
 import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
-import { User, RequestParams } from "common/entity";
+import { User, RequestParams } from 'common/entity'
 
 export default {
   name: 'ContestManage',
@@ -50,12 +56,18 @@ export default {
     SearchBar,
     OperateBar,
     Paging,
+    AddContestDialog,
     ImportDialog,
+    importSucceed,
+    ExportDialog,
     DeleteDialog
   },
   data () {
     return {
+      ifAddContest: false,
       ifShowImport: false,
+      ifImportSucceed: false,
+      ifShowExport: false,
       ifShowDelete: false,
       searchOption: {
         queryTypes: {
@@ -71,21 +83,21 @@ export default {
               母材厚度: 7,
               公差: 8
             },
-            selected: ""
+            selected: ''
           }
         },
         queryKeys: {
           asd1: {
             title: null,
-            placeholder: "123415",
+            placeholder: '123415',
             value: null
           }
         },
         querySortType: {
           selected: null,
           types: {
-            名称倒序: "-name",
-            名称正序: "name"
+            名称倒序: '-name',
+            名称正序: 'name'
           }
         },
         times: []
@@ -104,53 +116,55 @@ export default {
           id: null
         }
       }
-    };
-  },
-  computed: {
-    headButtons() {
-      let that = this;
-      return [
-        {
-          name: "新增学校",
-          clickView() {
-            that.editView = true;
-          }
-        }
-      ];
     }
   },
-  mounted() {
-    this.laodTasks();
+  computed: {
+    headButtons () {
+      let that = this
+      return [
+        {
+          name: '新增竞赛',
+          iconfont: 'icon-xinjian',
+          clickView () {
+            that.ifAddContest = true
+          }
+        },
+        {
+          name: '导入',
+          iconfont: 'icon-daoru',
+          clickView () {
+            that.ifShowImport = true
+          }
+        },
+        {
+          name: '导出',
+          iconfont: 'icon-daochu1',
+          clickView () {
+            that.ifShowExport = true
+          }
+        }
+      ]
+    }
+  },
+  mounted () {
+    this.laodTasks()
   },
   methods: {
-    async laodTasks(pageIndex = 1, pageSize = 10) {
+    async laodTasks (pageIndex = 1, pageSize = 10) {
       let response = await this.$api.service.practical.task.search(
         new RequestParams()
-          .addAttribute("pageSize", pageSize)
-          .addAttribute("pageIndex", pageIndex)
-      );
-      this.tasks.datas = response.dataItems;
-      this.tasks.totalPage = response.totalPage;
+          .addAttribute('pageSize', pageSize)
+          .addAttribute('pageIndex', pageIndex)
+      )
+      this.tasks.datas = response.dataItems
+      this.tasks.totalPage = response.totalPage
     },
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
     },
-    showImportPopup (e) {
-      console.log(e)
-      this.ifShowImport = e
-    },
-    closeImport (e) {
-      console.log(e)
-      this.ifShowImport = e
-    },
-    cancelDelete (e) {
-      console.log(e)
-      this.ifShowDelete = e
-    },
-    deleteSelected (e) {
-      console.log(e)
-      this.ifShowDelete = e
+    importSucceed (e) {
+      this.ifImportSucceed = e
     }
   }
 }

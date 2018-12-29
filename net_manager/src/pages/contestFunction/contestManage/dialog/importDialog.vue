@@ -1,10 +1,10 @@
 <template>
-  <div class="maskLayer" v-if="ifShowImport">
+  <div class="maskLayer">
     <div class="centerLayer">
       <div class="popup newContest">
         <div class="popupTopBar">
           <span class="title fl">导入</span>
-          <i class="iconfont fr" @click="$emit('close', false)">&#xe607;</i>
+          <i class="iconfont fr" @click="close()">&#xe607;</i>
         </div>
         <div class="popupWrap">
           <div class="item">
@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="btns">
-            <a href="javascript:" class="startImport">开始导入</a>
+            <a href="javascript:" class="startImport" @click="$emit('importing', true)">开始导入</a>
           </div>
         </div>
       </div>
@@ -37,14 +37,15 @@
 <script>
 
 export default {
-  name: 'importDialog',
-  data () {
-    return {}
-  },
+  name: 'ImportDialog',
   props: {
-    ifShowImport: {
-      type: Boolean,
-      defalult: false
+    close: {
+      type: Function,
+      default: e => console.log(e)
+    },
+    submit: {
+      type: Function,
+      default: e => console.log(e)
     }
   }
 }

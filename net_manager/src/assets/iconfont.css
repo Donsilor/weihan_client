@@ -1,11 +1,11 @@
 
 @font-face {
   font-family: 'iconfont';  /* project id 954084 */
-  src: url('//at.alicdn.com/t/font_954084_s25kw174gl.eot');
-  src: url('//at.alicdn.com/t/font_954084_s25kw174gl.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_954084_s25kw174gl.woff') format('woff'),
-  url('//at.alicdn.com/t/font_954084_s25kw174gl.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_954084_s25kw174gl.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_954084_bbipdo7ni86.eot');
+  src: url('//at.alicdn.com/t/font_954084_bbipdo7ni86.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_954084_bbipdo7ni86.woff') format('woff'),
+  url('//at.alicdn.com/t/font_954084_bbipdo7ni86.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_954084_bbipdo7ni86.svg#iconfont') format('svg');
 }
 
 .iconfont {
@@ -135,4 +135,6 @@
 .icon-danxuankuang:before { content: "\e611"; }
 
 .icon-toupingxuanxiang:before { content: "\e616"; }
+
+.icon-wujiaoxing-copy:before { content: "\e85e"; }
 
