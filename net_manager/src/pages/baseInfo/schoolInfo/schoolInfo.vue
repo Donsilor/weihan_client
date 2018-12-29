@@ -30,7 +30,7 @@
     </div>
     <new-school :ifNewSchool="ifNewSchool" @cancelNew="cancelNewSchool"></new-school>
     <edit-school :ifEditSchool="ifEditSchool" @cancelEdit="cancelEditSchool"></edit-school>
-    <delete-dialog :ifDelete="ifDeleteSchool" @cancelDelete="cancelDelete"></delete-dialog>
+    <delete-dialog v-if="ifDeleteSchool" @cancelDelete="cancelDelete"></delete-dialog>
   </div>
 </template>
 

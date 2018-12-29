@@ -25,7 +25,7 @@
     </div>
     <add-service :ifAddService="ifAddService" @cancelNew="cancelAddService"></add-service>
     <edit-service :ifEditService="ifEditService" @cancelEdit="cancelEditService"></edit-service>
-    <delete-dialog :ifDelete="ifDeleteService" @cancelDelete="cancelDelete"></delete-dialog>
+    <delete-dialog v-if="ifDeleteService" @cancelDelete="cancelDelete"></delete-dialog>
   </div>
 </template>
 

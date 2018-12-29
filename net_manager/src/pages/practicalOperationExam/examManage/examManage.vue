@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :option="headButtons"></top-bar>            
+    <top-bar :option="headButtons"></top-bar>
     <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
     <div class="tableWrap">
@@ -44,7 +44,7 @@
     <parameterDetail :ifParameter='ifShowParameterDetail' @cancelParameter='cancelParameter'></parameterDetail>
     <importFinish :isImportFinish="isImportFinish" @closeImportFinish="closeImportFinish"></importFinish>
     <issue :ifIssue="ifIssue" @cancelIssue="cancelIssue"></issue>
-    <delete-dialog :ifShowDelete="ifShowDelete" @cancelDelete="cancelDelete" @confirmDelete="confirmDelete"></delete-dialog>
+    <delete-dialog v-if="ifShowDelete" @cancelDelete="cancelDelete" @confirmDelete="confirmDelete"></delete-dialog>
     <warning :hasWarn="hasWarn" @closeWarn="closeWarn"></warning>
   </div>
 </template>

@@ -77,7 +77,7 @@
     </div>
     <new-people :ifNewPeople="ifNewPeople" @cancelNew="cancelNewPeople"></new-people>
     <edit-people :ifEditPeople="ifEditPeople" @cancelEdit="cancelEditPeople"></edit-people>
-    <delete-dialog :ifDelete="ifDeletePeople" @cancelDelete="cancelDeletePeople"></delete-dialog>
+    <delete-dialog v-if="ifDeletePeople" @cancelDelete="cancelDeletePeople"></delete-dialog>
   </div>
 </template>
 
