@@ -234,13 +234,13 @@ export default {
         }
       },
     },
-    /**专业 */
+    /**班级 */
     classes:{
       search:{
         /**接口地址 */
-        url: '/service/classes',
+        url: '/service/classes/get',
         /**接口方法 */
-        method: HTTP_REQUEST_METHOD.GET,
+        method: HTTP_REQUEST_METHOD.POST,
         authorization: "token"
       },
       upset:{
@@ -252,10 +252,14 @@ export default {
       },
       delete:{
         /**接口地址 */
-        url: '/service/classes/$id',
+        url: '/service/classes',
         /**接口方法 */
-        method: HTTP_REQUEST_METHOD.DELETEURL,
-        authorization: "token"
+        method: HTTP_REQUEST_METHOD.DELETE,
+        authorization: "token",
+        confirm:{
+          message:"确定要删除此班级吗",
+          title:"删除班级"
+        }
       },
     }
   },

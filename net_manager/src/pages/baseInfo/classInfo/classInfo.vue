@@ -4,22 +4,27 @@
     <search-bar :option="queryOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="informationList" style="width: 100%"
+      <el-table ref="multipleTable" :data="classs.list" style="width: 100%"
                 @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
-        <el-table-column label="班级编号" prop="number" class="number"></el-table-column>
-        <el-table-column label="班级名称" prop="class_name" class="class_name"></el-table-column>
-        <el-table-column label="专业名称" prop="professional_name" class="professional_name"></el-table-column>
+        <el-table-column label="班级编号" prop="code" class="number"></el-table-column>
+        <el-table-column label="班级名称" prop="name" class="class_name"></el-table-column>
+        <el-table-column label="专业名称" prop="professionName" class="professional_name"></el-table-column>
         <el-table-column label="年级" prop="grade" class="grade"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
-            <i class="modification icon iconfont icon-bianji"></i>
-            <i class="delete icon iconfont icon-shanchu1"></i>
+            <i class="modification icon iconfont icon-bianji"  @click="classs.data = scope.row, editView = true"></i>
+            <i class="delete icon iconfont icon-shanchu1" @click="deleteClass(scope.row.id)"></i>
             <i class="examine icon iconfont icon-chakan"></i>
           </template>
         </el-table-column>
       </el-table>
-      <paging></paging>
+      <paging
+        :loadDatas="load"
+        :totalCount="classs.totalCount"
+        :pageSize="classs.pageSize"
+        :pageIndex="classs.pageIndex"></paging>
+      <editor-class v-if="editView" :close="e=>editView = false" :submit="edit" :option="classs.data"></editor-class>
     </div>
   </div>
 </template>
@@ -29,6 +34,8 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
+import EditorClass from './dialog/editor'
+import { User, RequestParams, SystemParameter } from 'common/entity'
 
 export default {
   name: 'classinfo',
@@ -36,16 +43,18 @@ export default {
     TopBar,
     SearchBar,
     OperateBar,
-    Paging
+    Paging,
+    EditorClass
   },
   data () {
     return {
+      editView:false,
       // 全选
       ifAllSelect: false,
       queryOption: {
         queryTypes: {
           asd1: {
-            title: "asd1",
+            title: null,
             types: {
               金属材料焊接1: 1,
               金属材料焊接2: 2,
@@ -57,7 +66,7 @@ export default {
         },
         queryKeys: {
           asd1: {
-            title: "asd1",
+            title: null,
             placeholder: "123415",
             value: null
           }
@@ -76,13 +85,25 @@ export default {
         inquire: false,
         inquireName: false
       },
-      informationList: new Array(10).fill({
-          ifSelect: false,
-          number: '6801000003309',
-          class_name:'18届焊接181班',
-          professional_name: '焊接专业',
-          grade:'2018'
-      })
+      classs:{
+        pageIndex: 1,
+        pageSize: 10,
+        totalCount:10,
+        data: {
+          name: 'asd'
+        },
+        datas: [],
+        list: [],
+        search: {
+          queryKey: null,
+          queryType: null,
+          startTime: null,
+          endTime: null,
+          sortType: null,
+          id: null
+        },
+        query:null
+      }
     }
   },
   computed: {
@@ -90,7 +111,7 @@ export default {
       let that = this;
       return [
         {
-          name: "新增学校",
+          name: "新增班级",
           clickView() {
             that.editView = true;
           }
@@ -98,7 +119,61 @@ export default {
       ];
     }
   },
+  watch: {
+    queryOption:{
+      handler(curVal,oldVal){
+        let key = this.queryOption.queryKeys.data.value;
+        let name = this.queryOption.queryTypes.data.selected;
+        if(key){
+          this.classs.query = {
+            $and:[{
+              [name]:{
+                $regex: key, $options: "$ig"
+              }
+            }]
+          }
+        }
+        else {
+          this.classs.query = null;
+        }
+      },
+      deep:true
+    }
+  },
+  mounted () {
+    this.load()
+  },
   methods: {
+    deleteClass(id){
+      this.$api.service.classes.delete([id])
+      .then(response=>{
+        this.load();
+      })
+    },
+    edit(){
+      this.$api.service.classes.upset(
+        new RequestParams()
+          .addAttribute('id', this.classs.data.id)
+          .addAttribute('name', this.classs.data.name)
+          .addAttribute('code', this.classs.data.code || SystemParameter.CODE)
+      )
+      .then(response=>{
+        this.load();
+        this.editView = false
+      })
+    },
+    async load (pageIndex = 1, pageSize = 10) {
+      let response = await this.$api.service.classes.search(
+        new RequestParams()
+          .addAttribute('sortType', this.queryOption.querySortType.selected)
+          .addAttribute('query', this.classs.query)
+          .addAttribute('pageIndex', pageIndex)
+          .addAttribute('pageSize', pageSize)
+      )
+      this.classs.totalCount = response.totalCount
+      this.classs.pageSize = response.pageSize
+      this.classs.list = response.dataItems
+    },
     select (rows) {
       if (rows) {
         rows.forEach(row => {
