@@ -1,10 +1,10 @@
 <template>
-  <div class="maskLayer" v-if="ifNewTest">
+  <div class="maskLayer">
     <div class="centerLayer">
       <div class="popup">
         <div class="popupTopBar">
           <span class="title fl">新建试题考卷</span>
-          <i class="iconfont fr" @click="$emit('cancelNewTest', false)">&#xe607;</i>
+          <i class="iconfont fr" @click="close()">&#xe607;</i>
         </div>
         <div class="popupWrap">
           <ul>
@@ -96,8 +96,8 @@
             <li class="last">
               <div></div>
               <div class="btns">
-                <a href="javascript:" @click="$emit('cancelNewTest', false)">确定</a>
-                <a href="javascript:" @click="$emit('cancelNewTest', false)">取消</a>
+                <a href="javascript:">确定</a>
+                <a href="javascript:" @click="close()">取消</a>
               </div>
             </li>
           </ul>
@@ -116,11 +116,15 @@ export default {
     }
   },
   props: {
-    ifNewTest: {
-      type: Boolean,
-      default: false
+    close: {
+      type: Function,
+      default: e => console.log(e)
+    },
+    submit: {
+      type: Function,
+      default: e => console.log(e)
     }
-  }
+  },
 }
 
 </script>

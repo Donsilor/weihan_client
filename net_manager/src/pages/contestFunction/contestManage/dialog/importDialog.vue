@@ -84,7 +84,7 @@ export default {
     .selectFile
 
       &:after
-        cleaerfix()
+        clearfix()
 
       input
         float left

@@ -29,11 +29,10 @@
       ></paging>
     </div>
 
-    <newTest :ifNewTest="ifNewTest" @cancelNewTest="cancelNewTest"></newTest>
-    <testImport :ifShowImport="ifShowImport" @cancelImport="cancelImport"></testImport>
-    <testExport :ifShowExport="ifShowExport" @cancelExport="cancelExport"></testExport>
-    <warning :ifShowWarning="ifShowWarning" @closeWarn="closeWarn"></warning>
-
+    <newTest v-if="ifNewTest" :close="e=>ifNewTest = false"></newTest>
+    <importDialog v-if="ifImport" :close="e=>ifImport = false"></importDialog>
+    <exportDialog v-if="ifExport" :close="e=>ifExport = false"></exportDialog>
+    <deleteDialog v-if="ifDelete"></deleteDialog>
 
   </div>
 </template>
@@ -45,9 +44,9 @@ import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import { User, RequestParams } from "common/entity"
 import NewTest from './dialog/NewTestQuestion'
-import testImport from './dialog/testImport'
-import testExport from './dialog/testExport'
-import warning from './dialog/warning'
+import importDialog from 'components/dialog/importDialog'
+import exportDialog from 'components/dialog/exportDialog'
+import deleteDialog from 'components/dialog/deleteDialog/deleteDialog'
 
 export default {
   name: 'TestQuestionManage',
@@ -57,16 +56,16 @@ export default {
     OperateBar,
     Paging,
     NewTest,
-    testImport,
-    testExport,
-    warning
+    importDialog,
+    exportDialog,
+    deleteDialog
   },
   data () {
     return {
       ifNewTest: false,
-      ifShowImport: false,
-      ifShowExport: false,
-      ifShowWarning: false,
+      ifImport: false,
+      ifExport: false,
+      ifDelete: false,
       searchOption: {
         queryTypes: {
           data: {
@@ -121,9 +120,21 @@ export default {
       let that = this;
       return [
         {
-          name: "新增学校",
+          name: "新建试题试卷",
           clickView() {
-            that.editView = true;
+            that.ifNewTest = true;
+          }
+        },
+        {
+          name: "导入",
+          clickView() {
+            that.ifImport = true;
+          }
+        },
+        {
+          name: "导出",
+          clickView() {
+            that.ifExport = true;
           }
         }
       ];

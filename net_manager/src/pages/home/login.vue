@@ -36,7 +36,6 @@ export default {
       Rememb: false
     };
   },
-  mounted() {},
   methods: {
     async login() {
       let responseBody = await this.$api.service.users.login(

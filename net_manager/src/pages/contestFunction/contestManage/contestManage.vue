@@ -4,7 +4,7 @@
     <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true" @selectAll="selectAll" @Del="deleteContests"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="testData" style="width: 100%"
+      <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"
                 @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="竞赛编号" prop="number"></el-table-column>
@@ -19,7 +19,7 @@
         <el-table-column label="操作" width="100">
           <template slot-scope="scope">
             <i class="iconfont" @click="ifShowDetail = true">&#xe600;</i>
-            <i class="iconfont">&#xe631;</i>
+            <i class="iconfont" @click="ifInitiate = true">&#xe631;</i>
           </template>
         </el-table-column>
       </el-table>
@@ -35,6 +35,7 @@
     <export-dialog v-if="ifShowExport" :close="e=>ifShowExport = false"></export-dialog>
     <delete-dialog v-if="ifShowDelete" :close="e=>ifShowDelete = false"></delete-dialog>
     <parameter-detail v-if="ifShowDetail" :close="e=>ifShowDetail = false"></parameter-detail>
+    <initiate-dialog v-if="ifInitiate" :close="e=>ifInitiate = false"></initiate-dialog>
   </div>
 </template>
 
@@ -48,6 +49,7 @@ import ImportDialog from './dialog/importDialog'
 import importSucceed from './dialog/importSucDialog'
 import ExportDialog from './dialog/exportDialog'
 import ParameterDetail from './dialog/parameterDetail'
+import InitiateDialog from './dialog/initiateDialog'
 import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
 import { User, RequestParams } from 'common/entity'
 
@@ -63,6 +65,7 @@ export default {
     importSucceed,
     ExportDialog,
     ParameterDetail,
+    InitiateDialog,
     DeleteDialog
   },
   data () {
@@ -73,6 +76,7 @@ export default {
       ifShowExport: false,
       ifShowDelete: false,
       ifShowDetail: false,
+      ifInitiate: false,
       searchOption: {
         queryTypes: {
           data: {
@@ -119,21 +123,7 @@ export default {
           sortType: null,
           id: null
         }
-      },
-      testData: [
-        {
-          name: '11111'
-        },
-        {
-          name: '11111'
-        },
-        {
-          name: '11111'
-        },
-        {
-          name: '11111'
-        }
-      ]
+      }
     }
   },
   computed: {
