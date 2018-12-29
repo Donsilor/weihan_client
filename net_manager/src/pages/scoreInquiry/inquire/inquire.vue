@@ -1,8 +1,8 @@
 <template>
   <div>
-    <top-bar :option="headButtons"></top-bar>    
+    <top-bar :option="headButtons"></top-bar>
     <search-bar :searchModule="false" :inquire="true" :inquireName="true"></search-bar>
-    <operate-bar :inquireOperate="true"></operate-bar>
+    <operate-bar :inquireOperate="true" @export="ifExport = true"></operate-bar>
     <div class="tableWrap">
       <el-table ref="multipleTable" :data="inquireList" style="width: 100%"
                 @selection-change="handleSelectionChange">
@@ -16,6 +16,7 @@
       </el-table>
       <paging></paging>
     </div>
+    <export-dialog v-if="ifExport" :close="e=>ifExport = false"></export-dialog>
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
+import ExportDialog from 'components/dialog/exportDialog'
 
 export default {
   name: 'inquire',
@@ -31,10 +33,12 @@ export default {
     TopBar,
     SearchBar,
     OperateBar,
-    Paging
+    Paging,
+    ExportDialog
   },
   data () {
     return {
+      ifExport: false,
       inquireList: [
         {
           name: '张载',

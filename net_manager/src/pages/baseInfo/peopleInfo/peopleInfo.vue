@@ -75,9 +75,14 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-    <new-people :ifNewPeople="ifNewPeople" @cancelNew="cancelNewPeople"></new-people>
-    <edit-people :ifEditPeople="ifEditPeople" @cancelEdit="cancelEditPeople"></edit-people>
-    <delete-dialog v-if="ifDeletePeople" @cancelDelete="cancelDeletePeople"></delete-dialog>
+    <new-people 
+    v-if="editView" 
+    :professions="professions"
+    :classs="classs"
+    :close="e=>editView = false" 
+    :submit="e=>editView = false"  
+    ></new-people>
+    <edit-people ></edit-people>
   </div>
 </template>
 
@@ -88,7 +93,7 @@ import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import NewPeople from './dialog/newProple'
 import EditPeople from './dialog/editPeople'
-import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
+import { User, RequestParams, SystemParameter } from 'common/entity'
 
 export default {
   name: 'peopleInfo',
@@ -99,7 +104,6 @@ export default {
     Paging,
     NewPeople,
     EditPeople,
-    DeleteDialog
   },
   data () {
     return {
@@ -108,11 +112,12 @@ export default {
       ifDeletePeople: false,
       // 全选
       ifAllSelect: false,
+      editView:false,
       activeName: 'first',
       queryOption: {
         queryTypes: {
           data: {
-            title: 'data',
+            title: null,
             types: {
               金属材料焊接1: 1,
               金属材料焊接2: 2,
@@ -124,7 +129,7 @@ export default {
         },
         queryKeys: {
           data: {
-            title: 'data',
+            title: null,
             placeholder: '123415',
             value: null
           }
@@ -143,6 +148,8 @@ export default {
         inquire: false,
         inquireName: false
       },
+      professions:[],
+      classs:[],
       admininformationList: new Array(10).fill({
         ifSelect: false,
         number: '6801000003309',
@@ -172,13 +179,19 @@ export default {
       let that = this;
       return [
         {
-          name: "新增学校",
+          name: "新增人员",
           clickView() {
             that.editView = true;
           }
         }
       ];
     }
+  },
+  async mounted(){
+    let response = await this.$api.service.professions.search({pageSize:-1})
+    this.professions = response.dataItems;
+    response = await this.$api.service.classes.search({pageSize:-1})
+    this.classs = response.dataItems;
   },
   methods: {
     select (rows) {
