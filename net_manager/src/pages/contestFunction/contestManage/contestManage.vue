@@ -51,7 +51,9 @@ import ExportDialog from './dialog/exportDialog'
 import ParameterDetail from './dialog/parameterDetail'
 import InitiateDialog from './dialog/initiateDialog'
 import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
+import initiateDialog from './dialog/initiateDialog'
 import { User, RequestParams } from 'common/entity'
+
 
 export default {
   name: 'ContestManage',
@@ -70,6 +72,7 @@ export default {
   },
   data () {
     return {
+      show:true,
       ifAddContest: false,
       ifShowImport: false,
       ifImportSucceed: false,
