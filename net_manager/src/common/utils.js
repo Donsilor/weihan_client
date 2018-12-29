@@ -228,10 +228,6 @@ export function isBlank(any) {
   }
 }
 
-export function randomStr() {
-  return String(Math.random()).substr(2) + new Date().getTime();
-}
-
 
 export function LocalhostIP() {
   return new Promise(r => {
@@ -291,4 +287,6 @@ export const Crypto = new class Crypto {
 
 }
 
-
+export function Random (min = 1, max = 10){
+  return Math.floor(Math.random()*(max-min+1)+min);
+}

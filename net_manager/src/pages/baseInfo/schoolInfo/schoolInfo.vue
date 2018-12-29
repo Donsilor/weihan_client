@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :newSchool="true" @newSchool="newSchool"></top-bar>
+    <top-bar :option="headButtons"></top-bar>
     <search-bar :option="queryOption"></search-bar>
     <operate-bar :deleteBtn="true" @deleteSelected="deleteSchool"></operate-bar>
     <div class="tableWrap">
@@ -30,7 +30,7 @@
     </div>
     <new-school :ifNewSchool="ifNewSchool" @cancelNew="cancelNewSchool"></new-school>
     <edit-school :ifEditSchool="ifEditSchool" @cancelEdit="cancelEditSchool"></edit-school>
-    <delete-dialog :ifDelete="ifDeleteSchool" @cancelDelete="cancelDelete"></delete-dialog>
+    <delete-dialog v-if="ifDeleteSchool" @cancelDelete="cancelDelete"></delete-dialog>
   </div>
 </template>
 
@@ -118,6 +118,19 @@ export default {
         }
       }
     };
+  },
+  computed: {
+    headButtons() {
+      let that = this;
+      return [
+        {
+          name: "新增学校",
+          clickView() {
+            that.editView = true;
+          }
+        }
+      ];
+    }
   },
   mounted() {
     this.loadSchools();

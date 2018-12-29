@@ -3,7 +3,7 @@ import XLSX from 'xlsx';
 import moment from "moment";
 import Vue from "Vue";
 import { LOCATION_USER_KEY, LOCATION_TOKEN_KEY, CURRENTLY_SELECTED_MENU_KEY } from "./constants"
-import {Crypto} from "./utils"
+import {Crypto, Random} from "./utils"
 import api from "./sereviceapi"
 
 export const CentralInterface = new Vue();
@@ -76,6 +76,16 @@ export const SystemParameter = new class SystemParameter {
     }
   }
 
+  /**几乎所有记录都会用到的CODE,在这里统一生成 */
+  get CODE(){
+    return this.CURRENTTIME + Random(1000, 9999)
+  }
+
+  get RANDOMSTR() {
+    return String(Math.random()).substr(2) + new Date().getTime();
+  }
+
+  /**当前时间的字符串 */
   get CURRENTTIME(){
     return new Date().toLocaleString("zh-CN", {hour12:false}).replace(/\/|\s+|:+/ig, "")
   }
@@ -137,21 +147,21 @@ export const User = new class User {
 
   /**Token 是否有效[0有效,1过期,2失效] */
   get IS_TOKEN_EFFECTIVE(){
-    if(this.__token.access_token){
-      if(this.__token.expires_in){
-        if(moment(this.__token.expires_in).isAfter()){
+    // if(this.__token.access_token){
+    //   if(this.__token.expires_in){
+    //     if(moment(this.__token.expires_in).isAfter()){
           return 0;
-        }
-        else {
-          return 1;
-        }
-      }
-    }
-    return 2;
-  }
+  //       }
+  //       else {
+  //         return 1;
+  //       }
+  //     }
+  //   }
+  //   return 2;
+  // }
 
-  get info (){
-    return this._info;
+  // get info (){
+  //   return this._info;
   }
 
 };

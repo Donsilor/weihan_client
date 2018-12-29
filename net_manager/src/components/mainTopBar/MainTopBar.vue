@@ -6,12 +6,15 @@
       <el-breadcrumb-item>学校管理</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="btns fr">
-      <a href="javascript:" v-for="(item, index) in option" :key="index"   @click="item.clickView()">{{item.name}}</a>
+      <a href="javascript:" v-for="(item, index) in option" :key="index"   @click="item.clickView()">
+        <i class="iconfont" v-if="item.iconfont" :class="item.iconfont"></i>
+        {{item.name}}
+      </a>
       <!-- <a href="javascript:" v-if="newSchool" @click="$emit('newSchool', true)">+ 新建学校</a>
       <a href="javascript:" v-if="newSever" @click="$emit('newServeType', true)">+ 新建服务类别</a>
       <a href="javascript:" v-if="newPeople" @click="$emit('newPeople', true)">+ 新建人员</a>
 
-      <a href="javascript:" v-if="newContest">+ 新建竞赛</a> --> 
+      <a href="javascript:" v-if="newContest">+ 新建竞赛</a> -->
       <!-- <a href="javascript:" @click="$emit('newQuestion', true)">+ 新建题库</a> -->
       <!-- <a href="javascript:" v-if="newQuestionTemplateDownload"><i class="iconfont">&#xe615;</i> 题库模板下载</a>
       <a href="javascript:" v-if="newTask">+ 新建作业</a>
@@ -28,7 +31,7 @@
       <a href="javascript:" v-if="newMission" @click="$emit('newTask', true)">+ 新建任务</a>
 
       <a href="javascript:" v-if="importBtn" @click="$emit('importDialog', true)"><i class="iconfont">&#xe634;</i> 导入</a>
-      <a href="javascript:" v-if="exportBtn" @click="$emit('exportDialog', true)"><i class="iconfont">&#xe608;</i> 导出</a> --> 
+      <a href="javascript:" v-if="exportBtn" @click="$emit('exportDialog', true)"><i class="iconfont">&#xe608;</i> 导出</a> -->
     </div>
   </div>
 </template>
@@ -50,91 +53,7 @@ export default {
       default(){
         return []
       }
-    },
-    // name:{
-    //   type:String,
-    //   default: null
-    // },
-    // view:{
-    //   type: Boolean,
-    //   default: true
-    // },
-    // clickView:{
-    //   type:Function,
-    //   default: e=>console.log(e)
-    // },
-    // newSchool: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // newSever: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // newPeople: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // newContest: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // newQuestion: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // newQuestionTemplateDownload: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // newTask: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // newExamPapers: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // importBtn: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // exportBtn: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // manageVideoClassify: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // manageCourseClassify: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // newExam: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // uploadFile: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // uploadCourse: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // examOrder: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // missionOrder: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // newMission: {
-    //   type: Boolean,
-    //   default: false
-    // }
+    }
   }
 }
 
@@ -152,6 +71,7 @@ export default {
 
     a
       font-size 1rem
+      line-height 1rem
       color #34a6dd
       margin-left 1rem
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :manageVideoClassify="true" :uploadFile="true" :exportBtn="true"></top-bar>
+    <top-bar :option="headButtons"></top-bar>        
     <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
@@ -102,6 +102,19 @@ export default {
         }
       }
     };
+  },
+  computed: {
+    headButtons() {
+      let that = this;
+      return [
+        {
+          name: "新增学校",
+          clickView() {
+            that.editView = true;
+          }
+        }
+      ];
+    }
   },
   mounted() {
     this.laodTasks();

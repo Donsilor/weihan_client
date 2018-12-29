@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :newPeople="true" @newPeople="newPeople"></top-bar>
+    <top-bar :option="headButtons"></top-bar>
     <search-bar :option="queryOption"></search-bar>
     <div class="tableWrap">
       <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -77,7 +77,7 @@
     </div>
     <new-people :ifNewPeople="ifNewPeople" @cancelNew="cancelNewPeople"></new-people>
     <edit-people :ifEditPeople="ifEditPeople" @cancelEdit="cancelEditPeople"></edit-people>
-    <delete-dialog :ifDelete="ifDeletePeople" @cancelDelete="cancelDeletePeople"></delete-dialog>
+    <delete-dialog v-if="ifDeletePeople" @cancelDelete="cancelDeletePeople"></delete-dialog>
   </div>
 </template>
 
@@ -165,6 +165,19 @@ export default {
         userstatus: '写作业'
       })
 
+    }
+  },
+  computed: {
+    headButtons() {
+      let that = this;
+      return [
+        {
+          name: "新增学校",
+          clickView() {
+            that.editView = true;
+          }
+        }
+      ];
     }
   },
   methods: {

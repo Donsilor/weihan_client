@@ -1,10 +1,10 @@
 <template>
-  <div class="maskLayer" v-if="ifDelete">
+  <div class="maskLayer">
     <div class="centerLayer">
       <div class="popup delete clf">
         <div class="popupTopBar">
           <span class="title fl">删除</span>
-          <i class="iconfont fr" @click="$emit('cancelDelete', false)">&#xe607;</i>
+          <i class="iconfont fr" @click="close()">&#xe607;</i>
         </div>
         <div class="popupWrap">
           <p>
@@ -14,7 +14,7 @@
           <h1>你确认要删除这些学校吗？</h1>
           <div class="btns">
             <a href="javascript:" @click="$emit('confirmDelete', true)">确定</a>
-            <a href="javascript:" class="cancel" @click="$emit('cancelDelete', false)">取消</a>
+            <a href="javascript:" class="cancel" @click="close()">取消</a>
           </div>
         </div>
       </div>
@@ -30,9 +30,9 @@ export default {
     return {}
   },
   props: {
-    ifDelete: {
-      type: Boolean,
-      defalult: false
+    close: {
+      type: Function,
+      default: e => console.log(e)
     }
   }
 }

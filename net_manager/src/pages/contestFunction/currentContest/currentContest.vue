@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :newContest="true" :importBtn="true" :exportBtn="true"></top-bar>
+    <top-bar></top-bar>
     <operate-bar :projectionScreen="true" :stopBtn="true"></operate-bar>
     <div class="tableWrap">
       <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"

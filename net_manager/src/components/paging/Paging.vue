@@ -5,10 +5,10 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :page-sizes="[10, 20, 30, 40]"
-      :page-size="page_size"
-      :current-page="page_index"
+      :page-size="pageSize"
+      :current-page="pageIndex"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="total_page"
+      :total="totalCount"
       class="fr"
     ></el-pagination>
   </div>
@@ -19,23 +19,14 @@ export default {
   name: "Paging",
   data() {
     return {
-      skip:1,
-      page_index: 1,
-      total_page:100,
-      page_size: 10,
     };
-  },
-  created(){
-    this.page_index = this.pageIndex;
-    this.total_page = this.totalPage;
-    this.page_size = this.pageSize;
   },
   props: {
     pageIndex: {
       type: Number,
       default: 1
     },
-    totalPage:{
+    totalCount:{
       type: Number,
       default: 100
     },
