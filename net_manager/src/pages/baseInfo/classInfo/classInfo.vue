@@ -155,6 +155,7 @@ export default {
         new RequestParams()
           .addAttribute('id', this.classs.data.id)
           .addAttribute('name', this.classs.data.name)
+          .addAttribute('name', this.classs.data.name)
           .addAttribute('code', this.classs.data.code || SystemParameter.CODE)
       )
       .then(response=>{
