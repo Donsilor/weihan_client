@@ -1,7 +1,7 @@
 <template>
   <div class="operateBar clf">
     <label class="selectAll">
-       <i class="iconfont checkBox" :class="{'active': ifAllSelect}">&#xe663;</i>
+       <i class="iconfont checkBox active" :class="{'active': ifAllSelect}">&#xe663;</i>
       <span>全选</span>
     </label>
     <i class="iconfont" v-if="deleteBtn" @click="$emit('deleteSelected', true)">&#xe63a;</i>

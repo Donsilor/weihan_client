@@ -28,7 +28,8 @@
     </div>
 
     <newQuestion v-if="ifNewQuestion" :close="e=>ifNewQuestion=false" :submit="e=>ifNewQuestion=false"  :option="tasks.data"></newQuestion>
-    <questionExport v-if="ifExportQuestion" :close="e=>ifExportQuestion=false"></questionExport>
+    <exportDialog v-if="ifExport" :close="e=>ifExport = false"></exportDialog>
+    <deleteDialog v-if="ifDelete"></deleteDialog>
     
     <warning :ifRemove="ifRemove" @closeWarn="closeWarn"></warning>
     <compile></compile>
@@ -44,6 +45,9 @@ import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import { User, RequestParams } from "common/entity";
 import NewQuestion from "./dialog/newQuestionBank";
+import exportDialog from 'components/dialog/exportDialog'
+import deleteDialog from 'components/dialog/deleteDialog/deleteDialog'
+
 import QuestionExport from './dialog/QuestionBankExport'
 import Warning from './dialog/Warning'
 import Compile from './dialog/Compile'
@@ -57,6 +61,9 @@ export default {
     OperateBar,
     Paging,
     NewQuestion,
+    exportDialog,
+    deleteDialog,
+
     QuestionExport,
     Warning,
     Compile,
@@ -65,8 +72,8 @@ export default {
   data () {
     return {
       ifNewQuestion: false,
-      ifExportQuestion: false,
-      ifShowDelete: false,
+      ifExport: false,
+      ifDelete: false,
       ifRemove: false,
       searchOption: {
         queryTypes: {
@@ -142,7 +149,7 @@ export default {
         {
           name: "导出",
           clickView() {
-            that.ifExportQuestion = true;
+            that.ifExport = true;
           }
         }
       ];

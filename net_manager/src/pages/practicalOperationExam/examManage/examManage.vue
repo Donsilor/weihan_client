@@ -40,11 +40,12 @@
     <newExam v-if="ifNewExam" :close="e=>ifNewExam = false" :submit="edit"></newExam>
     <importDialog v-if="ifImport" :close="e=>ifImport = false"></importDialog>
     <exportDialog v-if="ifExport" :close="e=>ifExport = false"></exportDialog>
+    <delete-dialog v-if="ifShowDelete" @cancelDelete="cancelDelete" @confirmDelete="confirmDelete"></delete-dialog>
+
 
     <parameterDetail :ifParameter='ifShowParameterDetail' @cancelParameter='cancelParameter'></parameterDetail>
     <importFinish :isImportFinish="isImportFinish" @closeImportFinish="closeImportFinish"></importFinish>
     <issue :ifIssue="ifIssue" @cancelIssue="cancelIssue"></issue>
-    <delete-dialog v-if="ifShowDelete" @cancelDelete="cancelDelete" @confirmDelete="confirmDelete"></delete-dialog>
     <warning :hasWarn="hasWarn" @closeWarn="closeWarn"></warning>
   </div>
 </template>
@@ -57,10 +58,11 @@ import Paging from 'components/paging/Paging'
 import newExam from './dialog/newExam'
 import importDialog from 'components/dialog/importDialog'
 import exportDialog from 'components/dialog/exportDialog'
+import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
+
 import ParameterDetail from './dialog/parameter_detail'
 import ImportFinish from './dialog/ImportFinish'
 import Issue from './dialog/Issue'
-import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
 import Warning from './dialog/Warning'
 
 import { User, RequestParams } from 'common/entity'
@@ -73,12 +75,12 @@ export default {
     OperateBar,
     Paging,
     newExam,
-    ParameterDetail,
     importDialog,
     exportDialog,
-    ImportFinish,
-    Issue,
     DeleteDialog,
+    ImportFinish,
+    ParameterDetail,
+    Issue,
     Warning
   },
   data () {

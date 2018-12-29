@@ -39,6 +39,7 @@
     <newTask v-if="ifNewTask" :close="e=>ifNewTask = false" :submit="edit"></newTask>
     <importDialog v-if="ifImport" :close="e=>ifImport = false"></importDialog>
     <exportDialog v-if="ifExport" :close="e=>ifExport = false"></exportDialog>
+    <deleteDialog v-if="ifDelete"></deleteDialog>
 
     <importFinish></importFinish>
     <parameterDetail :ifParameter='ifParameter' @cancelParameter = cancelParameter></parameterDetail>
@@ -52,6 +53,7 @@
 import NewTask from './dialog/NewTask'
 import importDialog from 'components/dialog/importDialog'
 import exportDialog from 'components/dialog/exportDialog'
+import deleteDialog from 'components/dialog/deleteDialog/deleteDialog'
 
 import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
@@ -71,9 +73,11 @@ export default {
     OperateBar,
     Paging,
     NewTask,
-    parameterDetail,
     importDialog,
     exportDialog,
+    deleteDialog,
+
+    parameterDetail,
     ImportFinish,
     Issue,
     Warning
@@ -84,6 +88,7 @@ export default {
       ifNewTask: false,
       ifImport: false,
       ifExport: false,
+      ifDelete: false,
       ifParameter: false,
       // 全选
       ifAllSelect: false,
