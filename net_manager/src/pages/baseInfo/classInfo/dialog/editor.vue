@@ -1,22 +1,24 @@
 <template>
   <div class="maskLayer">
-    <div class="editor clf">
-      <div class="window-top">
-        <span class="clss fl">编辑</span>
-        <span class="clss fr" @click="close()"><i class="iconfont">&#xe607;</i></span>
-      </div>
-      <div class="window-content clf">
-        <div class="clf">
-          <span><i class="iconfont">&#xe603;</i>班级姓名：</span>
-          <input type="text" v-model="name">
+    <div class="centerLayer">
+      <div class="popup">
+        <div class="popupTopBar">
+          <span class="title fl">编辑</span>
+          <i class="iconfont fr" @click="close()">&#xe607;</i>
         </div>
-        <div class="clf">
-          <span><i class="iconfont">&#xe603;</i>专业姓名：</span>
-          <input type="text" v-model="professionName">
-        </div>
-        <div class="but">
-          <input type="button" class="ensure" value="确定" @click="submit()">
-          <input type="button" class="cancel" value="取消" @click="close()">
+        <div class="popupWrap">
+          <div class="clf">
+            <span><i class="iconfont">&#xe603;</i>班级姓名：</span>
+            <input type="text" v-model="name">
+          </div>
+          <div class="clf">
+            <span><i class="iconfont">&#xe603;</i>专业姓名：</span>
+            <input type="text" v-model="professionName">
+          </div>
+          <div class="btns textAlignLeft">
+            <a href="javascript:">确定</a>
+            <a href="javascript:" class="cancel">取消</a>
+          </div>
         </div>
       </div>
     </div>

@@ -1,34 +1,36 @@
 <template>
   <div class="maskLayer" v-if="addModule">
-    <div class="add clf">
-      <div class="window-top">
-        <span class="clss fl">新建</span>
-        <span class="clss fr"><i class="iconfont">&#xe607;</i></span>
-      </div>
-      <div class="window-content clf">
-        <div class="clf">
-          <span><i class="iconfont">&#xe603;</i>班级姓名：</span>
-          <input type="text">
+    <div class="centerLayer">
+      <div class="popup">
+        <div class="popupTopBar">
+          <span class="clss fl">新建</span>
+          <span class="clss fr"><i class="iconfont">&#xe607;</i></span>
         </div>
-        <div class="clf">
-          <span><i class="iconfont">&#xe603;</i>所属专业：</span>
-          <select>
-            <option value="所属专业">所属专业</option>
-            <option value="所属专业">所属专业</option>
-            <option value="所属专业">所属专业</option>
-          </select>
-        </div>
-        <div class="clf">
-          <span><i class="iconfont">&#xe603;</i>年级：</span>
-          <select>
-            <option value="初级">初级</option>
-            <option value="中级">中级</option>
-            <option value="高级">高级</option>
-          </select>
-        </div>
-        <div class="but">
-          <input type="button" class="ensure" value="确定">
-          <input type="button" class="cancel" value="取消">
+        <div class="popupWrap">
+          <div class="clf">
+            <span><i class="iconfont">&#xe603;</i>班级姓名：</span>
+            <input type="text">
+          </div>
+          <div class="clf">
+            <span><i class="iconfont">&#xe603;</i>所属专业：</span>
+            <select>
+              <option value="所属专业">所属专业</option>
+              <option value="所属专业">所属专业</option>
+              <option value="所属专业">所属专业</option>
+            </select>
+          </div>
+          <div class="clf">
+            <span><i class="iconfont">&#xe603;</i>年级：</span>
+            <select>
+              <option value="初级">初级</option>
+              <option value="中级">中级</option>
+              <option value="高级">高级</option>
+            </select>
+          </div>
+          <div class="btns textAlignLeft">
+            <a href="javascript:">确定</a>
+            <a href="javascript:" class="cancel">取消</a>
+          </div>
         </div>
       </div>
     </div>
