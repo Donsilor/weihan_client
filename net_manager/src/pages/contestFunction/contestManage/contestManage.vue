@@ -4,7 +4,7 @@
     <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true" @selectAll="selectAll" @Del="deleteContests"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="test" style="width: 100%"
+      <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"
                 @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="竞赛编号" prop="number"></el-table-column>
@@ -123,10 +123,7 @@ export default {
           sortType: null,
           id: null
         }
-      },
-      test: new Array(5).fill({
-        name: '222'
-      })
+      }
     }
   },
   computed: {

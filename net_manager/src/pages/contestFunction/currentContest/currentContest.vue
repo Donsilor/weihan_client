@@ -3,7 +3,7 @@
     <top-bar></top-bar>
     <operate-bar :projectionScreen="true" :stopBtn="true" @selectAll="selectAll"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="testData" style="width: 100%"
+      <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"
                 @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="竞赛组编号" prop="groupNumber"></el-table-column>
@@ -94,10 +94,7 @@ export default {
           sortType: null,
           id: null
         }
-      },
-      testData: new Array(5).fill({
-        name: '222'
-      })
+      }
     }
   },
   mounted () {
