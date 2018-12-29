@@ -32,6 +32,10 @@
         :pageIndex="tasks.pageIndex"
       ></paging>
     </div>
+
+    <exportDialog v-if="ifExport" :close="e=>ifExport = false"></exportDialog>
+    <deleteDialog v-if="ifDelete"></deleteDialog>
+
   </div>
 </template>
 
@@ -42,6 +46,9 @@ import OperateBar from "components/operateBar/OperateBar";
 import Paging from "components/paging/Paging";
 import { User, RequestParams } from "common/entity";
 import { array2Descendants } from "common/utils";
+import exportDialog from 'components/dialog/exportDialog'
+import deleteDialog from 'components/dialog/deleteDialog/deleteDialog'
+
 
 export default {
   name: "CourseLibrary",
@@ -49,10 +56,14 @@ export default {
     TopBar,
     SearchBar,
     OperateBar,
-    Paging
+    Paging,
+    exportDialog,
+    deleteDialog
   },
   data() {
     return {
+      ifExport: false,
+      ifDelete: false,
       searchOption: {
         queryTypes: {
           data: {
@@ -108,9 +119,21 @@ export default {
       let that = this;
       return [
         {
-          name: "新增学校",
+          name: "管理课程分类",
           clickView() {
             that.editView = true;
+          }
+        },
+        {
+          name: "上传课程",
+          clickView() {
+            that.editView = true;
+          }
+        },
+        {
+          name: "导出",
+          clickView() {
+            that.ifExport = true;
           }
         }
       ];

@@ -15,7 +15,7 @@
     <i class="iconfont" v-if="stopBtn">&#xe618;</i>
     <div class="inquireOperate" v-if="inquireOperate">
       <span>平均成绩：88</span>
-      <a href="javascript:">导出</a>
+      <a href="javascript:" @click="$emit('export')">导出</a>
       <a href="javascript:">打印</a>
     </div>
   </div>
