@@ -209,9 +209,9 @@ export default {
     professions:{
       search:{
         /**接口地址 */
-        url: '/service/professions',
+        url: '/service/professions/get',
         /**接口方法 */
-        method: HTTP_REQUEST_METHOD.GET,
+        method: HTTP_REQUEST_METHOD.POST,
         authorization: "token"
       },
       upset:{
@@ -223,10 +223,15 @@ export default {
       },
       delete:{
         /**接口地址 */
-        url: '/service/professions/$id',
+        url: '/service/professions',
         /**接口方法 */
-        method: HTTP_REQUEST_METHOD.DELETEURL,
-        authorization: "token"
+        method: HTTP_REQUEST_METHOD.DELETE,
+        authorization: "token",
+        /**MessageBox.confirm | https://cloud.tencent.com/developer/section/1489894 */
+        confirm:{
+          message:"确定要删除此专业吗",
+          title:"删除专业"
+        }
       },
     },
     /**专业 */

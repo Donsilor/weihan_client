@@ -1,7 +1,7 @@
 <template>
   <div>
     <top-bar :option="headButtons"></top-bar>
-    <search-bar :option="queryOption"></search-bar>
+    <search-bar :option="queryOption" :search="load" :sort="load"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
       <el-table
@@ -11,12 +11,12 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" width="50"></el-table-column>
-        <el-table-column label="专业编号" prop="number" class="number"></el-table-column>
-        <el-table-column label="专业名称" prop="professional_name" class="name"></el-table-column>
+        <el-table-column label="专业编号" prop="code" class="number"></el-table-column>
+        <el-table-column label="专业名称" prop="name" class="name"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
-            <i class="modification icon iconfont icon-bianji"></i>
-            <i class="delete icon iconfont icon-shanchu1"></i>
+            <i class="modification icon iconfont icon-bianji" @click="majors.data = scope.row, editView = true"></i>
+            <i class="delete icon iconfont icon-shanchu1" @click="deleteMajors(scope.row.id)"></i>
             <i class="examine icon iconfont icon-chakan"></i>
           </template>
         </el-table-column>
@@ -55,26 +55,24 @@ export default {
       ifAllSelect: false,
       queryOption: {
         queryTypes: {
-          asd1: {
+          data: {
             title: "asd1",
             types: {
-              金属材料焊接1: 1,
-              金属材料焊接2: 2,
-              金属材料焊接3: 3,
-              金属材料焊接4: 4
+              专业编码: "code",
+              专业名称: "name",
             },
-            selected: ""
+            selected: "code"
           }
         },
         queryKeys: {
-          asd1: {
-            title: "asd1",
-            placeholder: "123415",
+          data: {
+            title: null,
+            placeholder: "输入编号/名称",
             value: null
           }
         },
         querySortType: {
-          selected: null,
+          selected: "name",
           types: {
             排序1: "-name",
             排序2: "name"
@@ -103,9 +101,32 @@ export default {
           endTime: null,
           sortType: null,
           id: null
-        }
+        },
+        query:null
       }
     };
+  },
+  
+  watch: {
+    queryOption:{
+      handler(curVal,oldVal){
+        let key = this.queryOption.queryKeys.data.value;
+        let name = this.queryOption.queryTypes.data.selected;
+        if(key){
+          this.majors.query = {
+            $and:[{
+              [name]:{
+                $regex: key, $options: "$ig"
+              }
+            }]
+          }
+        }
+        else {
+          this.majors.query = null;
+        }
+      },
+      deep:true
+    }
   },
   computed: {
     headButtons() {
@@ -114,6 +135,7 @@ export default {
         {
           name: "新增专业",
           clickView() {
+            that.majors.data = {};
             that.editView = true;
           }
         }
@@ -124,22 +146,29 @@ export default {
     this.load()
   },
   methods: {
+    deleteMajors(id){
+      this.$api.service.professions.delete([id])
+      .then(response=>{
+        this.load();
+      })
+    },
     edit(){
       this.$api.service.professions.upset(
         new RequestParams()
+          .addAttribute('id', this.majors.data.id)
           .addAttribute('name', this.majors.data.name)
-          .addAttribute('code', SystemParameter.CURRENTTIME)
+          .addAttribute('code', this.majors.data.code || SystemParameter.CODE)
       )
       .then(response=>{
         this.load();
         this.editView = false
       })
-      .catch(e=>{
-      })
     },
     async load (pageIndex = 1, pageSize = 10) {
       let response = await this.$api.service.professions.search(
         new RequestParams()
+          .addAttribute('sortType', this.queryOption.querySortType.selected)
+          .addAttribute('query', this.majors.query)
           .addAttribute('pageIndex', pageIndex)
           .addAttribute('pageSize', pageSize)
       )
