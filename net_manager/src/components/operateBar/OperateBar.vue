@@ -1,10 +1,10 @@
 <template>
   <div class="operateBar clf">
-    <label class="selectAll">
-       <i class="iconfont checkBox active" :class="{'active': ifAllSelect}">&#xe663;</i>
+    <label class="selectAll" @click="$emit('selectAll', ifAllSelect = !ifAllSelect)">
+      <i class="iconfont checkBox" :class="{'active': ifAllSelect}">&#xe663;</i>
       <span>全选</span>
     </label>
-    <i class="iconfont" v-if="deleteBtn" @click="$emit('deleteSelected', true)">&#xe63a;</i>
+    <i class="iconfont" v-if="deleteBtn" @click="$emit('Del', null)">&#xe63a;</i>
     <router-link tag="i" class="iconfont" v-if="projectionScreen" :to="'/monitoring'">&#xe60a;</router-link>
     <i class="iconfont" v-if="stopBtn">&#xe618;</i>
     <div class="inquireOperate" v-if="inquireOperate">
@@ -68,6 +68,11 @@ export default {
     color #fff
     font-size 1rem
     line-height 1rem
+    transition all .3s
+
+    &.active
+      background-color #409EFF
+      border-color #409EFF
 
   > .iconfont
     font-size 1.25rem

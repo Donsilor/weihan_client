@@ -117,7 +117,7 @@ export default {
       }),
       searchOption: {
         queryTypes: {
-          asd1: {
+          data: {
             title: null,
             types: {
               任务名称: 1,
@@ -133,7 +133,7 @@ export default {
           }
         },
         queryKeys: {
-          asd1: {
+          data: {
             title: null,
             placeholder: '123415',
             value: null

@@ -66,8 +66,8 @@ export default {
       isShoweditor:false,
       queryOption: {
         queryTypes: {
-          asd1: {
-            title: "asd1",
+          data: {
+            title: "data",
             types: {
               金属材料焊接1: 1,
               金属材料焊接2: 2,
@@ -78,8 +78,8 @@ export default {
           }
         },
         queryKeys: {
-          asd1: {
-            title: "asd1",
+          data: {
+            title: "data",
             placeholder: "123415",
             value: null
           }

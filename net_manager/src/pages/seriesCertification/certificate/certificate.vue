@@ -50,14 +50,14 @@ export default {
       ),
       query: {
         queryKeys: {
-          asd1: {
+          data: {
             title: null,
             placeholder: '项目名称和编号',
             value: null
           }
         },
         queryTypes: {
-          asd1: {
+          data: {
             title: null,
             types: {
               金属材料焊接1: 1,

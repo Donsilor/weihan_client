@@ -9,10 +9,8 @@
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="组别编号" prop="number" class="number"></el-table-column>
         <el-table-column label="组别名称" prop="group_name" class="group_name"></el-table-column>
-        <el-table-column label="年级" prop="grade" class="grade"></el-table-column>
-        <el-table-column label="专业名称" prop="professional_name" class="professional_name"></el-table-column>
-        <el-table-column label="班级名称" prop="class_name" class="class_name"></el-table-column>
-        <el-table-column label="所属学校" prop="school" class="school"></el-table-column>
+        <el-table-column label="创建人" prop="founder" class="founder"></el-table-column>
+        <el-table-column label="人数" prop="poplenumber" class="poplenumber"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <i class="modification icon iconfont icon-bianji"></i>
@@ -22,7 +20,8 @@
         </el-table-column>
       </el-table>
       <paging></paging>
-      <addgroupuser ></addgroupuser>
+      <!-- <addgroupuser ></addgroupuser>
+      <editor></editor> -->
     </div>
   </div>
 </template>
@@ -33,6 +32,7 @@ import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import Addgroupuser from './dialog/addgroupuser'
+import Editor from './dialog/editor'
 
 
 
@@ -43,7 +43,8 @@ export default {
     SearchBar,
     OperateBar,
     Paging,
-    Addgroupuser
+    Addgroupuser,
+    Editor
   },
   data () {
     return {
@@ -51,8 +52,8 @@ export default {
       ifAllSelect: false,
       queryOption: {
         queryTypes: {
-          asd1: {
-            title: "asd1",
+          data: {
+            title: "data",
             types: {
               金属材料焊接1: 1,
               金属材料焊接2: 2,
@@ -63,8 +64,8 @@ export default {
           }
         },
         queryKeys: {
-          asd1: {
-            title: "asd1",
+          data: {
+            title: "data",
             placeholder: "123415",
             value: null
           }
@@ -87,10 +88,8 @@ export default {
           ifSelect: false,
           number: '6801000003309',
           group_name:'18届精英一组',
-          class_name:'焊接181班',
-          professional_name: '焊接专业',
-          grade:'2018',
-          school:'北京大学'
+          founder:'我',
+          peoplenumber:'100'
       })
     }
   },
