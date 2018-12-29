@@ -45,14 +45,14 @@ export default {
           sidebarShow: false,
           bgclass: 'icon-jibenxinxi',
           children: [
-            {
-              name: '学校信息',
-              url: '/school_info'
-            },
-            {
-              name: '服务类别',
-              url: '/service_type'
-            },
+            // {
+            //   name: '学校信息',
+            //   url: '/school_info'
+            // },
+            // {
+            //   name: '服务类别',
+            //   url: '/service_type'
+            // },
             {
               name: '人员信息',
               url: '/people_info'

@@ -5,8 +5,8 @@ import Home from '@/pages/home/home'
 import Login from '@/pages/home/login'
 
 //////////////////////////// 基本信息 //////////////////////////////
-import SchoolInfo from '@/pages/baseInfo/schoolInfo/schoolInfo'
-import ServiceType from '@/pages/baseInfo/serviceType/serviceType'
+// import SchoolInfo from '@/pages/baseInfo/schoolInfo/schoolInfo'
+// import ServiceType from '@/pages/baseInfo/serviceType/serviceType'
 import PeopleInfo from '@/pages/baseInfo/peopleInfo/peopleInfo'
 import ProfessionalInfo from '@/pages/baseInfo/professionalInfo/professionalInfo'
 import ClassInfo from '@/pages/baseInfo/ClassInfo/ClassInfo'
@@ -64,18 +64,18 @@ export default new Router({
     {path: '/login', name: 'login', component: Login},
     {
       path: '/', name: 'home', component: Home,  meta: { title: '首页', requireAuth: true }, children: [
-        {
-          path: '/school_info',
-          name: 'schoolInfo',
-          component: SchoolInfo,
-          meta: { title: '学校信息', requireAuth: true }
-        },
-        {
-          path: '/service_type',
-          name: 'service_type',
-          component: ServiceType,
-          meta: { title: '服务类别', requireAuth: true }
-        },
+        // {
+        //   path: '/school_info',
+        //   name: 'schoolInfo',
+        //   component: SchoolInfo,
+        //   meta: { title: '学校信息', requireAuth: true }
+        // },
+        // {
+        //   path: '/service_type',
+        //   name: 'service_type',
+        //   component: ServiceType,
+        //   meta: { title: '服务类别', requireAuth: true }
+        // },
         {
           path: '/people_info',
           name: 'peopleInfo',
