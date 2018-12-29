@@ -37,10 +37,11 @@
         :pageIndex="tasks.pageIndex"
       ></paging>
     </div>
-    <new-exam :ifNewExam="ifNewExam" @cancelNewExam="cancelNewExam"></new-exam>
+    <newExam v-if="ifNewExam" :close="e=>ifNewExam = false" :submit="edit"></newExam>
+    <examImport v-if="ifImport" :close="e=>ifImport = false"></examImport>
+    <examExport v-if="ifExport" :close="e=>ifExport = false"></examExport>
+
     <parameterDetail :ifParameter='ifShowParameterDetail' @cancelParameter='cancelParameter'></parameterDetail>
-    <examImport :ifImportExam="ifImportExam" @cancelImport="cancelImport" @importSucceed="importSucceed"></examImport>
-    <examExport :ifExportExam="ifExportExam" @cancelExport="cancelExport"></examExport>
     <importFinish :isImportFinish="isImportFinish" @closeImportFinish="closeImportFinish"></importFinish>
     <issue :ifIssue="ifIssue" @cancelIssue="cancelIssue"></issue>
     <delete-dialog :ifShowDelete="ifShowDelete" @cancelDelete="cancelDelete" @confirmDelete="confirmDelete"></delete-dialog>
@@ -53,7 +54,7 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
-import NewExam from './dialog/newExam'
+import newExam from './dialog/newExam'
 import ParameterDetail from './dialog/parameter_detail'
 import ExamImport from './dialog/examImport'
 import ExamExport from './dialog/ExamExport'
@@ -71,7 +72,7 @@ export default {
     SearchBar,
     OperateBar,
     Paging,
-    NewExam,
+    newExam,
     ParameterDetail,
     ExamImport,
     ExamExport,
@@ -82,13 +83,13 @@ export default {
   },
   data () {
     return {
-      ifParameter: false,
+      ifNewExam: false,
       ifImport: false,
       ifExport: false,
-      ifNewExam: false,
+      ifParameter: false,
       ifShowParameterDetail: false,
-      ifImportExam: false,
-      ifExportExam: false,
+      ifImport: false,
+      ifExport: false,
       isImportFinish: false,
       ifIssue: false,
       ifShowDelete: false,
@@ -166,9 +167,27 @@ export default {
       let that = this;
       return [
         {
-          name: "新增学校",
+          name: "考试顺序",
           clickView() {
-            that.editView = true;
+            // that.editView = true;
+          }
+        },
+        {
+          name: "新建考试",
+          clickView() {
+            that.ifNewExam = true;
+          }
+        },
+        {
+          name: "导入",
+          clickView() {
+            that.ifImport = true;
+          }
+        },
+        {
+          name: "导出",
+          clickView() {
+            that.ifExport = true;
           }
         }
       ];
@@ -211,51 +230,6 @@ export default {
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
-    },
-    newExam (e) {
-      this.ifNewExam = e
-    },
-    showParameDetail (e) {
-      this.ifShowParameterDetail = e
-    },
-    importExam (e) {
-      this.ifImportExam = e
-    },
-    exportExam (e) {
-      this.ifExportExam = e
-    },
-    cancelImport (e) {
-      this.ifImportExam = e
-    },
-    cancelExport (e) {
-      this.ifExportExam = e
-    },
-    cancelNewExam (e) {
-      this.ifNewExam = e
-    },
-    cancelParameter (e) {
-      this.ifShowParameterDetail = e
-    },
-    closeImportFinish (e) {
-      this.isImportFinish = e
-    },
-    importSucceed (e) {
-      this.isImportFinish = e
-    },
-    cancelIssue (e) {
-      this.ifIssue = e
-    },
-    cancelDelete (e) {
-      this.ifShowDelete = e
-    },
-    deleteSelected (e) {
-      this.ifShowDelete = e
-    },
-    confirmDelete (e) {
-      this.hasWarn = e
-    },
-    closeWarn (e) {
-      this.hasWarn = e
     }
   }
 }

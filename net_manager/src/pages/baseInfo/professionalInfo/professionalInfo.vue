@@ -26,7 +26,7 @@
         :totalPage="majors.totalPage"
         :pageSize="majors.pageSize"
         :pageIndex="majors.pageIndex"></paging>
-      <new-profession v-if="editView" :close="e=>editView = false" :submit="edit" :option="majors.data"></new-profession>
+      <new-profession v-if="editView" :close="e=>editView = false" :submit="edit"></new-profession>
     </div>
   </div>
 </template>
