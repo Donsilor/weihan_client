@@ -2,14 +2,13 @@
   <div>
     <top-bar :option="headButtons"></top-bar>
     <search-bar :option="queryOption" :search="load" :sort="load"></search-bar>
-    <operate-bar :deleteBtn="true"></operate-bar>
+    <operate-bar :deleteBtn="true" @selectAll="selectAll" @Del="deleteMajors"></operate-bar>
     <div class="tableWrap">
       <el-table
         ref="multipleTable"
         :data="majors.list"
         style="width: 100%"
-        @selection-change="handleSelectionChange"
-      >
+        @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="专业编号" prop="code" class="number"></el-table-column>
         <el-table-column label="专业名称" prop="name" class="name"></el-table-column>
@@ -32,15 +31,15 @@
 </template>
 
 <script>
-import TopBar from "components/mainTopBar/MainTopBar";
-import SearchBar from "components/searchBar/SearchBar";
-import OperateBar from "components/operateBar/OperateBar";
-import Paging from "components/paging/Paging";
-import NewProfession from "./dialog/newProfession";
+import TopBar from 'components/mainTopBar/MainTopBar'
+import SearchBar from 'components/searchBar/SearchBar'
+import OperateBar from 'components/operateBar/OperateBar'
+import Paging from 'components/paging/Paging'
+import NewProfession from './dialog/newProfession'
 import { User, RequestParams, SystemParameter } from 'common/entity'
 
 export default {
-  name: "ProfessionalInfo",
+  name: 'ProfessionalInfo',
   components: {
     TopBar,
     SearchBar,
@@ -48,7 +47,7 @@ export default {
     Paging,
     NewProfession
   },
-  data() {
+  data () {
     return {
       editView: false,
       // 全选
@@ -58,24 +57,24 @@ export default {
           data: {
             title: "data",
             types: {
-              专业编码: "code",
-              专业名称: "name",
+              专业编码: 'code',
+              专业名称: 'name'
             },
-            selected: "code"
+            selected: 'code'
           }
         },
         queryKeys: {
           data: {
             title: null,
-            placeholder: "输入编号/名称",
+            placeholder: '输入编号/名称',
             value: null
           }
         },
         querySortType: {
-          selected: "name",
+          selected: 'name',
           types: {
-            排序1: "-name",
-            排序2: "name"
+            排序1: '-name',
+            排序2: 'name'
           }
         },
         times: false,
@@ -85,10 +84,10 @@ export default {
         inquire: false,
         inquireName: false
       },
-      majors:{
+      majors: {
         pageIndex: 1,
         pageSize: 10,
-        totalCount:10,
+        totalCount: 10,
         data: {
           name: 'asd'
         },
@@ -102,67 +101,74 @@ export default {
           sortType: null,
           id: null
         },
-        query:null
+        query: null
       }
-    };
+    }
   },
-  
+
   watch: {
-    queryOption:{
-      handler(curVal,oldVal){
-        let key = this.queryOption.queryKeys.data.value;
-        let name = this.queryOption.queryTypes.data.selected;
-        if(key){
+    queryOption: {
+      handler (curVal, oldVal) {
+        let key = this.queryOption.queryKeys.data.value
+        let name = this.queryOption.queryTypes.data.selected
+        if (key) {
           this.majors.query = {
-            $and:[{
-              [name]:{
-                $regex: key, $options: "$ig"
+            $and: [{
+              [name]: {
+                $regex: key, $options: '$ig'
               }
             }]
           }
-        }
-        else {
-          this.majors.query = null;
+        } else {
+          this.majors.query = null
         }
       },
-      deep:true
+      deep: true
     }
   },
   computed: {
-    headButtons() {
-      let that = this;
+    headButtons () {
+      let that = this
       return [
         {
-          name: "新增专业",
-          clickView() {
-            that.majors.data = {};
-            that.editView = true;
+          name: '新增专业',
+          clickView () {
+            that.majors.data = {}
+            that.editView = true
           }
         }
-      ];
+      ]
     }
   },
   mounted () {
     this.load()
   },
   methods: {
-    deleteMajors(id){
-      this.$api.service.professions.delete([id])
-      .then(response=>{
-        this.load();
-      })
+    deleteMajors (id) {
+      let ids = null
+      if (id) {
+        ids = [id]
+      } else {
+        ids = this.multipleSelection.map(o => o.id)
+      }
+      if (ids.length) {
+        this.$api.service.professions.delete(ids)
+          .then(response => {
+            this.load()
+          })
+      }
     },
-    edit(){
+    edit () {
       this.$api.service.professions.upset(
         new RequestParams()
           .addAttribute('id', this.majors.data.id)
           .addAttribute('name', this.majors.data.name)
           .addAttribute('code', this.majors.data.code || SystemParameter.CODE)
       )
-      .then(response=>{
-        this.load();
-        this.editView = false
-      })
+        .then(response => {
+          this.load()
+          this.editView = false
+        })
     },
     async load (pageIndex = 1, pageSize = 10) {
       let response = await this.$api.service.professions.search(
@@ -176,29 +182,37 @@ export default {
       this.majors.pageSize = response.pageSize
       this.majors.list = response.dataItems
     },
-    select(rows) {
+    select (rows) {
       if (rows) {
         rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
+          this.$refs.multipleTable.toggleRowSelection(row)
+        })
       } else {
-        this.$refs.multipleTable.clearSelection();
+        this.$refs.multipleTable.clearSelection()
       }
-      this.ifAllSelect = !this.ifAllSelect;
+      this.ifAllSelect = !this.ifAllSelect
     },
-    formatServeUrl(row) {
+    formatServeUrl (row) {
       return (
         <a href={row.url} target="_blank">
           {row.url}
         </a>
-      );
+      )
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
-      console.log(this.multipleSelection);
+    selectAll (select) {
+      if (select) {
+        this.$refs.multipleTable.clearSelection()
+        this.$refs.multipleTable.toggleAllSelection()
+      } else {
+        this.$refs.multipleTable.clearSelection()
+      }
+    },
+    handleSelectionChange (val) {
+      this.multipleSelection = val
+      console.log(this.multipleSelection)
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>

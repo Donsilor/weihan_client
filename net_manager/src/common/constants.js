@@ -1,6 +1,6 @@
 
 /**正常接口地址 */
-export const HOST = "http://localhost:8009/";
+export const HOST = "http://192.168.0.112:8009/";
 /**本地用户缓存的KEY */
 export const LOCATION_USER_KEY = "LOCATION_USER_KEY"
 /**本地Token缓存的KEY */
