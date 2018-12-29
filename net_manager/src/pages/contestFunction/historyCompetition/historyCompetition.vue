@@ -4,7 +4,7 @@
     <search-bar></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"
+      <el-table ref="multipleTable" :data="testData" style="width: 100%"
                 @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="竞赛组编号" prop="groupNumber"></el-table-column>
@@ -19,17 +19,17 @@
         <el-table-column label="竞赛结果" prop="result"></el-table-column>
         <el-table-column label="操作" width="100">
           <template slot-scope="scope">
-            <i class="iconfont">&#xe600;</i>
-            <i class="iconfont">&#xe631;</i>
+            <i class="iconfont" @click="ifShowDetail">&#xe600;</i>
           </template>
         </el-table-column>
       </el-table>
-      <paging 
-      :loadDatas="laodTasks"
-      :totalPage="tasks.totalPage"
-      :pageSize="tasks.pageSize"
-      :pageIndex="tasks.pageIndex"></paging>
+      <paging
+        :loadDatas="laodTasks"
+        :totalPage="tasks.totalPage"
+        :pageSize="tasks.pageSize"
+        :pageIndex="tasks.pageIndex"></paging>
     </div>
+    <parameter-detail v-if="ifShowDetail"></parameter-detail>
   </div>
 </template>
 
@@ -38,8 +38,10 @@ import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
-import { User, RequestParams } from "common/entity";
-import moment from "moment";
+import ParameterDetail from './dialog/parameterDetail'
+
+import { User, RequestParams } from 'common/entity'
+import moment from 'moment'
 
 export default {
   name: 'HistoryCompetition',
@@ -47,10 +49,12 @@ export default {
     TopBar,
     SearchBar,
     OperateBar,
-    Paging
+    Paging,
+    ParameterDetail
   },
   data () {
     return {
+      ifShowDetail: false,
       searchOption: {
         queryTypes: {
           data: {
@@ -65,21 +69,21 @@ export default {
               母材厚度: 7,
               公差: 8
             },
-            selected: ""
+            selected: ''
           }
         },
         queryKeys: {
           data: {
             title: null,
-            placeholder: "123415",
+            placeholder: '123415',
             value: null
           }
         },
         querySortType: {
           selected: null,
           types: {
-            名称倒序: "-name",
-            名称正序: "name"
+            名称倒序: '-name',
+            名称正序: 'name'
           }
         },
         times: []
@@ -97,26 +101,31 @@ export default {
           sortType: null,
           id: null
         }
-      }
+      },
+      testData: [
+        {
+          name: '222'
+        }
+      ]
     }
   },
-  mounted(){
-    this.loadTasks();
+  mounted () {
+    this.loadTasks()
   },
   methods: {
-    async loadTasks(pageIndex=1, pageSize=10) {
+    async loadTasks (pageIndex = 1, pageSize = 10) {
       let response = await this.$api.service.competition.group.select(
         new RequestParams()
-          .addAttribute("pageIndex", pageIndex)
-          .addAttribute("pageSize", pageSize)
-          .addAttribute("query", {
-            $and:[
-              {effectiveEndTime:{$gt:moment().format("YYYY-MM-DD HH:mm:ss")}}
+          .addAttribute('pageIndex', pageIndex)
+          .addAttribute('pageSize', pageSize)
+          .addAttribute('query', {
+            $and: [
+              { effectiveEndTime: { $gt: moment().format('YYYY-MM-DD HH:mm:ss') } }
             ]
           })
-      );
-      this.tasks.totalPage = response.totalPage;
-      this.tasks.datas = response.dataItems;
+      )
+      this.tasks.totalPage = response.totalPage
+      this.tasks.datas = response.dataItems
     },
     handleSelectionChange (val) {
       this.multipleSelection = val

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar :option="headButtons"></top-bar>            
+    <top-bar :option="headButtons"></top-bar>
     <search-bar :option="searchOption"></search-bar>
     <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
     <div class="tableWrap">
@@ -38,13 +38,13 @@
       ></paging>
     </div>
     <newExam v-if="ifNewExam" :close="e=>ifNewExam = false" :submit="edit"></newExam>
-    <examImport v-if="ifImport" :close="e=>ifImport = false"></examImport>
-    <examExport v-if="ifExport" :close="e=>ifExport = false"></examExport>
+    <importDialog v-if="ifImport" :close="e=>ifImport = false"></importDialog>
+    <exportDialog v-if="ifExport" :close="e=>ifExport = false"></exportDialog>
 
     <parameterDetail :ifParameter='ifShowParameterDetail' @cancelParameter='cancelParameter'></parameterDetail>
     <importFinish :isImportFinish="isImportFinish" @closeImportFinish="closeImportFinish"></importFinish>
     <issue :ifIssue="ifIssue" @cancelIssue="cancelIssue"></issue>
-    <delete-dialog :ifShowDelete="ifShowDelete" @cancelDelete="cancelDelete" @confirmDelete="confirmDelete"></delete-dialog>
+    <delete-dialog v-if="ifShowDelete" @cancelDelete="cancelDelete" @confirmDelete="confirmDelete"></delete-dialog>
     <warning :hasWarn="hasWarn" @closeWarn="closeWarn"></warning>
   </div>
 </template>
@@ -55,9 +55,9 @@ import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import newExam from './dialog/newExam'
+import importDialog from 'components/dialog/importDialog'
+import exportDialog from 'components/dialog/exportDialog'
 import ParameterDetail from './dialog/parameter_detail'
-import ExamImport from './dialog/examImport'
-import ExamExport from './dialog/ExamExport'
 import ImportFinish from './dialog/ImportFinish'
 import Issue from './dialog/Issue'
 import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
@@ -74,8 +74,8 @@ export default {
     Paging,
     newExam,
     ParameterDetail,
-    ExamImport,
-    ExamExport,
+    importDialog,
+    exportDialog,
     ImportFinish,
     Issue,
     DeleteDialog,
