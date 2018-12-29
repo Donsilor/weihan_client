@@ -9,15 +9,15 @@
         <div class="popupWrap">
           <div class="clf">
             <span>用户名：</span>
-            <input type="text">
+            <input type="text" v-model="option.userName">
           </div>
           <div class="clf">
             <span>真实姓名：</span>
-            <input type="text">
+            <input type="text" v-model="option.name">
           </div>
           <div class="btns textAlignLeft">
-            <a href="javascript:">确定</a>
-            <a href="javascript:" class="cancel" @click="$emit('cancelEdit', false)">取消</a>
+            <a href="javascript:" @click="submit()">确定</a>
+            <a href="javascript:" class="cancel" @click="close()">取消</a>
           </div>
         </div>
       </div>
@@ -29,6 +29,19 @@
 export default {
   name: 'EditPeople',
   props: {
+    option:{
+      type:Object,
+      default(){
+        return {
+          userName:null,
+          name:null
+        }
+      }
+    },
+    submit:{
+      type:Function,
+      default: e=> console.log(e)
+    },
     close: {
       type: Function,
       default: e=>console.log(e)

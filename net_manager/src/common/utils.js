@@ -1,6 +1,7 @@
 
 
 import CryptoJS from "crypto-js"
+import { EPERM } from "constants";
 
 /**
  * 数组转对象
@@ -220,12 +221,9 @@ export function isBlank(any) {
       if (Array.isArray(any)) {
         return any.length == 0;
       }
-      return any.toString() == "{}";
-    }
-    default: {
-      return any == null || any == undefined || any == NaN || !!any;
     }
   }
+  return any == null || any == undefined || any == NaN || !!any;
 }
 
 

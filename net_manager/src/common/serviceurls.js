@@ -130,7 +130,33 @@ export default {
         url: '/service/users/login',
         /**接口方法 */
         method: HTTP_REQUEST_METHOD.POST,
-      }
+      },
+      upset:{
+        /**接口地址 */
+        url: '/service/users',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.POST,
+        authorization: "token"
+      },
+      search:{
+        /**接口地址 */
+        url: '/service/users/get/$type',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.POSTURL,
+        authorization: "token"
+      },
+      delete:{
+        /**接口地址 */
+        url: '/service/users/$type',
+        /**接口方法 */
+        method: HTTP_REQUEST_METHOD.DELETEURL,
+        authorization: "token",
+        /**MessageBox.confirm | https://cloud.tencent.com/developer/section/1489894 */
+        confirm:{
+          message:"确定要删除此人员吗",
+          title:"删除专业"
+        }
+      },
     },
     /**学校 */
     schools:{
