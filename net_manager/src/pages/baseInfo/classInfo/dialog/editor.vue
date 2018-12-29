@@ -11,18 +11,8 @@
           <input type="text" v-model="name">
         </div>
         <div class="clf">
-          <span>所属专业：</span>
-          <select name="" id="">
-            <option value="">111</option>
-            <option value="">222</option>
-          </select>
-        </div>
-        <div class="clf">
-          <span>年级：</span>
-          <select name="" id="">
-            <option value="">111</option>
-            <option value="">222</option>
-          </select>
+          <span><i class="iconfont">&#xe603;</i>专业姓名：</span>
+          <input type="text" v-model="professionName">
         </div>
         <div class="but">
           <input type="button" class="ensure" value="确定" @click="submit()">
