@@ -3,21 +3,29 @@
     <div class="centerLayer">
       <div class="popup">
         <div class="popupTopBar">
-          <span class="title fl">编辑</span>
-          <i class="iconfont fr" @click="close()">&#xe607;</i>
+          <span class="clss fl">新建</span>
+          <span class="clss fr" @click="close()"><i class="iconfont">&#xe607;</i></span>
         </div>
         <div class="popupWrap">
           <div class="clf">
             <span><i class="iconfont">&#xe603;</i>班级姓名：</span>
-            <input type="text" v-model="name">
+            <input type="text" v-model="option.name">
           </div>
           <div class="clf">
-            <span><i class="iconfont">&#xe603;</i>专业姓名：</span>
-            <input type="text" v-model="professionName">
+            <span><i class="iconfont">&#xe603;</i>所属专业：</span>
+            <select v-model="option.professionId">
+              <option v-for="(item, index) in professions" :key="index" :value="item.id">{{item.name}}</option>
+            </select>
+          </div>
+          <div class="clf">
+            <span><i class="iconfont">&#xe603;</i>年级：</span>
+            <select v-model="option.grade">
+              <option  v-for="(item, index) in grades" :key="index" :value="item" >{{item}}</option>
+            </select>
           </div>
           <div class="btns textAlignLeft">
-            <a href="javascript:">确定</a>
-            <a href="javascript:" class="cancel">取消</a>
+            <a href="javascript:" @click="submit()">确定</a>
+            <a href="javascript:" class="cancel" @click="close()">取消</a>
           </div>
         </div>
       </div>
@@ -26,19 +34,36 @@
 </template>
 
 <script>
+import { User, RequestParams, SystemParameter } from 'common/entity'
 export default {
   name: 'classditor',
+  data(){
+      return {
+       grades:[],
+        // group:null,
+        // name: null,
+        // professionId: null
+      }
+  },
   model: {
     props: 'option',
     event: 'input'
+  },
+  created(){
+    SystemParameter.setContinuous(2014)
+    for(let i = 0; i < 5; i++){
+      this.grades[i] = SystemParameter.CONTINUOUS_NUMBER;
+    }
+    this.grades = this.grades;
   },
   props: {
     option: {
       type: Object,
       default () {
         return {
+          grade:null,
           name: null,
-          professionName: null
+          professionId: null
         }
       }
     },

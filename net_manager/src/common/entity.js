@@ -60,6 +60,8 @@ export const SystemParameter = new class SystemParameter {
   constructor(){
     this.__currently_index = JSON.parse(localStorage.getItem(CURRENTLY_SELECTED_MENU_KEY) || "[0,0,\"/\"]");
     this.__dictionaries = {};
+    this.__currently_continuous_number = 0;
+    this.__continuous_number = {[0]:0}
     this.init();
   }
 
@@ -73,6 +75,28 @@ export const SystemParameter = new class SystemParameter {
           this.__dictionaries[item.type].push(item)
         }
       })
+    }
+  }
+
+  /**设置当前连续的起始数:正数顺数，负数逆数 */
+  setContinuous(start = 0){
+    this.__continuous_number[this.__currently_continuous_number = start] = Math.abs(start);
+  }
+  /**连续的数 */
+  get CONTINUOUS_NUMBER(){
+    let start = this.__currently_continuous_number;
+    let number = this.__continuous_number;
+    if(start >=0){
+      if(Number.MAX_SAFE_INTEGER < number[start]){
+        number[start] = Math.abs(start);
+      }
+      return number[start]++
+    }
+    else {
+      if(number[start] <= 0){
+        number[start] = Math.abs(start)
+      }
+      return number[start]--;
     }
   }
 

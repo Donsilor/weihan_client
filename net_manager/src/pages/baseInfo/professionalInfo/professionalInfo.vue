@@ -56,7 +56,7 @@ export default {
       queryOption: {
         queryTypes: {
           data: {
-            title: "asd1",
+            title: "data",
             types: {
               专业编码: "code",
               专业名称: "name",
