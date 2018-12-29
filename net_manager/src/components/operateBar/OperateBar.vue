@@ -5,6 +5,12 @@
       <span>全选</span>
     </label>
     <i class="iconfont" v-if="deleteBtn" @click="$emit('Del', null)">&#xe63a;</i>
+    <label class="fbut" v-if="fBut">
+        <button>开机</button>
+        <button>关机</button>
+        <button>暂停</button>
+        <button>锁定</button>
+    </label>
     <router-link tag="i" class="iconfont" v-if="projectionScreen" :to="'/monitoring'">&#xe60a;</router-link>
     <i class="iconfont" v-if="stopBtn">&#xe618;</i>
     <div class="inquireOperate" v-if="inquireOperate">
@@ -24,8 +30,22 @@ export default {
       ifAllSelect: false
     }
   },
+  // model:{
+  //   props:"option",
+  //   event:"input"
+  // },
   props: {
+    // option:{
+    //   type:Array,
+    //   default(){
+    //     return []
+    //   }
+    // },
     deleteBtn: {
+      type: Boolean,
+      default: false
+    },
+    fBut: {
       type: Boolean,
       default: false
     },
@@ -41,7 +61,12 @@ export default {
       type: Boolean,
       default: false
     }
-  }
+  },
+  // methods: {
+  //   closerb (e) {
+  //     this.ifcDialog = e
+  //   },
+  // },
 }
 
 </script>
@@ -102,5 +127,20 @@ export default {
       color #fff
       background-color #38a4de
       border-color #38a4de
+.fbut
+  width auto
+  height 100%
+.fbut
+  button 
+    width 3.5rem
+    height 1.8rem
+    line-height 1.8rem
+    background #38a4de
+    border none
+    margin 0 .5rem
+    color #ffffff
+    font-size .625rem
+    border-radius 5px
+
 
 </style>

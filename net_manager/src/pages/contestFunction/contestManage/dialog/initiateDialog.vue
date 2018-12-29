@@ -45,11 +45,11 @@
               <div class="group-box" v-for="(item,index) in this.groups" :key="index">
                   <div class="group">
                       <p class="group-title">竞赛组：{{item.groupcode}}</p>
-                      <div>
+                      <div class="clf">
                           <span>A方：</span>
                           <input type="text">
                       </div>
-                      <div>
+                      <div class="clf">
                           <span>B方：</span>
                           <input type="text">
                       </div>

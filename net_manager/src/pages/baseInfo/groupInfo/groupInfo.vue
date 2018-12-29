@@ -10,18 +10,19 @@
         <el-table-column label="组别编号" prop="number" class="number"></el-table-column>
         <el-table-column label="组别名称" prop="group_name" class="group_name"></el-table-column>
         <el-table-column label="创建人" prop="founder" class="founder"></el-table-column>
-        <el-table-column label="人数" prop="poplenumber" class="poplenumber"></el-table-column>
+        <el-table-column label="人数" prop="peoplenumber" class="peoplenumber"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
-            <i class="modification icon iconfont icon-bianji"></i>
+            
+            <i class="iconfont">&#xe61e;</i>
             <i class="delete icon iconfont icon-shanchu1"></i>
             <i class="examine icon iconfont icon-chakan"></i>
           </template>
         </el-table-column>
       </el-table>
       <paging></paging>
-      <!-- <addgroupuser ></addgroupuser>
-      <editor></editor> -->
+      <!-- <addgroupuser ></addgroupuser> -->
+      <!-- <editor></editor> -->
     </div>
   </div>
 </template>
