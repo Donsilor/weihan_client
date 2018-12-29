@@ -6,7 +6,7 @@
     <div class="tableWrap">
       <el-table
         ref="multipleTable"
-        :data="tasks.datas"
+        :data="tasksss"
         style="width: 100%"
         @selection-change="handleSelectionChange"
       >
@@ -25,7 +25,7 @@
         <el-table-column label="状态" prop="status" class="status"></el-table-column>
         <el-table-column label="操作" width="200">
           <template slot-scope="scope">
-            <a href="javascript:">发布</a>
+            <a href="javascript:" @click="showDialog">发布</a>
           </template>
         </el-table-column>
       </el-table>
@@ -39,11 +39,11 @@
     <newTask v-if="ifNewTask" :close="e=>ifNewTask = false" :submit="edit"></newTask>
     <importDialog v-if="ifImport" :close="e=>ifImport = false"></importDialog>
     <exportDialog v-if="ifExport" :close="e=>ifExport = false"></exportDialog>
-    <deleteDialog v-if="ifDelete"></deleteDialog>
+    <deleteDialog v-if="0"></deleteDialog>
+    <issue v-if="ifissue" :close="e=>ifissue = false"></issue>
 
     <importFinish></importFinish>
-    <parameterDetail :ifParameter='ifParameter' @cancelParameter = cancelParameter></parameterDetail>
-    <issue></issue>
+    <parameterDetail :ifParameter='ifParameter'></parameterDetail>
     <warning></warning>
 
   </div>
@@ -54,14 +54,14 @@ import NewTask from './dialog/NewTask'
 import importDialog from 'components/dialog/importDialog'
 import exportDialog from 'components/dialog/exportDialog'
 import deleteDialog from 'components/dialog/deleteDialog/deleteDialog'
+import Issue from 'components/dialog/Issue'
 
+import ImportFinish from 'components/dialog/deleteDialog/deleteDialog'
 import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import parameterDetail from './dialog/parameter_detail'
-import ImportFinish from './dialog/ImportFinish'
-import Issue from './dialog/Issue'
 import Warning from './dialog/Warning'
 import { User, RequestParams } from "common/entity";
 
@@ -84,11 +84,18 @@ export default {
   },
   data() {
     return {
+      tasksss:[
+        {name:11},
+        {name:11},
+        {name:11},
+        {name:11},
+      ],
       editView: false,
       ifNewTask: false,
       ifImport: false,
       ifExport: false,
       ifDelete: false,
+      ifissue: false,
       ifParameter: false,
       // 全选
       ifAllSelect: false,
@@ -159,6 +166,7 @@ export default {
         },
         {
           name: "导入",
+          iconfont: "&#xe615;",
           clickView() {
             that.ifImport = true;
           }
@@ -206,6 +214,9 @@ export default {
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
+    },
+    showDialog(){
+      this.ifissue = true
     }
   }
 };

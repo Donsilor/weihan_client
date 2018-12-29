@@ -1,5 +1,5 @@
 <template>
-  <div class="maskLayer">
+  <div class="maskLayer" v-if="0">
     <div class="centerLayer">
       <div class="popup delete clf">
         <div class="popupTopBar">

@@ -35,7 +35,6 @@
     <export-dialog v-if="ifShowExport" :close="e=>ifShowExport = false"></export-dialog>
     <delete-dialog v-if="ifShowDelete" :close="e=>ifShowDelete = false"></delete-dialog>
     <parameter-detail v-if="ifShowDetail" :close="e=>ifShowDetail = false"></parameter-detail>
-    <initiate-dialog v-if="ifInitiate" :close="e=>ifInitiate = false"></initiate-dialog>
   </div>
 </template>
 
@@ -51,7 +50,9 @@ import ExportDialog from './dialog/exportDialog'
 import ParameterDetail from './dialog/parameterDetail'
 import InitiateDialog from './dialog/initiateDialog'
 import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
+import initiateDialog from './dialog/initiateDialog'
 import { User, RequestParams } from 'common/entity'
+
 
 export default {
   name: 'ContestManage',
@@ -70,6 +71,7 @@ export default {
   },
   data () {
     return {
+      show:true,
       ifAddContest: false,
       ifShowImport: false,
       ifImportSucceed: false,

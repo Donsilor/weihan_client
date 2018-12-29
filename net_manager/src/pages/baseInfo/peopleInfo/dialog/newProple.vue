@@ -52,7 +52,9 @@
               <span>班级：</span>
               <div class="classma fl">
                 <select>
-                <option v-for="(item, index) in classs.filter(o=>o.professionId==option.professionsId)" :value="item.id" :key="index">{{item.name}}</option>
+                  <option v-for="(item, index) in classs.filter(o=>o.professionId==option.professionsId)"
+                          :value="item.id" :key="index">{{item.name}}
+                  </option>
                 </select>
                 <input type="button" value="添加">
               </div>
@@ -60,7 +62,7 @@
             <div class="clf">
               <span>年级：</span>
               <select>
-                <option  v-for="(item, index) in grades" :key="index" :value="item" >{{item}}</option>
+                <option v-for="(item, index) in grades" :key="index" :value="item">{{item}}</option>
               </select>
             </div>
             <div class="clf">
@@ -81,17 +83,46 @@
             </div>
             <div class="clf">
               <span>班级：</span>
-              <div class="classma fl">
-                <select>
-                <option v-for="(item, index) in classs.filter(o=>o.professionId==option.professionsId)" :value="item.id" :key="index">{{item.name}}</option>
-                </select>
-                <input type="button" value="添加">
+              <div class="majorDiv">
+                <div class="majorItem">
+                  <p class="majorName">专业名称111</p>
+                  <div class="class">
+                    <el-checkbox>班级111</el-checkbox>
+                    <el-checkbox>班级222</el-checkbox>
+                    <el-checkbox>班级333</el-checkbox>
+                    <el-checkbox>班级111</el-checkbox>
+                    <el-checkbox>班级222</el-checkbox>
+                    <el-checkbox>班级333</el-checkbox>
+                  </div>
+                </div>
+                <div class="majorItem">
+                  <p class="majorName">专业名称222</p>
+                  <div class="class">
+                    <el-checkbox>班级111</el-checkbox>
+                    <el-checkbox>班级222</el-checkbox>
+                    <el-checkbox>班级333</el-checkbox>
+                    <el-checkbox>班级111</el-checkbox>
+                    <el-checkbox>班级222</el-checkbox>
+                    <el-checkbox>班级333</el-checkbox>
+                  </div>
+                </div>
+                <div class="majorItem">
+                  <p class="majorName">专业名称333</p>
+                  <div class="class">
+                    <el-checkbox>班级111</el-checkbox>
+                    <el-checkbox>班级222</el-checkbox>
+                    <el-checkbox>班级333</el-checkbox>
+                    <el-checkbox>班级111</el-checkbox>
+                    <el-checkbox>班级222</el-checkbox>
+                    <el-checkbox>班级333</el-checkbox>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="clf">
               <span>年级：</span>
               <select>
-                  <option  v-for="(item, index) in grades" :key="index" :value="item" >{{item}}</option>
+                <option v-for="(item, index) in grades" :key="index" :value="item">{{item}}</option>
               </select>
             </div>
             <div class="clf">
@@ -105,7 +136,9 @@
             <div class="clf">
               <span><i class="iconfont">&#xe603;</i>用户等级：</span>
               <select>
-                <option v-for="(item, index) in SystemParameter['userLevel']" :key="index" :value="item.value">{{item.label}}</option>
+                <option v-for="(item, index) in SystemParameter['userLevel']" :key="index" :value="item.value">
+                  {{item.label}}
+                </option>
               </select>
             </div>
           </div>
@@ -121,71 +154,72 @@
 
 <script>
 import { User, RequestParams, SystemParameter } from 'common/entity'
+
 export default {
   name: 'NewPeople',
-  data(){
+  data () {
     return {
-      SystemParameter:SystemParameter.DICTIONARIES,
-      grades:[],
+      SystemParameter: SystemParameter.DICTIONARIES,
+      grades: [],
       identity: ''
     }
   },
-  created(){
+  created () {
     SystemParameter.setContinuous(2014)
-    for(let i = 0; i < 5; i++){
-      this.grades[i] = SystemParameter.CONTINUOUS_NUMBER;
+    for (let i = 0; i < 5; i++) {
+      this.grades[i] = SystemParameter.CONTINUOUS_NUMBER
     }
-    this.grades = this.grades;
+    this.grades = this.grades
   },
   props: {
-    professions:{
-      type:Array,
-      default(){
+    professions: {
+      type: Array,
+      default () {
         return []
       }
     },
-    classs:{
-      type:Array,
-      default(){
+    classs: {
+      type: Array,
+      default () {
         return []
       }
     },
-    option:{
-      type:Object,
-      default(){
+    option: {
+      type: Object,
+      default () {
         return {
-          userId:null,//
-          userName:null,//
-          realName:null,//
-          nickName:null,//
-          sex:null,//
-          birthDate:null,//
-          email:null,//
-          phoneNo:null,//
-          professionsId:null,//
-          professionsName:null,//
-          classs:null,//
-          createAt:null,//
-          password:null,//
-          passwordText:null,//
-          state:null,//
-          credential:null,//
-          consumeMoney:null,//
-          consumerod:null,//
-          operateTime:null,//
-          exp:null,//
-          grade:null,//
-          stateInfo:null,//
+          userId: null,//
+          userName: null,//
+          realName: null,//
+          nickName: null,//
+          sex: null,//
+          birthDate: null,//
+          email: null,//
+          phoneNo: null,//
+          professionsId: null,//
+          professionsName: null,//
+          classs: null,//
+          createAt: null,//
+          password: null,//
+          passwordText: null,//
+          state: null,//
+          credential: null,//
+          consumeMoney: null,//
+          consumerod: null,//
+          operateTime: null,//
+          exp: null,//
+          grade: null,//
+          stateInfo: null//
         }
       }
     },
     close: {
       type: Function,
-      default: e=>console.log(e)
+      default: e => console.log(e)
     },
     submit: {
       type: Function,
-      default: e=>console.log(e)
+      default: e => console.log(e)
     }
   }
 }
@@ -203,8 +237,63 @@ select
   float left
 
 .identityDiv
-  > .clf:not(:last-of-type)
+  > div
     margin-bottom 2rem
+
+    &:not(:last-of-type)
+      margin-bottom 2.5rem
+
+    > span
+      float left
+      width 25%
+      line-height 2.5rem
+      text-align right
+
+      i
+        font-size .75rem
+        color red
+
+    > input,
+    > select
+      float left
+      width 60%
+      height 2.5rem
+      font-size .875rem
+      border 1px solid $inputBorderColor
+
+    .majorDiv
+      max-height 12rem
+      overflow-y scroll
+      padding-top 1rem
+
+      &::-webkit-scrollbar
+        width 0
+
+      .majorItem
+        border 1px solid $borderColor
+        border-radius .3rem
+
+        &:not(:last-of-type)
+          margin-bottom 1rem
+
+        .majorName
+          float left
+          margin-left 1rem
+          margin-top -.5rem
+          background-color #fff
+          padding 0 .5rem
+
+        .class
+          padding 2rem 2.5% 1rem
+
+          .el-checkbox
+            margin-bottom .6rem
+
+          .el-checkbox+.el-checkbox
+            margin-left 0
+
+          .el-checkbox__label
+            padding-left .5rem
 
   .classma
     width 60%

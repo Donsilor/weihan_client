@@ -1,10 +1,10 @@
 <template>
-  <div class="maskLayer" v-if="ifIssue">
+  <div class="maskLayer">
     <div class="centerLayer">
       <div class="popup newContest">
         <div class="popupTopBar">
           <span class="title fl">发布</span>
-          <i class="iconfont fr" @click="$emit('cancelIssue', false)">&#xe607;</i>
+          <i class="iconfont fr" @click="close()">&#xe607;</i>
         </div>
         <div class="popupWrap">
           <div class="where">
@@ -26,7 +26,7 @@
             </select>
           </div>
           <div class="btn clf">
-            <button class="fr">取消</button>
+            <button class="fr" @click="close()">取消</button>
             <button class="fr">确定</button>
           </div>
         </div>
@@ -45,9 +45,9 @@ export default {
     }
   },
   props: {
-    ifIssue: {
-      type: Boolean,
-      defalult: false
+    close: {
+      type: Function,
+      default: e => console.log(e)
     }
   }
 }
@@ -68,6 +68,9 @@ export default {
     input
       line-height 1rem
       margin-left 4rem
+      float none !important
+      width auto !important
+      height auto !important
 
     label
       margin-right 2rem
@@ -94,4 +97,8 @@ export default {
         border 1px solid #34a5dd
         color #34a5dd
         margin-left 2rem
+
+  span
+    display inline !important
+    float none !important
 </style>
