@@ -2,7 +2,7 @@
   <div>
     <top-bar :option="headButtons"></top-bar>    
     <search-bar :option="searchOption"></search-bar>
-    <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
+    <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
       <el-table
         ref="multipleTable"
@@ -32,10 +32,11 @@
       ></paging>
     </div>
 
-    <assignHomework :ifNewHomework="ifNewHomework" @cancelNewHomework="cancelNewHomework"></assignHomework>
-    <taskImport :ifImportTask="ifImportTask" @cancelImport="cancelImport"></taskImport>
-    <taskExport :ifExportTask="ifExportTask" @cancelExport="cancelExport"></taskExport>
-    <warning :ifShowWarning="ifShowWarning" @closeWarn="closeWarn"></warning>
+    <assignHomework v-if="ifNewHomework" :close="e=>ifNewHomework = false"></assignHomework>
+    <importDialog v-if="ifImport" :close="e=>ifImport = false"></importDialog>
+    <exportDialog v-if="ifExport" :close="e=>ifExport = false"></exportDialog>
+    <deleteDialog v-if="ifDelete"></deleteDialog>
+
   </div>
 </template>
 
@@ -45,10 +46,10 @@ import SearchBar from "components/searchBar/SearchBar";
 import OperateBar from "components/operateBar/OperateBar";
 import Paging from "components/paging/Paging";
 import { User, RequestParams } from "common/entity";
-import AssignHomework from './dialog/AssignHomework'
-import TaskImport from './dialog/TaskImport'
-import TaskExport from './dialog/TaskExport'
-import Warning from './dialog/Warning'
+import AssignHomework from 'components/dialog/addGroupUser'
+import importDialog from 'components/dialog/importDialog'
+import exportDialog from 'components/dialog/exportDialog'
+import deleteDialog from 'components/dialog/deleteDialog/deleteDialog'
 
 export default {
   name: "TaskManage",
@@ -58,17 +59,16 @@ export default {
     OperateBar,
     Paging,
     AssignHomework,
-    TaskImport,
-    TaskExport,
-    Warning
+    importDialog,
+    exportDialog,
+    deleteDialog
   },
   data() {
     return {
       ifNewHomework: false,
-      ifImportTask: false,
-      ifExportTask: false,
-      ifDeleteTask: false,
-      ifShowWarning: false,
+      ifImport: false,
+      ifExport: false,
+      ifDelete: false,
       searchOption: {
         queryTypes: {
           data: {
@@ -123,9 +123,21 @@ export default {
       let that = this;
       return [
         {
-          name: "新增学校",
+          name: "新建题目",
           clickView() {
-            that.editView = true;
+            that.ifNewHomework = true;
+          }
+        },
+        {
+          name: "导入",
+          clickView() {
+            that.ifImport = true;
+          }
+        },
+        {
+          name: "导出",
+          clickView() {
+            that.ifExport = true;
           }
         }
       ];
