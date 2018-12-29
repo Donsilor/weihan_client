@@ -85,6 +85,7 @@ export default {
         inquire: false,
         inquireName: false
       },
+      professions:[],
       classs:{
         pageIndex: 1,
         pageSize: 10,
@@ -140,8 +141,10 @@ export default {
       deep:true
     }
   },
-  mounted () {
+  async mounted () {
     this.load()
+    let response = await this.$api.service.professions.search({pageSize:-1})
+    this.professions = response.dataItems;
   },
   methods: {
     deleteClass(id){

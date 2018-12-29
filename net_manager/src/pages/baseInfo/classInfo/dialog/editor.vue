@@ -50,6 +50,12 @@ export default {
         }
       }
     },
+    professions:{
+      type: Array,
+      default () {
+        return []
+      }
+    },
     close: {
       type: Function,
       default: e => console.log(e)
