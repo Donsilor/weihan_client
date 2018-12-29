@@ -2,9 +2,9 @@
   <div>
     <top-bar></top-bar>
     <search-bar></search-bar>
-    <operate-bar :deleteBtn="true"></operate-bar>
+    <operate-bar :deleteBtn="true" @selectAll="selectAll" @Del="deleteContests"></operate-bar>
     <div class="tableWrap">
-      <el-table ref="multipleTable" :data="testData" style="width: 100%"
+      <el-table ref="multipleTable" :data="tasks.datas" style="width: 100%"
                 @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50"></el-table-column>
         <el-table-column label="竞赛组编号" prop="groupNumber"></el-table-column>
@@ -19,17 +19,18 @@
         <el-table-column label="竞赛结果" prop="result"></el-table-column>
         <el-table-column label="操作" width="100">
           <template slot-scope="scope">
-            <i class="iconfont" @click="ifShowDetail">&#xe600;</i>
+            <i class="iconfont" @click="ifShowDetail = true">&#xe600;</i>
           </template>
         </el-table-column>
       </el-table>
       <paging
-        :loadDatas="laodTasks"
+        :loadDatas="loadTasks"
         :totalPage="tasks.totalPage"
         :pageSize="tasks.pageSize"
         :pageIndex="tasks.pageIndex"></paging>
     </div>
-    <parameter-detail v-if="ifShowDetail"></parameter-detail>
+    <parameter-detail v-if="ifShowDetail" :close="e=>ifShowDetail = false"></parameter-detail>
+    <delete-dialog v-if="ifShowDelete" :close="e=>ifShowDelete = false"></delete-dialog>
   </div>
 </template>
 
@@ -39,6 +40,7 @@ import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import ParameterDetail from './dialog/parameterDetail'
+import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
 
 import { User, RequestParams } from 'common/entity'
 import moment from 'moment'
@@ -50,14 +52,16 @@ export default {
     SearchBar,
     OperateBar,
     Paging,
-    ParameterDetail
+    ParameterDetail,
+    DeleteDialog
   },
   data () {
     return {
       ifShowDetail: false,
+      ifShowDelete: false,
       searchOption: {
         queryTypes: {
-          asd1: {
+          data: {
             title: null,
             types: {
               任务名称: 1,
@@ -73,7 +77,7 @@ export default {
           }
         },
         queryKeys: {
-          asd1: {
+          data: {
             title: null,
             placeholder: '123415',
             value: null
@@ -101,12 +105,7 @@ export default {
           sortType: null,
           id: null
         }
-      },
-      testData: [
-        {
-          name: '222'
-        }
-      ]
+      }
     }
   },
   mounted () {
@@ -130,6 +129,28 @@ export default {
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
+    },
+    deleteContests (id) {
+      let ids = null
+      if (id) {
+        ids = [id]
+      } else {
+        ids = this.multipleSelection.map(o => o.id)
+      }
+      if (ids.length) {
+        this.$api.service.professions.delete(ids)
+          .then(response => {
+            this.load()
+          })
+      }
+    },
+    selectAll (select) {
+      if (select) {
+        this.$refs.multipleTable.clearSelection()
+        this.$refs.multipleTable.toggleAllSelection()
+      } else {
+        this.$refs.multipleTable.clearSelection()
+      }
     }
 
   }

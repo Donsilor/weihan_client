@@ -28,7 +28,8 @@
     </div>
 
     <newQuestion v-if="ifNewQuestion" :close="e=>ifNewQuestion=false" :submit="e=>ifNewQuestion=false"  :option="tasks.data"></newQuestion>
-    <questionExport :ifExportQuestion="ifExportQuestion" @cancelExport="cancelExport" :close="asd=-true"></questionExport>
+    <questionExport v-if="ifExportQuestion" :close="e=>ifExportQuestion=false"></questionExport>
+    
     <warning :ifRemove="ifRemove" @closeWarn="closeWarn"></warning>
     <compile></compile>
     <peopleList></peopleList>
@@ -69,7 +70,7 @@ export default {
       ifRemove: false,
       searchOption: {
         queryTypes: {
-          asd1: {
+          data: {
             title: null,
             types: {
               任务名称: 1,
@@ -85,7 +86,7 @@ export default {
           }
         },
         queryKeys: {
-          asd1: {
+          data: {
             title: null,
             placeholder: '123415',
             value: null
@@ -127,9 +128,21 @@ export default {
       let that = this;
       return [
         {
-          name: "新增学校",
+          name: "新建题库",
           clickView() {
-            that.editView = true;
+            that.ifNewQuestion = true;
+          }
+        },
+        {
+          name: "题库模板下载",
+          clickView() {
+            // that.editView = true;
+          }
+        },
+        {
+          name: "导出",
+          clickView() {
+            that.ifExportQuestion = true;
           }
         }
       ];

@@ -37,8 +37,8 @@
     </div>
 
     <newTask v-if="ifNewTask" :close="e=>ifNewTask = false" :submit="edit"></newTask>
-    <examImport v-if="ifImport" :close="e=>ifImport = false"></examImport>
-    <examExport v-if="ifExport" :close="e=>ifExport = false"></examExport>
+    <importDialog v-if="ifImport" :close="e=>ifImport = false"></importDialog>
+    <exportDialog v-if="ifExport" :close="e=>ifExport = false"></exportDialog>
 
     <importFinish></importFinish>
     <parameterDetail :ifParameter='ifParameter' @cancelParameter = cancelParameter></parameterDetail>
@@ -49,14 +49,15 @@
 </template>
 
 <script>
+import NewTask from './dialog/NewTask'
+import importDialog from 'components/dialog/importDialog'
+import exportDialog from 'components/dialog/exportDialog'
+
 import TopBar from 'components/mainTopBar/MainTopBar'
 import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
-import NewTask from './dialog/NewTask'
 import parameterDetail from './dialog/parameter_detail'
-import ExamImport from './dialog/examImport'
-import ExamExport from './dialog/ExamExport'
 import ImportFinish from './dialog/ImportFinish'
 import Issue from './dialog/Issue'
 import Warning from './dialog/Warning'
@@ -71,8 +72,8 @@ export default {
     Paging,
     NewTask,
     parameterDetail,
-    ExamImport,
-    ExamExport,
+    importDialog,
+    exportDialog,
     ImportFinish,
     Issue,
     Warning
@@ -88,7 +89,7 @@ export default {
       ifAllSelect: false,
       searchOption:{
           queryTypes: {
-            asd1: {
+            data: {
               title: null,
               types: {
                 任务名称: 1,
@@ -104,7 +105,7 @@ export default {
             },
           },
           queryKeys: {
-            asd1: {
+            data: {
               title: null,
               placeholder: '123415',
               value: null

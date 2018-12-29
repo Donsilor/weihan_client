@@ -1,7 +1,7 @@
 <template>
   <div>
     <top-bar :option="headButtons"></top-bar>
-    <search-bar :option="queryOption"></search-bar>
+    <search-bar :option="queryOption" :search="load" :sort="load"></search-bar>
     <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
       <el-table ref="multipleTable" :data="classs.list" style="width: 100%"
@@ -24,7 +24,7 @@
         :totalCount="classs.totalCount"
         :pageSize="classs.pageSize"
         :pageIndex="classs.pageIndex"></paging>
-      <editor-class v-if="editView" :close="e=>editView = false" :submit="edit" :option="classs.data"></editor-class>
+      <editor-class v-if="editView" :close="e=>editView = false" :submit="edit" :professions="professions" :option="classs.data"></editor-class>
     </div>
   </div>
 </template>
@@ -48,24 +48,25 @@ export default {
   },
   data () {
     return {
+      SystemParameter:SystemParameter,
       editView:false,
       // 全选
       ifAllSelect: false,
       queryOption: {
         queryTypes: {
-          asd1: {
+          data: {
             title: null,
             types: {
-              金属材料焊接1: 1,
-              金属材料焊接2: 2,
-              金属材料焊接3: 3,
-              金属材料焊接4: 4
+              班级编号: "code",
+              班级名称: "name",
+              专业名称: "professionId",
+              年级: "group"
             },
             selected: ""
           }
         },
         queryKeys: {
-          asd1: {
+          data: {
             title: null,
             placeholder: "123415",
             value: null
@@ -85,12 +86,15 @@ export default {
         inquire: false,
         inquireName: false
       },
+      professions:[],
       classs:{
         pageIndex: 1,
         pageSize: 10,
         totalCount:10,
         data: {
-          name: 'asd'
+          group:null,
+          name: null,
+          professionId: null
         },
         datas: [],
         list: [],
@@ -113,6 +117,7 @@ export default {
         {
           name: "新增班级",
           clickView() {
+            that.classs.data = {};
             that.editView = true;
           }
         }
@@ -122,10 +127,23 @@ export default {
   watch: {
     queryOption:{
       handler(curVal,oldVal){
-        let key = this.queryOption.queryKeys.data.value;
+        let key = this.queryOption.queryKeys.data.value+"";
         let name = this.queryOption.queryTypes.data.selected;
         if(key){
-          this.classs.query = {
+          if("professionId" == name){
+            let query = this.professions.filter(o=>o.name.indexOf(key)>=0).map(o=>({[name]:o.id}));
+            if(query.length){
+              this.classs.query = {
+                $or:query
+              }
+            }
+            else {
+              this.classs.query = {
+                $and:[{code:123}]
+              }
+            }
+          }
+          else this.classs.query = {
             $and:[{
               [name]:{
                 $regex: key, $options: "$ig"
@@ -140,8 +158,10 @@ export default {
       deep:true
     }
   },
-  mounted () {
+  async mounted () {
     this.load()
+    let response = await this.$api.service.professions.search({pageSize:-1})
+    this.professions = response.dataItems;
   },
   methods: {
     deleteClass(id){
@@ -155,7 +175,8 @@ export default {
         new RequestParams()
           .addAttribute('id', this.classs.data.id)
           .addAttribute('name', this.classs.data.name)
-          .addAttribute('name', this.classs.data.name)
+          .addAttribute('grade', this.classs.data.grade)
+          .addAttribute('professionId', this.classs.data.professionId)
           .addAttribute('code', this.classs.data.code || SystemParameter.CODE)
       )
       .then(response=>{

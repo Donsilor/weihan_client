@@ -1,5 +1,5 @@
 <template>
-  <div class="maskLayer" v-if="addModule">
+  <div class="maskLayer">
     <div class="centerLayer">
       <div class="popup">
         <div class="popupTopBar">

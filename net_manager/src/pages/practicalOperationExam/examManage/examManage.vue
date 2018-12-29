@@ -38,8 +38,8 @@
       ></paging>
     </div>
     <newExam v-if="ifNewExam" :close="e=>ifNewExam = false" :submit="edit"></newExam>
-    <examImport v-if="ifImport" :close="e=>ifImport = false"></examImport>
-    <examExport v-if="ifExport" :close="e=>ifExport = false"></examExport>
+    <importDialog v-if="ifImport" :close="e=>ifImport = false"></importDialog>
+    <exportDialog v-if="ifExport" :close="e=>ifExport = false"></exportDialog>
 
     <parameterDetail :ifParameter='ifShowParameterDetail' @cancelParameter='cancelParameter'></parameterDetail>
     <importFinish :isImportFinish="isImportFinish" @closeImportFinish="closeImportFinish"></importFinish>
@@ -55,9 +55,9 @@ import SearchBar from 'components/searchBar/SearchBar'
 import OperateBar from 'components/operateBar/OperateBar'
 import Paging from 'components/paging/Paging'
 import newExam from './dialog/newExam'
+import importDialog from 'components/dialog/importDialog'
+import exportDialog from 'components/dialog/exportDialog'
 import ParameterDetail from './dialog/parameter_detail'
-import ExamImport from './dialog/examImport'
-import ExamExport from './dialog/ExamExport'
 import ImportFinish from './dialog/ImportFinish'
 import Issue from './dialog/Issue'
 import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
@@ -74,8 +74,8 @@ export default {
     Paging,
     newExam,
     ParameterDetail,
-    ExamImport,
-    ExamExport,
+    importDialog,
+    exportDialog,
     ImportFinish,
     Issue,
     DeleteDialog,
@@ -115,7 +115,7 @@ export default {
       }),
       searchOption: {
         queryTypes: {
-          asd1: {
+          data: {
             title: null,
             types: {
               任务名称: 1,
@@ -131,7 +131,7 @@ export default {
           }
         },
         queryKeys: {
-          asd1: {
+          data: {
             title: null,
             placeholder: '123415',
             value: null
