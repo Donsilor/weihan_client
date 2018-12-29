@@ -9,7 +9,7 @@
         <div class="popupWrap">
           <div class="clf">
             <span><i class="iconfont">&#xe603;</i>专业名称：</span>
-            <input type="text" v-model="option.name">
+            <input type="text">
           </div>
           <div class="btns textAlignLeft">
             <a href="javascript:" @click="submit()">确定</a>

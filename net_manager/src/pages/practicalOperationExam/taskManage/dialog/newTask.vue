@@ -1,10 +1,10 @@
 <template>
-  <div class="maskLayer" v-if="ifNewTask">
+  <div class="maskLayer">
     <div class="centerLayer">
       <div class="popup">
         <div class="popupTopBar">
           <span class="title fl">新建任务</span>
-          <i class="iconfont fr" @click="$emit('cancelNewTask', false)">&#xe607;</i>
+          <i class="iconfont fr" @click="close()">&#xe607;</i>
         </div>
         <div class="popupWrap">
           <ul>
@@ -112,8 +112,8 @@
           </ul>
           <div class="btns">
             <a href="javascript:">下一步</a>
-            <a href="javascript:" @click="$emit('cancelNewTask', false)">确定</a>
-            <a href="javascript:" class="cancel" @click="$emit('cancelNewTask', false)">取消</a>
+            <a href="javascript:">确定</a>
+            <a href="javascript:" class="cancel" @click="close()">取消</a>
           </div>
         </div>
       </div>
@@ -129,9 +129,21 @@ export default {
     return {}
   },
   props: {
-    ifNewTask: {
-      type: Boolean,
-      default: false
+    option:{
+      type:Object,
+      default(){
+        return {
+          name:null
+        }
+      }
+    },
+    close: {
+      type: Function,
+      default: e=>console.log(e)
+    },
+    submit: {
+      type: Function,
+      default: e=>console.log(e)
     }
   }
 }

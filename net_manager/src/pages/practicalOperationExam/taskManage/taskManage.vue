@@ -36,11 +36,12 @@
       :pageIndex="tasks.pageIndex"></paging>
     </div>
 
-    <newTask :ifNewTask="ifNewTask" @cancelNewTask="cancelNewTask"></newTask>
-    <parameterDetail :ifParameter='ifParameter' @cancelParameter = cancelParameter></parameterDetail>
-    <examImport :ifImport='ifImport' @cancelImport="cancelImport"></examImport>
-    <examExport :ifExport='ifExport' @cancelExport="cancelExport"></examExport>
+    <newTask v-if="ifNewTask" :close="e=>ifNewTask = false" :submit="edit"></newTask>
+    <examImport v-if="ifImport" :close="e=>ifImport = false"></examImport>
+    <examExport v-if="ifExport" :close="e=>ifExport = false"></examExport>
+
     <importFinish></importFinish>
+    <parameterDetail :ifParameter='ifParameter' @cancelParameter = cancelParameter></parameterDetail>
     <issue></issue>
     <warning></warning>
 
@@ -78,10 +79,11 @@ export default {
   },
   data() {
     return {
-      ifParameter: false,
+      editView: false,
+      ifNewTask: false,
       ifImport: false,
       ifExport: false,
-      ifNewTask: false,
+      ifParameter: false,
       // 全选
       ifAllSelect: false,
       searchOption:{
@@ -138,9 +140,27 @@ export default {
       let that = this;
       return [
         {
-          name: "新增学校",
+          name: "任务顺序",
           clickView() {
-            that.editView = true;
+            // that.editView = true;
+          }
+        },
+        {
+          name: "新建任务",
+          clickView() {
+            that.ifNewTask = true;
+          }
+        },
+        {
+          name: "导入",
+          clickView() {
+            that.ifImport = true;
+          }
+        },
+        {
+          name: "导出",
+          clickView() {
+            that.ifExport = true;
           }
         }
       ];
@@ -180,28 +200,6 @@ export default {
     handleSelectionChange (val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
-    },
-    newTask (e) {
-      console.log(e)
-      this.ifNewTask = e
-    },
-    cancelNewTask (e) {
-      this.ifNewTask = e
-    },
-    cancelParameter(e) {
-      this.ifParameter = e
-    },
-    importDialog(e) {
-      this.ifImport = e
-    },
-    cancelImport(e) {
-      this.ifImport = e
-    },
-    exportDialog(e) {
-      this.ifExport = e
-    },
-    cancelExport(e) {
-      this.ifExport = e
     }
   }
 };

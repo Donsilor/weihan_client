@@ -1,10 +1,10 @@
 <template>
-  <div class="maskLayer" v-if="ifNewExam">
+  <div class="maskLayer">
     <div class="centerLayer">
       <div class="popup">
         <div class="popupTopBar">
           <span class="title fl">新建考试</span>
-          <i class="iconfont fr" @click="$emit('cancelNewExam', false)">&#xe607;</i>
+          <i class="iconfont fr" @click="close()">&#xe607;</i>
         </div>
         <div class="popupWrap">
           <ul>
@@ -116,8 +116,8 @@
           </ul>
           <div class="btns">
             <a href="javascript:">下一步</a>
-            <a href="javascript:" @click="$emit('cancelNewExam', false)">确定</a>
-            <a href="javascript:" class="cancel" @click="$emit('cancelNewExam', false)">取消</a>
+            <a href="javascript:" @click="submit()">确定</a>
+            <a href="javascript:" class="cancel" @click="close()">取消</a>
           </div>
         </div>
       </div>
@@ -133,9 +133,21 @@ export default {
     return {}
   },
   props: {
-    ifNewExam: {
-      type: Boolean,
-      default: false
+    option:{
+      type:Object,
+      default(){
+        return {
+          name:null
+        }
+      }
+    },
+    close: {
+      type: Function,
+      default: e=>console.log(e)
+    },
+    submit: {
+      type: Function,
+      default: e=>console.log(e)
     }
   }
 }
