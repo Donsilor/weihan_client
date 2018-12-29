@@ -23,7 +23,7 @@
       </el-table>
       <paging
         :loadDatas="load"
-        :totalPage="majors.totalPage"
+        :totalCount="majors.totalCount"
         :pageSize="majors.pageSize"
         :pageIndex="majors.pageIndex"></paging>
       <new-profession v-if="editView" :close="e=>editView = false" :submit="edit" :option="majors.data"></new-profession>
@@ -88,7 +88,7 @@ export default {
       majors:{
         pageIndex: 1,
         pageSize: 10,
-        totalPage: 10,
+        totalCount:10,
         data: {
           name: 'asd'
         },
@@ -172,7 +172,8 @@ export default {
           .addAttribute('pageIndex', pageIndex)
           .addAttribute('pageSize', pageSize)
       )
-      this.majors.totalPage = response.totalPage
+      this.majors.totalCount = response.totalCount
+      this.majors.pageSize = response.pageSize
       this.majors.list = response.dataItems
     },
     select(rows) {
