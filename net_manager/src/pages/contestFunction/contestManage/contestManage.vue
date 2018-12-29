@@ -35,11 +35,8 @@
     <export-dialog v-if="ifShowExport" :close="e=>ifShowExport = false"></export-dialog>
     <delete-dialog v-if="ifShowDelete" :close="e=>ifShowDelete = false"></delete-dialog>
     <parameter-detail v-if="ifShowDetail" :close="e=>ifShowDetail = false"></parameter-detail>
-<<<<<<< HEAD
     <!-- <initiate-dialog v-show="show "></initiate-dialog> -->
-=======
-    <initiate-dialog v-if="ifInitiate" :close="e=>ifInitiate = false"></initiate-dialog>
->>>>>>> bf911b0fbadb2b2b79a1d92f7cd71b0bca61df87
+
   </div>
 </template>
 
@@ -71,13 +68,8 @@ export default {
     importSucceed,
     ExportDialog,
     ParameterDetail,
-<<<<<<< HEAD
-    DeleteDialog,
-    initiateDialog
-=======
     InitiateDialog,
     DeleteDialog
->>>>>>> bf911b0fbadb2b2b79a1d92f7cd71b0bca61df87
   },
   data () {
     return {

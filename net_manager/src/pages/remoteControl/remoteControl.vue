@@ -2,7 +2,7 @@
   <div>
     <top-bar></top-bar>
     <search-bar></search-bar>
-    <operate-bar :deleteBtn="true"></operate-bar>
+    <operate-bar :fBut="true"></operate-bar>
     <div class="tableWrap">
       <el-table ref="multipleTable" :data="remoteControlList" style="width: 100%"
                 @selection-change="handleSelectionChange">

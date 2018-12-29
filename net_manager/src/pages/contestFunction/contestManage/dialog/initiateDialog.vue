@@ -38,7 +38,6 @@
           </div>
 
           <div class="wrapr clf">
-<<<<<<< HEAD
               <div class="wrapr-top clf">
                   <a href="javascript:;" class="fl" @click="add()">添加组</a>
                   <a href="javascript:;" class="fr">清空</a>
@@ -59,23 +58,6 @@
               <div class="btns">
                   <a href="javascript:;">开始竞赛</a>
                   <a href="javascript:;" class="cancel">取消</a>
-=======
-            <div class="wrapr-top clf">
-              <a href="javascript:" class="fl" @click="add()">添加组</a>
-              <a href="javascript:" class="fr">清空</a>
-            </div>
-            <div class="group-box" v-for="(item,index) in this.groups" :key="index">
-              <div class="group">
-                <p class="group-title">竞赛组：{{item.groupcode}}</p>
-                <div>
-                  <span>A方：</span>
-                  <input type="text">
-                </div>
-                <div>
-                  <span>B方：</span>
-                  <input type="text">
-                </div>
->>>>>>> bf911b0fbadb2b2b79a1d92f7cd71b0bca61df87
               </div>
             </div>
             <div class="btns">
