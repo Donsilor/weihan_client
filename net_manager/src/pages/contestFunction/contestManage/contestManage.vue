@@ -114,6 +114,7 @@ export default {
         pageIndex: 1,
         pageSize: 10,
         totalPage: 10,
+        data:{},
         datas: [],
         search: {
           queryKey: null,
@@ -158,6 +159,32 @@ export default {
     this.laodTasks()
   },
   methods: {
+    deleteTask (id) {
+      let ids = null
+      if (id) {
+        ids = [id]
+      } else {
+        ids = this.multipleSelection.map(o => o.id)
+      }
+      if (ids.length) {
+        this.$api.service.professions.delete(ids)
+          .then(response => {
+            this.load()
+          })
+      }
+    },
+    edit () {
+      this.$api.service.professions.upset(
+        new RequestParams()
+          .addAttribute('id', this.majors.data.id)
+          .addAttribute('name', this.majors.data.name)
+          .addAttribute('code', this.majors.data.code || SystemParameter.CODE)
+      )
+        .then(response => {
+          this.load()
+          this.editView = false
+        })
+    },
     async laodTasks (pageIndex = 1, pageSize = 10) {
       let response = await this.$api.service.practical.task.search(
         new RequestParams()

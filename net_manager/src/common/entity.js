@@ -73,6 +73,7 @@ export const SystemParameter = new class SystemParameter {
             this.__dictionaries[item.type] = [];
           }
           this.__dictionaries[item.type].push(item)
+          this.__dictionaries[item.type][`__${item.value}__`] = item.label
         }
       })
     }
@@ -128,6 +129,9 @@ export const SystemParameter = new class SystemParameter {
     localStorage.setItem(CURRENTLY_SELECTED_MENU_KEY, JSON.stringify(this.__currently_index = v));
   }
 }
+
+
+window.SystemParameter = SystemParameter
 
 /**用户数据管理 */
 export const User = new class User {
