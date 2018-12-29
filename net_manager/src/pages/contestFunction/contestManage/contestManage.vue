@@ -35,8 +35,12 @@
     <export-dialog v-if="ifShowExport" :close="e=>ifShowExport = false"></export-dialog>
     <delete-dialog v-if="ifShowDelete" :close="e=>ifShowDelete = false"></delete-dialog>
     <parameter-detail v-if="ifShowDetail" :close="e=>ifShowDetail = false"></parameter-detail>
+<<<<<<< HEAD
     <!-- <initiate-dialog v-show="show "></initiate-dialog> -->
 
+=======
+    <initiate-dialog v-if="ifInitiate" :close="e=>ifInitiate = false"></initiate-dialog>
+>>>>>>> 149ed8b70d7873644e0dfc3f96e6437594ea5aa3
   </div>
 </template>
 

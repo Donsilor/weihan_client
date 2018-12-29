@@ -6,7 +6,7 @@
       <el-breadcrumb-item>学校管理</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="btns fr">
-      <a href="javascript:" v-for="(item, index) in option" :key="index"   @click="item.clickView()">
+      <a href="javascript:" v-for="(item, index) in option" :key="index" @click="item.clickView()">
         <i class="iconfont" v-if="item.iconfont" :class="item.iconfont"></i>
         {{item.name}}
       </a>

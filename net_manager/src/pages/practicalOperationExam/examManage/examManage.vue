@@ -2,7 +2,7 @@
   <div>
     <top-bar :option="headButtons"></top-bar>
     <search-bar :option="searchOption"></search-bar>
-    <operate-bar :deleteBtn="true" @deleteSelected="deleteSelected"></operate-bar>
+    <operate-bar :deleteBtn="true"></operate-bar>
     <div class="tableWrap">
       <el-table
         ref="multipleTable"
@@ -40,13 +40,12 @@
     <newExam v-if="ifNewExam" :close="e=>ifNewExam = false" :submit="edit"></newExam>
     <importDialog v-if="ifImport" :close="e=>ifImport = false"></importDialog>
     <exportDialog v-if="ifExport" :close="e=>ifExport = false"></exportDialog>
-    <delete-dialog v-if="ifShowDelete" @cancelDelete="cancelDelete" @confirmDelete="confirmDelete"></delete-dialog>
+    <delete-dialog v-if="ifShowDel"></delete-dialog>
+    <issue :ifIssue="ifIssue"></issue>
 
-
-    <parameterDetail :ifParameter='ifShowParameterDetail' @cancelParameter='cancelParameter'></parameterDetail>
-    <importFinish :isImportFinish="isImportFinish" @closeImportFinish="closeImportFinish"></importFinish>
-    <issue :ifIssue="ifIssue" @cancelIssue="cancelIssue"></issue>
-    <warning :hasWarn="hasWarn" @closeWarn="closeWarn"></warning>
+    <parameterDetail :ifParameter='ifShowParameterDetail'></parameterDetail>
+    <importFinish :isImportFinish="isImportFinish"></importFinish>
+    <warning :hasWarn="hasWarn"></warning>
   </div>
 </template>
 
@@ -59,10 +58,10 @@ import newExam from './dialog/newExam'
 import importDialog from 'components/dialog/importDialog'
 import exportDialog from 'components/dialog/exportDialog'
 import DeleteDialog from 'components/dialog/deleteDialog/deleteDialog'
+import Issue from 'components/dialog/deleteDialog/deleteDialog'
 
+import ImportFinish from 'components/dialog/deleteDialog/deleteDialog'
 import ParameterDetail from './dialog/parameter_detail'
-import ImportFinish from './dialog/ImportFinish'
-import Issue from './dialog/Issue'
 import Warning from './dialog/Warning'
 
 import { User, RequestParams } from 'common/entity'
@@ -89,16 +88,17 @@ export default {
       ifImport: false,
       ifExport: false,
       ifParameter: false,
-      ifShowParameterDetail: false,
       ifImport: false,
       ifExport: false,
+      ifShowParameterDetail: false,
+      ifShowDel: false,
       isImportFinish: false,
       ifIssue: false,
       ifShowDelete: false,
       hasWarn: false,
       // 全选
       ifAllSelect: false,
-      informationList: new Array(5).fill({
+      informationList: [{
         ifSelect: false,
         order: '1',
         number: '003309',
@@ -114,7 +114,7 @@ export default {
         exam_time: '30分钟',
         status: '未发布',
         handle: '发布'
-      }),
+      }],
       searchOption: {
         queryTypes: {
           data: {
