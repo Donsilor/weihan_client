@@ -1,10 +1,10 @@
 <template>
-  <div class="maskLayer" v-if="ifImportExam">
+  <div class="maskLayer">
     <div class="centerLayer">
       <div class="popup newContest">
         <div class="popupTopBar">
           <span class="title fl">导入</span>
-          <i class="iconfont fr" @click="$emit('cancelImport', false)">&#xe607;</i>
+          <i class="iconfont fr" @click="close()">&#xe607;</i>
         </div>
         <div class="popupWrap">
           <div class="item clf">
@@ -54,9 +54,21 @@ export default {
     return {}
   },
   props: {
-    ifImportExam: {
-      type: Boolean,
-      defalult: false
+    option:{
+      type:Object,
+      default(){
+        return {
+          name:null
+        }
+      }
+    },
+    close: {
+      type: Function,
+      default: e=>console.log(e)
+    },
+    submit: {
+      type: Function,
+      default: e=>console.log(e)
     }
   }
 }
@@ -64,83 +76,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
-@import "~assets/common.styl"
-
-.newContest
-
-  .item
-    width 80%
-    margin auto
-
-    .title
-      font-size 1.25rem
-      line-height 2.5rem
-      position relative
-
-      .iconfont
-        font-size 1.25rem
-        position absolute
-        left -2rem
-
-    .subText
-      font-size 1rem
-      line-height 1.5
-      color #7b7b7b
-      padding .5rem 0
-
-    .selectFile
-
-      &:after
-        cleaerfix()
-
-      input
-        float left
-        width 80%
-        height 2.5rem
-        border 1px solid #b5b5b5
-
-      a
-        float right
-        width 15%
-        height 2.5rem
-        font-size 1rem
-        line-height 2.5rem
-        text-align center
-        background-color #34a5dd
-        color #fff
-        border-radius .3rem
-
-  a.downloadTemplate
-    float left
-    width 15%
-    height 2.5rem
-    font-size 1rem
-    line-height 2.5rem
-    text-align center
-    background-color #34a5dd
-    color #fff
-    border-radius .3rem
-    margin-top 1rem
-    margin-bottom 2.6rem
-
-.progressBarWrap
-  margin-top 1rem
-  padding 2rem 15%
-  background-color #fff
-
-  .progressBar
-    margin-top 1rem
-    width 80%
-
-    .fl
-      height 1rem
-      width 88%
-      border 1px solid #aaa
-
-      .info
-        width 20%
-        height 1rem
-        background-color #aaa
-
+  @import "~assets/common.styl"
+  @import "~assets/import.styl"
 </style>
