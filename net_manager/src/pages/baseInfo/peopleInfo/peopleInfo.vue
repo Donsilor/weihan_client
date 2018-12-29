@@ -6,7 +6,7 @@
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="管理员" name="first">
           <div class="people-border">
-            <operate-bar :deleteBtn="true" @deleteSelected="deletePeople"></operate-bar>
+            <operate-bar :deleteBtn="true" @selectAll="selectAll" @Del="deletePeople"></operate-bar>
             <div class="tableWrap">
               <el-table ref="multipleTable" :data="admininformationList" style="width: 100%"
                         @selection-change="handleSelectionChange">
@@ -17,8 +17,8 @@
                 <el-table-column label="状态" prop="userstatus" class="status"></el-table-column>
                 <el-table-column label="操作" width="200">
                   <template slot-scope="scope">
-                    <i class="iconfont" @click="editPeople(true)">&#xe617;</i>
-                    <i class="iconfont" @click="deletePeople(true)">&#xe63a;</i>
+                    <i class="iconfont" @click="ifEditPeople = true">&#xe617;</i>
+                    <i class="iconfont">&#xe63a;</i>
                     <i class="iconfont">&#xe600;</i>
                   </template>
                 </el-table-column>
@@ -29,7 +29,7 @@
         </el-tab-pane>
         <el-tab-pane label="老师" name="second">
           <div class="people-border">
-            <operate-bar :deleteBtn="true" @deleteSelected="deletePeople"></operate-bar>
+            <operate-bar :deleteBtn="true" @selectAll="selectAll" @Del="deletePeople"></operate-bar>
             <div class="tableWrap">
               <el-table ref="multipleTable" :data="teachinformationList" style="width: 100%"
                         @selection-change="handleSelectionChange">
@@ -40,8 +40,8 @@
                 <el-table-column label="状态" prop="userstatus" class="status"></el-table-column>
                 <el-table-column label="操作" width="200">
                   <template slot-scope="scope">
-                    <i class="iconfont" @click="editPeople(true)">&#xe617;</i>
-                    <i class="iconfont" @click="deletePeople(true)">&#xe63a;</i>
+                    <i class="iconfont" @click="ifEditPeople = true">&#xe617;</i>
+                    <i class="iconfont">&#xe63a;</i>
                     <i class="iconfont">&#xe600;</i>
                   </template>
                 </el-table-column>
@@ -52,7 +52,7 @@
         </el-tab-pane>
         <el-tab-pane label="学生" name="third">
           <div class="people-border">
-            <operate-bar :deleteBtn="true" @deleteSelected="deletePeople"></operate-bar>
+            <operate-bar :deleteBtn="true" @selectAll="selectAll" @Del="deletePeople"></operate-bar>
             <div class="tableWrap">
               <el-table ref="multipleTable" :data="studentinformationList" style="width: 100%"
                         @selection-change="handleSelectionChange">
@@ -63,8 +63,8 @@
                 <el-table-column label="状态" prop="userstatus" class="status"></el-table-column>
                 <el-table-column label="操作" width="200">
                   <template slot-scope="scope">
-                    <i class="iconfont" @click="editPeople(true)">&#xe617;</i>
-                    <i class="iconfont" @click="deletePeople(true)">&#xe63a;</i>
+                    <i class="iconfont" @click="ifEditPeople = true">&#xe617;</i>
+                    <i class="iconfont">&#xe63a;</i>
                     <i class="iconfont">&#xe600;</i>
                   </template>
                 </el-table-column>
@@ -75,14 +75,14 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-    <new-people 
-    v-if="editView" 
-    :professions="professions"
-    :classs="classs"
-    :close="e=>editView = false" 
-    :submit="e=>editView = false"  
+    <new-people
+      v-if="editView"
+      :professions="professions"
+      :classs="classs"
+      :close="e=>editView = false"
+      :submit="e=>editView = false"
     ></new-people>
-    <edit-people ></edit-people>
+    <edit-people v-if="ifEditPeople" :close="e=>ifEditPeople = false"></edit-people>
   </div>
 </template>
 
@@ -103,16 +103,15 @@ export default {
     OperateBar,
     Paging,
     NewPeople,
-    EditPeople,
+    EditPeople
   },
   data () {
     return {
       ifNewPeople: false,
       ifEditPeople: false,
-      ifDeletePeople: false,
       // 全选
       ifAllSelect: false,
-      editView:false,
+      editView: false,
       activeName: 'first',
       queryOption: {
         queryTypes: {
@@ -148,8 +147,8 @@ export default {
         inquire: false,
         inquireName: false
       },
-      professions:[],
-      classs:[],
+      professions: [],
+      classs: [],
       admininformationList: new Array(10).fill({
         ifSelect: false,
         number: '6801000003309',
@@ -175,23 +174,23 @@ export default {
     }
   },
   computed: {
-    headButtons() {
-      let that = this;
+    headButtons () {
+      let that = this
       return [
         {
-          name: "新增人员",
-          clickView() {
-            that.editView = true;
+          name: '新增人员',
+          clickView () {
+            that.editView = true
           }
         }
-      ];
+      ]
     }
   },
-  async mounted(){
-    let response = await this.$api.service.professions.search({pageSize:-1})
-    this.professions = response.dataItems;
-    response = await this.$api.service.classes.search({pageSize:-1})
-    this.classs = response.dataItems;
+  async mounted () {
+    let response = await this.$api.service.professions.search({ pageSize: -1 })
+    this.professions = response.dataItems
+    response = await this.$api.service.classes.search({ pageSize: -1 })
+    this.classs = response.dataItems
   },
   methods: {
     select (rows) {
@@ -214,24 +213,29 @@ export default {
     handleClick (tab, event) {
       console.log(tab, event)
     },
-    newPeople (e) {
-      this.ifNewPeople = e
+    deletePeople (id) {
+      let ids = null
+      if (id) {
+        ids = [id]
+      } else {
+        ids = this.multipleSelection.map(o => o.id)
+      }
+      if (ids.length) {
+        this.$api.service.professions.delete(ids)
+          .then(response => {
+            this.load()
+          })
+      }
     },
-    cancelNewPeople (e) {
-      this.ifNewPeople = e
-    },
-    editPeople (e) {
-      this.ifEditPeople = e
-    },
-    cancelEditPeople (e) {
-      this.ifEditPeople = e
-    },
-    deletePeople (e) {
-      this.ifDeletePeople = e
-    },
-    cancelDeletePeople (e) {
-      this.ifDeletePeople = e
+    selectAll (select) {
+      if (select) {
+        this.$refs.multipleTable.clearSelection()
+        this.$refs.multipleTable.toggleAllSelection()
+      } else {
+        this.$refs.multipleTable.clearSelection()
+      }
     }
+
   }
 
 }

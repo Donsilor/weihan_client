@@ -1,10 +1,10 @@
 <template>
-  <div class="maskLayer" v-if="ifEditPeople">
+  <div class="maskLayer">
     <div class="centerLayer">
       <div class="popup">
         <div class="popupTopBar">
           <span class="title fl">编辑</span>
-          <i class="iconfont fr" @click="$emit('cancelEdit', false)">&#xe607;</i>
+          <i class="iconfont fr" @click="close()">&#xe607;</i>
         </div>
         <div class="popupWrap">
           <div class="clf">
@@ -29,9 +29,9 @@
 export default {
   name: 'EditPeople',
   props: {
-    ifEditPeople: {
-      type: Boolean,
-      default: false
+    close: {
+      type: Function,
+      default: e=>console.log(e)
     }
   }
 }
